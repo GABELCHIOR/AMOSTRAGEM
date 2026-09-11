@@ -1,0 +1,113 @@
+/* ==========================================================================
+   AMOSTRAGEM — tema "azul-cobalto"
+   --------------------------------------------------------------------------
+   Este arquivo é a ÚNICA fonte de cores, fontes e medidas do projeto.
+   `estilo.css` cuida só de estrutura e nunca traz cor literal — sempre
+   var(--…) declarada aqui. (Única exceção: a regra @media print, que força
+   fundo branco porque papel é branco.)
+
+   REGRA DO TEMA: as superfícies gerais são neutras. O azul aparece só em
+   TIPOGRAFIA e em FILETES — títulos, links, rótulos, bordas de destaque.
+
+   EXCEÇÃO DELIBERADA (herdada do caderno ESTOCASTICOS): as três caixas
+   matemáticas — enunciado de teorema/proposição/resultado, demonstração e
+   exemplo — têm cada uma a SUA cor, com fundo levemente tingido, para que se
+   distingam à primeira vista ao folhear a página:
+
+       .teorema       petróleo      (enunciados: teoremas, proposições, resultados)
+       .demonstracao  verde-musgo   (demonstrações)
+       .exemplo       âmbar         (exemplos do livro, resolvidos)
+
+   Como o realce do tema já é azul, o enunciado NÃO usa o azul-índigo do
+   ESTOCASTICOS (ficaria igual ao título): usa petróleo, que se lê como
+   "azul-esverdeado" ao lado do cobalto.
+
+   As demais caixas (definição, aviso, prática, objetivo) seguem a regra
+   geral: fundo cinza neutro, cor só no filete e no rótulo. A definição é a
+   caixa mais frequente deste livro (Definições 2.1 a 2.11) e fica neutra de
+   propósito: é texto de referência, não resultado a destacar.
+
+   Para trocar de tema:
+     1. copie este arquivo para assets/temas/<nome>.css
+     2. mude os valores lá
+     3. troque o href do primeiro <link> das páginas para o novo arquivo
+   Nenhuma outra alteração é necessária: estilo.css continua igual.
+   ========================================================================== */
+
+:root {
+  /* ---- superfícies: cinzas neutros, sem tingimento ---- */
+  --fundo:        #fcfcfd;
+  --fundo-caixa:  #ffffff;
+  --fundo-suave:  #f3f4f7;   /* caixas neutras, cabeçalho de tabela, hover */
+  --texto:        #1a1c22;
+  --texto-fraco:  #565a66;
+  --linha:        #d9dce4;
+
+  /* ---- cores semânticas: SÓ em texto e filetes ---- */
+  --realce:       #1d4f9e;   /* azul-cobalto — h1, h2, links e destaques */
+  --realce-2:     #2f62b5;   /* azul médio — h3 (subtópicos) */
+  --realce-3:     #5d78ad;   /* azul-acinzentado — h4 (rótulos de sub-bloco) */
+  --azul:         #1f6b78;   /* petróleo — definições e saída do R */
+  --verde:        #587a1e;   /* verde-oliva — código R / respostas */
+  --ambar:        #8a4a1c;   /* castanho-queimado — avisos e armadilhas (o
+                                 âmbar de verdade ficou para os exemplos) */
+
+  /* ---- as três caixas matemáticas: cor do filete/rótulo e fundo tingido ---- */
+  --teorema:        #1f6b78;   /* petróleo */
+  --teorema-fundo:  #eaf4f5;
+  --demo:           #4f7220;   /* verde-musgo */
+  --demo-fundo:     #f1f6e8;
+  --exemplo:        #a9600c;   /* âmbar */
+  --exemplo-fundo:  #fdf4e6;
+
+  /* ---- cores de peças específicas ---- */
+  --menu-fundo:   #f5f6f9;   /* barra lateral fixa */
+  --menu-texto:   #ffffff;   /* texto sobre o alternador do menu (fundo --realce) */
+  --fundo-figura: #ffffff;   /* recortes do PDF têm fundo branco */
+
+  /* ---- tipografia ---- */
+  --serif:  Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --sans:   "Segoe UI", -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono:   "Cascadia Mono", Consolas, "SF Mono", "Liberation Mono", monospace;
+  --corpo-tamanho: 18px;
+  --corpo-altura:  1.72;
+
+  /* ---- medidas da grade (ver estilo.css) ---- */
+  --largura-leitura: 46rem;   /* coluna de prosa */
+  --largura-sangria: 10rem;   /* quanto figuras/tabelas avançam para cada lado */
+  --largura-menu:    17rem;   /* barra lateral fixa, sempre aberta */
+  --desloca-texto:   4.5rem;  /* quanto o bloco de conteúdo anda para a direita
+                                 além da barra lateral */
+
+  /* ---- figuras ---- */
+  --figura-largura: 34rem;    /* teto de largura dos recortes do livro */
+  --figura-altura:  52vh;     /* teto de altura, para nenhuma figura dominar a tela */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo:        #151619;
+    --fundo-caixa:  #1c1e23;
+    --fundo-suave:  #24272e;
+    --texto:        #e5e7ec;
+    --texto-fraco:  #a0a4b0;
+    --linha:        #363a44;
+    --realce:       #8fb3f2;
+    --realce-2:     #7fa5e8;
+    --realce-3:     #9daccb;
+    --azul:         #7fc8d4;
+    --verde:        #adc96c;
+    --ambar:        #dfa574;
+
+    --teorema:        #7fc8d4;
+    --teorema-fundo:  #182629;
+    --demo:           #b3cf7c;
+    --demo-fundo:     #1f2619;
+    --exemplo:        #e7b26b;
+    --exemplo-fundo:  #2c2419;
+
+    --menu-fundo:   #191b1f;
+    --menu-texto:   #151619;   /* o realce clareia no escuro: texto escuro sobre ele */
+    /* --fundo-figura continua branco: as figuras vêm do PDF com fundo branco */
+  }
+}

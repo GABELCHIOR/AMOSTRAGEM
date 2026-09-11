@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Caderno de estudo pessoal: reproduz tabelas e enunciados de obra protegida
+     (Bolfarine & Bussab, IME-USP) para uso próprio. Fora dos buscadores. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Cap. 2 — Definições e notações básicas</title>
+<link rel="stylesheet" href="../assets/tema.css?v=1">
+<link rel="stylesheet" href="../assets/estilo.css?v=1">
+</head>
+<body>
+
+<details class="menu-lateral" open>
+  <summary>Índice da aula</summary>
+  <nav class="painel">
+    <p class="painel-titulo">Cap. 2 — Definições e notações básicas</p>
+    <ol>
+      <li><details class="sub">
+        <summary><a href="#s1">População e parâmetros</a></summary>
+        <ul class="subitens">
+          <li><a href="#s1-1">1.1 <math><mi>U</mi></math>, <math><msub><mi>Y</mi><mi>i</mi></msub></math>, <math><mi mathvariant="bold">D</mi></math> e <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math></a></li>
+          <li><a href="#s1-2">1.2 Os parâmetros mais usados</a></li>
+        </ul>
+      </details></li>
+      <li><details class="sub">
+        <summary><a href="#s2">Amostras</a></summary>
+        <ul class="subitens">
+          <li><a href="#s2-1">2.1 Amostra ordenada, <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math></a></li>
+          <li><a href="#s2-2">2.2 Tamanho, tamanho efetivo e <math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math></a></li>
+        </ul>
+      </details></li>
+      <li><details class="sub">
+        <summary><a href="#s3">Planejamento amostral</a></summary>
+        <ul class="subitens">
+          <li><a href="#s3-1">3.1 A Definição 2.5 e os planos A–E</a></li>
+          <li><a href="#s3-2">3.2 Regras de sorteio: AASc e PPT</a></li>
+          <li><a href="#s3-3">3.3 Os planos que virão</a></li>
+        </ul>
+      </details></li>
+      <li><details class="sub">
+        <summary><a href="#s4">Estatísticas e distribuições amostrais</a></summary>
+        <ul class="subitens">
+          <li><a href="#s4-1">4.1 Dados da amostra e estatística</a></li>
+          <li><a href="#s4-2">4.2 Distribuição amostral</a></li>
+          <li><a href="#s4-3">4.3 Esperança, variância, covariância</a></li>
+          <li><a href="#s4-4">4.4 <math><msub><mi>f</mi><mi>i</mi></msub></math>, <math><msub><mi>δ</mi><mi>i</mi></msub></math>, <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math></a></li>
+        </ul>
+      </details></li>
+      <li><a href="#s5">Estimadores e suas propriedades</a></li>
+      <li><details class="sub">
+        <summary><a href="#s6">Expressões úteis</a></summary>
+        <ul class="subitens">
+          <li><a href="#s6-1">6.1 Somas de desvios: (2.2)–(2.4)</a></li>
+          <li><a href="#s6-2">6.2 O tamanho da amostra e a simetria</a></li>
+          <li><a href="#s6-3">6.3 O total amostral <math><mi>t</mi></math></a></li>
+          <li><a href="#s6-4">6.4 Soma de quadrados e condicionamento</a></li>
+        </ul>
+      </details></li>
+      <li><a href="#recall">Cartões de recall ativo</a></li>
+      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+    </ol>
+    <p class="extras">
+      <a href="#topo">↑ Topo</a>
+      <a href="../index.html">Menu</a>
+    </p>
+  </nav>
+</details>
+
+<div class="pagina" id="topo">
+
+<header class="topo">
+  <p class="migalha"><a href="../index.html">Menu</a> · Bolfarine &amp; Bussab · Capítulo 2 · págs. 37–60</p>
+  <h1>Definições e notações básicas</h1>
+  <p class="subtitulo">O capítulo 1 dito em símbolos. A população é um vetor fixo; a amostra é uma sequência de rótulos; o plano amostral é uma função de probabilidade sobre as sequências; e tudo o que se quer saber de um estimador se lê na sua distribuição amostral — que, numa população de três domicílios, se enumera à mão.</p>
+</header>
+
+<div class="caixa objetivo">
+  <span class="rotulo">Ao final desta aula você deve saber</span>
+  <ul>
+    <li>Escrever <math><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>N</mi><mo>}</mo></math>, o vetor <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mi>N</mi></msub><mo>)</mo></math> e uma função paramétrica <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math>; distinguir <math><msup><mi>σ</mi><mn>2</mn></msup></math> de <math><msup><mi>S</mi><mn>2</mn></msup></math> e <math><mi>R</mi></math> de <math><mover><mi>R</mi><mo>¯</mo></mover></math>.</li>
+    <li>Definir amostra ordenada <math><mi>s</mi><mo>=</mo><mo>(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>k</mi><mi>n</mi></msub><mo>)</mo></math>, as variáveis <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> e <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math>, o tamanho <math><mi>n</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> e o tamanho efetivo <math><mi>ν</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>.</li>
+    <li>Contar as amostras: <math><msup><mi>N</mi><mi>n</mi></msup></math> ordenadas com reposição, <math><mrow><mo>(</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac><mo>)</mo></mrow></math> não ordenadas sem reposição.</li>
+    <li>Definir plano amostral (Definição 2.5) e traduzir uma regra de sorteio em <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> — AASc (plano A), AASs (plano B), o sorteio até sair a unidade 2 (plano C), PPT sem reposição (plano D).</li>
+    <li>Construir a distribuição amostral de uma estatística enumerando <math><msub><mi>S</mi><mi>A</mi></msub></math>, e calcular <math><msub><mi>E</mi><mi>A</mi></msub></math>, <math><msub><mi>Var</mi><mi>A</mi></msub></math>, <math><msub><mi>Cov</mi><mi>A</mi></msub></math> e <math><msub><mi>Corr</mi><mi>A</mi></msub></math>.</li>
+    <li>Obter <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> a partir de <math><msub><mi>δ</mi><mi>i</mi></msub></math>, e explicar por que <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub></math>.</li>
+    <li>Definir viés e EQM, demonstrar <math><mi>EQM</mi><mo>=</mo><mi>Var</mi><mo>+</mo><msup><mi>B</mi><mn>2</mn></msup></math>, e dizer por que se julga o <em>plano</em> e não a amostra.</li>
+    <li>Demonstrar (2.4) e, para planos simétricos de tamanho fixo, <math><mi>Cov</mi><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo><mo>=</mo><mo>−</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>.</li>
+    <li>Escrever <math><mi>t</mi><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub></math> e derivar <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>τ</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></math> — o resultado que move o capítulo 3.</li>
+  </ul>
+</div>
+
+<h2 id="s1">1. População e parâmetros</h2>
+
+<h3 id="s1-1">1.1 <math><mi>U</mi></math>, <math><msub><mi>Y</mi><mi>i</mi></msub></math>, <math><mi mathvariant="bold">D</mi></math> e <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math></h3>
+
+<p>O capítulo restringe-se a populações <em>finitas</em>; a teoria para populações infinitas (modelos, distribuições de probabilidade) está nos livros de inferência (Bussab e Morettin, 2004), e a integração dos dois pontos de vista em Cassel et al. (1977). A ideia-chave, que muda tudo em relação à inferência clássica: <strong>os valores da população são números fixos, não variáveis aleatórias</strong>.</p>
+
+<div class="caixa definicao">
+  <span class="rotulo">População, elemento, característica, parâmetro</span>
+  <p><strong>População</strong> (ou universo) é o conjunto <math><mi>U</mi></math> de todas as unidades elementares de interesse, indicado por</p>
+  <math display="block"><mrow><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>N</mi><mo>}</mo><mo>,</mo></mrow></math>
+  <p>onde <math><mi>N</mi></math> é o tamanho, fixo e às vezes desconhecido, da população. <strong>Elemento populacional</strong> (unidade elementar) é qualquer <math><mi>i</mi><mo>∈</mo><mi>U</mi></math>. <strong>Característica de interesse</strong> é a variável — ou vetor — associada a cada elemento: <math><msub><mi>Y</mi><mi>i</mi></msub></math>, ou <math><msub><mi mathvariant="bold">Y</mi><mi>i</mi></msub><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mrow><mi>i</mi><mn>1</mn></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mrow><mi>i</mi><mi>p</mi></mrow></msub><mo>)</mo></math> no caso multivariado (produção agrícola, número de tratores, tipo de posse da terra). <strong>Parâmetro populacional</strong> é o vetor de <em>todos</em> os valores,</p>
+  <math display="block"><mrow><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mi>N</mi></msub><mo>)</mo><mo>,</mo></mrow></math>
+  <p>ou a matriz <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><msub><mi mathvariant="bold">Y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi mathvariant="bold">Y</mi><mi>N</mi></msub><mo>)</mo></math> no caso multivariado. <strong>Função paramétrica populacional</strong> é qualquer característica numérica da população — uma expressão que condensa os <math><msub><mi>Y</mi><mi>i</mi></msub></math>: <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math>. Total, média, quociente de dois totais. É comum dizer só “parâmetro populacional” para <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math>.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.1 — A população de três domicílios</span>
+  <p><math><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>}</mo></math>, com seis variáveis observadas. Esta população volta em quase todos os exemplos do capítulo — vale decorá-la.</p>
+  <div class="rolagem">
+  <table>
+    <caption>Tabela 2.1 — População de três domicílios.</caption>
+    <thead><tr><th class="txt">Variável</th><th>unidade 1</th><th>unidade 2</th><th>unidade 3</th><th class="txt">Notação</th></tr></thead>
+    <tbody>
+      <tr><td>nome do chefe</td><td>Ada</td><td>Beto</td><td>Ema</td><td class="txt"><math><msub><mi>A</mi><mi>i</mi></msub></math></td></tr>
+      <tr><td>sexo (0 fem., 1 masc.)</td><td>0</td><td>1</td><td>0</td><td class="txt"><math><msub><mi>X</mi><mi>i</mi></msub></math></td></tr>
+      <tr><td>idade</td><td>20</td><td>30</td><td>40</td><td class="txt"><math><msub><mi>Y</mi><mi>i</mi></msub></math></td></tr>
+      <tr><td>fumante (0 não, 1 sim)</td><td>0</td><td>1</td><td>1</td><td class="txt"><math><msub><mi>G</mi><mi>i</mi></msub></math></td></tr>
+      <tr><td>renda bruta familiar</td><td>12</td><td>30</td><td>18</td><td class="txt"><math><msub><mi>F</mi><mi>i</mi></msub></math></td></tr>
+      <tr><td>nº de trabalhadores</td><td>1</td><td>3</td><td>2</td><td class="txt"><math><msub><mi>T</mi><mi>i</mi></msub></math></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Parâmetros populacionais: para a idade, <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><mn>20</mn><mo>,</mo><mn>30</mn><mo>,</mo><mn>40</mn><mo>)</mo><mo>=</mo><mi mathvariant="bold">Y</mi></math>; para o vetor <math><msup><mrow><mo>(</mo><msub><mi>F</mi><mi>i</mi></msub><mo>,</mo><msub><mi>T</mi><mi>i</mi></msub><mo>)</mo></mrow><mo>′</mo></msup></math>,</p>
+  <math display="block"><mrow><mi mathvariant="bold">D</mi><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mn>12</mn></mtd><mtd><mn>30</mn></mtd><mtd><mn>18</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>2</mn></mtd></mtr></mtable><mo>)</mo></mrow><mo>.</mo></mrow></math>
+  <p>Funções paramétricas: a idade média, <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">Y</mi><mo>)</mo><mo>=</mo><mo>(</mo><mn>20</mn><mo>+</mo><mn>30</mn><mo>+</mo><mn>40</mn><mo>)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>30</mn></math>; o vetor de médias de renda e trabalhadores, <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mn>20</mn><mo>,</mo><mn>2</mn><mo>)</mo></mrow><mo>′</mo></msup></math>; e a <strong>renda média por trabalhador</strong>,</p>
+  <math display="block"><mrow><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mn>12</mn><mo>+</mo><mn>30</mn><mo>+</mo><mn>18</mn></mrow><mrow><mn>1</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mn>60</mn><mn>6</mn></mfrac><mo>=</mo><mn>10</mn><mo>.</mo></mrow></math>
+  <p>Esse 10 é o <math><mi>R</mi></math> que os exemplos 2.10 a 2.14 vão tentar estimar.</p>
+<pre><code>F &lt;- c(12, 30, 18); T &lt;- c(1, 3, 2); Y &lt;- c(20, 30, 40)
+c(mean(Y), mean(F), mean(T), sum(F) / sum(T))
+<span class="out">## [1] 30 20  2 10</span>
+</code></pre>
+</div>
+
+<h3 id="s1-2">1.2 Os parâmetros mais usados</h3>
+
+<p>Para uma variável:</p>
+
+<math display="block"><mrow><mi>τ</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><mspace width="2em"/><mi>μ</mi><mo>=</mo><mover><mi>Y</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Y</mi><mi>i</mi></msub></mrow></math>
+<div class="eq"><math display="block"><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>,</mo><mspace width="2em"/><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">total, média, variâncias</span></div>
+
+<p>— o <strong>total populacional</strong>, a <strong>média populacional</strong> e as duas versões da <strong>variância populacional</strong>. As duas são “a” variância: <math><msup><mi>σ</mi><mn>2</mn></msup></math> é a variância da distribuição uniforme sobre os <math><msub><mi>Y</mi><mi>i</mi></msub></math>; <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>N</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math> é a que aparece limpa nas fórmulas da AAS sem reposição (seção 6.3 desta aula e capítulo 3). Para duas variáveis <math><mo>(</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>)</mo></math>:</p>
+
+<math display="block"><mrow><msub><mi>σ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>X</mi></msub><mo>)</mo><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>Y</mi></msub><mo>)</mo><mo>,</mo><mspace width="1.5em"/><msub><mi>S</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msub><mi>σ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub></mrow></math>
+<div class="eq"><math display="block"><mrow><msub><mi>ρ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>σ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mrow><msub><mi>σ</mi><mi>X</mi></msub><msub><mi>σ</mi><mi>Y</mi></msub></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><mi>R</mi><mo>=</mo><mfrac><msub><mi>τ</mi><mi>Y</mi></msub><msub><mi>τ</mi><mi>X</mi></msub></mfrac><mo>=</mo><mfrac><msub><mi>μ</mi><mi>Y</mi></msub><msub><mi>μ</mi><mi>X</mi></msub></mfrac><mo>,</mo><mspace width="1.5em"/><mover><mi>R</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mfrac><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>X</mi><mi>i</mi></msub></mfrac></mrow></math><span class="num">covariância, correlação, razões</span></div>
+
+<p>— covariância (duas versões), correlação, <strong>razão populacional</strong> <math><mi>R</mi></math> e <strong>razão média populacional</strong> <math><mover><mi>R</mi><mo>¯</mo></mover></math>. As duas razões são os dois parâmetros do exemplo do vestuário no capítulo 1: no Exemplo 2.1, <math><mi>R</mi><mo>=</mo><mn>60</mn><mo>/</mo><mn>6</mn><mo>=</mo><mn>10</mn></math>, mas <math><mover><mi>R</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mn>12</mn><mo>/</mo><mn>1</mn><mo>+</mo><mn>30</mn><mo>/</mo><mn>3</mn><mo>+</mo><mn>18</mn><mo>/</mo><mn>2</mn><mo>)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>31</mn><mo>/</mo><mn>3</mn><mo>≈</mo><mn>10,33</mn></math>. Não são o mesmo número.</p>
+
+<h2 id="s2">2. Amostras</h2>
+
+<h3 id="s2-1">2.1 Amostra ordenada, <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math></h3>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definição 2.1 — amostra ordenada</span>
+  <p>Uma sequência qualquer de <math><mi>n</mi></math> unidades de <math><mi>U</mi></math> é uma <strong>amostra ordenada</strong> de <math><mi>U</mi></math>:</p>
+  <math display="block"><mrow><mi>s</mi><mo>=</mo><mo>(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>k</mi><mi>n</mi></msub><mo>)</mo><mo>,</mo><mspace width="1em"/><msub><mi>k</mi><mi>i</mi></msub><mo>∈</mo><mi>U</mi><mo>.</mo></mrow></math>
+  <p>O rótulo <math><msub><mi>k</mi><mi>i</mi></msub></math> é o <math><mi>i</mi></math>-ésimo <em>componente</em> de <math><mi>s</mi></math>. Repare no que a definição permite: repetições e qualquer ordem. <strong>Exemplo 2.2</strong>: com <math><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>}</mo></math>, <math><msub><mi>s</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>)</mo></math>, <math><msub><mi>s</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>)</mo></math>, <math><msub><mi>s</mi><mn>3</mn></msub><mo>=</mo><mo>(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></math>, <math><msub><mi>s</mi><mn>4</mn></msub><mo>=</mo><mo>(</mo><mn>3</mn><mo>)</mo></math> e <math><msub><mi>s</mi><mn>5</mn></msub><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>2</mn><mo>)</mo></math> são amostras ordenadas — <math><msub><mi>s</mi><mn>1</mn></msub><mo>≠</mo><msub><mi>s</mi><mn>2</mn></msub></math>.</p>
+</div>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definição 2.2 — frequência <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> e presença <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math></span>
+  <p><math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> é o número de vezes que a unidade <math><mi>i</mi></math> aparece em <math><mi>s</mi></math>; <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> é a variável binária de presença,</p>
+  <math display="block"><mrow><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left"><mtr><mtd><mn>1</mn><mo>,</mo></mtd><mtd><mtext>se</mtext><mspace width="0.3em"/><mi>i</mi><mo>∈</mo><mi>s</mi></mtd></mtr><mtr><mtd><mn>0</mn><mo>,</mo></mtd><mtd><mtext>se</mtext><mspace width="0.3em"/><mi>i</mi><mo>∉</mo><mi>s</mi><mo>.</mo></mtd></mtr></mtable></mrow></mrow></math>
+  <p><strong>Exemplo 2.3</strong>: <math><msub><mi>f</mi><mn>1</mn></msub><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>, <math><msub><mi>f</mi><mn>2</mn></msub><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>, <math><msub><mi>f</mi><mn>3</mn></msub><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>0</mn></math>; <math><msub><mi>f</mi><mn>1</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>, <math><msub><mi>f</mi><mn>2</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>3</mn></math>, <math><msub><mi>f</mi><mn>3</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>. E <math><msub><mi>δ</mi><mn>1</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><msub><mi>δ</mi><mn>2</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><msub><mi>δ</mi><mn>3</mn></msub><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>.</p>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Por que essas duas variáveis são o segredo do capítulo</span>
+  <p>Toda estatística “soma sobre a amostra” — <math><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub></math> — pode ser reescrita como uma soma <em>sobre a população</em>, <math><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><msub><mi>Y</mi><mi>i</mi></msub></math>. Os <math><msub><mi>Y</mi><mi>i</mi></msub></math> são constantes; a aleatoriedade fica toda nos <math><msub><mi>f</mi><mi>i</mi></msub></math>. Esperança e variância de qualquer total amostral se reduzem, então, a <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math>, <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math> e <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo></math> — que dependem só do plano, não dos dados. É o que a seção 6 explora; sem reposição, <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>.</p>
+</div>
+
+<h3 id="s2-2">2.2 Tamanho, tamanho efetivo e o espaço <math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math></h3>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definições 2.3 e 2.4 — <math><mi>n</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>, <math><mi>ν</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>, <math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math> e <math><msub><mi>S</mi><mi>n</mi></msub><mo>(</mo><mi>U</mi><mo>)</mo></math></span>
+  <p>O <strong>tamanho</strong> da amostra é a soma das frequências; o <strong>tamanho efetivo</strong> é o número de unidades <em>distintas</em>:</p>
+  <math display="block"><mrow><mi>n</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>,</mo><mspace width="2em"/><mi>ν</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow></math>
+  <p><strong>Exemplo 2.4</strong>: <math><mi>n</mi><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mi>ν</mi><mo>(</mo><msub><mi>s</mi><mn>1</mn></msub><mo>)</mo><mo>=</mo><mn>2</mn></math>; <math><mi>n</mi><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>5</mn></math> mas <math><mi>ν</mi><mo>(</mo><msub><mi>s</mi><mn>5</mn></msub><mo>)</mo><mo>=</mo><mn>3</mn></math>; <math><mi>n</mi><mo>(</mo><msub><mi>s</mi><mn>4</mn></msub><mo>)</mo><mo>=</mo><mi>ν</mi><mo>(</mo><msub><mi>s</mi><mn>4</mn></msub><mo>)</mo><mo>=</mo><mn>1</mn></math>.</p>
+  <p><math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math>, ou <math><mi>S</mi></math>, é o conjunto de <em>todas</em> as amostras ordenadas de <math><mi>U</mi></math>, de qualquer tamanho; <math><msub><mi>S</mi><mi>n</mi></msub><mo>(</mo><mi>U</mi><mo>)</mo></math> é a subclasse das de tamanho <math><mi>n</mi></math>. <strong>Exemplo 2.5</strong>, na notação abreviada (sem parênteses nem vírgulas):</p>
+  <math display="block"><mrow><mi>S</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>11</mn><mo>,</mo><mn>12</mn><mo>,</mo><mn>13</mn><mo>,</mo><mn>21</mn><mo>,</mo><mo>…</mo><mo>,</mo><mn>22132</mn><mo>,</mo><mo>…</mo><mo>}</mo><mo>,</mo><mspace width="1.5em"/><msub><mi>S</mi><mn>2</mn></msub><mo>=</mo><mo>{</mo><mn>11</mn><mo>,</mo><mn>12</mn><mo>,</mo><mn>13</mn><mo>,</mo><mn>21</mn><mo>,</mo><mn>22</mn><mo>,</mo><mn>23</mn><mo>,</mo><mn>31</mn><mo>,</mo><mn>32</mn><mo>,</mo><mn>33</mn><mo>}</mo><mo>.</mo></mrow></math>
+</div>
+
+<p>Às vezes convém trabalhar com amostras <em>não ordenadas</em> — (1,2) e (2,1) são a mesma —, e sem reposição uma amostra não ordenada é um subconjunto de <math><mi>U</mi></math>. A contagem que vai importar no capítulo 3: o número de amostras ordenadas de tamanho <math><mi>n</mi></math> com reposição é <math><msup><mi>N</mi><mi>n</mi></msup></math>; o de amostras não ordenadas sem reposição é <math><mrow><mo>(</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac><mo>)</mo></mrow></math>. (E o de ordenadas sem reposição é <math><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>⋯</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></math>: para <math><mi>N</mi><mo>=</mo><mn>3</mn></math>, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>, são 9, 3 e 6 amostras, respectivamente — os tamanhos dos planos A, E e B a seguir.)</p>
+
+<h2 id="s3">3. Planejamento amostral</h2>
+
+<h3 id="s3-1">3.1 A Definição 2.5 e os planos A–E</h3>
+
+<p>O objetivo é o procedimento <em>probabilístico</em> do capítulo 1: associar a cada amostra uma probabilidade conhecida de ser sorteada. O modo de associar essas probabilidades é o que define o planejamento.</p>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definição 2.5 — planejamento amostral (ordenado)</span>
+  <p>Uma função <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> definida em <math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math> satisfazendo</p>
+  <math display="block"><mrow><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>⩾</mo><mn>0</mn><mspace width="0.5em"/><mtext>para todo</mtext><mspace width="0.4em"/><mi>s</mi><mo>∈</mo><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo><mspace width="1.5em"/><mtext>e</mtext><mspace width="1.5em"/><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></munder><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn></mrow></math>
+  <p>é um <strong>planejamento amostral ordenado</strong>. Ou seja: uma distribuição de probabilidade sobre o espaço das amostras. É a definição de “amostra probabilística” do capítulo 1 escrita como matemática.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.6 — Cinco planos para <math><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>}</mo></math></span>
+  <p>Em todos, <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>0</mn></math> para as amostras não listadas.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th class="txt">Plano</th><th class="txt">Amostras com probabilidade positiva</th><th class="txt">O que é</th></tr></thead>
+    <tbody>
+      <tr><td><strong>A</strong></td><td class="txt"><math><mi>P</mi><mo>(</mo><mn>11</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mo>⋯</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>33</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>9</mn></math> (as 9 de <math><msub><mi>S</mi><mn>2</mn></msub></math>)</td><td class="txt">AAS com reposição, <math><mi>n</mi><mo>=</mo><mn>2</mn></math> (Ex. 2.7)</td></tr>
+      <tr><td><strong>B</strong></td><td class="txt"><math><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>13</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>21</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>23</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>31</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>32</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>6</mn></math></td><td class="txt">AAS sem reposição, <math><mi>n</mi><mo>=</mo><mn>2</mn></math></td></tr>
+      <tr><td><strong>C</strong></td><td class="txt"><math><mi>P</mi><mo>(</mo><mn>2</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>3</mn></math>; <math><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>32</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>9</mn></math>; <math><mi>P</mi><mo>(</mo><mn>112</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>132</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>332</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>312</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>111</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>113</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>131</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>311</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>133</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>313</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>331</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>333</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>27</mn></math></td><td class="txt">tamanho <em>variável</em> (1, 2 ou 3): “sorteie com reposição até sair a unidade 2, ou até 3 sorteios”</td></tr>
+      <tr><td><strong>D</strong></td><td class="txt"><math><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>10</mn></math>, <math><mi>P</mi><mo>(</mo><mn>21</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>6</mn></math>, <math><mi>P</mi><mo>(</mo><mn>13</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>15</mn></math>, <math><mi>P</mi><mo>(</mo><mn>31</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>12</mn></math>, <math><mi>P</mi><mo>(</mo><mn>23</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>3</mn></math>, <math><mi>P</mi><mo>(</mo><mn>32</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>4</mn></math></td><td class="txt">PPT sem reposição (Ex. 2.8)</td></tr>
+      <tr><td><strong>E</strong></td><td class="txt"><math><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mn>32</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math></td><td class="txt">a unidade 2 sempre entra; 1 ou 3 por moeda</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Conferência: as probabilidades de cada plano somam 1 (em C: <math><mn>1</mn><mo>/</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>/</mo><mn>9</mn><mo>+</mo><mn>12</mn><mo>/</mo><mn>27</mn><mo>=</mo><mn>1</mn></math>; em D: <math><mn>6</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>10</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>4</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>5</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>20</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>15</mn><mo>/</mo><mn>60</mn><mo>=</mo><mn>1</mn></math>). Há infinitos planejamentos possíveis; listar <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> amostra por amostra é inviável em populações grandes. Por isso se descreve o plano por <strong>regras de sorteio</strong>, e as probabilidades são calculadas a partir delas.</p>
+</div>
+
+<h3 id="s3-2">3.2 Regras de sorteio: AASc e PPT</h3>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.7 — A regra que gera o plano A</span>
+  <p>(i) Sorteie com igual probabilidade um elemento de <math><mi>U</mi></math> e anote-o; (ii) devolva-o e sorteie um segundo do mesmo modo. Então</p>
+  <math display="block"><mrow><mi>P</mi><mo>(</mo><mn>11</mn><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mtext>1 no 1º</mtext><mo>)</mo><mspace width="0.2em"/><mi>P</mi><mo>(</mo><mtext>1 no 2º</mtext><mo>|</mo><mtext>1 no 1º</mtext><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>×</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>,</mo></mrow></math>
+  <p>e o mesmo para as outras oito amostras de <math><msub><mi>S</mi><mn>2</mn></msub></math>; as demais têm probabilidade zero. É o plano A: <strong>Amostragem Aleatória Simples com reposição</strong> (AASc), o mais simples de todos, capítulo 3. <em>(O livro escreve a fórmula com “se <math><mi>i</mi><mo>∈</mo><mi>s</mi></math>” por um deslize tipográfico; leia “<math><mn>1</mn><mo>/</mo><mn>9</mn></math> se <math><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mn>2</mn></msub></math>, 0 caso contrário”.)</em></p>
+</div>
+
+<p>Como a maioria dos planos dá probabilidade zero a quase todas as amostras de <math><mi>S</mi></math>, ao apresentar um plano <math><mi>A</mi></math> restringe-se <math><mi>S</mi></math> à subclasse <math><msub><mi>S</mi><mi>A</mi></msub></math> das amostras com <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>&gt;</mo><mn>0</mn></math>. Uma família especialmente útil: os planos de <strong>tamanho fixo</strong>, com probabilidade positiva só em <math><msub><mi>S</mi><mi>n</mi></msub></math> — A, B, D e E são de tamanho fixo 2; C não é.</p>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.8 — PPT: probabilidade proporcional ao tamanho, sem reposição</span>
+  <p>Volte à Tabela 2.1: o domicílio 1 tem 1 trabalhador, o 2 tem 3, o 3 tem 2 (total 6). Regra: (i) sorteie um domicílio com probabilidade proporcional ao número de trabalhadores; (ii) sem repor, sorteie um segundo, de novo proporcionalmente. Então <math><msub><mi>S</mi><mi>A</mi></msub><mo>=</mo><mo>{</mo><mn>12</mn><mo>,</mo><mn>13</mn><mo>,</mo><mn>21</mn><mo>,</mo><mn>23</mn><mo>,</mo><mn>31</mn><mo>,</mo><mn>32</mn><mo>}</mo></math> e, por exemplo,</p>
+  <math display="block"><mrow><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>3</mn><mn>5</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>10</mn></mfrac><mo>,</mo><mspace width="1.2em"/><mi>P</mi><mo>(</mo><mn>21</mn><mo>)</mo><mo>=</mo><mfrac><mn>3</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>,</mo><mspace width="1.2em"/><mi>P</mi><mo>(</mo><mn>13</mn><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>2</mn><mn>5</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>15</mn></mfrac><mo>,</mo></mrow></math>
+  <math display="block"><mrow><mi>P</mi><mo>(</mo><mn>31</mn><mo>)</mo><mo>=</mo><mfrac><mn>2</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>12</mn></mfrac><mo>,</mo><mspace width="1.2em"/><mi>P</mi><mo>(</mo><mn>23</mn><mo>)</mo><mo>=</mo><mfrac><mn>3</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>,</mo><mspace width="1.2em"/><mi>P</mi><mo>(</mo><mn>32</mn><mo>)</mo><mo>=</mo><mfrac><mn>2</mn><mn>6</mn></mfrac><mo>×</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>.</mo></mrow></math>
+  <p>O denominador do segundo sorteio é 6 menos os trabalhadores do domicílio já retirado. É exatamente o plano D. Note como <math><mi>P</mi><mo>(</mo><mn>12</mn><mo>)</mo><mo>≠</mo><mi>P</mi><mo>(</mo><mn>21</mn><mo>)</mo></math>: em PPT sem reposição a ordem importa, e é isso que torna os cálculos “bastante difíceis” (capítulo 9).</p>
+</div>
+
+<p>O exemplo mostra o contraste: planos <strong>equiprobabilísticos</strong> (cada <math><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub></math> com a mesma probabilidade) e planos com reposição têm probabilidades fáceis; PPT sem reposição, não.</p>
+
+<h3 id="s3-3">3.3 Os planos que virão</h3>
+
+<div class="rolagem">
+<table>
+  <caption>Os planos que o livro estuda em detalhe, na descrição da seção 2.3.</caption>
+  <thead><tr><th class="txt">Plano</th><th class="txt">Regra</th><th>Cap.</th></tr></thead>
+  <tbody>
+    <tr><td class="txt"><strong>AAS</strong> — aleatória simples</td><td class="txt">Cada unidade selecionada sequencialmente com igual probabilidade, de modo que cada amostra tem a mesma chance; com ou sem reposição.</td><td>3</td></tr>
+    <tr><td class="txt"><strong>AE</strong> — estratificada</td><td class="txt">População dividida em estratos (sexo, renda, bairro); AAS dentro de cada estrato.</td><td>4</td></tr>
+    <tr><td class="txt"><strong>AC</strong> — por conglomerados</td><td class="txt">População dividida em subpopulações (quarteirões, residências, bairros); alguns conglomerados são sorteados por AAS e <em>todos</em> os seus indivíduos observados. Menos eficiente que AAS ou AE, bem mais econômica; adequada quando há muitos conglomerados pequenos.</td><td>7</td></tr>
+    <tr><td class="txt"><strong>A2E</strong> — dois estágios</td><td class="txt">Primeiro estágio: algumas subpopulações por AAS; segundo: uma amostra de unidades dentro de cada uma. AE e AC são casos particulares (todas as subpopulações / todas as unidades).</td><td>8</td></tr>
+    <tr><td class="txt"><strong>AS</strong> — sistemática</td><td class="txt">Sorteia-se um nome entre os 10 primeiros da lista e toma-se cada décimo a partir dele.</td><td>7.8</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Além dos planos, dois <em>estimadores</em> — razão e regressão (capítulos 5 e 6) — exploram uma relação linear entre a variável de interesse <math><mi>y</mi></math> e uma auxiliar <math><mi>x</mi></math>.</p>
+
+<h2 id="s4">4. Estatísticas e distribuições amostrais</h2>
+
+<h3 id="s4-1">4.1 Dados da amostra e estatística</h3>
+
+<p>A cada unidade <math><mi>i</mi></math> corresponde a característica <math><msub><mi>Y</mi><mi>i</mi></msub></math>, reunida em <math><mi mathvariant="bold">D</mi></math>. Fixada a amostra <math><mi>s</mi><mo>=</mo><mo>(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>k</mi><mi>n</mi></msub><mo>)</mo></math>, a cada componente <math><msub><mi>k</mi><mi>j</mi></msub></math> corresponde o valor <math><msub><mi>Y</mi><msub><mi>k</mi><mi>j</mi></msub></msub></math>.</p>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definições 2.6 e 2.7 — dados da amostra e estatística</span>
+  <p>Os <strong>dados da amostra</strong> <math><mi>s</mi></math> são o vetor (ou matriz) das observações pertencentes a ela,</p>
+  <math display="block"><mrow><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>=</mo><mo>(</mo><msub><mi>Y</mi><msub><mi>k</mi><mn>1</mn></msub></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><msub><mi>k</mi><mi>n</mi></msub></msub><mo>)</mo><mo>=</mo><mo>(</mo><msub><mi>Y</mi><msub><mi>k</mi><mi>i</mi></msub></msub><mo>,</mo><msub><mi>k</mi><mi>i</mi></msub><mo>∈</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow></math>
+  <p>Quando <math><mi>s</mi></math> percorre <math><msub><mi>S</mi><mi>A</mi></msub></math>, fica associado um <em>vetor aleatório</em></p>
+  <div class="eq"><math display="block"><mrow><mi mathvariant="bold">d</mi><mo>=</mo><mi mathvariant="bold">y</mi><mo>=</mo><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo>)</mo><mo>,</mo></mrow></math><span class="num">(2.1)</span></div>
+  <p>em que <math><msub><mi>y</mi><mi>i</mi></msub></math> é a variável aleatória “valor que ocorre na <math><mi>i</mi></math>-ésima <em>posição</em> da amostra”; cada <math><msub><mi>y</mi><mi>i</mi></msub></math> assume valores em <math><mo>{</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mi>N</mi></msub><mo>}</mo></math>. Para uma amostra particular, <math><mo>(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo>)</mo><mo>=</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub></math>. Maiúscula = valor fixo da população; minúscula = variável aleatória da posição.</p>
+  <p>Uma <strong>estatística</strong> é qualquer característica numérica dos dados da amostra: uma função <math><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.9 — Estatísticas na amostra <math><mi>s</mi><mo>=</mo><mo>(</mo><mn>12</mn><mo>)</mo></math></span>
+  <p>Com o vetor <math><msup><mrow><mo>(</mo><msub><mi>F</mi><mi>i</mi></msub><mo>,</mo><msub><mi>T</mi><mi>i</mi></msub><mo>)</mo></mrow><mo>′</mo></msup></math> do Exemplo 2.1, os dados da amostra (1, 2) são</p>
+  <math display="block"><mrow><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>=</mo><mrow><mo>(</mo><mtable><mtr><mtd><mn>12</mn></mtd><mtd><mn>30</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>3</mn></mtd></mtr></mtable><mo>)</mo></mrow><mo>,</mo></mrow></math>
+  <p>e são estatísticas as médias <math><mover><mi>f</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mn>12</mn><mo>+</mo><mn>30</mn><mo>)</mo><mo>/</mo><mn>2</mn><mo>=</mo><mn>21</mn></math> e <math><mover><mi>t</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mn>1</mn><mo>+</mo><mn>3</mn><mo>)</mo><mo>/</mo><mn>2</mn><mo>=</mo><mn>2</mn></math>, ou a razão <math><mi>r</mi><mo>=</mo><mo>(</mo><mn>12</mn><mo>+</mo><mn>30</mn><mo>)</mo><mo>/</mo><mo>(</mo><mn>1</mn><mo>+</mo><mn>3</mn><mo>)</mo><mo>=</mo><mn>10,5</mn></math>.</p>
+</div>
+
+<h3 id="s4-2">4.2 Distribuição amostral</h3>
+
+<p>Escolhido um plano <math><mi>A</mi></math>, tem-se o par <math><mo>(</mo><msub><mi>S</mi><mi>A</mi></msub><mo>,</mo><msub><mi>P</mi><mi>A</mi></msub><mo>)</mo></math>: os pontos amostrais e suas probabilidades. Fixada uma estatística <math><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>, quando <math><mi>s</mi></math> percorre <math><msub><mi>S</mi><mi>A</mi></msub></math> fica definida a variável aleatória <math><mi>H</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>. Denote por <math><msub><mi>p</mi><mi>h</mi></msub><mo>=</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub><mo>;</mo><mi>H</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>=</mo><mi>h</mi><mo>)</mo></math> a probabilidade do conjunto das amostras em que a estatística vale <math><mi>h</mi></math>.</p>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definição 2.8 — distribuição amostral</span>
+  <p>A <strong>distribuição amostral</strong> de uma estatística <math><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math> segundo o plano <math><mi>A</mi></math> é a distribuição de probabilidades de <math><mi>H</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>, definida sobre <math><msub><mi>S</mi><mi>A</mi></msub></math>, com função de probabilidade</p>
+  <math display="block"><mrow><msub><mi>p</mi><mi>h</mi></msub><mo>=</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub><mo>;</mo><mi>H</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>=</mo><mi>h</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub><mo>;</mo><mspace width="0.2em"/><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>=</mo><mi>h</mi></mrow></munder><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow></math>
+  <p>A receita é sempre a mesma: liste as amostras de <math><msub><mi>S</mi><mi>A</mi></msub></math>, calcule a estatística em cada uma, e some as probabilidades das amostras que dão o mesmo valor.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.10 — A distribuição de <math><mi>r</mi></math> nos planos A e B</span>
+  <p><math><mi>r</mi></math> é a razão entre o total da renda e o total de trabalhadores na amostra. Sob o plano A (AASc):</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th class="txt"><math><mi>s</mi></math></th><th>11</th><th>12</th><th>13</th><th>21</th><th>22</th><th>23</th><th>31</th><th>32</th><th>33</th></tr></thead>
+    <tbody>
+      <tr><td><math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math></td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td><td>1/9</td></tr>
+      <tr><td><math><mi>r</mi></math></td><td>12</td><td>10,5</td><td>10</td><td>10,5</td><td>10</td><td>9,6</td><td>10</td><td>9,6</td><td>9</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>(Por exemplo, <math><mi>r</mi><mo>(</mo><mn>23</mn><mo>)</mo><mo>=</mo><mo>(</mo><mn>30</mn><mo>+</mo><mn>18</mn><mo>)</mo><mo>/</mo><mo>(</mo><mn>3</mn><mo>+</mo><mn>2</mn><mo>)</mo><mo>=</mo><mn>9,6</mn></math>.) Agrupando os valores iguais:</p>
+  <div class="rolagem">
+  <table>
+    <caption>Tabela 2.2 — Distribuição amostral de <math><mi>r</mi></math> na AASc.</caption>
+    <thead><tr><th class="txt"><math><mi>h</mi></math></th><th>9</th><th>9,6</th><th>10</th><th>10,5</th><th>12</th></tr></thead>
+    <tbody><tr><td><math><msub><mi>p</mi><mi>h</mi></msub></math></td><td>1/9</td><td>2/9</td><td>3/9</td><td>2/9</td><td>1/9</td></tr></tbody>
+  </table>
+  </div>
+  <p>Sob o plano B (AASs) sobram as seis amostras sem repetição, cada uma com 1/6, e os valores 10,5, 10, 10,5, 9,6, 10, 9,6:</p>
+  <div class="rolagem">
+  <table>
+    <caption>Tabela 2.3 — Distribuição amostral de <math><mi>r</mi></math> na AASs.</caption>
+    <thead><tr><th class="txt"><math><mi>h</mi></math></th><th>9,6</th><th>10</th><th>10,5</th></tr></thead>
+    <tbody><tr><td><math><msub><mi>p</mi><mi>h</mi></msub></math></td><td>1/3</td><td>1/3</td><td>1/3</td></tr></tbody>
+  </table>
+  </div>
+  <p>Repare: sem reposição a distribuição é mais concentrada — sumiram os valores extremos 9 e 12, que vinham das amostras (33) e (11), com a mesma unidade duas vezes.</p>
+<pre><code>F &lt;- c(12, 30, 18); T &lt;- c(1, 3, 2)
+A &lt;- expand.grid(k1 = 1:3, k2 = 1:3)     <span class="cmt"># as 9 amostras ordenadas do plano A</span>
+r &lt;- (F[A$k1] + F[A$k2]) / (T[A$k1] + T[A$k2])
+table(r) / 9
+<span class="out">## r
+##         9       9.6        10      10.5        12
+## 0.1111111 0.2222222 0.3333333 0.2222222 0.1111111</span>
+B &lt;- A[A$k1 != A$k2, ]                    <span class="cmt"># plano B: sem repetição</span>
+rB &lt;- (F[B$k1] + F[B$k2]) / (T[B$k1] + T[B$k2])
+table(rB) / 6
+<span class="out">## rB
+##       9.6        10      10.5
+## 0.3333333 0.3333333 0.3333333</span>
+</code></pre>
+</div>
+
+<p>A distribuição amostral é a base para avaliar e comparar planos e estatísticas. Dela saem os momentos:</p>
+
+<h3 id="s4-3">4.3 Esperança, variância, covariância e correlação</h3>
+
+<div class="caixa teorema">
+  <span class="rotulo">Momentos de uma estatística sob o plano <math><mi>A</mi></math></span>
+  <p>A esperança pode ser calculada nos valores distintos <math><mi>h</mi></math> ou, equivalentemente, amostra a amostra — porque <math><msub><mi>p</mi><mi>h</mi></msub></math> é a soma das <math><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> das amostras com aquele valor:</p>
+  <math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><mi>h</mi><msub><mi>p</mi><mi>h</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub></mrow></munder><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow></math>
+  <p>Do mesmo modo,</p>
+  <math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub></mrow></munder><msup><mrow><mo>{</mo><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>−</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>]</mo><mo>}</mo></mrow><mn>2</mn></msup><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>,</mo></mrow></math>
+  <math display="block"><mrow><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>,</mo><mi>G</mi><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub></mrow></munder><mo>{</mo><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>−</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>]</mo><mo>}</mo><mo>{</mo><mi>g</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo><mo>−</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>G</mi><mo>]</mo><mo>}</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></mrow></math>
+<math display="block"><mrow><msub><mi>Corr</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>,</mo><mi>G</mi><mo>]</mo><mo>=</mo><mfrac><mrow><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>,</mo><mi>G</mi><mo>]</mo></mrow><msqrt><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>H</mi><mo>]</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>G</mi><mo>]</mo></msqrt></mfrac><mo>.</mo></mrow></math>
+  <p>O índice <math><mi>A</mi></math> lembra que tudo depende do plano: a <em>mesma</em> estatística tem esperança e variância diferentes sob A e sob B.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.11 — Momentos de <math><mi>r</mi></math> e de <math><mover><mi>f</mi><mo>¯</mo></mover></math> na AASc</span>
+  <p>Da Tabela 2.2, <math><msub><mi>E</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><mo>(</mo><mn>9</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>9,6</mn><mo>+</mo><mn>3</mn><mo>×</mo><mn>10</mn><mo>+</mo><mn>2</mn><mo>×</mo><mn>10,5</mn><mo>+</mo><mn>12</mn><mo>)</mo><mo>/</mo><mn>9</mn><mo>=</mo><mn>91,2</mn><mo>/</mo><mn>9</mn><mo>≈</mo><mn>10,13</mn></math> e <math><msub><mi>Var</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><msup><mrow><mo>(</mo><mn>12</mn><mo>−</mo><mn>10,13</mn><mo>)</mo></mrow><mn>2</mn></msup><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>+</mo><mo>⋯</mo><mo>+</mo><msup><mrow><mo>(</mo><mn>9</mn><mo>−</mo><mn>10,13</mn><mo>)</mo></mrow><mn>2</mn></msup><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>≈</mo><mn>0,6289</mn></math>. Para a média da renda, <math><mover><mi>f</mi><mo>¯</mo></mover></math>, os valores nas nove amostras são 12, 21, 15, 21, 30, 24, 15, 24, 18 (Tabela 2.4), com <math><mi>E</mi><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>20</mn></math> e <math><mi>Var</mi><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>28</mn></math>. E</p>
+  <math display="block"><mrow><msub><mi>Cov</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>,</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo>(</mo><mn>12</mn><mo>−</mo><mn>10,13</mn><mo>)</mo><mo>(</mo><mn>12</mn><mo>−</mo><mn>20</mn><mo>)</mo><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>+</mo><mo>⋯</mo><mo>+</mo><mo>(</mo><mn>9</mn><mo>−</mo><mn>10,13</mn><mo>)</mo><mo>(</mo><mn>18</mn><mo>−</mo><mn>20</mn><mo>)</mo><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>=</mo><mo>−</mo><mn>1,80</mn></mrow></math>
+<math display="block"><mrow><msub><mi>Corr</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>,</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mrow><mo>−</mo><mn>1,80</mn></mrow><msqrt><mn>0,6289</mn><mo>×</mo><mn>28</mn></msqrt></mfrac><mo>≈</mo><mo>−</mo><mn>0,4289</mn><mo>.</mo></mrow></math>
+  <p>A correlação negativa tem explicação: a amostra (2,2) tem a maior renda média (30) e <math><mi>r</mi><mo>=</mo><mn>10</mn></math>, enquanto (1,1) tem a menor renda (12) e o maior <math><mi>r</mi><mo>=</mo><mn>12</mn></math> — o domicílio 1 é pobre mas tem um só trabalhador.</p>
+<pre><code>fbar &lt;- (F[A$k1] + F[A$k2]) / 2;  p &lt;- rep(1/9, 9)
+Er &lt;- sum(r * p); Vr &lt;- sum((r - Er)^2 * p)
+Ef &lt;- sum(fbar * p); Vf &lt;- sum((fbar - Ef)^2 * p)
+Crf &lt;- sum((r - Er) * (fbar - Ef) * p)
+round(c(Er, Vr, Ef, Vf, Crf, Crf / sqrt(Vr * Vf)), 4)
+<span class="out">## [1] 10.1333  0.6289 20.0000 28.0000 -1.8000 -0.4289</span>
+</code></pre>
+</div>
+
+<h3 id="s4-4">4.4 As distribuições de <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math>; <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math></h3>
+
+<p>Fixado o plano, as variáveis <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> e <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> da Definição 2.2 também ganham distribuição — são estatísticas como outra qualquer, só que não dependem dos <math><msub><mi>Y</mi><mi>i</mi></msub></math>. Indicam-se por <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo></math> e <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo></math>.</p>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.12 — <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math> no plano A</span>
+  <div class="rolagem">
+  <table>
+    <caption>Tabela 2.5 — Valores de <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math> em cada amostra da AASc (todas com <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>9</mn></math>).</caption>
+    <thead><tr><th class="txt"><math><mi>s</mi></math></th><th>11</th><th>12</th><th>13</th><th>21</th><th>22</th><th>23</th><th>31</th><th>32</th><th>33</th></tr></thead>
+    <tbody>
+      <tr><td><math><msub><mi>f</mi><mn>1</mn></msub></math></td><td>2</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td><math><msub><mi>f</mi><mn>2</mn></msub></math></td><td>0</td><td>1</td><td>0</td><td>1</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td><math><msub><mi>f</mi><mn>3</mn></msub></math></td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td><math><msub><mi>δ</mi><mn>1</mn></msub></math></td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td><math><msub><mi>δ</mi><mn>2</mn></msub></math></td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td><math><msub><mi>δ</mi><mn>3</mn></msub></math></td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Resumindo (Tabelas 2.6 e 2.7): <math><msub><mi>f</mi><mn>1</mn></msub></math> vale 0, 1, 2 com probabilidades 4/9, 4/9, 1/9 — é a Binomial(2, 1/3), claro, porque com reposição cada sorteio “acerta” a unidade 1 com probabilidade 1/3 —, e <math><msub><mi>δ</mi><mn>1</mn></msub></math> vale 0, 1 com 4/9, 5/9. Por simetria, <math><msub><mi>f</mi><mn>2</mn></msub></math> e <math><msub><mi>f</mi><mn>3</mn></msub></math> têm a distribuição de <math><msub><mi>f</mi><mn>1</mn></msub></math>, e <math><msub><mi>δ</mi><mn>2</mn></msub></math>, <math><msub><mi>δ</mi><mn>3</mn></msub></math> a de <math><msub><mi>δ</mi><mn>1</mn></msub></math>. Logo</p>
+  <math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>≈</mo><mn>0,67</mn><mo>,</mo><mspace width="2em"/><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>δ</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mfrac><mn>5</mn><mn>9</mn></mfrac><mo>≈</mo><mn>0,56</mn><mo>:</mo></mrow></math>
+  <p>o número esperado de vezes que o elemento entra na amostra, e a probabilidade de a amostra contê-lo.</p>
+</div>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definição 2.9 — probabilidades de inclusão <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math></span>
+  <p><math><msub><mi>π</mi><mi>i</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo></math> é a probabilidade de o <math><mi>i</mi></math>-ésimo elemento pertencer à amostra sob o plano <math><mi>A</mi></math>; <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>(</mo><mi>A</mi><mo>)</mo></math>, a de <math><mi>i</mi></math> e <math><mi>j</mi></math> pertencerem simultaneamente:</p>
+  <math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∋</mo><mi>i</mi></mrow></munder><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>,</mo><mspace width="2em"/><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>(</mo><mi>A</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>⊃</mo><mo>{</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>}</mo></mrow></munder><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><mo>.</mo></mrow></math>
+  <p>Como <math><msub><mi>δ</mi><mi>i</mi></msub></math> é 0–1, <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><msub><mi>δ</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math>; logo <math><mi>Var</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>π</mi><mi>i</mi></msub><mo>)</mo></math> e <math><mi>Cov</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>,</mo><msub><mi>δ</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><msub><mi>π</mi><mi>i</mi></msub><msub><mi>π</mi><mi>j</mi></msub></math>. <strong>Exemplo 2.13</strong>: no plano A, <math><msub><mi>π</mi><mn>1</mn></msub><mo>=</mo><msub><mi>π</mi><mn>2</mn></msub><mo>=</mo><msub><mi>π</mi><mn>3</mn></msub><mo>=</mo><mn>5</mn><mo>/</mo><mn>9</mn></math> e <math><msub><mi>π</mi><mn>12</mn></msub><mo>=</mo><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><msub><mi>π</mi><mn>23</mn></msub><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math> (as amostras 12 e 21). Esses <math><mi>π</mi></math> são a matéria-prima do estimador de Horvitz–Thompson, capítulo 9.</p>
+</div>
+
+<h2 id="s5">5. Estimadores e suas propriedades</h2>
+
+<p>O objetivo da amostragem é produzir <strong>estimadores</strong> para parâmetros desconhecidos: escolhe-se uma estatística com propriedades convenientes em relação ao parâmetro. A estatística, quando associada à expressão que vai “estimar” o parâmetro, chama-se estimador; o seu valor numérico numa dada amostra, <strong>estimativa</strong>. Notação: o parâmetro é <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math>, o estimador é <math><mover><mi>θ</mi><mo>^</mo></mover><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>; abreviam-se para <math><mi>θ</mi></math> e <math><mover><mi>θ</mi><mo>^</mo></mover><mo>(</mo><mi>s</mi><mo>)</mo></math>.</p>
+
+<div class="caixa definicao">
+  <span class="rotulo">Definições 2.10 e 2.11 — não viciado, viés, EQM</span>
+  <p><math><mover><mi>θ</mi><mo>^</mo></mover></math> é <strong>não viciado</strong> (não viesado) segundo o plano <math><mi>A</mi></math> se <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mi>θ</mi></math>. O <strong>viés</strong> e o <strong>erro quadrático médio</strong> são</p>
+  <math display="block"><mrow><msub><mi>B</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>θ</mi><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>−</mo><mi>θ</mi><mo>,</mo><mspace width="2em"/><msub><mi>EQM</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><msup><mrow><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>θ</mi><mo>]</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow></math>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">EQM = variância + viés²</span>
+  <math display="block"><mrow><msub><mi>EQM</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>+</mo><msubsup><mi>B</mi><mi>A</mi><mn>2</mn></msubsup><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>.</mo></mrow></math>
+</div>
+<div class="caixa demonstracao">
+  <span class="rotulo">Demonstração</span>
+  <p>Some e subtraia <math><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo></math> dentro do quadrado: <math><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>θ</mi><mo>=</mo><mo>(</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>)</mo><mo>+</mo><mo>(</mo><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>−</mo><mi>θ</mi><mo>)</mo></math>. O primeiro parêntese tem esperança zero e o segundo é a constante <math><mi>B</mi></math>; ao elevar ao quadrado e tomar esperança, o termo cruzado <math><mn>2</mn><mi>B</mi><mspace width="0.1em"/><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>]</mo></math> desaparece e sobram <math><mi>Var</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>+</mo><msup><mi>B</mi><mn>2</mn></msup></math>.<span class="qed">∎</span></p>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Julga-se o plano, não a amostra</span>
+  <p>Para uma amostra particular, <math><mover><mi>θ</mi><mo>^</mo></mover><mo>(</mo><mi>s</mi><mo>)</mo><mo>−</mo><mi>θ</mi></math> é o <em>erro amostral</em> cometido — e só se calcula na situação improvável de <math><mi>θ</mi></math> ser conhecido. Por isso a estratégia de avaliação em amostragem <strong>não é julgar o resultado de uma amostra, mas o plano amostral</strong>: usando o plano <math><mi>A</mi></math>, que propriedades tem o estimador, medidas principalmente por viés e EQM? As qualidades procuradas: pequenos vieses e pequenas variâncias.</p>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 2.14 — <math><mi>r</mi></math> é viesado para <math><mi>R</mi></math>; <math><mover><mi>f</mi><mo>¯</mo></mover></math> é não viciado para <math><msub><mi>μ</mi><mi>F</mi></msub></math></span>
+  <p>O parâmetro é a renda média por trabalhador, <math><mi>R</mi><mo>=</mo><mn>60</mn><mo>/</mo><mn>6</mn><mo>=</mo><mn>10</mn></math>. Do Exemplo 2.11, <math><msub><mi>E</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>]</mo><mo>≈</mo><mn>10,13</mn><mo>≠</mo><mn>10</mn></math>: <math><mi>r</mi></math> é viesado, com</p>
+  <math display="block"><mrow><msub><mi>B</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><mfrac><mn>152</mn><mn>15</mn></mfrac><mo>−</mo><mn>10</mn><mo>=</mo><mfrac><mn>2</mn><mn>15</mn></mfrac><mo>≈</mo><mn>0,13</mn><mo>,</mo><mspace width="2em"/><msub><mi>EQM</mi><mi>AASc</mi></msub><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><mn>0,6289</mn><mo>+</mo><msup><mrow><mo>(</mo><mn>2</mn><mo>/</mo><mn>15</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><mn>97</mn><mn>150</mn></mfrac><mo>≈</mo><mn>0,6467</mn><mo>.</mo></mrow></math>
+  <p>(O livro imprime 0,6458 porque eleva ao quadrado o viés já arredondado, 0,13; com o valor exato 2/15 o EQM é 0,6467 — ver a nota no fim da página.) Já para a renda média familiar <math><msub><mi>μ</mi><mi>F</mi></msub><mo>=</mo><mn>20</mn></math>, <math><msub><mi>E</mi><mi>AASc</mi></msub><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>20</mn></math>: <math><mover><mi>f</mi><mo>¯</mo></mover></math> é não viciado, <math><mi>B</mi><mo>=</mo><mn>0</mn></math> e <math><mi>EQM</mi><mo>=</mo><mi>Var</mi><mo>=</mo><mn>28</mn></math>. É o padrão geral: a média amostral é não viciada para a média populacional (seção 6.3); o estimador razão é viesado, mas o viés é pequeno e cai com <math><mi>n</mi></math> (capítulo 5).</p>
+</div>
+
+<h2 id="s6">6. Expressões úteis</h2>
+
+<p>Esta seção é o motor dos capítulos seguintes: ela deriva, <em>para qualquer plano</em>, a esperança e a variância do total amostral em função de <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math>, <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math> e <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo></math>. Depois, para planos simétricos de tamanho fixo (AASc e AASs incluídos), tudo se reduz a <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo></math>.</p>
+
+<h3 id="s6-1">6.1 Somas de desvios: (2.2)–(2.4)</h3>
+
+<div class="caixa teorema">
+  <span class="rotulo">Três identidades algébricas</span>
+  <div class="eq"><math display="block"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mi>N</mi><msup><mi>μ</mi><mn>2</mn></msup></mrow></math><span class="num">(2.2)</span></div>
+  <div class="eq"><math display="block"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>Y</mi></msub><mo>)</mo><mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>X</mi></msub><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>X</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>N</mi><msub><mi>μ</mi><mi>X</mi></msub><msub><mi>μ</mi><mi>Y</mi></msub></mrow></math><span class="num">(2.3)</span></div>
+  <div class="eq"><math display="block"><mrow><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></mrow></math><span class="num">(2.4)</span></div>
+  <p>Valem igualmente para a amostra observada. A soma em (2.4) tem <math><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math> parcelas (pares ordenados).</p>
+</div>
+<div class="caixa demonstracao">
+  <span class="rotulo">Demonstração de (2.4)</span>
+  <p>Eleve ao quadrado os dois lados de <math><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mi>N</mi><mi>μ</mi></math>: <math><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></math>; isole a soma dos produtos cruzados. (2.2) e (2.3) saem expandindo o produto e usando <math><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mi>N</mi><mi>μ</mi></math>.<span class="qed">∎</span></p>
+</div>
+
+<h3 id="s6-2">6.2 O tamanho da amostra e os planos simétricos</h3>
+
+<p>Pela Definição 2.3, <math><mi>n</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> (2.5). Fixado o plano, o tamanho é uma variável aleatória com</p>
+
+<div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>,</mo><mspace width="2em"/><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>.</mo></mrow></math><span class="num">(2.6), (2.7)</span></div>
+
+<div class="caixa definicao">
+  <span class="rotulo">Plano simétrico</span>
+  <p>Um plano é <strong>simétrico</strong> quando esperanças, variâncias e covariâncias são as mesmas para todas as unidades: <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo></math>, <math><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo></math> e <math><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>k</mi></msub><mo>,</mo><msub><mi>f</mi><mi>l</mi></msub><mo>]</mo><mo>=</mo><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo></math> para todo <math><mi>i</mi></math> e todo <math><mi>k</mi><mo>≠</mo><mi>l</mi></math>. É uma classe grande e importante — os planos A e B são simétricos; D e E não são (a unidade 2 é privilegiada); C também não (Exercício 2.7).</p>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">(2.8) e (2.9) — simetria, e simetria com tamanho fixo</span>
+  <p>Para um plano simétrico, (2.7) vira</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mi>N</mi><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mo>+</mo><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo><mo>.</mo></mrow></math><span class="num">(2.8)</span></div>
+  <p>Se, além disso, o tamanho é <strong>fixo</strong>, <math><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mn>0</mn></math>, e portanto</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo><mo>=</mo><mo>−</mo><mfrac><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>.</mo></mrow></math><span class="num">(2.9)</span></div>
+  <p>Entre os planos simétricos e fixos destacam-se a AAS com e sem reposição.</p>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">O que (2.9) diz</span>
+  <p>Num plano de tamanho fixo, se a unidade <math><mi>i</mi></math> entra mais vezes, alguma outra tem de entrar menos: as frequências são <em>negativamente</em> correlacionadas, e a correlação é exatamente <math><mo>−</mo><mn>1</mn><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>, independentemente do plano. No plano A: <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mn>4</mn><mo>/</mo><mn>9</mn></math> (Binomial(2, 1/3)) e <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mo>−</mo><mo>(</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>)</mo><mo>/</mo><mn>2</mn><mo>=</mo><mo>−</mo><mn>2</mn><mo>/</mo><mn>9</mn></math> — o Exercício 2.8 confere isso pela Tabela 2.5. É essa covariância negativa que vai produzir o fator de correção para populações finitas.</p>
+</div>
+
+<h3 id="s6-3">6.3 O total amostral <math><mi>t</mi></math></h3>
+
+<p>Para uma amostra <math><mi>s</mi></math>, o <strong>total amostral</strong> é a soma dos valores observados; com a variável auxiliar <math><msub><mi>f</mi><mi>i</mi></msub></math>, ele se reescreve como soma sobre a população inteira:</p>
+
+<math display="block"><mrow><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><msub><mi>k</mi><mi>i</mi></msub><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><msub><mi>k</mi><mi>i</mi></msub></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><msub><mi>Y</mi><mi>i</mi></msub></mrow></math>
+<div class="eq"><math display="block"><mrow><mtext>e como variável aleatória</mtext><mspace width="1em"/><mi>t</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub><mo>.</mo></mrow></math><span class="num">(2.10), (2.11)</span></div>
+
+<div class="caixa teorema">
+  <span class="rotulo">(2.12)–(2.13) — esperança e variância de <math><mi>t</mi></math> num plano qualquer</span>
+  <p>Como os <math><msub><mi>Y</mi><mi>i</mi></msub></math> são constantes,</p>
+  <math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></mrow></math>
+<div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>.</mo></mrow></math><span class="num">(2.12), (2.13)</span></div>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">(2.14)–(2.15) — o caso simétrico de tamanho fixo</span>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mspace width="0.2em"/><mi>τ</mi><mo>,</mo><mspace width="3em"/><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mspace width="0.2em"/><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>.</mo></mrow></math><span class="num">(2.14), (2.15)</span></div>
+</div>
+<div class="caixa demonstracao">
+  <span class="rotulo">Demonstração</span>
+  <p>(2.14): em (2.12), <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo></math> sai do somatório e sobra <math><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mi>τ</mi></math>. (2.15): em (2.13), substitua <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo></math> e, por (2.9), <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>:</p>
+  <math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mrow><mo>{</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>}</mo></mrow><mo>.</mo></mrow></math>
+  <p>Agora (2.4) troca a soma dos produtos cruzados por <math><mo>−</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></math>:</p>
+  <math display="block"><mrow><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mrow><mo>{</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><msup><mi>N</mi><mn>2</mn></msup><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msup><mi>μ</mi><mn>2</mn></msup><mo>}</mo></mrow></mrow></math>
+<math display="block"><mrow><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mrow><mo>{</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mi>N</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>}</mo></mrow><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mspace width="0.2em"/><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>,</mo></mrow></math>
+  <p>usando (2.2) na penúltima igualdade e a definição de <math><msup><mi>S</mi><mn>2</mn></msup></math> na última. É aqui que o <math><mi>N</mi><mo>−</mo><mn>1</mn></math> de <math><msup><mi>S</mi><mn>2</mn></msup></math> nasce: ele vem do <math><mi>N</mi><mo>−</mo><mn>1</mn></math> de (2.9).<span class="qed">∎</span></p>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Por que este é o resultado central</span>
+  <p>(2.14) e (2.15) valem para <em>qualquer</em> plano simétrico de tamanho fixo. No capítulo 3 basta calcular <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo></math> uma vez para cada plano: na AASc, <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mtext>Binomial</mtext><mo>(</mo><mi>n</mi><mo>,</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>, logo <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math>; na AASs, <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>∼</mo><mtext>Bernoulli</mtext><mo>(</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math>, logo <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mo>(</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math>. Substituindo em (2.15) e dividindo por <math><msup><mi>n</mi><mn>2</mn></msup></math> obtêm-se as variâncias de <math><mover><mi>y</mi><mo>¯</mo></mover></math>: <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> com reposição e <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> sem — o fator de correção para populações finitas. Confira no Exercício 2.6 com uma população de seis elementos.</p>
+</div>
+
+<h3 id="s6-4">6.4 Segundo momento, soma de quadrados e condicionamento</h3>
+
+<p>De <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>−</mo><msup><mi>E</mi><mn>2</mn></msup><mo>[</mo><mi>t</mi><mo>]</mo></math> sai uma relação útil para o caso simétrico e fixo:</p>
+
+<div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><msubsup><mi>E</mi><mi>A</mi><mn>2</mn></msubsup><mo>[</mo><mi>f</mi><mo>]</mo><msup><mi>τ</mi><mn>2</mn></msup><mo>.</mo></mrow></math><span class="num">(2.16)</span></div>
+
+<p>Outra estatística útil é a <strong>soma de quadrados</strong> das observações, <math><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup></math> (2.17), com <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math>; no caso simétrico e fixo, por (2.2),</p>
+
+<div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>]</mo><mspace width="0.2em"/><mi>N</mi><mo>(</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>)</mo><mo>.</mo></mrow></math><span class="num">(2.18)</span></div>
+
+<p>(2.16) e (2.18) juntas são o que permite, no capítulo 3, mostrar que a variância amostral <math><msup><mi>s</mi><mn>2</mn></msup></math> é não viciada para <math><msup><mi>σ</mi><mn>2</mn></msup></math> (AASc) ou para <math><msup><mi>S</mi><mn>2</mn></msup></math> (AASs): <math><msup><mi>s</mi><mn>2</mn></msup></math> é uma combinação de <math><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup></math> e <math><msup><mi>t</mi><mn>2</mn></msup></math>. Por fim, para duas variáveis <math><msub><mi>f</mi><mi>i</mi></msub></math>, <math><msub><mi>f</mi><mi>j</mi></msub></math> (ou <math><msub><mi>δ</mi><mi>i</mi></msub></math>, <math><msub><mi>δ</mi><mi>j</mi></msub></math>) de um plano qualquer valem as leis da esperança e da variância iteradas:</p>
+
+<math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>{</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>}</mo></mrow></math>
+<div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>{</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>}</mo><mo>+</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>{</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>}</mo><mo>.</mo></mrow></math><span class="num">(2.19), (2.20)</span></div>
+
+<p>São as fórmulas de condicionamento da probabilidade elementar; aqui elas vão servir para os planos em <em>estágios</em> (capítulo 8), em que o segundo sorteio é condicional ao primeiro.</p>
+
+<h2 id="recall">Cartões de recall ativo</h2>
+
+<p>Tente responder antes de abrir. Se hesitar, volte à seção.</p>
+
+<details class="recall">
+  <summary>O que é aleatório e o que é fixo em amostragem de populações finitas?</summary>
+  <div class="resposta">
+    <p>Fixos: <math><mi>U</mi></math>, os valores <math><msub><mi>Y</mi><mi>i</mi></msub></math>, o vetor <math><mi mathvariant="bold">D</mi></math> e qualquer <math><mi>θ</mi><mo>(</mo><mi mathvariant="bold">D</mi><mo>)</mo></math>. Aleatório: a amostra <math><mi>s</mi></math> — logo as posições <math><msub><mi>y</mi><mi>i</mi></msub></math>, as frequências <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math>, as presenças <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math> e toda estatística <math><mi>h</mi><mo>(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>)</mo></math>. A distribuição vem do plano <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>, não de um modelo para os <math><msub><mi>Y</mi><mi>i</mi></msub></math>.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary><math><msup><mi>σ</mi><mn>2</mn></msup></math> ou <math><msup><mi>S</mi><mn>2</mn></msup></math>? <math><mi>R</mi></math> ou <math><mover><mi>R</mi><mo>¯</mo></mover></math>?</summary>
+  <div class="resposta">
+    <p><math><msup><mi>σ</mi><mn>2</mn></msup></math> divide por <math><mi>N</mi></math>, <math><msup><mi>S</mi><mn>2</mn></msup></math> por <math><mi>N</mi><mo>−</mo><mn>1</mn></math>; <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>N</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>, e é <math><msup><mi>S</mi><mn>2</mn></msup></math> que aparece em (2.15). <math><mi>R</mi><mo>=</mo><msub><mi>τ</mi><mi>Y</mi></msub><mo>/</mo><msub><mi>τ</mi><mi>X</mi></msub></math> é a razão dos totais; <math><mover><mi>R</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>/</mo><msub><mi>X</mi><mi>i</mi></msub></math> é a média das razões. No Exemplo 2.1: 10 e 10,33.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Defina <math><msub><mi>f</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math>, <math><msub><mi>δ</mi><mi>i</mi></msub><mo>(</mo><mi>s</mi><mo>)</mo></math>, <math><mi>n</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> e <math><mi>ν</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>. Quando <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>?</summary>
+  <div class="resposta">
+    <p>Frequência da unidade <math><mi>i</mi></math> em <math><mi>s</mi></math>; indicadora de presença; <math><mi>n</mi><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></math>; <math><mi>ν</mi><mo>=</mo><mo>∑</mo><msub><mi>δ</mi><mi>i</mi></msub></math> (unidades distintas). Coincidem quando não há repetição — planos sem reposição. Em <math><msub><mi>s</mi><mn>5</mn></msub><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>2</mn><mo>)</mo></math>: <math><mi>n</mi><mo>=</mo><mn>5</mn></math>, <math><mi>ν</mi><mo>=</mo><mn>3</mn></math>.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Quantas amostras de tamanho <math><mi>n</mi></math> há, de uma população de <math><mi>N</mi></math>: ordenadas com reposição, ordenadas sem, não ordenadas sem?</summary>
+  <div class="resposta">
+    <p><math><msup><mi>N</mi><mi>n</mi></msup></math>; <math><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>⋯</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></math>; <math><mrow><mo>(</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac><mo>)</mo></mrow></math>. Para <math><mi>N</mi><mo>=</mo><mn>3</mn></math>, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>: 9, 6, 3.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Enuncie a Definição 2.5. Que frase do capítulo 1 ela formaliza?</summary>
+  <div class="resposta">
+    <p>Plano amostral: <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>⩾</mo><mn>0</mn></math> em <math><mi>S</mi><mo>(</mo><mi>U</mi><mo>)</mo></math>, com <math><mo>∑</mo><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mn>1</mn></math>. Formaliza “amostra probabilística: cada amostra possível tem probabilidade conhecida a priori de ocorrer”.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Descreva os planos A, B, C e D do Exemplo 2.6 por regras de sorteio.</summary>
+  <div class="resposta">
+    <p>A: dois sorteios equiprováveis <em>com</em> reposição (AASc). B: dois sorteios equiprováveis <em>sem</em> reposição (AASs). C: sorteios com reposição até sair a unidade 2 ou completar 3 sorteios (tamanho variável). D: dois sorteios sem reposição com probabilidade proporcional ao número de trabalhadores (PPT). E não tem regra “natural”: a unidade 2 sempre entra, e 1 ou 3 por moeda.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Como se constrói a distribuição amostral de uma estatística? Faça para <math><mi>r</mi></math> no plano B.</summary>
+  <div class="resposta">
+    <p>Liste <math><msub><mi>S</mi><mi>A</mi></msub></math>, calcule a estatística em cada amostra, some as probabilidades das amostras com o mesmo valor. Em B: 12 → 10,5; 13 → 10; 21 → 10,5; 23 → 9,6; 31 → 10; 32 → 9,6, cada uma com 1/6. Logo <math><mi>r</mi></math> vale 9,6, 10, 10,5 com probabilidade 1/3 cada.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>O que é <math><msub><mi>π</mi><mi>i</mi></msub></math>? Como se liga a <math><msub><mi>δ</mi><mi>i</mi></msub></math>? Quanto vale na AASc com <math><mi>n</mi><mo>=</mo><mn>2</mn></math>, <math><mi>N</mi><mo>=</mo><mn>3</mn></math>?</summary>
+  <div class="resposta">
+    <p>Probabilidade de <math><mi>i</mi></math> pertencer à amostra: <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mi>P</mi><mo>(</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>=</mo><mi>E</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo></math>. Na AASc, <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></mrow><mi>n</mi></msup><mo>=</mo><mn>1</mn><mo>−</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>=</mo><mn>5</mn><mo>/</mo><mn>9</mn></math>; e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math>. Note que <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>≠</mo><msub><mi>π</mi><mi>i</mi></msub></math>: número esperado de vezes ≠ probabilidade de ao menos uma.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Demonstre <math><mi>EQM</mi><mo>=</mo><mi>Var</mi><mo>+</mo><msup><mi>B</mi><mn>2</mn></msup></math> e diga por que a avaliação é do plano, não da amostra.</summary>
+  <div class="resposta">
+    <p>Escreva <math><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>θ</mi><mo>=</mo><mo>(</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>E</mi><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>)</mo><mo>+</mo><mi>B</mi></math>; ao elevar ao quadrado e tomar esperança o termo cruzado some. O erro de <em>uma</em> amostra, <math><mover><mi>θ</mi><mo>^</mo></mover><mo>(</mo><mi>s</mi><mo>)</mo><mo>−</mo><mi>θ</mi></math>, só se calcula conhecendo <math><mi>θ</mi></math>; o que se pode conhecer a priori é o comportamento sobre todas as amostras do plano — viés e EQM.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>O que é um plano simétrico? Deduza (2.9).</summary>
+  <div class="resposta">
+    <p>Todas as unidades têm o mesmo <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math>, o mesmo <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math> e o mesmo <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>k</mi></msub><mo>,</mo><msub><mi>f</mi><mi>l</mi></msub><mo>]</mo></math>. Então <math><mi>Var</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mi>N</mi><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>+</mo><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi>Cov</mi><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo></math>; com tamanho fixo o lado esquerdo é 0 e <math><mi>Cov</mi><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo><mo>=</mo><mo>−</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Escreva <math><mi>t</mi></math> em função dos <math><msub><mi>f</mi><mi>i</mi></msub></math> e deduza <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo></math> no caso simétrico e fixo. Onde entra (2.4)?</summary>
+  <div class="resposta">
+    <p><math><mi>t</mi><mo>=</mo><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub></math>. <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>τ</mi></math>. <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>{</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>}</mo></math>; (2.4) troca a soma cruzada por <math><mo>−</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></math>, e sai <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></math>.</p>
+  </div>
+</details>
+
+<details class="recall">
+  <summary>Na AASs com <math><mi>n</mi></math> de <math><mi>N</mi></math>, quais são <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo></math>? E <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></math>?</summary>
+  <div class="resposta">
+    <p><math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>∼</mo><mtext>Bernoulli</mtext><mo>(</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math>: <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></math>. Por (2.15), <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math> e <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>.</p>
+  </div>
+</details>
+
+<h2 id="exercicios">Exercícios resolvidos</h2>
+
+<p>Do fim do capítulo, os que fazem contas com os planos do Exemplo 2.6 — enumerando <math><msub><mi>S</mi><mi>A</mi></msub></math> por completo, como o livro manda — e os dois que abrem caminho para o capítulo 3: a população de 180 condomínios (2.2), as distribuições de <math><msub><mi>f</mi><mi>i</mi></msub></math>, <math><msub><mi>δ</mi><mi>i</mi></msub></math>, <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> nos planos B–E (2.3), EQM e correlação nos mesmos planos (2.4), a média de fumantes (2.5), a população de seis elementos com AASs (2.6), o plano C de tamanho variável (2.7), a conferência de (2.9) (2.8) e, entre os teóricos, a distribuição de <math><msub><mi>y</mi><mi>i</mi></msub></math> na AASs (2.10). Todas as frações foram calculadas exatamente e conferidas com a enumeração em Python; o 2.1 fica só com o código, porque o resultado depende da semente.</p>
+
+<div class="exercicio">
+  <h3>Exercício 2.1 — Simular uma população N(50, 16) de tamanho 100</h3>
+  <div class="enunciado">
+    <p>Simule uma população de tamanho <math><mi>N</mi><mo>=</mo><mn>100</mn></math> com <math><mi>Y</mi><mo>∼</mo><mi>N</mi><mo>(</mo><mn>50</mn><mo>,</mo><mn>16</mn><mo>)</mo></math> e encontre <math><mi>τ</mi></math>, <math><mi>μ</mi></math> e <math><msup><mi>S</mi><mn>2</mn></msup></math>.</p>
+  </div>
+  <p>Atenção à notação: <math><mi>N</mi><mo>(</mo><mn>50</mn><mo>,</mo><mn>16</mn><mo>)</mo></math> é média 50 e <em>variância</em> 16, então <code>rnorm</code> recebe desvio padrão 4. E <code>var()</code> do R já divide por <math><mi>N</mi><mo>−</mo><mn>1</mn></math>: é <math><msup><mi>S</mi><mn>2</mn></msup></math>; para <math><msup><mi>σ</mi><mn>2</mn></msup></math> multiplique por <math><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>/</mo><mi>N</mi></math>.</p>
+<pre><code>set.seed(2004)
+Y &lt;- rnorm(100, mean = 50, sd = 4)     <span class="cmt"># N(50, 16): variância 16, desvio padrão 4</span>
+N &lt;- length(Y)
+tau &lt;- sum(Y); mu &lt;- mean(Y); S2 &lt;- var(Y); sigma2 &lt;- S2 * (N - 1) / N
+c(tau, mu, S2, sigma2)
+<span class="cmt"># os seus números dependem da semente; espere tau ≈ 5000, mu ≈ 50, S2 ≈ 16</span>
+</code></pre>
+  <p>O ponto do exercício é a mudança de status: <em>depois</em> de simulada, a população é fixa — <math><mi>τ</mi></math>, <math><mi>μ</mi></math> e <math><msup><mi>S</mi><mn>2</mn></msup></math> são constantes, não estimativas. Toda a aleatoriedade dos próximos capítulos virá do sorteio de amostras <em>dessa</em> população, e é contra esses três números que se medem viés e variância. (A normal foi só a fábrica dos <math><msub><mi>Y</mi><mi>i</mi></msub></math>; <math><msup><mi>S</mi><mn>2</mn></msup></math> não é 16, é o que saiu.)</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.2 — A população de 180 condomínios (Tabela 2.8)</h3>
+  <div class="enunciado">
+    <p><math><mi>X</mi></math> é o número de apartamentos do condomínio e <math><mi>Y</mi></math> o número de apartamentos alugados (brancos = zero). Encontre: (a) <math><msub><mi>μ</mi><mi>Y</mi></msub></math>, <math><msub><mi>τ</mi><mi>Y</mi></msub></math>, <math><msubsup><mi>S</mi><mi>Y</mi><mn>2</mn></msubsup></math>; (b) <math><msub><mi>μ</mi><mi>X</mi></msub></math>, <math><msub><mi>τ</mi><mi>X</mi></msub></math>, <math><msubsup><mi>S</mi><mi>X</mi><mn>2</mn></msubsup></math>; (c) a proporção <math><mi>P</mi></math> de condomínios com mais de 20 apartamentos alugados e a variância populacional da variável <math><msub><mi>W</mi><mi>i</mi></msub></math> que vale 1 se o condomínio tem mais de 20 alugados e 0 caso contrário.</p>
+  </div>
+  <p>Os 180 pares, transcritos da Tabela 2.8 (livro p. 60), na ordem <math><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mn>180</mn></math>:</p>
+<pre><code>Y &lt;- c(19, 17, 25, 84, 91, 48, 48, 20, 34, 42, 35, 55, 42, 36, 13, 7, 8, 18,
+       20, 18, 0, 23, 0, 19, 11, 11, 42, 28, 8, 0, 47, 27, 80, 52, 90, 78, 46,
+       35, 59, 27, 33, 27, 9, 9, 12, 49, 60, 35, 11, 21, 22, 10, 9, 7, 3, 5,
+       2, 8, 14, 5, 67, 44, 43, 15, 17, 29, 18, 14, 24, 35, 48, 20, 24, 55,
+       43, 13, 19, 48, 44, 36, 3, 2, 13, 34, 28, 23, 8, 69, 2, 5, 34, 13, 16,
+       21, 12, 10, 50, 58, 17, 41, 3, 4, 18, 1, 1, 3, 6, 5, 5, 4, 0, 0, 7, 7,
+       3, 12, 11, 27, 14, 2, 1, 22, 25, 2, 4, 7, 15, 10, 5, 8, 8, 0, 4, 1, 3,
+       0, 14, 3, 5, 0, 11, 19, 5, 0, 3, 12, 4, 14, 0, 20, 6, 4, 9, 54, 50, 9,
+       6, 5, 1, 1, 0, 2, 2, 3, 1, 6, 3, 3, 5, 3, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0)
+X &lt;- c(23, 18, 33, 89, 114, 66, 61, 25, 46, 58, 44, 66, 61, 45, 20, 16, 15,
+       26, 22, 22, 2, 29, 3, 29, 21, 15, 54, 42, 13, 2, 53, 28, 90, 68, 99,
+       89, 48, 48, 62, 33, 43, 37, 14, 15, 21, 68, 81, 59, 23, 32, 36, 16, 15,
+       16, 8, 25, 11, 9, 19, 5, 110, 57, 81, 23, 25, 59, 27, 22, 29, 44, 53,
+       27, 28, 62, 56, 22, 22, 57, 57, 46, 8, 4, 18, 42, 32, 28, 14, 76, 19,
+       9, 48, 24, 27, 32, 14, 18, 61, 65, 25, 68, 8, 12, 27, 3, 3, 6, 14, 15,
+       14, 9, 1, 4, 12, 22, 11, 27, 20, 38, 31, 4, 3, 37, 30, 3, 4, 13, 24,
+       19, 17, 13, 18, 1, 10, 4, 9, 5, 20, 5, 13, 1, 23, 39, 9, 2, 5, 26, 10,
+       35, 4, 38, 37, 11, 24, 102, 82, 24, 18, 18, 3, 6, 1, 7, 8, 12, 4, 8, 9,
+       7, 12, 10, 1, 1, 1, 4, 1, 1, 2, 1, 1, 1)
+N &lt;- length(Y); N
+<span class="out">## [1] 180</span>
+c(sum(Y), mean(Y), var(Y))                  <span class="cmt"># (a)</span>
+<span class="out">## [1] 3363.00000   18.68333  409.74832</span>
+c(sum(X), mean(X), var(X))                  <span class="cmt"># (b)</span>
+<span class="out">## [1] 4928.00000   27.37778  609.40956</span>
+W &lt;- as.numeric(Y &gt; 20); P &lt;- mean(W)       <span class="cmt"># (c)</span>
+c(sum(W), P, var(W), P * (1 - P))
+<span class="out">## [1] 58.0000000  0.3222222  0.2196151  0.2183951</span>
+</code></pre>
+  <p><strong>(a)</strong> <math><msub><mi>τ</mi><mi>Y</mi></msub><mo>=</mo><mn>3363</mn></math>, <math><msub><mi>μ</mi><mi>Y</mi></msub><mo>=</mo><mn>18,68</mn></math>, <math><msubsup><mi>S</mi><mi>Y</mi><mn>2</mn></msubsup><mo>=</mo><mn>409,7</mn></math>. <strong>(b)</strong> <math><msub><mi>τ</mi><mi>X</mi></msub><mo>=</mo><mn>4928</mn></math>, <math><msub><mi>μ</mi><mi>X</mi></msub><mo>=</mo><mn>27,38</mn></math>, <math><msubsup><mi>S</mi><mi>X</mi><mn>2</mn></msubsup><mo>=</mo><mn>609,4</mn></math>. <strong>(c)</strong> 58 dos 180 condomínios têm mais de 20 alugados: <math><mi>P</mi><mo>=</mo><mn>58</mn><mo>/</mo><mn>180</mn><mo>=</mo><mn>0,3222</mn></math>. Uma proporção é a média de uma variável 0–1, e a sua variância populacional tem forma fechada: <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>)</mo><mo>=</mo><mn>0,2184</mn></math> e <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>P</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>)</mo><mo>=</mo><mn>0,2196</mn></math> — porque <math><msubsup><mi>W</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>W</mi><mi>i</mi></msub></math>, e (2.2) dá <math><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>W</mi><mi>i</mi></msub><mo>−</mo><mi>P</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mi>N</mi><mi>P</mi><mo>−</mo><mi>N</mi><msup><mi>P</mi><mn>2</mn></msup></math>. Guarde esta população: ela volta nos exercícios dos capítulos 3, 5 e 6 (a razão <math><mi>R</mi><mo>=</mo><mn>3363</mn><mo>/</mo><mn>4928</mn><mo>=</mo><mn>0,682</mn></math> apartamentos alugados por apartamento, e a correlação <math><msub><mi>ρ</mi><mrow><mi>X</mi><mi>Y</mi></mrow></msub><mo>=</mo><mn>0,96</mn></math>, é o que faz os estimadores razão e regressão brilharem).</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.3 — <math><msub><mi>f</mi><mi>i</mi></msub></math>, <math><msub><mi>δ</mi><mi>i</mi></msub></math>, <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> nos planos B, C, D e E</h3>
+  <div class="enunciado">
+    <p>Para cada plano B, C, D, E do Exemplo 2.6: (a) construa as distribuições de <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math>; (b) calcule <math><mi>E</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo></math>; (c) encontre <math><msub><mi>π</mi><mi>i</mi></msub></math> e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math>.</p>
+  </div>
+  <p>Regra geral que resolve (b) e (c) de uma vez: <math><msub><mi>δ</mi><mi>i</mi></msub></math> é Bernoulli(<math><msub><mi>π</mi><mi>i</mi></msub></math>), logo <math><mi>E</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub></math> e <math><mi>Var</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>π</mi><mi>i</mi></msub><mo>)</mo></math>; <math><msub><mi>π</mi><mi>i</mi></msub></math> é a soma de <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> sobre as amostras que contêm <math><mi>i</mi></math>, e <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> sobre as que contêm ambos. Nos planos sem reposição (B, D, E), <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>; só em C, com reposição, <math><msub><mi>f</mi><mi>i</mi></msub></math> pode passar de 1.</p>
+  <div class="rolagem">
+  <table>
+    <caption>Distribuições de <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math>, probabilidades de inclusão e momentos. Em B, D e E, <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>.</caption>
+    <thead><tr><th class="txt">Plano</th><th class="txt">Unidade</th><th class="txt"><math><msub><mi>f</mi><mi>i</mi></msub></math>: valores (probabilidades)</th><th><math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mi>E</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo></math></th><th><math><mi>Var</mi><mo>[</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>]</mo></math></th><th class="txt"><math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math></th></tr></thead>
+    <tbody>
+      <tr><td><strong>B</strong></td><td>1, 2, 3</td><td class="txt">0 (1/3), 1 (2/3)</td><td>2/3</td><td>2/9</td><td class="txt"><math><msub><mi>π</mi><mn>12</mn></msub><mo>=</mo><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><msub><mi>π</mi><mn>23</mn></msub><mo>=</mo><mn>1</mn><mo>/</mo><mn>3</mn></math></td></tr>
+      <tr><td rowspan="3"><strong>C</strong></td><td>1</td><td class="txt">0 (14/27), 1 (8/27), 2 (4/27), 3 (1/27); <math><msub><mi>δ</mi><mn>1</mn></msub></math>: 0 (14/27), 1 (13/27)</td><td>13/27</td><td>182/729</td><td class="txt" rowspan="3"><math><msub><mi>π</mi><mn>12</mn></msub><mo>=</mo><msub><mi>π</mi><mn>23</mn></msub><mo>=</mo><mn>6</mn><mo>/</mo><mn>27</mn></math>, <math><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><mn>8</mn><mo>/</mo><mn>27</mn></math></td></tr>
+      <tr><td>2</td><td class="txt">0 (8/27), 1 (19/27) — nunca repete: o sorteio para quando o 2 sai</td><td>19/27</td><td>152/729</td></tr>
+      <tr><td>3</td><td class="txt">igual à unidade 1</td><td>13/27</td><td>182/729</td></tr>
+      <tr><td rowspan="3"><strong>D</strong></td><td>1</td><td class="txt">0 (7/12), 1 (5/12)</td><td>5/12</td><td>35/144</td><td class="txt" rowspan="3"><math><msub><mi>π</mi><mn>12</mn></msub><mo>=</mo><mn>4</mn><mo>/</mo><mn>15</mn></math>, <math><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><mn>3</mn><mo>/</mo><mn>20</mn></math>, <math><msub><mi>π</mi><mn>23</mn></msub><mo>=</mo><mn>7</mn><mo>/</mo><mn>12</mn></math></td></tr>
+      <tr><td>2</td><td class="txt">0 (3/20), 1 (17/20)</td><td>17/20</td><td>51/400</td></tr>
+      <tr><td>3</td><td class="txt">0 (4/15), 1 (11/15)</td><td>11/15</td><td>44/225</td></tr>
+      <tr><td rowspan="3"><strong>E</strong></td><td>1</td><td class="txt">0 (1/2), 1 (1/2)</td><td>1/2</td><td>1/4</td><td class="txt" rowspan="3"><math><msub><mi>π</mi><mn>12</mn></msub><mo>=</mo><msub><mi>π</mi><mn>23</mn></msub><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math>, <math><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><mn>0</mn></math></td></tr>
+      <tr><td>2</td><td class="txt">1 (1) — degenerada</td><td>1</td><td>0</td></tr>
+      <tr><td>3</td><td class="txt">0 (1/2), 1 (1/2)</td><td>1/2</td><td>1/4</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Como se chega a cada linha — dois exemplos. <strong>C, unidade 1:</strong> <math><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn></math> só em (111), 1/27; <math><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn></math> em (112), (113), (131), (311), 4/27; <math><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></math> em (12), 1/9, e (132), (312), (133), (313), (331), 5/27 — total 8/27; o resto, 14/27. <math><msub><mi>π</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>−</mo><mn>14</mn><mo>/</mo><mn>27</mn><mo>=</mo><mn>13</mn><mo>/</mo><mn>27</mn></math>. <strong>D, unidade 3:</strong> amostras com 3: (13) 1/15, (31) 1/12, (23) 1/3, (32) 1/4 — em sessenta avos, 4 + 5 + 20 + 15 = 44, logo <math><msub><mi>π</mi><mn>3</mn></msub><mo>=</mo><mn>44</mn><mo>/</mo><mn>60</mn><mo>=</mo><mn>11</mn><mo>/</mo><mn>15</mn></math>. Duas verificações que valem para qualquer plano de tamanho fixo <math><mi>n</mi></math>: <math><mo>∑</mo><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mi>n</mi></math> (em D: <math><mn>25</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>51</mn><mo>/</mo><mn>60</mn><mo>+</mo><mn>44</mn><mo>/</mo><mn>60</mn><mo>=</mo><mn>2</mn></math>) e <math><munder><mo>∑</mo><mrow><mi>j</mi><mo>≠</mo><mi>i</mi></mrow></munder><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msub><mi>π</mi><mi>i</mi></msub></math> (em D, <math><mi>i</mi><mo>=</mo><mn>1</mn></math>: <math><mn>4</mn><mo>/</mo><mn>15</mn><mo>+</mo><mn>3</mn><mo>/</mo><mn>20</mn><mo>=</mo><mn>25</mn><mo>/</mo><mn>60</mn><mo>=</mo><msub><mi>π</mi><mn>1</mn></msub></math>). Em C, de tamanho variável, <math><mo>∑</mo><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>45</mn><mo>/</mo><mn>27</mn><mo>=</mo><mn>5</mn><mo>/</mo><mn>3</mn><mo>=</mo><mi>E</mi><mo>[</mo><mi>ν</mi><mo>]</mo></math>, o tamanho efetivo esperado — não o tamanho esperado <math><mi>E</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mn>19</mn><mo>/</mo><mn>9</mn></math> do Exercício 2.7.</p>
+  <p>Em D, o plano PPT faz o que promete: a unidade 2, com 3 dos 6 trabalhadores, tem <math><msub><mi>π</mi><mn>2</mn></msub><mo>=</mo><mn>0,85</mn></math>; a unidade 1, com 1 trabalhador, <math><msub><mi>π</mi><mn>1</mn></msub><mo>=</mo><mn>0,42</mn></math>. E o plano E tem <math><msub><mi>π</mi><mn>13</mn></msub><mo>=</mo><mn>0</mn></math>: as unidades 1 e 3 nunca aparecem juntas — no capítulo 9 isso torna a variância de Horvitz–Thompson inestimável.</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.4 — EQM de <math><mi>r</mi></math>, covariância e correlação com <math><mover><mi>f</mi><mo>¯</mo></mover></math> nos planos B, C, D e E</h3>
+  <div class="enunciado">
+    <p>Para os planos B, C, D e E, calcule <math><mi>EQM</mi><mo>[</mo><mi>r</mi><mo>]</mo></math>, <math><mi>Cov</mi><mo>[</mo><mi>r</mi><mo>,</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math> e <math><mi>Corr</mi><mo>[</mo><mi>r</mi><mo>,</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math>, com os dados do Exemplo 2.10 (<math><mi>R</mi><mo>=</mo><mn>10</mn></math>).</p>
+  </div>
+  <p>Mesma receita do Exemplo 2.11, plano a plano. Para C, a distribuição de <math><mi>r</mi></math> tem sete valores: 9 (1/27, de 333), 66/7 ≈ 9,43 (1/27, de 332), 9,6 (2/9), 10 (11/27), 10,5 (2/9), 10,8 (1/27, de 112) e 12 (1/27, de 111). A tabela resume; abaixo, o código que a produz.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th class="txt">Plano</th><th><math><mi>E</mi><mo>[</mo><mi>r</mi><mo>]</mo></math></th><th><math><mi>Var</mi><mo>[</mo><mi>r</mi><mo>]</mo></math></th><th><math><mi>B</mi><mo>[</mo><mi>r</mi><mo>]</mo></math></th><th><math><mi>EQM</mi><mo>[</mo><mi>r</mi><mo>]</mo></math></th><th><math><mi>E</mi><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math></th><th><math><mi>Var</mi><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math></th><th><math><mi>Cov</mi><mo>[</mo><mi>r</mi><mo>,</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math></th><th><math><mi>Corr</mi></math></th></tr></thead>
+    <tbody>
+      <tr><td>A (Ex. 2.14)</td><td>10,1333</td><td>0,6289</td><td>0,1333</td><td>0,6467</td><td>20</td><td>28</td><td>−1,8000</td><td>−0,4289</td></tr>
+      <tr><td><strong>B</strong></td><td>10,0333</td><td>0,1356</td><td>0,0333</td><td>0,1367</td><td>20</td><td>14</td><td>−0,3667</td><td>−0,2662</td></tr>
+      <tr><td><strong>C</strong></td><td>10,0677</td><td>0,3075</td><td>0,0677</td><td>0,3121</td><td>22,41</td><td>38,02</td><td>−1,0609</td><td>−0,3103</td></tr>
+      <tr><td><strong>D</strong></td><td>9,9000</td><td>0,1500</td><td>−0,1000</td><td>0,1600</td><td>21,85</td><td>9,9275</td><td>−0,6150</td><td>−0,5040</td></tr>
+      <tr><td><strong>E</strong></td><td>10,0500</td><td>0,2025</td><td>0,0500</td><td>0,2050</td><td>22,5</td><td>2,25</td><td>−0,6750</td><td>−1</td></tr>
+    </tbody>
+  </table>
+  </div>
+<pre><code>F &lt;- c(12, 30, 18); T &lt;- c(1, 3, 2); R &lt;- sum(F) / sum(T)
+momentos &lt;- function(S, p) {              <span class="cmt"># S: lista de amostras; p: suas probabilidades</span>
+  r  &lt;- sapply(S, function(s) sum(F[s]) / sum(T[s]))
+  fb &lt;- sapply(S, function(s) mean(F[s]))
+  Er &lt;- sum(r * p); Vr &lt;- sum((r - Er)^2 * p)
+  Ef &lt;- sum(fb * p); Vf &lt;- sum((fb - Ef)^2 * p)
+  Cv &lt;- sum((r - Er) * (fb - Ef) * p)
+  round(c(EQM = Vr + (Er - R)^2, Cov = Cv, Corr = Cv / sqrt(Vr * Vf)), 4)
+}
+momentos(list(c(1,2), c(1,3), c(2,1), c(2,3), c(3,1), c(3,2)), rep(1/6, 6))          <span class="cmt"># B</span>
+<span class="out">##     EQM     Cov    Corr
+##  0.1367 -0.3667 -0.2662</span>
+momentos(list(2, c(1,2), c(3,2), c(1,1,2), c(1,3,2), c(3,3,2), c(3,1,2), c(1,1,1),
+              c(1,1,3), c(1,3,1), c(3,1,1), c(1,3,3), c(3,1,3), c(3,3,1), c(3,3,3)),
+         c(1/3, 1/9, 1/9, rep(1/27, 12)))                                            <span class="cmt"># C</span>
+<span class="out">##     EQM     Cov    Corr
+##  0.3121 -1.0609 -0.3103</span>
+momentos(list(c(1,2), c(2,1), c(1,3), c(3,1), c(2,3), c(3,2)),
+         c(1/10, 1/6, 1/15, 1/12, 1/3, 1/4))                                         <span class="cmt"># D</span>
+<span class="out">##    EQM    Cov   Corr
+##  0.160 -0.615 -0.504</span>
+momentos(list(c(1,2), c(3,2)), c(1/2, 1/2))                                          <span class="cmt"># E</span>
+<span class="out">##    EQM    Cov   Corr
+##  0.205 -0.675 -1.000</span>
+</code></pre>
+  <p><strong>Leitura.</strong> Todos os planos dão <math><mi>r</mi></math> viesado — é a regra para razões —, mas o viés é pequeno perto da variância. Em EQM, B (AASs) bate A (AASc) por um fator de quase 5: sem reposição não existem as amostras (11) e (33), que dão os valores extremos 12 e 9. D (PPT) é o segundo melhor e o único com viés <em>negativo</em>: ele privilegia o domicílio 2, cuja renda por trabalhador (10) é exatamente <math><mi>R</mi></math>, e aparece muito (23) e (32), que dão 9,6. E tem só duas amostras, logo <math><mi>r</mi></math> e <math><mover><mi>f</mi><mo>¯</mo></mover></math> são funções lineares uma da outra e a correlação é −1. E repare em <math><mi>E</mi><mo>[</mo><mover><mi>f</mi><mo>¯</mo></mover><mo>]</mo></math>: só em A e B a média amostral é não viciada para <math><msub><mi>μ</mi><mi>F</mi></msub><mo>=</mo><mn>20</mn></math>; em C, D e E, que não são simétricos, ela superestima — o domicílio rico entra demais.</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.5 — A média de fumantes <math><mover><mi>z</mi><mo>¯</mo></mover></math> nos planos A e B</h3>
+  <div class="enunciado">
+    <p>Seja <math><mover><mi>z</mi><mo>¯</mo></mover></math> a média de fumantes na amostra (Exemplo 2.1: <math><mi>G</mi><mo>=</mo><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>)</mo></math>). Encontre <math><mi>E</mi><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo></math> sob os planos A e B.</p>
+  </div>
+  <p>Direto pela enumeração: em A, <math><mover><mi>z</mi><mo>¯</mo></mover></math> vale 0 em (11), 1/2 em (12), (13), (21), (31), e 1 em (22), (23), (32), (33) — probabilidades 1/9, 4/9, 4/9. Em B, vale 1/2 em (12), (13), (21), (31) e 1 em (23), (32) — 2/3 e 1/3.</p>
+  <math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>+</mo><mn>1</mn><mo>·</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>,</mo><mspace width="1em"/><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>·</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>+</mo><mn>1</mn><mo>·</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>−</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>;</mo></mrow></math>
+<math display="block"><mrow><msub><mi>E</mi><mi>B</mi></msub><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>·</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>,</mo><mspace width="1em"/><msub><mi>Var</mi><mi>B</mi></msub><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>·</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>−</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>18</mn></mfrac><mo>.</mo></mrow></math>
+  <p>Pela seção 6.3, sem enumerar: a proporção populacional é <math><mi>P</mi><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn></math>, <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>)</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math>, <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>3</mn><mn>2</mn></mfrac><mo>·</mo><mfrac><mn>2</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac></math>. Ambos os planos são simétricos de tamanho fixo, então <math><mi>E</mi><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>/</mo><mn>2</mn><mo>=</mo><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>τ</mi><mo>/</mo><mn>2</mn><mo>=</mo><mo>(</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>(</mo><mn>2</mn><mo>)</mo><mo>/</mo><mn>2</mn><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn></math> nos dois; e <math><mi>Var</mi><mo>[</mo><mover><mi>z</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mn>4</mn></math>: em A, <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mn>4</mn><mo>/</mo><mn>9</mn></math> dá <math><mo>(</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>)</mo><mo>(</mo><mn>3</mn><mo>)</mo><mo>(</mo><mn>1</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>/</mo><mn>4</mn><mo>=</mo><mn>1</mn><mo>/</mo><mn>9</mn></math>; em B, <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mo>(</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>(</mo><mn>1</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math> dá <math><mn>1</mn><mo>/</mo><mn>18</mn></math>. Confere — e mostra o fator de correção <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math> entre AASs e AASc.</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.6 — <math><mi>N</mi><mo>=</mo><mn>6</mn></math>, <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><mn>2</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>8</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>12</mn><mo>)</mo></math>, AASs com <math><mi>n</mi><mo>=</mo><mn>2</mn></math></h3>
+  <div class="enunciado">
+    <p>Uma amostra de <math><mi>n</mi><mo>=</mo><mn>2</mn></math> é selecionada sem reposição, cada amostra de <math><msub><mi>S</mi><mi>A</mi></msub></math> com a mesma probabilidade. (a) Calcule <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math> e <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo></math>; o plano é simétrico? (b) Encontre a distribuição de <math><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>, <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo></math>. (c) Verifique se <math><mover><mi>y</mi><mo>¯</mo></mover></math> é não viciado para <math><mi>μ</mi></math> e calcule <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></math>.</p>
+  </div>
+  <p><strong>A população.</strong> <math><mi>τ</mi><mo>=</mo><mn>48</mn></math>, <math><mi>μ</mi><mo>=</mo><mn>8</mn></math>, desvios <math><mo>−</mo><mn>6</mn><mo>,</mo><mo>−</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>4</mn></math>, soma de quadrados 64, logo <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mn>64</mn><mo>/</mo><mn>5</mn><mo>=</mo><mn>12,8</mn></math> e <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>64</mn><mo>/</mo><mn>6</mn></math>.</p>
+  <p><strong>(a)</strong> Sem reposição, <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>. Tomando as 15 amostras não ordenadas com 1/15 cada, a unidade <math><mi>i</mi></math> está em 5 delas: <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>5</mn><mo>/</mo><mn>15</mn><mo>=</mo><mn>1</mn><mo>/</mo><mn>3</mn><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> e <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>·</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>=</mo><mfrac><mn>2</mn><mn>9</mn></mfrac></math>. O par <math><mo>{</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>}</mo></math> é uma única amostra: <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>/</mo><mn>15</mn></math>, e</p>
+  <math display="block"><mrow><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><msub><mi>π</mi><mi>i</mi></msub><msub><mi>π</mi><mi>j</mi></msub><mo>=</mo><mfrac><mn>1</mn><mn>15</mn></mfrac><mo>−</mo><mfrac><mn>1</mn><mn>9</mn></mfrac><mo>=</mo><mo>−</mo><mfrac><mn>2</mn><mn>45</mn></mfrac><mo>.</mo></mrow></math>
+  <p>Os valores não dependem de quais <math><mi>i</mi></math>, <math><mi>j</mi></math> se escolhem — <strong>o plano é simétrico</strong>, porque a regra trata todas as unidades do mesmo modo (qualquer permutação dos rótulos deixa <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> igual). E é de tamanho fixo: (2.9) prevê <math><mo>−</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mo>−</mo><mo>(</mo><mn>2</mn><mo>/</mo><mn>9</mn><mo>)</mo><mo>/</mo><mn>5</mn><mo>=</mo><mo>−</mo><mn>2</mn><mo>/</mo><mn>45</mn></math>. ✓</p>
+  <p><strong>(b)</strong> As 15 somas de pares: 8 (uma vez: {2, 6}), 10 (1), 12 (2), 14 (2), 16 (2), 18 (3: {6,12}, {10,8}, {8,10}), 20 (2), 22 (2).</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th class="txt"><math><mi>t</mi></math></th><th>8</th><th>10</th><th>12</th><th>14</th><th>16</th><th>18</th><th>20</th><th>22</th></tr></thead>
+    <tbody><tr><td><math><mi>P</mi><mo>(</mo><mi>t</mi><mo>)</mo></math></td><td>1/15</td><td>1/15</td><td>2/15</td><td>2/15</td><td>2/15</td><td>3/15</td><td>2/15</td><td>2/15</td></tr></tbody>
+  </table>
+  </div>
+  <math display="block"><mrow><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mfrac><mrow><mn>8</mn><mo>+</mo><mn>10</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>12</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>14</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>16</mn><mo>+</mo><mn>3</mn><mo>·</mo><mn>18</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>20</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>22</mn></mrow><mn>15</mn></mfrac><mo>=</mo><mfrac><mn>240</mn><mn>15</mn></mfrac><mo>=</mo><mn>16</mn></mrow></math>
+<math display="block"><mrow><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>−</mo><msup><mn>16</mn><mn>2</mn></msup><mo>=</mo><mfrac><mn>4096</mn><mn>15</mn></mfrac><mo>−</mo><mn>256</mn><mo>=</mo><mfrac><mn>256</mn><mn>15</mn></mfrac><mo>≈</mo><mn>17,07</mn><mo>.</mo></mrow></math>
+  <p>Pelas fórmulas: <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>τ</mi><mo>=</mo><mo>(</mo><mn>1</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>(</mo><mn>48</mn><mo>)</mo><mo>=</mo><mn>16</mn></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mo>(</mo><mn>2</mn><mo>/</mo><mn>9</mn><mo>)</mo><mo>(</mo><mn>6</mn><mo>)</mo><mo>(</mo><mn>64</mn><mo>/</mo><mn>5</mn><mo>)</mo><mo>=</mo><mn>256</mn><mo>/</mo><mn>15</mn></math>. ✓ (E (2.16): <math><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mn>256</mn><mo>/</mo><mn>15</mn><mo>+</mo><mn>256</mn><mo>=</mo><mn>4096</mn><mo>/</mo><mn>15</mn></math>. ✓)</p>
+  <p><strong>(c)</strong> <math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mi>t</mi><mo>/</mo><mn>2</mn></math>, logo <math><mi>E</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>8</mn><mo>=</mo><mi>μ</mi></math> — <strong>não viciado</strong> — e <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><mn>256</mn><mrow><mn>15</mn><mo>·</mo><mn>4</mn></mrow></mfrac><mo>=</mo><mfrac><mn>64</mn><mn>15</mn></mfrac><mo>≈</mo><mn>4,27</mn></math>. Na forma que o capítulo 3 vai consagrar: <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi><mo>=</mo><mo>(</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>)</mo><mo>(</mo><mn>12,8</mn><mo>)</mo><mo>/</mo><mn>2</mn><mo>=</mo><mn>4,27</mn></math>.</p>
+<pre><code>D &lt;- c(2, 6, 10, 8, 10, 12); N &lt;- 6
+S &lt;- combn(N, 2)                              <span class="cmt"># as 15 amostras não ordenadas, 1/15 cada</span>
+t &lt;- colSums(matrix(D[S], nrow = 2))
+table(t)
+<span class="out">## t
+##  8 10 12 14 16 18 20 22
+##  1  1  2  2  2  3  2  2</span>
+c(mean(t), mean(t^2) - mean(t)^2, var(D) * N * (1/3) * (2/3))
+<span class="out">## [1] 16.00000 17.06667 17.06667</span>
+</code></pre>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.7 — O plano C: tamanho aleatório, sem simetria</h3>
+  <div class="enunciado">
+    <p>Para o plano C: (a) <math><mi>E</mi><mo>[</mo><mi>n</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>n</mi><mo>]</mo></math>; (b) o plano é simétrico? (c) a distribuição de <math><mi>r</mi></math>: (i) <math><mi>r</mi></math> é não viciado para <math><mi>R</mi><mo>=</mo><mover><mi>F</mi><mo>¯</mo></mover><mo>/</mo><mover><mi>T</mi><mo>¯</mo></mover></math>? (ii) <math><mi>EQM</mi><mo>[</mo><mi>r</mi><mo>]</mo></math>.</p>
+  </div>
+  <p><strong>(a)</strong> <math><mi>n</mi></math> vale 1 com probabilidade 1/3 (a amostra (2)), 2 com 2/9 ((12) e (32)) e 3 com 12/27 = 4/9. Então <math><mi>E</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>+</mo><mfrac><mn>4</mn><mn>9</mn></mfrac><mo>+</mo><mfrac><mn>12</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>19</mn><mn>9</mn></mfrac><mo>≈</mo><mn>2,11</mn></math>, <math><mi>E</mi><mo>[</mo><msup><mi>n</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mfrac><mn>3</mn><mn>9</mn></mfrac><mo>+</mo><mfrac><mn>8</mn><mn>9</mn></mfrac><mo>+</mo><mfrac><mn>36</mn><mn>9</mn></mfrac><mo>=</mo><mfrac><mn>47</mn><mn>9</mn></mfrac></math> e <math><mi>Var</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mfrac><mn>47</mn><mn>9</mn></mfrac><mo>−</mo><mfrac><mn>361</mn><mn>81</mn></mfrac><mo>=</mo><mfrac><mn>62</mn><mn>81</mn></mfrac><mo>≈</mo><mn>0,77</mn></math>. Pela via de (2.6): <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>+</mo><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>+</mo><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>3</mn></msub><mo>]</mo><mo>=</mo><mn>3</mn><mo>×</mo><mn>19</mn><mo>/</mo><mn>27</mn><mo>=</mo><mn>19</mn><mo>/</mo><mn>9</mn></math>. ✓</p>
+  <p><strong>(b)</strong> <strong>Não.</strong> Curiosamente as esperanças coincidem — <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>3</mn></msub><mo>]</mo><mo>=</mo><mn>19</mn><mo>/</mo><mn>27</mn></math> — mas as variâncias não: <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mn>530</mn><mo>/</mo><mn>729</mn></math> (a unidade 1 pode aparecer até 3 vezes) e <math><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mn>152</mn><mo>/</mo><mn>729</mn></math> (a unidade 2 aparece no máximo uma vez, porque encerra o sorteio). As covariâncias também diferem: <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mo>−</mo><mn>172</mn><mo>/</mo><mn>729</mn></math>, mas <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>3</mn></msub><mo>]</mo><mo>=</mo><mo>+</mo><mn>17</mn><mo>/</mo><mn>729</mn></math> — positiva, porque 1 e 3 só aparecem muito quando o 2 demora a sair. Sem simetria, (2.14) e (2.15) não valem: de fato <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo></math> ainda é <math><mo>(</mo><mn>19</mn><mo>/</mo><mn>27</mn><mo>)</mo><mi>τ</mi></math> porque as esperanças por acaso coincidem, mas a variância precisa de (2.13) inteira.</p>
+  <p><strong>(c)</strong> A distribuição de <math><mi>r</mi></math> está no Exercício 2.4: sete valores, de 9 a 12, com <math><mi>E</mi><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><mn>9514</mn><mo>/</mo><mn>945</mn><mo>≈</mo><mn>10,068</mn></math>. (i) <math><mi>R</mi><mo>=</mo><mover><mi>F</mi><mo>¯</mo></mover><mo>/</mo><mover><mi>T</mi><mo>¯</mo></mover><mo>=</mo><mn>20</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>10</mn></math>; <math><mi>E</mi><mo>[</mo><mi>r</mi><mo>]</mo><mo>≠</mo><mn>10</mn></math>, logo <strong>viciado</strong>, com <math><mi>B</mi><mo>=</mo><mn>64</mn><mo>/</mo><mn>945</mn><mo>≈</mo><mn>0,068</mn></math>. (ii) <math><mi>EQM</mi><mo>[</mo><mi>r</mi><mo>]</mo><mo>=</mo><mn>0,3075</mn><mo>+</mo><msup><mn>0,068</mn><mn>2</mn></msup><mo>=</mo><mn>0,3121</mn></math> — pior que B e D (tamanho fixo 2), melhor que A, com um tamanho médio de 2,11 unidades.</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.8 — Conferir (2.9) no plano A</h3>
+  <div class="enunciado">
+    <p>Para o plano A, calcule <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo></math> e verifique (2.9).</p>
+  </div>
+  <p>Da Tabela 2.5, o produto <math><msub><mi>f</mi><mn>1</mn></msub><msub><mi>f</mi><mn>2</mn></msub></math> é 1 nas amostras (12) e (21) e 0 nas outras sete: <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math>. Com <math><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn></math>,</p>
+  <math display="block"><mrow><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>2</mn></msub><mo>]</mo><mo>=</mo><mfrac><mn>2</mn><mn>9</mn></mfrac><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>·</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>=</mo><mo>−</mo><mfrac><mn>2</mn><mn>9</mn></mfrac><mo>,</mo><mspace width="2em"/><mo>−</mo><mfrac><mrow><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><mn>4</mn><mo>/</mo><mn>9</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mo>−</mo><mfrac><mn>2</mn><mn>9</mn></mfrac><mo>.</mo><mspace width="0.6em"/><mtext>✓</mtext></mrow></math>
+  <p>(<math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mn>4</mn><mo>/</mo><mn>9</mn></math> da Tabela 2.6: <math><mi>E</mi><mo>[</mo><msubsup><mi>f</mi><mn>1</mn><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>+</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>=</mo><mn>8</mn><mo>/</mo><mn>9</mn></math>, menos <math><mn>4</mn><mo>/</mo><mn>9</mn></math>.) O vetor <math><mo>(</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><msub><mi>f</mi><mn>2</mn></msub><mo>,</mo><msub><mi>f</mi><mn>3</mn></msub><mo>)</mo></math> na AASc é Multinomial(2; 1/3, 1/3, 1/3), cuja covariância é <math><mo>−</mo><mi>n</mi><msub><mi>p</mi><mi>i</mi></msub><msub><mi>p</mi><mi>j</mi></msub><mo>=</mo><mo>−</mo><mn>2</mn><mo>/</mo><mn>9</mn></math> — o mesmo número por outro caminho.</p>
+</div>
+
+<div class="exercicio">
+  <h3>Exercício 2.10 (teórico) — A distribuição de <math><msub><mi>y</mi><mi>i</mi></msub></math> na AASs</h3>
+  <div class="enunciado">
+    <p>Para a AASs de uma população com <math><mi>N</mi></math> elementos, encontre a distribuição de <math><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub></math> dadas em (2.1) e verifique que <math><mi>E</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mover><mi>Y</mi><mo>¯</mo></mover></math>, <math><mi>Var</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup></math> e <math><mi>Cov</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math>.</p>
+  </div>
+  <p><strong>A marginal.</strong> Na AASs ordenada, o elemento que cai na posição <math><mi>i</mi></math> é qualquer um dos <math><mi>N</mi></math> com igual probabilidade — na posição 1 por construção, e nas seguintes por simetria: cada uma das <math><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>⋯</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></math> sequências tem a mesma probabilidade, e o número de sequências com a unidade <math><mi>k</mi></math> na posição <math><mi>i</mi></math> não depende de <math><mi>i</mi></math> nem de <math><mi>k</mi></math>. Logo <math><mi>P</mi><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><msub><mi>Y</mi><mi>k</mi></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mi>N</mi></math>, <math><mi>k</mi><mo>=</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>N</mi></math>: <math><msub><mi>y</mi><mi>i</mi></msub></math> é uniforme sobre os valores da população, e</p>
+  <math display="block"><mrow><mi>E</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>Y</mi><mi>k</mi></msub><mo>=</mo><mover><mi>Y</mi><mo>¯</mo></mover><mo>,</mo><mspace width="2em"/><mi>Var</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>k</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>.</mo></mrow></math>
+  <p><strong>O par.</strong> Para <math><mi>i</mi><mo>≠</mo><mi>j</mi></math>, <math><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>)</mo></math> é um par ordenado de unidades <em>distintas</em>, uniforme sobre os <math><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math> pares. Então, usando (2.4) e depois (2.2),</p>
+  <math display="block"><mrow><mi>E</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><msub><mi>y</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>k</mi><mo>≠</mo><mi>l</mi></mrow></munder><msub><mi>Y</mi><mi>k</mi></msub><msub><mi>Y</mi><mi>l</mi></msub><mo>=</mo><mfrac><mrow><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup><mo>−</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>k</mi><mn>2</mn></msubsup></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><mo>,</mo></mrow></math>
+  <math display="block"><mrow><mi>Cov</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mfrac><mrow><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup><mo>−</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>k</mi><mn>2</mn></msubsup></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><mo>−</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>N</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>−</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>k</mi><mn>2</mn></msubsup></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mrow><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>k</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>N</mi></mfrac><mo>.</mo><mspace width="0.6em"/><mtext>∎</mtext></mrow></math>
+  <p><strong>Para que serve.</strong> É a versão “por posições” do que a seção 6.3 fez “por unidades”: <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mo>∑</mo><mi>Var</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><mi>Cov</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mi>n</mi><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>−</mo><mi>n</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>N</mi></mfrac><mo>=</mo><mi>n</mi><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></mrow><msup><mi>S</mi><mn>2</mn></msup></math> — o mesmo <math><mn>256</mn><mo>/</mo><mn>15</mn></math> do Exercício 2.6 com <math><mi>n</mi><mo>=</mo><mn>2</mn></math>, <math><mi>N</mi><mo>=</mo><mn>6</mn></math>, <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mn>12,8</mn></math>: <math><mn>2</mn><mo>×</mo><mfrac><mn>5</mn><mn>6</mn></mfrac><mo>×</mo><mn>12,8</mn><mo>−</mo><mn>2</mn><mo>×</mo><mfrac><mn>12,8</mn><mn>6</mn></mfrac><mo>=</mo><mn>21,33</mn><mo>−</mo><mn>4,27</mn><mo>=</mo><mn>17,07</mn></math>. ✓ Com reposição as posições seriam independentes e a covariância zero — é o caminho do capítulo 3.</p>
+</div>
+
+<div class="nota">
+  <p><strong>Fonte:</strong> Bolfarine, H.; Bussab, W. O. <em>Elementos de Amostragem</em>. IME-USP, maio de 2004 — capítulo 2, págs. 37–60. Tabelas 2.1 a 2.8 transcritas do original para fins de estudo pessoal.</p>
+  <p><strong>Nota sobre o Exemplo 2.14:</strong> o livro imprime <math><mi>EQM</mi><mo>[</mo><mi>r</mi><mo>]</mo><mo>≈</mo><mn>0,6458</mn></math>, obtido como <math><mn>0,6289</mn><mo>+</mo><msup><mn>0,13</mn><mn>2</mn></msup></math> com o viés já arredondado. O viés exato é <math><mn>2</mn><mo>/</mo><mn>15</mn><mo>=</mo><mn>0,1333</mn></math> e o EQM exato é <math><mn>97</mn><mo>/</mo><mn>150</mn><mo>=</mo><mn>0,6467</mn></math>. A diferença é só de arredondamento; os demais números do capítulo (Tabelas 2.2–2.7, Exemplos 2.11 e 2.13) conferem.</p>
+  <p><strong>Nota sobre o Exemplo 2.7:</strong> a fórmula impressa para <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> repete a condição “se <math><mi>i</mi><mo>∈</mo><mi>s</mi></math>” da Definição 2.2 por erro de composição; o sentido é “<math><mn>1</mn><mo>/</mo><mn>9</mn></math> se <math><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mn>2</mn></msub></math>, 0 caso contrário”.</p>
+  <p><strong>Nota sobre a Tabela 2.8:</strong> os brancos foram lidos como zero, como manda o enunciado; em todos os 180 condomínios vale <math><msub><mi>Y</mi><mi>i</mi></msub><mo>⩽</mo><msub><mi>X</mi><mi>i</mi></msub></math>, o que serviu de conferência da transcrição.</p>
+</div>
+
+<nav class="nav-rodape">
+  <span><a href="../cap01/01-00-nocoes-basicas.html">← Cap. 1 — Noções básicas</a></span>
+  <span><a href="../index.html">Menu</a> · Cap. 3 — Amostragem aleatória simples (em breve)</span>
+</nav>
+
+
+</div>
+<script>
+/* Em tela larga a barra lateral fica sempre aberta (o CSS esconde o
+   alternador). Abaixo de 62rem ela vira aba: aí começa fechada e fecha
+   sozinha ao escolher um link. Nada aqui depende de rede ou biblioteca —
+   sem JavaScript a barra apenas fica sempre aberta, que é o estado bom. */
+(function () {
+  var menu = document.querySelector(".menu-lateral");
+  if (!menu) return;
+
+  /* Seções com subtópicos: clicar no título abre a lista e segue o link.
+     Só ABRE — para fechar, clique na setinha. É preciso fazer à mão porque
+     o navegador dá prioridade ao <a> e não alterna o <details> sozinho.
+     Sem JavaScript a setinha continua abrindo e fechando normalmente. */
+  menu.querySelectorAll("details.sub > summary > a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var d = a.closest("details.sub");
+      if (d) d.open = true;
+    });
+  });
+
+  if (!window.matchMedia) return;
+  var estreito = window.matchMedia("(max-width: 62rem)");
+  function ajustar() { menu.open = !estreito.matches; }
+  ajustar();
+  estreito.addEventListener("change", ajustar);
+  menu.querySelectorAll(".painel a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (estreito.matches) menu.open = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
