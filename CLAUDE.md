@@ -35,8 +35,8 @@ borda direita (`x1`), como se fez para a Tabela 2.8.
 |---|---|---|---|---|
 | 1 | Noções básicas | 1 | 13 | ✅ `estudo/cap01/01-00-nocoes-basicas.html` |
 | 2 | Definições e notações básicas | 37 | 49 | ✅ `estudo/cap02/02-00-definicoes-e-notacoes-basicas.html` |
-| 3 | Amostragem aleatória simples | 61 | 73 | — |
-| 4 | Amostragem estratificada | 93 | 105 | — |
+| 3 | Amostragem aleatória simples | 61 | 73 | ✅ `estudo/cap03/03-00-amostragem-aleatoria-simples.html` |
+| 4 | Amostragem estratificada | 93 | 105 | ✅ `estudo/cap04/04-00-amostragem-estratificada.html` |
 | 5 | Estimadores do tipo razão | 127 | 139 | — |
 | 6 | Estimadores do tipo regressão | 145 | 157 | — |
 | 7 | Amostragem por conglomerados em um estágio | 159 | 171 | — |
@@ -96,6 +96,14 @@ e dizer o que esperar.
   composição; leia “1/9 se s ∈ S₂”. Anotado.
 - Cap. 2, Ex. 2.14: EQM impresso 0,6458 (viés arredondado 0,13 ao quadrado);
   exato 97/150 = 0,6467. Anotado.
+- Cap. 3: nos tamanhos de amostra o livro usa z ≈ 2 (D = B²/4) e nos
+  intervalos 1,96 (Ex. 3.2: n = 96 com z = 2, 93 com 1,96; Ex. 3.6: 3466 vs
+  3341). Segui o livro nos exemplos, 1,96 nos exercícios. Ex. 3.3: limite
+  inferior −0,061, impresso 0,00. Ex. 3.9(c) fala em "residentes" (herança do
+  3.4); tomei Y > 3. Ex. 3.6: o estimador pedido é viesado (E = 4 ≠ 4,5).
+- Cap. 4, (4.19): impresso com os dois fatores iguais a Σ W_h σ_h/√c_h; o
+  correto é (Σ W_h σ_h √c_h)(Σ W_h σ_h/√c_h)/V_es. Anotado. Ex. 4.1 dá S²_h e
+  as fórmulas AASc pedem σ²_h: converti por (N_h − 1)/N_h.
 
 **Números conferidos que valem reutilizar:** Tabela 2.8 (180 condomínios):
 τ_Y = 3363, μ_Y = 18,683, S²_Y = 409,75; τ_X = 4928, μ_X = 27,378,
@@ -103,16 +111,27 @@ S²_X = 609,41; P(Y > 20) = 58/180; ρ_XY = 0,962; R = 0,6824. Os vetores `Y` e
 `X` em R estão no Exercício 2.2 do cap. 2 — copiar de lá para os caps. 3, 5 e 6.
 Exercício 1.2: o livro tem 58 500 palavras nas 269 páginas numeradas (critério:
 token com ao menos uma letra, no texto do PDF).
+Tabela 2.8 por estratos de 60 (ordem da lista): μ_h = 28,57, 20,80, 6,68;
+σ²_h = 544,8, 326,3, 105,1; σ²_d = 325,4, σ²_e = 82,1 (Ex. 4.9).
+População do Ex. 4.1 (D = 13,17,6,5,10,12,19,6): μ = 11, σ² = 24, S² = 192/7.
+**Amostras "sorteadas" nos exercícios 3.9 e 4.9:** índices gerados em Python
+(`numpy.random.default_rng(2004)`, `integers(1, 181, n)`) e listados
+explicitamente no código R da página — reproduzível sem R.
 
 **Ganchos plantados (retomar quando o capítulo chegar):**
 
-- `E[t] = E[f] τ` e `Var[t] = Var[f] N S²` (2.14–2.15) com
-  `f ~ Binomial(n, 1/N)` (AASc) e `f = δ ~ Bernoulli(n/N)` (AASs) → **cap. 3**,
-  variância de `ȳ` e o fator `(1 − n/N)`
-- (2.16) e (2.18) → não-viés de `s²` para `σ²`/`S²` no **cap. 3**
-- alocação 600/300/100 × 100/300/600 (exemplo dos bairros A/B/C) → Neyman,
-  **cap. 4**
+- estimador expansão `T = nȳ + (N − n)ȳ`: "a parte não observada é estimada
+  por ȳ" → razão e regressão substituem ȳ por uma previsão, **caps. 5 e 6**
+- Ex. 3.7 (dentistas) = pós-estratificação / estimador razão com X = 140
+  conhecido → **cap. 5**; Ex. 3.5/3.41 (`ȳ_c`) = usar informação auxiliar
+  bate ȳ fora da classe linear → **caps. 5 e 6**
 - `r` viesado, `E[f̄]` não viesada só em planos simétricos → **cap. 5**
+- Ex. 4.6/4.27: `ȳ_m` (média simples de amostra estratificada) é viesado; o
+  Ex. 3.6 é um caso → pesos amostrais, **caps. 8 e 9**
+- EPA (cap. 3, `(N−n)/(N−1)`; cap. 4, `1 − σ²_e/σ²`) → perda dos conglomerados
+  e correlação intraclasse, **cap. 7**
+- Ex. 4.16 (estágios dentro de estratos, PPT) ficou de fora — retomar no
+  **cap. 8/9**
 - correlação intraclasse mencionada nos exercícios 1.10 e 1.12 → **cap. 7**
 - `π_i`, `π_ij`, e o `π_13 = 0` do plano E → Horvitz–Thompson, **cap. 9**
 - (2.19)–(2.20) (esperança e variância iteradas) → **cap. 8**
@@ -141,7 +160,9 @@ Figuras: o cap. 1 tem três. A Fig. 1.1 (PDF p. 22, recorte `186 128 514 613`)
 foi recortada; as Figs. 1.2 e 1.3 são árvores desenhadas com `\put` do TeX e
 saem como lixo no texto — foram **redesenhadas em SVG** com as classes `.cx`,
 `.cx-folha`, `.ramo`, `.tx`, `.tx-crit` de `estilo.css`. Cap. 2 não tem
-figuras, só tabelas (refeitas em HTML).
+figuras, só tabelas (refeitas em HTML). Cap. 3 idem. Cap. 4 só tem a Tabela
+4.1; desenhei em SVG a população do Ex. 4.1 com `<tspan baseline-shift="sub">`
+para os subíndices.
 
 ## Convenção de nomes
 
@@ -159,7 +180,7 @@ Ao criar uma aula nova, acrescentar o link em **três** lugares de
 por um `<li>` com link), o cartão em "Aulas disponíveis" (trocar o
 `<span class="cartao pendente">` por `<a class="cartao">`) e a linha da tabela
 da seção **"Menu"**. E acertar o `.nav-rodape` (anterior/próxima) da aula
-vizinha — o do cap. 2 hoje diz "Cap. 3 … (em breve)" sem link.
+vizinha — o do cap. 4 hoje diz "Cap. 5 … (em breve)" sem link.
 
 ## Layout das páginas
 
@@ -202,7 +223,7 @@ fixa com `<details class="sub">`, `h3` com `id="{h2}-{k}"`, `td.txt`,
   `<math display="block">`; a cadeia longa da demonstração de (2.15) foi
   partida em dois blocos. Conferir com JS no preview:
   `[...document.querySelectorAll('math[display=block]')].filter(m => m.scrollWidth > m.clientWidth + 1)`.
-- Um `Write` só não cabe: cada aula tem 650–850 linhas. Escrever em três partes
+- Um `Write` só não cabe: cada aula tem 640–860 linhas. Escrever em três partes
   no scratchpad e concatenar com `cat`; validar o aninhamento com o
   `valida.py` (html.parser) a cada passada. **Heredocs no Bash quebram com
   conteúdo HTML longo** (aspas/contra-barras): usar o `Write` para os HTML.
@@ -237,8 +258,12 @@ AMOSTRAGEM/
     ├── cap01/
     │   ├── 01-00-nocoes-basicas.html
     │   └── img/fig-01-01.png
-    └── cap02/
-        └── 02-00-definicoes-e-notacoes-basicas.html
+    ├── cap02/
+    │   └── 02-00-definicoes-e-notacoes-basicas.html
+    ├── cap03/
+    │   └── 03-00-amostragem-aleatoria-simples.html
+    └── cap04/
+        └── 04-00-amostragem-estratificada.html   (diagrama SVG da população do Ex. 4.1)
 ```
 
 O repositório está em <https://github.com/GABELCHIOR/AMOSTRAGEM> (remoto
@@ -248,9 +273,10 @@ Pages servir o site, ativar em Settings → Pages → branch `main`, pasta `/`
 
 ## Progresso
 
-**Capítulos 1 e 2 prontos** (2026-09-11). Próximo: capítulo 3 (Amostragem
-aleatória simples, livro 61–92, PDF 73–104). Ao gerar, retomar os ganchos:
-(2.14)–(2.15) com `f ~ Binomial(n, 1/N)` e `δ ~ Bernoulli(n/N)`; (2.16) e
-(2.18) para `s²`; a população de 180 condomínios do Exercício 2.2; e as
-Tabelas 3.1–3.6 do livro enumeram `S_AASc`/`S_AASs` como o cap. 2 — refazer
-com `expand.grid`/`combn`.
+**Capítulos 1 a 4 prontos** (caps. 1–2 em 2026-09-11; caps. 3–4 em
+2026-09-21). Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
+PDF 139–156). Ao gerar, retomar: a leitura "parte não observada" do estimador
+expansão (cap. 3, seção 2.2); o Ex. 3.7 dos dentistas como razão com X
+conhecido; a Tabela 2.8 (ρ_XY = 0,96, R = 0,682) é a população natural para
+comparar razão × expansão; Tabela 5.1 do livro enumera `S_AASc` como o cap. 3
+— refazer com `expand.grid`. O cap. 6 (regressão) segue o mesmo molde.

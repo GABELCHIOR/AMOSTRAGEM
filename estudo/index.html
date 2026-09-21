@@ -19,8 +19,8 @@
     <ol>
       <li><a href="cap01/01-00-nocoes-basicas.html">Noções básicas</a></li>
       <li><a href="cap02/02-00-definicoes-e-notacoes-basicas.html">Definições e notações básicas</a></li>
-      <li class="adiante">Amostragem aleatória simples</li>
-      <li class="adiante">Amostragem estratificada</li>
+      <li><a href="cap03/03-00-amostragem-aleatoria-simples.html">Amostragem aleatória simples</a></li>
+      <li><a href="cap04/04-00-amostragem-estratificada.html">Amostragem estratificada</a></li>
       <li class="adiante">Estimadores do tipo razão</li>
       <li class="adiante">Estimadores do tipo regressão</li>
       <li class="adiante">Amostragem por conglomerados em um estágio</li>
@@ -41,7 +41,7 @@
 <header class="topo">
   <p class="migalha">Heleno Bolfarine · Wilton O. Bussab · <em>Elementos de Amostragem</em> · IME-USP, maio de 2004</p>
   <h1>Amostragem</h1>
-  <p class="subtitulo">Percurso pelo livro de Bolfarine e Bussab, do planejamento de um levantamento (cap. 1) à formalização de população, amostra, plano amostral e distribuição amostral (cap. 2), e daí aos planos clássicos. Aulas em português, com as derivações, o código em R e exercícios resolvidos.</p>
+  <p class="subtitulo">Percurso pelo livro de Bolfarine e Bussab: do planejamento de um levantamento (cap. 1) e da formalização de população, amostra e plano amostral (cap. 2) aos planos clássicos — aleatória simples (cap. 3) e estratificada (cap. 4). Aulas em português, com as derivações, o código em R e exercícios resolvidos.</p>
 </header>
 
 
@@ -61,10 +61,22 @@
     <p class="desc">População <math><mi>U</mi></math>, vetor <math><mi mathvariant="bold">D</mi></math> e funções paramétricas (<math><mi>τ</mi></math>, <math><mi>μ</mi></math>, <math><msup><mi>S</mi><mn>2</mn></msup></math>, <math><mi>R</mi></math>). Amostras ordenadas, <math><msub><mi>f</mi><mi>i</mi></msub></math> e <math><msub><mi>δ</mi><mi>i</mi></msub></math>; plano amostral <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> e os cinco planos A–E; estatística e distribuição amostral; <math><msub><mi>π</mi><mi>i</mi></msub></math>, <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math>; viés, EQM; as expressões úteis (2.2)–(2.20) com <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo></math> demonstradas.</p>
   </a>
 
-  <span class="cartao pendente">
+  <a class="cartao" href="cap03/03-00-amostragem-aleatoria-simples.html">
     <span class="cap">Capítulo 3 · págs. 61–92</span>
     <p class="tit">Amostragem aleatória simples</p>
-    <p class="desc">AAS com e sem reposição: propriedades de <math><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo></math>, estimação do total, da média e da variância, intervalos de confiança, tamanho da amostra, proporções e a otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math>.</p>
+    <p class="desc">Com reposição <math><msub><mi>f</mi><mi>i</mi></msub></math> é Binomial, sem reposição é Bernoulli — e de (2.14)–(2.15) saem <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> e <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. Estimador expansão, <math><msup><mi>s</mi><mn>2</mn></msup></math> não viesado, intervalos de confiança, tamanho da amostra, proporções, otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math> e o EPA <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>.</p>
+  </a>
+
+  <a class="cartao" href="cap04/04-00-amostragem-estratificada.html">
+    <span class="cap">Capítulo 4 · págs. 93–126</span>
+    <p class="tit">Amostragem estratificada</p>
+    <p class="desc"><math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>; o estimador <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math> e sua variância; alocações proporcional, uniforme e ótima de Neyman por Cauchy–Schwarz; <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math> e a leitura de (4.25); IC, tamanho da amostra e proporções.</p>
+  </a>
+
+  <span class="cartao pendente">
+    <span class="cap">Capítulo 5 · págs. 127–144</span>
+    <p class="tit">Estimadores do tipo razão</p>
+    <p class="desc">Usar uma variável auxiliar <math><mi>x</mi></math> conhecida na população para estimar <math><mi>R</mi><mo>=</mo><msub><mi>τ</mi><mi>Y</mi></msub><mo>/</mo><msub><mi>τ</mi><mi>X</mi></msub></math>, o total e a média; viés, variância aproximada e a comparação com o estimador expansão.</p>
   </span>
 
 </div>
@@ -80,8 +92,8 @@
   <tbody>
     <tr><td>1</td><td class="txt"><a href="cap01/01-00-nocoes-basicas.html">Noções básicas</a></td><td>1</td><td>13</td><td>✅ pronto</td></tr>
     <tr><td>2</td><td class="txt"><a href="cap02/02-00-definicoes-e-notacoes-basicas.html">Definições e notações básicas</a></td><td>37</td><td>49</td><td>✅ pronto</td></tr>
-    <tr><td>3</td><td class="txt">Amostragem aleatória simples</td><td>61</td><td>73</td><td>—</td></tr>
-    <tr><td>4</td><td class="txt">Amostragem estratificada</td><td>93</td><td>105</td><td>—</td></tr>
+    <tr><td>3</td><td class="txt"><a href="cap03/03-00-amostragem-aleatoria-simples.html">Amostragem aleatória simples</a></td><td>61</td><td>73</td><td>✅ pronto</td></tr>
+    <tr><td>4</td><td class="txt"><a href="cap04/04-00-amostragem-estratificada.html">Amostragem estratificada</a></td><td>93</td><td>105</td><td>✅ pronto</td></tr>
     <tr><td>5</td><td class="txt">Estimadores do tipo razão</td><td>127</td><td>139</td><td>—</td></tr>
     <tr><td>6</td><td class="txt">Estimadores do tipo regressão</td><td>145</td><td>157</td><td>—</td></tr>
     <tr><td>7</td><td class="txt">Amostragem por conglomerados em um estágio</td><td>159</td><td>171</td><td>—</td></tr>
@@ -136,7 +148,7 @@
   <li><strong>Exercícios selecionados</strong> do fim do capítulo, com gabarito comentado.</li>
 </ol>
 
-<p>Todo resultado numérico das resoluções é <em>calculado</em> — as distribuições amostrais do capítulo 2 são enumeradas por completo —, nunca copiado de memória, e conferido contra o livro quando há valor publicado.</p>
+<p>Todo resultado numérico das resoluções é <em>calculado</em> — as distribuições amostrais dos capítulos 2 a 4 são enumeradas por completo —, nunca copiado de memória, e conferido contra o livro quando há valor publicado.</p>
 
 
 <div class="nota">
