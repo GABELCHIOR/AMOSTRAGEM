@@ -164,6 +164,70 @@ figuras, só tabelas (refeitas em HTML). Cap. 3 idem. Cap. 4 só tem a Tabela
 4.1; desenhei em SVG a população do Ex. 4.1 com `<tspan baseline-shift="sub">`
 para os subíndices.
 
+## Folha de consulta (guia de prova)
+
+Além das aulas há uma **folha de consulta** para levar impressa na prova:
+`estudo/guia/01-04-guia-de-prova.html`, cobrindo os capítulos 1 a 4 num só
+documento (5 páginas A4). O molde veio do `ESTOCASTICOS`
+(`estudo/cap04/04-99-guia-de-prova.html`); lá é uma folha por capítulo, aqui
+uma folha por bloco de capítulos, porque foi o pedido: “os capítulos 1 a 4 num
+mesmo PDF”.
+
+**Ela não usa `estilo.css`.** Carrega `tema.css` + **`assets/guia.css`**
+(copiado do ESTOCASTICOS sem mudar estrutura — as cores vêm todas do tema, e
+por isso a mesma folha sai em cobalto aqui e em índigo lá): uma coluna na tela,
+`columns: 2` A4 na impressão, corpo 8,2 pt. Cinco caixas, cada uma com
+`--cor`/`--cor-fundo` próprias:
+
+| Classe | Cor | Uso |
+|---|---|---|
+| `.bloco.teo` | petróleo | definição, teorema, corolário, quadro-resumo |
+| `.bloco.dem` | verde-musgo | por que é verdade (demonstração curta) |
+| `.bloco.ex` | âmbar | exemplo numérico de fixação |
+| `.bloco.rec` | azul-cobalto | receita: passo a passo para a prova |
+| `.bloco.arm` | castanho | armadilha, “fato ou fake”, erro clássico |
+
+O título da caixa é um `<h4>` (barra sólida, texto em `--menu-texto`). Outras
+peças: `.chave` (destaque cobalto inline), `.miudo` (corpo menor), `.rot-e` /
+`.rot-s` (Enunciado./Solução.), `.qed`, `.so-tela` (aviso que some no papel),
+`.legenda` (a tira de cores do cabeçalho), `.eq .num` (número da equação),
+`pre .cmt` / `pre .out` (comentário e saída do R).
+
+**Conteúdo desta folha:** mapa de decisão “o que a questão pede × que
+ferramenta usar” → cap. 1 (objetivo→parâmetro, três unidades, três populações,
+estrato × subclasse, representativa × probabilística, 8 passos, erros) → cap. 2
+(parâmetros, `fᵢ`/`δᵢ`, plano, (2.14)–(2.15), viés/EQM, `πᵢ`) → cap. 3 (AASc ×
+AASs numa tabela, por que `(1−f)`, IC, tamanho da amostra, proporções,
+otimalidade) → cap. 4 (decomposição, Teor. 4.1, as quatro alocações, Neyman por
+Cauchy–Schwarz, (4.23)–(4.25), IC, proporções) → fato ou fake → checklist →
+fórmulas de bolso → R → glossário de símbolos. Poucos exercícios, muitos
+exemplos curtos — é folha de consulta, não lista.
+
+### Gerar o PDF
+
+O Chrome está instalado e imprime sem abrir janela:
+
+```bash
+python -m http.server 8765     # ou o .claude/launch.json
+"/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --disable-gpu   --no-pdf-header-footer --print-to-pdf="C:\Users\gabri\OneDrive\Desktop\AMOSTRAGEM\estudo\guia\01-04-guia-de-prova.pdf"   "http://localhost:8765/estudo/guia/01-04-guia-de-prova.html"
+```
+
+Duas armadilhas já pagas: o endereço precisa ser **http://** (o CSS relativo
+não carrega no headless a partir de `file://`), e o `--print-to-pdf` precisa de
+**caminho absoluto no estilo Windows** — com caminho relativo do Git Bash o
+Chrome responde “O sistema não pode encontrar o caminho especificado”.
+
+O PDF fica **fora do git** (`*.pdf` no `.gitignore`): é artefato derivado,
+regenerável pelo comando acima.
+
+**Armadilha da impressão:** no papel nada rola. `overflow-x: auto` (código,
+`.rolagem`, `math[display="block"]`) vira *conteúdo cortado* no PDF. O
+`@media print` do `guia.css` já neutraliza os três, mas equação ou linha de
+código larga demais continua vazando — a correção é quebrar em duas linhas,
+não mexer no CSS. Confira sempre com pymupdf, página a página: além de ler as
+imagens, vale checar por coordenada se algum bloco passa da margem direita
+(595 − 22,7 pt) ou atravessa a calha entre colunas (290 → 305 pt).
+
 ## Convenção de nomes
 
 Igual ao MULTI. **Números sempre com dois dígitos**, minúsculas, sem acento,
@@ -174,9 +238,11 @@ hífen entre palavras.
 | Pasta do capítulo | `capNN/` | `cap02/` |
 | Página do capítulo inteiro | `NN-00-titulo.html` | `cap02/02-00-definicoes-e-notacoes-basicas.html` |
 | Figura | `img/fig-NN-MM.png` | `cap01/img/fig-01-01.png` |
+| Folha de consulta | `guia/NN-MM-guia-de-prova.html` (dos caps. NN a MM) | `guia/01-04-guia-de-prova.html` |
 
 Ao criar uma aula nova, acrescentar o link em **três** lugares de
-`estudo/index.html`: a lista da barra lateral (trocar o `<li class="adiante">`
+`estudo/index.html` (a folha de consulta está nos mesmos três, mais um bloco
+“Folha de consulta” na barra lateral e uma menção no subtítulo): a lista da barra lateral (trocar o `<li class="adiante">`
 por um `<li>` com link), o cartão em "Aulas disponíveis" (trocar o
 `<span class="cartao pendente">` por `<a class="cartao">`) e a linha da tabela
 da seção **"Menu"**. E acertar o `.nav-rodape` (anterior/próxima) da aula
@@ -254,7 +320,8 @@ AMOSTRAGEM/
     ├── index.html          painel com o percurso
     ├── assets/
     │   ├── tema.css        cores, fontes, medidas (azul-cobalto)
-    │   └── estilo.css      estrutura e layout
+    │   ├── estilo.css      estrutura e layout das aulas
+    │   └── guia.css        layout da folha de consulta (A4, 2 colunas)
     ├── cap01/
     │   ├── 01-00-nocoes-basicas.html
     │   └── img/fig-01-01.png
@@ -262,8 +329,11 @@ AMOSTRAGEM/
     │   └── 02-00-definicoes-e-notacoes-basicas.html
     ├── cap03/
     │   └── 03-00-amostragem-aleatoria-simples.html
-    └── cap04/
-        └── 04-00-amostragem-estratificada.html   (diagrama SVG da população do Ex. 4.1)
+    ├── cap04/
+    │   └── 04-00-amostragem-estratificada.html   (diagrama SVG da população do Ex. 4.1)
+    └── guia/
+        ├── 01-04-guia-de-prova.html
+        └── 01-04-guia-de-prova.pdf   (fora do git: gerado pelo Chrome headless)
 ```
 
 O repositório está em <https://github.com/GABELCHIOR/AMOSTRAGEM> (remoto
@@ -274,7 +344,8 @@ Pages servir o site, ativar em Settings → Pages → branch `main`, pasta `/`
 ## Progresso
 
 **Capítulos 1 a 4 prontos** (caps. 1–2 em 2026-09-11; caps. 3–4 em
-2026-09-21). Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
+2026-09-21) e a **folha de consulta dos caps. 1–4** (2026-09-22,
+`estudo/guia/01-04-guia-de-prova.html`, 5 páginas A4). Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
 PDF 139–156). Ao gerar, retomar: a leitura "parte não observada" do estimador
 expansão (cap. 3, seção 2.2); o Ex. 3.7 dos dentistas como razão com X
 conhecido; a Tabela 2.8 (ρ_XY = 0,96, R = 0,682) é a população natural para

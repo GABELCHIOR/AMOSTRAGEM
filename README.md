@@ -23,6 +23,13 @@ de renderização.
 | 3 | [Amostragem aleatória simples](estudo/cap03/03-00-amostragem-aleatoria-simples.html) | AASc e AASs lado a lado: `fᵢ` Binomial × Bernoulli (Teoremas 3.1 e 3.7, demonstrados), `E[t]`, `Var[t]`, média, estimador expansão, `s²` não viesado para `σ²`/`S²` (a prova via (2.16)–(2.18)); normalidade assintótica, intervalos de confiança, tamanho da amostra (`n = σ²/D`, `1/(D/S² + 1/N)`, total, proporções, conservador); otimalidade de `ȳ` com e sem independência; EPA `(N − n)/(N − 1)`. Tabelas 3.1–3.6 e os Exemplos 3.1–3.7 refeitos, 10 cartões e 13 exercícios resolvidos — inclusive duas amostras reais da Tabela 2.8 (uma delas erra o alvo, e a página explica por quê). |
 | 4 | [Amostragem estratificada](estudo/cap04/04-00-amostragem-estratificada.html) | A decomposição `σ² = σ²_d + σ²_e` (demonstrada); o estimador `ȳ_es` e o Teorema 4.1 para qualquer plano dentro dos estratos; alocações proporcional (`V_pr = σ²_d/n`), uniforme e ótima de Neyman por Cauchy–Schwarz; `V_ot ⩽ V_pr ⩽ V_c` e a leitura de (4.25); EPA; IC, tamanho da amostra e proporções. Exemplos 4.1–4.4 conferidos, um diagrama da população estratificada, 10 cartões e 15 exercícios — com a enumeração completa de `S_AASs` (70 amostras) contra `S_AEun` (30) na população de oito. |
 
+Além das aulas há uma **[folha de consulta](estudo/guia/01-04-guia-de-prova.html)**
+que condensa os quatro capítulos em cinco páginas A4 de duas colunas, para
+levar impressa: mapa de decisão “o que a questão pede × que ferramenta usar”,
+os enunciados e as contas, um exemplo numérico por ideia, uma seção de “fato ou
+fake”, checklist, fórmulas de bolso e glossário de símbolos. Imprima com
+Ctrl+P → “Salvar como PDF”.
+
 Cada aula traz o objetivo, o conceito com as derivações, as **definições,
 resultados, demonstrações e exemplos em caixas de cores distintas**, figuras
 do livro e diagramas redesenhados, os exemplos resolvidos passo a passo com
@@ -38,10 +45,13 @@ e as poucas divergências com o impresso estão anotadas no fim de cada página.
 │   ├── index.html          painel do percurso
 │   ├── assets/
 │   │   ├── tema.css        cores, fontes e medidas (tema azul-cobalto)
-│   │   └── estilo.css      estrutura e layout
-│   └── capNN/
-│       ├── NN-00-titulo.html
-│       └── img/            figuras recortadas do PDF
+│   │   ├── estilo.css      estrutura e layout das aulas
+│   │   └── guia.css        layout da folha de consulta (A4, duas colunas)
+│   ├── capNN/
+│   │   ├── NN-00-titulo.html
+│   │   └── img/            figuras recortadas do PDF
+│   └── guia/
+│       └── 01-04-guia-de-prova.html   folha de consulta dos caps. 1 a 4
 └── ferramentas/
     ├── extrair.py          texto (com os acentos do TeX recompostos), páginas e recortes do PDF
     └── figuras.py          detecção automática de figuras
