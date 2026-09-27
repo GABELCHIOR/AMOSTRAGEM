@@ -101,6 +101,7 @@ h1 {
 .legenda .l-ex  { background: var(--exemplo); }
 .legenda .l-rec { background: var(--realce); }
 .legenda .l-arm { background: var(--ambar); }
+.legenda .l-def { background: var(--realce-3); }
 
 /* aviso que só faz sentido na tela (some no papel) */
 .so-tela {
@@ -186,6 +187,9 @@ em.en { font-style: italic; color: var(--texto-fraco); }
 .bloco.ex  { --cor: var(--exemplo); --cor-fundo: var(--exemplo-fundo); }
 .bloco.rec { --cor: var(--realce);  --cor-fundo: color-mix(in srgb, var(--realce) 7%, var(--fundo-caixa)); }
 .bloco.arm { --cor: var(--ambar);   --cor-fundo: color-mix(in srgb, var(--ambar) 8%, var(--fundo-caixa)); }
+/* definição: neutra de propósito — é texto de referência, não resultado a
+   destacar (mesma regra das aulas, onde .caixa.definicao também é neutra) */
+.bloco.def { --cor: var(--realce-3); --cor-fundo: var(--fundo-suave); }
 
 /* rótulos internos dos exemplos: "Enunciado." / "Solução." */
 .rot-e { color: var(--exemplo); font-weight: 700; }
@@ -358,6 +362,7 @@ pre .out { color: var(--azul); }
   .rolagem { overflow: visible; }
   math[display="block"] { overflow: visible; }
 
+  .nota { margin-top: 0.7rem; font-size: 7.2pt; }
   a { color: inherit; text-decoration: none; }
   .so-tela, .fim { display: none; }
 }

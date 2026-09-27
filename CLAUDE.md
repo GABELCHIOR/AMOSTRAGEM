@@ -105,6 +105,16 @@ e dizer o que esperar.
   correto é (Σ W_h σ_h √c_h)(Σ W_h σ_h/√c_h)/V_es. Anotado. Ex. 4.1 dá S²_h e
   as fórmulas AASc pedem σ²_h: converti por (N_h − 1)/N_h.
 
+**Numeração de equações do cap. 4 — conferida contra o PDF em 2026-09-27**
+(errei nisto na primeira versão do guia de prova; já corrigido): (4.18) é o n
+com C′ fixado; (4.19) o n com V_es fixado; (4.20) Neyman; (4.21) V_ot;
+(4.22) V_pr = σ²_d/n; (4.23) Nσ² = ΣN_hσ²_h + ΣN_h(μ_h−μ)²; (4.24)
+V_pr − V_ot = σ²_dp/n; (4.25) V_c = V_ot + σ²_e/n + σ²_dp/n. A desigualdade
+V_ot ⩽ V_pr ⩽ V_c **é o Teorema 4.4 e não tem número de equação** — citar
+“(4.23)” para ela é erro. Idem (4.5), que é sobre as v.a. y_h1,…,y_hn_h e não
+sobre Var[ȳ_es]. Ao citar equação, confira com uma varredura do texto das
+páginas por linhas que sejam exatamente “(N.N)”.
+
 **Números conferidos que valem reutilizar:** Tabela 2.8 (180 condomínios):
 τ_Y = 3363, μ_Y = 18,683, S²_Y = 409,75; τ_X = 4928, μ_X = 27,378,
 S²_X = 609,41; P(Y > 20) = 58/180; ρ_XY = 0,962; R = 0,6824. Os vetores `Y` e
@@ -166,12 +176,17 @@ para os subíndices.
 
 ## Folha de consulta (guia de prova)
 
-Além das aulas há uma **folha de consulta** para levar impressa na prova:
-`estudo/guia/01-04-guia-de-prova.html`, cobrindo os capítulos 1 a 4 num só
-documento (5 páginas A4). O molde veio do `ESTOCASTICOS`
-(`estudo/cap04/04-99-guia-de-prova.html`); lá é uma folha por capítulo, aqui
-uma folha por bloco de capítulos, porque foi o pedido: “os capítulos 1 a 4 num
-mesmo PDF”.
+Além das aulas há **duas folhas de consulta** para levar impressas na prova,
+ambas cobrindo os capítulos 1 a 4 num só documento, 5 páginas A4 cada:
+
+| Arquivo | O que é |
+|---|---|
+| `estudo/guia/01-04-guia-de-prova.html` | o guia “de trabalho”: mapa de decisão, enunciados, exemplos numéricos, receitas, “fato ou fake”, checklist, fórmulas de bolso, R, glossário |
+| `estudo/guia/01-04-definicoes-e-resultados.html` | só os enunciados: toda definição, teorema, corolário e lema, **com as hipóteses de cada um**, e um quadro final “resultado × o que exige × quando quebra” |
+
+O molde veio do `ESTOCASTICOS` (`estudo/cap04/04-99-guia-de-prova.html`); lá é
+uma folha por capítulo, aqui uma folha por bloco de capítulos, porque foi o
+pedido: “os capítulos 1 a 4 num mesmo PDF”.
 
 **Ela não usa `estilo.css`.** Carrega `tema.css` + **`assets/guia.css`**
 (copiado do ESTOCASTICOS sem mudar estrutura — as cores vêm todas do tema, e
@@ -186,6 +201,7 @@ por isso a mesma folha sai em cobalto aqui e em índigo lá): uma coluna na tela
 | `.bloco.ex` | âmbar | exemplo numérico de fixação |
 | `.bloco.rec` | azul-cobalto | receita: passo a passo para a prova |
 | `.bloco.arm` | castanho | armadilha, “fato ou fake”, erro clássico |
+| `.bloco.def` | azul-acinzentado, neutro | definição (acrescentada aqui; definição é texto de referência, não resultado a destacar — mesma regra de `.caixa.definicao` nas aulas) |
 
 O título da caixa é um `<h4>` (barra sólida, texto em `--menu-texto`). Outras
 peças: `.chave` (destaque cobalto inline), `.miudo` (corpo menor), `.rot-e` /
@@ -193,7 +209,7 @@ peças: `.chave` (destaque cobalto inline), `.miudo` (corpo menor), `.rot-e` /
 `.legenda` (a tira de cores do cabeçalho), `.eq .num` (número da equação),
 `pre .cmt` / `pre .out` (comentário e saída do R).
 
-**Conteúdo desta folha:** mapa de decisão “o que a questão pede × que
+**Conteúdo do guia de prova:** mapa de decisão “o que a questão pede × que
 ferramenta usar” → cap. 1 (objetivo→parâmetro, três unidades, três populações,
 estrato × subclasse, representativa × probabilística, 8 passos, erros) → cap. 2
 (parâmetros, `fᵢ`/`δᵢ`, plano, (2.14)–(2.15), viés/EQM, `πᵢ`) → cap. 3 (AASc ×
@@ -202,6 +218,16 @@ otimalidade) → cap. 4 (decomposição, Teor. 4.1, as quatro alocações, Neyma
 Cauchy–Schwarz, (4.23)–(4.25), IC, proporções) → fato ou fake → checklist →
 fórmulas de bolso → R → glossário de símbolos. Poucos exercícios, muitos
 exemplos curtos — é folha de consulta, não lista.
+
+**Conteúdo da folha de definições e resultados:** cap. 1 (o vocabulário, que o
+livro não numera) → Definições 2.1–2.11 e as identidades (2.2)–(2.20) → cap. 3
+(Teoremas 3.1–3.10, Corolários 3.1–3.5, Definição 3.1, Lema 3.1, equações
+(3.1)–(3.35)) → cap. 4 (Teoremas 4.1–4.6, Corolários 4.1–4.5, equações
+(4.1)–(4.33)) → quadro das hipóteses. **Toda caixa abre com uma linha
+“Hipóteses:”** — foi o pedido explícito. A lista do que existe numerado saiu de
+uma varredura do PDF com o padrão
+`(Definição|Teorema|Corolário|Lema|Proposição) NN.NN` sobre as págs. 1–126;
+vale repetir a varredura ao estender para o cap. 5.
 
 ### Gerar o PDF
 
@@ -217,8 +243,12 @@ não carrega no headless a partir de `file://`), e o `--print-to-pdf` precisa de
 **caminho absoluto no estilo Windows** — com caminho relativo do Git Bash o
 Chrome responde “O sistema não pode encontrar o caminho especificado”.
 
-O PDF fica **fora do git** (`*.pdf` no `.gitignore`): é artefato derivado,
-regenerável pelo comando acima.
+Gere as duas folhas trocando o nome do arquivo. Os PDFs ficam **fora do git**
+(`*.pdf` no `.gitignore`): são artefatos derivados. Gerar as duas em sequência
+por um laço do Bash é onde se erra — `"$B\\$n.pdf"` não expande a
+variável e o Chrome escreve um arquivo chamado `guia$n.pdf` na pasta errada.
+Faça o laço em Python (`subprocess.run([chrome, ...])`) ou escreva os dois
+comandos por extenso.
 
 **Armadilha da impressão:** no papel nada rola. `overflow-x: auto` (código,
 `.rolagem`, `math[display="block"]`) vira *conteúdo cortado* no PDF. O
@@ -227,6 +257,13 @@ código larga demais continua vazando — a correção é quebrar em duas linhas
 não mexer no CSS. Confira sempre com pymupdf, página a página: além de ler as
 imagens, vale checar por coordenada se algum bloco passa da margem direita
 (595 − 22,7 pt) ou atravessa a calha entre colunas (290 → 305 pt).
+
+**Parênteses do MathML:** `<mo>(</mo>` é *stretchy* por padrão, e em
+`math[display="block"]` isso estica `n(s)`, `P(s)`, `E[t]` até ficarem enormes.
+A correção é `<mo stretchy="false">` **só** onde o conteúdo é baixo — um script
+que casa cada par `( )`, `[ ]`, `{ }` e mantém o esticamento quando encontra
+`mfrac|msqrt|munder|munderover|mover|mtable|msup|msubsup|mroot` dentro dele.
+Já aplicado nas duas folhas.
 
 ## Convenção de nomes
 
@@ -238,7 +275,7 @@ hífen entre palavras.
 | Pasta do capítulo | `capNN/` | `cap02/` |
 | Página do capítulo inteiro | `NN-00-titulo.html` | `cap02/02-00-definicoes-e-notacoes-basicas.html` |
 | Figura | `img/fig-NN-MM.png` | `cap01/img/fig-01-01.png` |
-| Folha de consulta | `guia/NN-MM-guia-de-prova.html` (dos caps. NN a MM) | `guia/01-04-guia-de-prova.html` |
+| Folha de consulta | `guia/NN-MM-<assunto>.html` (dos caps. NN a MM) | `guia/01-04-guia-de-prova.html` |
 
 Ao criar uma aula nova, acrescentar o link em **três** lugares de
 `estudo/index.html` (a folha de consulta está nos mesmos três, mais um bloco
@@ -332,8 +369,9 @@ AMOSTRAGEM/
     ├── cap04/
     │   └── 04-00-amostragem-estratificada.html   (diagrama SVG da população do Ex. 4.1)
     └── guia/
-        ├── 01-04-guia-de-prova.html
-        └── 01-04-guia-de-prova.pdf   (fora do git: gerado pelo Chrome headless)
+        ├── 01-04-guia-de-prova.html            guia de trabalho
+        ├── 01-04-definicoes-e-resultados.html  só enunciados + hipóteses
+        └── *.pdf                               (fora do git: Chrome headless)
 ```
 
 O repositório está em <https://github.com/GABELCHIOR/AMOSTRAGEM> (remoto
@@ -344,8 +382,9 @@ Pages servir o site, ativar em Settings → Pages → branch `main`, pasta `/`
 ## Progresso
 
 **Capítulos 1 a 4 prontos** (caps. 1–2 em 2026-09-11; caps. 3–4 em
-2026-09-21) e a **folha de consulta dos caps. 1–4** (2026-09-22,
-`estudo/guia/01-04-guia-de-prova.html`, 5 páginas A4). Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
+2026-09-21) e as **duas folhas de consulta dos caps. 1–4** (guia de prova em
+2026-09-22; definições e resultados em 2026-09-27; 5 páginas A4 cada).
+Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
 PDF 139–156). Ao gerar, retomar: a leitura "parte não observada" do estimador
 expansão (cap. 3, seção 2.2); o Ex. 3.7 dos dentistas como razão com X
 conhecido; a Tabela 2.8 (ρ_XY = 0,96, R = 0,682) é a população natural para

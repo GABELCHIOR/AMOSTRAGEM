@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Folha de consulta pessoal: condensa enunciados de obra protegida
+     (Bolfarine & Bussab, IME-USP / Blucher) para uso próprio. Fora dos buscadores. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Definições e resultados, caps. 1–4</title>
+<link rel="stylesheet" href="../assets/tema.css?v=2">
+<link rel="stylesheet" href="../assets/guia.css?v=2">
+</head>
+<body>
+
+<div class="folha">
+
+<header class="topo-folha">
+  <p class="migalha"><a href="../index.html">Menu</a> · <a href="01-04-guia-de-prova.html">Guia de prova</a> · Bolfarine &amp; Bussab, caps. 1–4 (págs. 1–126)</p>
+  <h1>Definições e resultados — capítulos 1 a 4</h1>
+  <p class="sub">Só os enunciados: toda definição, teorema, corolário e lema, na numeração do livro, <strong>com as hipóteses que cada um exige</strong>. Sem exemplos, sem demonstrações, sem exercícios.</p>
+  <p class="legenda">
+    <span><i class="l-def"></i> definição</span>
+    <span><i class="l-teo"></i> teorema / corolário / lema</span>
+    <span><i class="l-arm"></i> hipótese que costuma ser esquecida</span>
+  </p>
+  <p class="so-tela"><strong>Para levar impresso:</strong> Ctrl+P → “Salvar como PDF” → margens padrão. Sai em <strong>duas colunas A4</strong>; esta caixa e os links de rodapé não são impressos. Cada caixa traz, em <span class="chave">Hipóteses</span>, o que precisa valer para o resultado ser aplicável — é o que separa nota cheia de nota parcial. O guia com exemplos, receitas e armadilhas é o <a href="01-04-guia-de-prova.html">01-04-guia-de-prova.html</a>.</p>
+</header>
+
+<h2>1 · Capítulo 1 — vocabulário (nada numerado no livro)</h2>
+
+<div class="bloco def">
+  <h4>Constructo, variável, parâmetro</h4>
+  <p><strong>Constructo</strong> — a ideia a investigar (“bem-estar”, “intenção de voto”); não é observável.</p>
+  <p><strong>Variável</strong> — a característica que se mede em cada unidade e que representa o constructo.</p>
+  <p><strong>Parâmetro</strong> — função dos valores da variável em <em>toda</em> a população; é o número-alvo.</p>
+</div>
+
+<div class="bloco def">
+  <h4>As três unidades</h4>
+  <p><strong>Unidade elementar</strong> — aquela sobre a qual se quer a informação.</p>
+  <p><strong>Unidade amostral</strong> — aquela que é efetivamente sorteada. Pode conter várias elementares (conglomerado).</p>
+  <p><strong>Unidade de resposta (informante)</strong> — quem fornece a informação.</p>
+  <p class="miudo">As três coincidem só quando se sorteia diretamente de uma lista das unidades elementares.</p>
+</div>
+
+<div class="bloco def">
+  <h4>As três populações e o sistema de referência</h4>
+  <p><strong>População alvo</strong> — a que se deseja descrever.</p>
+  <p><strong>População referida</strong> — a descrita pelo <strong>sistema de referência</strong> (cadastro, mapa, lista) de que se dispõe.</p>
+  <p><strong>População amostrada</strong> — a que de fato tem chance de ser sorteada.</p>
+  <p><span class="chave">Alvo ⊇ referida ⊇ amostrada.</span> As diferenças são <strong>erros de cobertura</strong>. A inferência probabilística vale para a população <em>amostrada</em>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Estrato × subclasse (domínio)</h4>
+  <p><strong>Estrato</strong> — subdivisão da população usada <em>no sorteio</em>: <math><msub><mi>N</mi><mi>h</mi></msub></math> é conhecido e <math><msub><mi>n</mi><mi>h</mi></msub></math> é fixado pelo pesquisador.</p>
+  <p><strong>Subclasse (domínio)</strong> — subdivisão identificada só <em>na análise</em>: o número de unidades dela na amostra é aleatório.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Amostra probabilística; censo × amostra</h4>
+  <p>Uma amostra é <strong>probabilística</strong> quando é obtida por um sorteio em que toda amostra possível <math><mi>s</mi></math> tem probabilidade <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> <em>conhecida</em>. Só nesse caso existem viés, variância e intervalo de confiança. (Amostras intencionais, por cotas ou de voluntários não são probabilísticas.)</p>
+  <p><strong>Censo</strong> — observação de todas as unidades. <strong>Amostragem</strong> — de uma parte; ganha em custo, prazo e <em>qualidade por unidade</em>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Estimador, estimativa, os dois erros</h4>
+  <p><strong>Estimador</strong> — a regra (função dos dados da amostra); <strong>estimativa</strong> — o valor numérico que ela produz para uma amostra dada.</p>
+  <p><strong>Erro amostral</strong> — o desvio <math><mover><mi>θ</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>−</mo><mi>θ</mi></math>, consequência de observar só parte; é medido pela variância e <em>diminui com <math><mi>n</mi></math></em>.</p>
+  <p><strong>Erro não amostral</strong> — cobertura, não resposta, resposta incorreta, processamento; <em>não</em> diminui com <math><mi>n</mi></math> e existe também no censo.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Os planos amostrais nomeados no cap. 1</h4>
+  <ul class="compacta">
+    <li><strong>AAS</strong> — sorteio equiprovável das unidades elementares, com ou sem reposição.</li>
+    <li><strong>Estratificada</strong> — a população é partida em estratos e sorteia-se <em>independentemente</em> dentro de cada um.</li>
+    <li><strong>Conglomerados</strong> — sorteiam-se grupos e observam-se <em>todas</em> as unidades de cada grupo sorteado.</li>
+    <li><strong>Em estágios</strong> — sorteiam-se grupos e, dentro deles, sorteiam-se unidades.</li>
+    <li><strong>Sistemática</strong> — sorteia-se o primeiro elemento e tomam-se os demais a intervalos fixos.</li>
+    <li><strong>PPT</strong> — probabilidade de seleção proporcional ao tamanho da unidade.</li>
+  </ul>
+</div>
+
+<h2>2 · Capítulo 2 — definições 2.1 a 2.11</h2>
+
+<div class="bloco def">
+  <h4>População, dados, parâmetro (Seção 2.2)</h4>
+  <p><math><mi>U</mi><mo>=</mo><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>N</mi><mo stretchy="false">}</mo></math> é o conjunto dos <em>rótulos</em>; <math><mi mathvariant="bold">D</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mi>N</mi></msub><mo stretchy="false">)</mo></math> o vetor de valores, <strong>constante</strong>. Parâmetro: qualquer <math><mi>θ</mi><mo stretchy="false">(</mo><mi mathvariant="bold">D</mi><mo stretchy="false">)</mo></math>.</p>
+  <div class="eq"><math display="block"><mrow><mi>τ</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Y</mi><mi>i</mi></msub><mo>,</mo><mspace width="0.9em"/><mi>μ</mi><mo>=</mo><mfrac><mi>τ</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="0.9em"/><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msup><mi>σ</mi><mn>2</mn></msup></mrow></math></div>
+  <p>Razões: <math><mi>R</mi><mo>=</mo><mi>τ</mi><mo stretchy="false">(</mo><mi>Y</mi><mo stretchy="false">)</mo><mo>/</mo><mi>τ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></math> (razão dos totais) e <math><mover><mi>R</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>/</mo><msub><mi>X</mi><mi>i</mi></msub></math> (média das razões). Se <math><msub><mi>Y</mi><mi>i</mi></msub><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></math>: <math><mi>μ</mi><mo>=</mo><mi>P</mi></math>, <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mi>Q</mi></math>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.1 — amostra ordenada</h4>
+  <p>Qualquer sequência <math><mi>s</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>k</mi><mi>n</mi></msub><mo stretchy="false">)</mo></math> de <math><mi>n</mi></math> unidades de <math><mi>U</mi></math>, com <math><msub><mi>k</mi><mi>i</mi></msub><mo>∈</mo><mi>U</mi></math>. O rótulo <math><msub><mi>k</mi><mi>i</mi></msub></math> é o <math><mi>i</mi></math>-ésimo componente de <math><mi>s</mi></math>. <span class="miudo">Ordem e repetição contam: <math><mo stretchy="false">(</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo><mo>≠</mo><mo stretchy="false">(</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></math>.</span></p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.2 — frequência e presença</h4>
+  <p><math><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> = número de vezes que a unidade <math><mi>i</mi></math> aparece em <math><mi>s</mi></math>;</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>δ</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left"><mtr><mtd><mn>1</mn><mo>,</mo><mspace width="0.5em"/><mtext>se</mtext><mspace width="0.35em"/><mi>i</mi><mo>∈</mo><mi>s</mi></mtd></mtr><mtr><mtd><mn>0</mn><mo>,</mo><mspace width="0.5em"/><mtext>se</mtext><mspace width="0.35em"/><mi>i</mi><mo>∉</mo><mi>s</mi></mtd></mtr></mtable></mrow></mrow></math></div>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.3 — tamanho e tamanho efetivo</h4>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="1.4em"/><mi>ν</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>δ</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></math></div>
+  <p><math><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> conta repetições; <math><mi>ν</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> conta unidades <em>distintas</em>. Sem reposição, <math><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>ν</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.4 — espaço amostral</h4>
+  <p><math><mi>S</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></math> = conjunto de <em>todas</em> as amostras ordenadas de <math><mi>U</mi></math>, de qualquer tamanho; <math><msub><mi>S</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></math> = subclasse das de tamanho <math><mi>n</mi></math>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.5 — planejamento amostral ordenado</h4>
+  <p>Função <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> definida em <math><mi>S</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></math> com</p>
+  <div class="eq"><math display="block"><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>⩾</mo><mn>0</mn><mspace width="0.6em"/><mo>∀</mo><mi>s</mi><mo>∈</mo><mi>S</mi><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo><mo>,</mo><mspace width="1.2em"/><munder><mo>∑</mo><mrow><mi>s</mi><mo>∈</mo><mi>S</mi></mrow></munder><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow></math></div>
+  <p><math><msub><mi>S</mi><mi>A</mi></msub></math> = amostras com <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>&gt;</mo><mn>0</mn></math> (o suporte do plano <math><mi>A</mi></math>).</p>
+</div>
+
+<div class="bloco def">
+  <h4>Plano simétrico e plano de tamanho fixo (Seção 2.6)</h4>
+  <p><strong>Simétrico</strong> — <math><msub><mi>f</mi><mi>i</mi></msub></math> tem a mesma distribuição para todo <math><mi>i</mi></math>, e <math><mo stretchy="false">(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">)</mo></math> a mesma distribuição conjunta para todo par <math><mi>i</mi><mo>≠</mo><mi>j</mi></math>. Escreve-se então <math><mi>f</mi></math> e <math><msup><mi>f</mi><mo>′</mo></msup></math> sem índice.</p>
+  <p><strong>Tamanho fixo</strong> — <math><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi></math> para toda <math><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub></math>.</p>
+  <p class="miudo">Não são definições numeradas, mas são as <em>hipóteses</em> de (2.8), (2.9), (2.14) e (2.15) — e portanto de quase tudo nos caps. 3 e 4.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definições 2.6 e 2.7 — dados e estatística</h4>
+  <p><math><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mrow><msub><mi>k</mi><mn>1</mn></msub></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mrow><msub><mi>k</mi><mi>n</mi></msub></mrow></msub><mo stretchy="false">)</mo></math> são os <strong>dados da amostra</strong>. Percorrendo <math><msub><mi>S</mi><mi>A</mi></msub></math>, obtém-se o vetor aleatório <math><mi mathvariant="bold">y</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub><mo stretchy="false">)</mo></math>.</p>
+  <p><strong>Estatística</strong>: qualquer função <math><mi>h</mi><mo stretchy="false">(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo stretchy="false">)</mo></math> dos dados da amostra. <span class="miudo">Não pode depender de parâmetro desconhecido.</span></p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.8 — distribuição amostral</h4>
+  <p>Distribuição de probabilidades de <math><mi>H</mi><mo stretchy="false">(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo stretchy="false">)</mo></math> sobre <math><msub><mi>S</mi><mi>A</mi></msub></math>:</p>
+  <div class="eq"><math display="block"><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>P</mi><mi>A</mi></msub><mo>(</mo><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>A</mi></msub><mo>;</mo><mspace width="0.3em"/><mi>H</mi><mo stretchy="false">(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mi>h</mi><mo>)</mo></mrow></math></div>
+  <p class="miudo">A distribuição amostral depende do <em>plano</em>. Trocar o plano muda tudo, mesmo com a mesma estatística.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 2.9 — probabilidades de inclusão</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>P</mi><mi>A</mi></msub><mo stretchy="false">(</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>∋</mo><mi>i</mi></mrow></munder><msub><mi>P</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>s</mi><mo>⊃</mo><mo stretchy="false">{</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">}</mo></mrow></munder><msub><mi>P</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></math></div>
+</div>
+
+<div class="bloco def">
+  <h4>Definições 2.10 e 2.11 — não viciado, viés, EQM</h4>
+  <p><math><mover><mi>θ</mi><mo>^</mo></mover><mo stretchy="false">(</mo><msub><mi mathvariant="bold">d</mi><mi>s</mi></msub><mo stretchy="false">)</mo></math> é <strong>não viciado</strong> segundo o plano <math><mi>A</mi></math> se <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mi>θ</mi></math>. Caso contrário,</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>B</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>−</mo><mi>θ</mi><mo>,</mo><mspace width="1em"/><msub><mi>EQM</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><msup><mrow><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>−</mo><mi>θ</mi><mo>]</mo></mrow><mn>2</mn></msup></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>EQM</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo><mo>+</mo><msubsup><mi>B</mi><mi>A</mi><mn>2</mn></msubsup><mo>[</mo><mover><mi>θ</mi><mo>^</mo></mover><mo>]</mo></mrow></math></div>
+  <p class="miudo">O índice <math><mi>A</mi></math> não é decoração: viés e EQM são propriedades do par (estimador, plano).</p>
+</div>
+
+<h3>2.1 Expressões úteis (2.2)–(2.20)</h3>
+
+<div class="bloco teo">
+  <h4>Identidades algébricas — valem sempre (2.2)–(2.4)</h4>
+  <div class="eq"><math display="block"><mrow><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msup><mrow><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mi>N</mi><msup><mi>μ</mi><mn>2</mn></msup></mrow></math><span class="num">(2.2)</span></div>
+  <div class="eq"><math display="block"><mrow><munder><mo>∑</mo><mi>i</mi></munder><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>Y</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>−</mo><msub><mi>μ</mi><mi>X</mi></msub><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>X</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>N</mi><msub><mi>μ</mi><mi>X</mi></msub><msub><mi>μ</mi><mi>Y</mi></msub></mrow></math><span class="num">(2.3)</span></div>
+  <div class="eq"><math display="block"><mrow><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></mrow></math><span class="num">(2.4)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> nenhuma — são identidades de soma. Valem igualmente na amostra observada.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Tamanho da amostra sob um plano (2.5)–(2.7)</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo></mrow></math><span class="num">(2.6)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Cov</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo></mrow></math><span class="num">(2.7)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> plano amostral qualquer.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Simetria, e simetria com tamanho fixo (2.8)–(2.9)</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><mi>N</mi><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mo>+</mo><mi>N</mi><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo></mrow></math><span class="num">(2.8)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Cov</mi><mi>A</mi></msub><mo>[</mo><mi>f</mi><mo>,</mo><msup><mi>f</mi><mo>′</mo></msup><mo>]</mo><mo>=</mo><mo>−</mo><mfrac><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math><span class="num">(2.9)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> (2.8) exige plano <strong>simétrico</strong>; (2.9) exige simétrico <strong>e de tamanho fixo</strong> (aí <math><mi>Var</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><mn>0</mn></math>). Em plano simétrico de tamanho fixo, <math><mi>E</mi><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Total da amostra (2.10)–(2.13)</h4>
+  <div class="eq"><math display="block"><mrow><mi>t</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msub><mi>Y</mi><mi>i</mi></msub></mrow></math><span class="num">(2.11)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo></mrow></math><span class="num">(2.12)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>Y</mi><mi>j</mi></msub><msub><mi>Cov</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo></mrow></math><span class="num">(2.13)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> plano qualquer. São exatas, mas exigem conhecer <math><msub><mi>Y</mi><mi>i</mi></msub></math> um a um.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>O resultado central (2.14)–(2.15)</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mspace width="0.15em"/><mi>τ</mi></mrow></math><span class="num">(2.14)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mspace width="0.15em"/><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></mrow></math><span class="num">(2.15)</span></div>
+  <p><span class="chave">Hipóteses: plano simétrico E de tamanho fixo.</span> Fora disso não vale — e é a hipótese mais cobrada do capítulo. Todos os resultados dos caps. 3 e 4 saem daqui trocando a distribuição de <math><msub><mi>f</mi><mi>i</mi></msub></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Momentos de segunda ordem (2.16)–(2.18)</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><msubsup><mi>E</mi><mi>A</mi><mn>2</mn></msubsup><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><msup><mi>τ</mi><mn>2</mn></msup></mrow></math><span class="num">(2.16)</span></div>
+  <div class="eq"><math display="block"><mrow><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup></mrow></math><span class="num">(2.17)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mi>N</mi><mo>(</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>)</mo></mrow></math><span class="num">(2.18)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> as mesmas de (2.14)–(2.15). São o que torna possível provar que <math><msup><mi>s</mi><mn>2</mn></msup></math> é não viesado (Teoremas 3.4 e 3.9).</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Esperança e variância iteradas (2.19)–(2.20)</h4>
+  <div class="eq"><math display="block"><mrow><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">{</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">}</mo></mrow></math><span class="num">(2.19)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">{</mo><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">}</mo><mo>+</mo><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">{</mo><msub><mi>E</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>|</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">}</mo></mrow></math><span class="num">(2.20)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> plano qualquer. Reaparecem na amostragem em dois estágios (cap. 8).</p>
+</div>
+
+<h2>3 · Capítulo 3 — amostragem aleatória simples</h2>
+
+<div class="bloco def">
+  <h4>Os dois planos</h4>
+  <p><strong>AASc</strong> — numerar as <math><mi>N</mi></math> unidades; sortear uma com probabilidade <math><mn>1</mn><mo>/</mo><mi>N</mi></math>; <em>repor</em>; repetir <math><mi>n</mi></math> vezes. Logo <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>/</mo><msup><mi>N</mi><mi>n</mi></msup></math> para toda <math><mi>s</mi><mo>∈</mo><msub><mi>S</mi><mi>n</mi></msub><mo stretchy="false">(</mo><mi>U</mi><mo stretchy="false">)</mo></math>.</p>
+  <p><strong>AASs</strong> — idêntico, mas o elemento sorteado é <em>retirado</em> da população. Cada unidade aparece no máximo uma vez.</p>
+  <p class="miudo">Ambos são <strong>simétricos e de tamanho fixo</strong> — por isso (2.14)–(2.15) se aplicam.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.1 — a variável <math><msub><mi>f</mi><mi>i</mi></msub></math> na AASc</h4>
+  <p><span class="chave">Hipótese:</span> plano AASc. Então <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo stretchy="false">(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math> e</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.2em"/><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow></mrow></math><span class="num">(3.1)–(3.2)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup></mrow></math><span class="num">(3.3)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>−</mo><mn>2</mn><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup></mrow></math><span class="num">(3.4)</span></div>
+  <div class="eq"><math display="block"><mrow><mi>Cov</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac><mo>,</mo><mspace width="0.8em"/><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></math><span class="num">Teor. 3.1</span></div>
+  <p class="miudo">A covariância vem de <math><mo stretchy="false">(</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>f</mi><mi>N</mi></msub><mo stretchy="false">)</mo><mo>∼</mo><mi>M</mi><mo stretchy="false">(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>,</mo><mo>…</mo><mo stretchy="false">)</mo></math> (multinomial).</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teoremas 3.2 e 3.3, Corolário 3.1 — total e média na AASc</h4>
+  <p><span class="chave">Hipótese:</span> plano AASc. Com <math><mi>t</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></msub><msub><mi>Y</mi><mi>i</mi></msub></math>:</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mi>μ</mi><mo>,</mo><mspace width="1.4em"/><mi>Var</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup></mrow></math><span class="num">Teor. 3.2</span></div>
+  <p><strong>Teorema 3.3:</strong> <math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mi>t</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>/</mo><mi>n</mi><mo>=</mo><mover><mi>μ</mi><mo>^</mo></mover></math>&nbsp;(3.8) é não viesado para <math><mi>μ</mi></math>, com</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">(3.9)</span></div>
+  <p><strong>Corolário 3.1:</strong> <math><mi>T</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mover><mi>τ</mi><mo>^</mo></mover><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math>&nbsp;(3.10) é não viesado para <math><mi>τ</mi></math>, com <math><mi>Var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. É o <strong>estimador expansão</strong>: <math><mover><mi>τ</mi><mo>^</mo></mover><mo>=</mo><mi>n</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mover><mi>y</mi><mo>¯</mo></mover></math>, isto é, a parte não observada também é estimada por <math><mover><mi>y</mi><mo>¯</mo></mover></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.4 e Corolário 3.2 — variância na AASc</h4>
+  <p><span class="chave">Hipótese:</span> plano AASc. A estatística</p>
+  <div class="eq"><math display="block"><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(3.11)</span></div>
+  <p>é não viesada para <math><msup><mi>σ</mi><mn>2</mn></msup></math> (<em>não</em> para <math><msup><mi>S</mi><mn>2</mn></msup></math>). Logo, pelo Corolário 3.2,</p>
+  <div class="eq"><math display="block"><mrow><mi>var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo><mspace width="1.2em"/><mi>var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">(3.12)–(3.13)</span></div>
+</div>
+
+<div class="bloco teo">
+  <h4>Normalidade assintótica e IC na AASc (3.14)–(3.17)</h4>
+  <p><span class="chave">Hipóteses:</span> AASc e <math><mi>n</mi></math> suficientemente grande (TLC; condições no cap. 10).</p>
+  <div class="eq"><math display="block"><mrow><mfrac><mrow><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi></mrow><msqrt><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt></mfrac><mspace width="0.3em"/><mover><mo>∼</mo><mi>a</mi></mover><mspace width="0.3em"/><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math><span class="num">(3.14)</span></div>
+  <div class="eq"><math display="block"><mrow><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt><mo>;</mo><mspace width="0.3em"/><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt><mo>]</mo></mrow></math><span class="num">(3.17)</span></div>
+</div>
+
+<div class="bloco teo">
+  <h4>Tamanho da amostra na AASc (3.18)–(3.21)</h4>
+  <p><span class="chave">Hipóteses:</span> AASc, aproximação normal válida, e <math><msup><mi>σ</mi><mn>2</mn></msup></math> conhecido (ou substituído por uma estimativa prévia). Exigindo <math><mi>P</mi><mo>(</mo><mo>|</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>|</mo><mo>⩽</mo><mi>B</mi><mo>)</mo><mo>≃</mo><mn>1</mn><mo>−</mo><mi>α</mi></math>:</p>
+  <div class="eq"><math display="block"><mrow><mi>D</mi><mo>=</mo><mfrac><msup><mi>B</mi><mn>2</mn></msup><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></mfrac><mo>,</mo><mspace width="1.4em"/><mi>n</mi><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>D</mi></mfrac></mrow></math><span class="num">(3.20)–(3.21)</span></div>
+  <p class="miudo">Aqui <math><mi>n</mi></math> não tem teto: nada impede <math><mi>n</mi><mo>&gt;</mo><mi>N</mi></math>, porque com reposição a variância <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> nunca zera.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.5 — proporção na AASc</h4>
+  <p><span class="chave">Hipóteses:</span> AASc e <math><msub><mi>Y</mi><mi>i</mi></msub><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">}</mo></math>, de modo que <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mi>Q</mi></math>&nbsp;(3.22). Então <math><mi>p</mi><mo>=</mo><mover><mi>P</mi><mo>^</mo></mover><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mi>m</mi><mo>/</mo><mi>n</mi></math> é não viciado para <math><mi>P</mi></math>, com</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><mover><mi>P</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mi>Q</mi></mrow><mi>n</mi></mfrac><mo>,</mo><mspace width="1.2em"/><mi>var</mi><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math><span class="num">(3.24)</span></div>
+  <p>IC&nbsp;(3.25): <math><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover><mo>/</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msqrt></math>; versão <strong>conservadora</strong> com <math><mn>1</mn><mo>/</mo><mn>4</mn></math> no lugar de <math><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></math> (pois <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math>). Tamanho da amostra&nbsp;(3.27): <math><mi>n</mi><mo>=</mo><mi>P</mi><mi>Q</mi><mo>/</mo><mi>D</mi></math>.</p>
+</div>
+
+<div class="bloco def">
+  <h4>Definição 3.1 — estimador linear</h4>
+  <div class="eq"><math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>y</mi><mi>i</mi></msub></mrow></math></div>
+  <p>com os <math><msub><mi>ℓ</mi><mi>i</mi></msub></math> <strong>constantes conhecidas</strong> (não podem depender dos dados). <math><mover><mi>y</mi><mo>¯</mo></mover></math> é o caso <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Lema 3.1</h4>
+  <p><math><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub></math> é não viciado para <math><mi>μ</mi></math> <strong>se e somente se</strong> <math><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>.</p>
+  <p class="miudo"><span class="chave">Hipótese:</span> não viés para <em>todo</em> <math><mi mathvariant="bold">D</mi></math> possível — é o que força a condição.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.6 — otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math> na AASc</h4>
+  <p><span class="chave">Hipóteses:</span> plano AASc, e a classe dos estimadores <strong>lineares não viciados</strong> (Def. 3.1 + Lema 3.1). Nessa classe, <math><mover><mi>y</mi><mo>¯</mo></mover></math> tem a menor variância, porque</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mrow><mo>{</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo>(</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>}</mo></mrow></mrow></math><span class="num">(3.28)</span></div>
+  <p class="miudo">A passagem usa a <strong>independência</strong> dos <math><msub><mi>y</mi><mi>i</mi></msub></math>, que só vale com reposição. O caso sem reposição é o Teorema 3.10.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.7 — a variável <math><msub><mi>f</mi><mi>i</mi></msub></math> na AASs</h4>
+  <p><span class="chave">Hipótese:</span> plano AASs. Então <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math> (Bernoulli) e</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.2em"/><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></mrow></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.2em"/><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><mi>Cov</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo><mspace width="0.8em"/><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></math></div>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.8, Corolários 3.3 e 3.4 — total e média na AASs</h4>
+  <p><span class="chave">Hipótese:</span> plano AASs; <math><mi>f</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> é a <strong>fração amostral</strong>.</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mi>μ</mi><mo>,</mo><mspace width="1.2em"/><mi>Var</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi>S</mi><mn>2</mn></msup></mrow></math><span class="num">Teor. 3.8</span></div>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo><mspace width="1em"/><mi>Var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">Cor. 3.3–3.4</span></div>
+  <p>Ambos não viesados: <math><mi>E</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mi>μ</mi></math>, <math><mi>E</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><mi>τ</mi></math>, com <math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math>. <span class="miudo">Aqui a variância é em <math><msup><mi>S</mi><mn>2</mn></msup></math>, não em <math><msup><mi>σ</mi><mn>2</mn></msup></math>.</span></p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.9 e Corolário 3.5 — variância na AASs</h4>
+  <p><span class="chave">Hipótese:</span> plano AASs. O <em>mesmo</em> <math><msup><mi>s</mi><mn>2</mn></msup></math> de (3.11) é agora não viesado para <math><msup><mi>S</mi><mn>2</mn></msup></math>, e</p>
+  <div class="eq"><math display="block"><mrow><mi>var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo><mspace width="1em"/><mi>var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">Cor. 3.5</span></div>
+  <p>IC para <math><mi>μ</mi></math>: <math><mover><mi>y</mi><mo>¯</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt></math> (hipótese adicional: <math><mi>n</mi></math> grande).</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Tamanho da amostra na AASs</h4>
+  <p><span class="chave">Hipóteses:</span> AASs, normalidade aproximada, <math><msup><mi>S</mi><mn>2</mn></msup></math> suposto conhecido; <math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math>.</p>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi></mrow></mfrac><mspace width="1em"/><mo stretchy="false">(</mo><mtext>média</mtext><mo stretchy="false">)</mo></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mi>D</mi><mo>/</mo><mo>(</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>)</mo><mo>+</mo><mn>1</mn></mrow></mfrac><mspace width="1em"/><mo stretchy="false">(</mo><mtext>total</mtext><mo stretchy="false">)</mo></mrow></math><span class="num">(3.29)</span></div>
+  <p class="miudo">O termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> garante <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math>: o censo é o teto.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Proporção na AASs (3.30)–(3.34)</h4>
+  <p><span class="chave">Hipóteses:</span> AASs e <math><msub><mi>Y</mi><mi>i</mi></msub></math> 0–1. Então <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>P</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">)</mo></math>&nbsp;(3.30) e <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>n</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></math>&nbsp;(3.31), de modo que</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><mover><mi>P</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mfrac><mrow><mi>P</mi><mi>Q</mi></mrow><mi>n</mi></mfrac></mrow></math></div>
+  <p>IC&nbsp;(3.32): <math><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover><mo>/</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msqrt></math>. Tamanho da amostra:</p>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>D</mi><mo>/</mo><mo stretchy="false">(</mo><mi>P</mi><mi>Q</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow></mfrac></mrow></math><span class="num">(3.34)</span></div>
+  <p class="miudo">Sem informação sobre <math><mi>P</mi></math>, use <math><mi>P</mi><mi>Q</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>4</mn></math> (conservador).</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 3.10 — otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math> na AASs</h4>
+  <p><span class="chave">Hipóteses:</span> plano AASs, classe dos lineares não viciados (<math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>). Nessa classe <math><mover><mi>y</mi><mo>¯</mo></mover></math> é o de menor variância, mesmo <em>sem</em> independência — com <math><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup></math> e <math><mi>Cov</mi><mo stretchy="false">[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math>:</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mrow><mo>(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow></mrow></math><span class="num">(3.35)</span></div>
+</div>
+
+<div class="bloco def">
+  <h4>Efeito do planejamento — EPA (Seção 3.4)</h4>
+  <p>Razão entre a variância do estimador sob o plano estudado e sob um plano tomado como padrão (em geral a AASc de <strong>mesmo <math><mi>n</mi></math></strong>):</p>
+  <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo>=</mo><mfrac><mrow><msub><mi>Var</mi><mrow><mi>plano</mi></mrow></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></mrow><mrow><msub><mi>Var</mi><mi>AASc</mi></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></mrow></mfrac></mrow></math></div>
+  <p>Para a AASs: <math><mi>EPA</mi><mo>=</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>⩽</mo><mn>1</mn></math>. <span class="miudo">Só compara estimadores <em>não viesados</em>; se houver viés, compare EQM.</span></p>
+</div>
+
+<h2>4 · Capítulo 4 — amostragem estratificada</h2>
+
+<div class="bloco def">
+  <h4>População estratificada (4.1)–(4.4)</h4>
+  <p><math><mi>U</mi><mo>=</mo><munderover><mo>∪</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>U</mi><mi>h</mi></msub></math> com <math><msub><mi>U</mi><mi>h</mi></msub><mo>∩</mo><msub><mi>U</mi><msup><mi>h</mi><mo>′</mo></msup></msub><mo>=</mo><mi>ϕ</mi></math>&nbsp;(4.1): estratos <strong>disjuntos e exaustivos</strong>, com <math><msub><mi>N</mi><mi>h</mi></msub></math> conhecido e <math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math>. Então <math><mi>τ</mi><mo>=</mo><mo>∑</mo><msub><mi>τ</mi><mi>h</mi></msub></math> e <math><mi>μ</mi><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></math>.</p>
+  <div class="eq"><math display="block"><mrow><mi>N</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>h</mi></msub></munderover><msup><mrow><mo stretchy="false">(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>+</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>N</mi><mi>h</mi></msub><msup><mrow><mo stretchy="false">(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(4.3)</span></div>
+  <div class="eq"><math display="block"><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>+</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo stretchy="false">(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></mrow></math><span class="num">(4.4)</span></div>
+  <p class="miudo"><span class="chave">Hipóteses:</span> nenhuma além da partição — (4.3)–(4.4) são identidades, valem para <em>qualquer</em> divisão da população.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Variáveis independentes (4.6)–(4.7)</h4>
+  <p><span class="chave">Hipótese:</span> <math><msub><mi>X</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>X</mi><mi>H</mi></msub></math> <strong>independentes</strong>. Para <math><mi>X</mi><mo>=</mo><mo>∑</mo><msub><mi>l</mi><mi>h</mi></msub><msub><mi>X</mi><mi>h</mi></msub></math>:</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>l</mi><mi>h</mi></msub><mi>E</mi><mo stretchy="false">[</mo><msub><mi>X</mi><mi>h</mi></msub><mo stretchy="false">]</mo><mo>,</mo><mspace width="1em"/><mi>Var</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>l</mi><mi>h</mi><mn>2</mn></msubsup><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>X</mi><mi>h</mi></msub><mo stretchy="false">]</mo></mrow></math><span class="num">(4.6)–(4.7)</span></div>
+</div>
+
+<div class="bloco arm">
+  <h4>As três hipóteses do Teorema 4.1 (o livro as lista antes do enunciado)</h4>
+  <ol>
+    <li><strong>(a)</strong> a população está estratificada como acima (<math><msub><mi>N</mi><mi>h</mi></msub></math> conhecidos);</li>
+    <li><strong>(b)</strong> de cada estrato sorteou-se <strong>independentemente</strong> uma amostra de tamanho <math><msub><mi>n</mi><mi>h</mi></msub></math>, <em>podendo ou não</em> ter sido usado o mesmo plano em cada estrato;</li>
+    <li><strong>(c)</strong> <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> é um estimador <strong>não viesado</strong> de <math><msub><mi>μ</mi><mi>h</mi></msub></math> sob o plano usado no estrato <math><mi>h</mi></math>.</li>
+  </ol>
+  <p class="miudo">É o que dá ao Teorema 4.1 o seu alcance: ele não supõe AAS dentro do estrato. A AASc só entra no Corolário 4.2.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 4.1 e Corolário 4.1</h4>
+  <p><span class="chave">Hipóteses:</span> (a), (b) e (c) acima.</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>T</mi><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mspace width="0.6em"/><mtext>é não viesado para</mtext><mspace width="0.4em"/><mi>τ</mi></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo stretchy="false">[</mo><msub><mi>T</mi><mi>es</mi></msub><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>N</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo></mrow></math></div>
+  <p><strong>Corolário 4.1:</strong> <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> é não viesado para <math><mi>μ</mi></math>, com <math><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo></math>.</p>
+  <p class="miudo">Sem termo de covariância — é a hipótese (b) (independência entre estratos) que o elimina.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Corolário 4.2 — AASc dentro dos estratos</h4>
+  <p><span class="chave">Hipóteses:</span> as do Teorema 4.1, mais: dentro de cada estrato a amostra foi sorteada por <strong>AASc</strong> e <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math>.</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>T</mi><mi>es</mi></msub><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>N</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>,</mo><mspace width="1em"/><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac></mrow></math></div>
+  <p class="miudo">Variante AASs (Exercício 4.35): trocar <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> por <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>f</mi><mi>h</mi></msub><mo stretchy="false">)</mo><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math>, <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 4.2 — alocação proporcional (AEpr)</h4>
+  <p><span class="chave">Hipóteses:</span> as do Corolário 4.2 (AASc dentro), mais a alocação <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math>&nbsp;(4.8). Então <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math> (a média amostral <em>simples</em>) e</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>,</mo><mspace width="1em"/><mi>var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.9)</span></div>
+  <p class="miudo">Na AEpr a fração amostral é a mesma em todos os estratos: <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Corolário 4.3 — alocação uniforme (AEun)</h4>
+  <p><span class="chave">Hipóteses:</span> as do Corolário 4.2, com <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>k</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>H</mi></math> para todo <math><mi>h</mi></math>.</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>un</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mi>k</mi></mfrac><mo>,</mo><mspace width="1em"/><mi>var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><mi>k</mi></mfrac></mrow></math></div>
+  <p class="miudo">Indicada quando se quer estimar <em>cada estrato</em> com a mesma precisão.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 4.3 — alocação ótima com custos</h4>
+  <p><span class="chave">Hipóteses:</span> as do Corolário 4.2, e <strong>função de custo linear</strong> <math><mi>C</mi><mo>=</mo><msub><mi>c</mi><mn>0</mn></msub><mo>+</mo><mo>∑</mo><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></math>, <math><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mi>C</mi><mo>−</mo><msub><mi>c</mi><mn>0</mn></msub></math>&nbsp;(4.10). Então <math><msub><mi>V</mi><mi>es</mi></msub></math> é mínimo para <math><msup><mi>C</mi><mo>′</mo></msup></math> fixado — <em>e</em> <math><msup><mi>C</mi><mo>′</mo></msup></math> é mínimo para <math><msub><mi>V</mi><mi>es</mi></msub></math> fixado — quando</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow></mfrac></mrow></math><span class="num">(4.12)</span></div>
+  <p class="miudo">A demonstração usa Cauchy–Schwarz&nbsp;(4.11), com igualdade quando <math><msub><mi>b</mi><mi>h</mi></msub><mo>/</mo><msub><mi>a</mi><mi>h</mi></msub></math> é constante.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Corolário 4.4 — o tamanho total <math><mi>n</mi></math></h4>
+  <p><span class="chave">Hipóteses:</span> as do Teorema 4.3.</p>
+  <p><strong>(i)</strong> para <math><msup><mi>C</mi><mo>′</mo></msup></math> fixado:</p>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><msup><mi>C</mi><mo>′</mo></msup><mfrac><mrow><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow><mrow><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow></mfrac></mrow></math><span class="num">(4.18)</span></div>
+  <p><strong>(ii)</strong> para <math><msub><mi>V</mi><mi>es</mi></msub></math> fixado:</p>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>V</mi><mi>es</mi></msub></mfrac><mrow><mo>(</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></mrow><mrow><mo>(</mo><munder><mo>∑</mo><mi>h</mi></munder><mfrac><mrow><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mfrac><mo>)</mo></mrow></mrow></math><span class="num">(4.19)</span></div>
+  <p class="miudo">O livro imprime (4.19) com os <em>dois</em> fatores iguais a <math><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>; é gralha — um deles leva <math><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> no numerador, como acima.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Corolário 4.5 — alocação de Neyman</h4>
+  <p><span class="chave">Hipóteses:</span> as do Teorema 4.3 com <strong>custo por unidade constante</strong>, <math><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mi>c</mi></math>. A alocação ótima reduz-se a</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow></mfrac></mrow></math><span class="num">(4.20)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msup><mrow><mo>(</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">(4.21)</span></div>
+  <p><math><mover><mi>σ</mi><mo>¯</mo></mover><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math> é o desvio padrão médio dentro dos estratos; <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teorema 4.4 — comparação das alocações</h4>
+  <p><span class="chave">Hipóteses:</span> mesmo <math><mi>n</mi></math>, custo constante, AASc dentro dos estratos; <math><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>Var</mi><mi>AASc</mi></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>, <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>&nbsp;(4.22), <math><msub><mi>V</mi><mi>ot</mi></msub></math> de (4.21). Então</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>−</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>−</mo><mover><mi>σ</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.24)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>=</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.25)</span></div>
+  <p><strong>Leitura:</strong> médias de estrato diferentes (<math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math> grande) ⇒ use proporcional ou ótima; desvios também diferentes (<math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup></math> grande) ⇒ use a ótima.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>EPA da estratificada (4.26)–(4.27)</h4>
+  <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo stretchy="false">[</mo><mi>AEpr</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><msub><mi>V</mi><mi>pr</mi></msub><msub><mi>V</mi><mi>c</mi></msub></mfrac><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo stretchy="false">[</mo><mi>AEot</mi><mo stretchy="false">]</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac></mrow></math><span class="num">(4.26)</span></div>
+  <p>Com alocação <strong>arbitrária</strong> (pesos amostrais <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi></math>):</p>
+  <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo stretchy="false">[</mo><mi>AEc</mi><mo stretchy="false">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><mfrac><msub><mi>W</mi><mi>h</mi></msub><msub><mi>w</mi><mi>h</mi></msub></mfrac><msup><mrow><mo>(</mo><mfrac><msub><mi>σ</mi><mi>h</mi></msub><mi>σ</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(4.27)</span></div>
+  <p class="miudo"><span class="chave">Atenção:</span> (4.26) é <math><mo>⩽</mo><mn>1</mn></math> sempre, mas (4.27) <strong>pode passar de 1</strong> — com alocação mal escolhida a estratificação perde para a AASc.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Normalidade, IC e tamanho da amostra (4.28)–(4.31)</h4>
+  <p><span class="chave">Hipóteses:</span> as do Teorema 4.1, com <math><msub><mi>n</mi><mi>h</mi></msub></math> e <math><msub><mi>N</mi><mi>h</mi></msub></math> suficientemente grandes.</p>
+  <div class="eq"><math display="block"><mrow><mfrac><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>−</mo><mi>μ</mi></mrow><msqrt><mrow><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></mrow></msqrt></mfrac><mspace width="0.3em"/><mover><mo>∼</mo><mi>a</mi></mover><mspace width="0.3em"/><mi>N</mi><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math><span class="num">(4.28)</span></div>
+  <p>IC&nbsp;(4.30): <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></mrow></msqrt></math>.</p>
+  <p><span class="chave">Hipótese extra para o tamanho:</span> é preciso <strong>fixar antes a forma da alocação</strong> (<math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>w</mi><mi>h</mi></msub></math>), porque a variância depende dos <math><msub><mi>n</mi><mi>h</mi></msub></math>. Com proporcional:</p>
+  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mi>D</mi></mfrac><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>D</mi></mfrac></mrow></math><span class="num">(4.31)</span></div>
+  <p>Com Neyman, <math><mi>n</mi><mo>=</mo><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>. Para o total, use <math><mi>D</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> no lugar de <math><mi>D</mi></math>.</p>
+</div>
+
+<div class="bloco teo">
+  <h4>Teoremas 4.5 e 4.6 — proporções</h4>
+  <p><span class="chave">Hipóteses:</span> AE <strong>com reposição</strong> dentro dos estratos e <math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub></math> 0–1, de modo que <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></math>.</p>
+  <p><strong>Teorema 4.5:</strong> <math><msub><mi>p</mi><mi>es</mi></msub><mo>=</mo><msub><mover><mi>P</mi><mo>^</mo></mover><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub></math> é não viciado para <math><mi>P</mi></math>, com</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow><msub><mi>n</mi><mi>h</mi></msub></mfrac></mrow></math><span class="num">(4.32)</span></div>
+  <p><strong>Teorema 4.6:</strong> um estimador não viciado de <math><msub><mi>V</mi><mi>es</mi></msub></math> é</p>
+  <div class="eq"><math display="block"><mrow><msub><mover><mi>V</mi><mo>^</mo></mover><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><mrow><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub><msub><mover><mi>Q</mi><mo>^</mo></mover><mi>h</mi></msub></mrow><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math></div>
+  <p>Alocação de Neyman para proporções (Teorema 4.3 com <math><msub><mi>σ</mi><mi>h</mi></msub><mo>=</mo><msqrt><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow></msqrt></math> e custo constante):</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msqrt><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow></msqrt></mrow><mrow><mo>∑</mo><msub><mi>N</mi><mi>k</mi></msub><msqrt><mrow><msub><mi>P</mi><mi>k</mi></msub><msub><mi>Q</mi><mi>k</mi></msub></mrow></msqrt></mrow></mfrac></mrow></math><span class="num">(4.33)</span></div>
+</div>
+
+<h2>5 · Quadro das hipóteses</h2>
+
+<div class="rolagem">
+<table>
+  <caption>O que cada resultado exige. Cair aqui é o erro mais caro da prova: aplicar a fórmula certa sob a hipótese errada.</caption>
+  <thead><tr><th>Resultado</th><th>Exige</th><th>Quebra se…</th></tr></thead>
+  <tbody>
+    <tr><td>(2.2)–(2.4), (4.3)–(4.4)</td><td>nada (identidades)</td><td>—</td></tr>
+    <tr><td>(2.6)–(2.7), (2.12)–(2.13), (2.19)–(2.20)</td><td>plano qualquer</td><td>—</td></tr>
+    <tr><td>(2.8)</td><td>plano <strong>simétrico</strong></td><td><math><msub><mi>f</mi><mi>i</mi></msub></math> não têm a mesma distribuição (ex.: PPT)</td></tr>
+    <tr><td>(2.9), (2.14), (2.15), (2.16), (2.18)</td><td>simétrico <strong>e</strong> de tamanho fixo</td><td>tamanho aleatório, ou plano assimétrico</td></tr>
+    <tr><td>Teor. 3.1–3.6, Cor. 3.1–3.2</td><td>AASc</td><td>sem reposição: some o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math> e troca <math><msup><mi>σ</mi><mn>2</mn></msup><mo>↔</mo><msup><mi>S</mi><mn>2</mn></msup></math></td></tr>
+    <tr><td>Teor. 3.4</td><td>AASc</td><td>na AASs o alvo de <math><msup><mi>s</mi><mn>2</mn></msup></math> passa a ser <math><msup><mi>S</mi><mn>2</mn></msup></math> (Teor. 3.9)</td></tr>
+    <tr><td>(3.14)–(3.17), (3.20)–(3.21)</td><td><math><mi>n</mi></math> grande (TLC)</td><td><math><mi>n</mi></math> pequeno e população assimétrica</td></tr>
+    <tr><td>Teor. 3.5, (3.30)–(3.34)</td><td><math><msub><mi>Y</mi><mi>i</mi></msub></math> 0–1</td><td>variável não dicotômica</td></tr>
+    <tr><td>Lema 3.1, Teor. 3.6, 3.10</td><td>estimador <strong>linear</strong> com <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math></td><td>fora da classe linear existem estimadores melhores (caps. 5–6)</td></tr>
+    <tr><td>Teor. 3.6</td><td>independência dos <math><msub><mi>y</mi><mi>i</mi></msub></math></td><td>na AASs há <math><mi>Cov</mi><mo>=</mo><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math> → Teor. 3.10</td></tr>
+    <tr><td>Teor. 3.7–3.9, Cor. 3.3–3.5</td><td>AASs</td><td>com reposição: sem <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math></td></tr>
+    <tr><td>Teor. 4.1, Cor. 4.1</td><td>(a) estratos com <math><msub><mi>N</mi><mi>h</mi></msub></math> conhecidos; (b) sorteio <strong>independente</strong> em cada estrato; (c) <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> não viesado</td><td>dependência entre estratos reintroduz covariâncias</td></tr>
+    <tr><td>Cor. 4.2, 4.3, Teor. 4.2</td><td>+ AASc dentro do estrato</td><td>AASs: use <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>f</mi><mi>h</mi></msub><mo stretchy="false">)</mo><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math></td></tr>
+    <tr><td>Teor. 4.2</td><td>+ <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub></math></td><td>fora da proporcional, <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>≠</mo><mover><mi>y</mi><mo>¯</mo></mover></math></td></tr>
+    <tr><td>Teor. 4.3, Cor. 4.4</td><td>+ custo linear <math><mi>C</mi><mo>=</mo><msub><mi>c</mi><mn>0</mn></msub><mo>+</mo><mo>∑</mo><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></math>, <math><msub><mi>σ</mi><mi>h</mi></msub></math> conhecidos</td><td>sem <math><msub><mi>σ</mi><mi>h</mi></msub></math> não dá para alocar: use proporcional</td></tr>
+    <tr><td>Cor. 4.5 (Neyman)</td><td>+ custo por unidade <strong>constante</strong></td><td>custos desiguais → (4.12)</td></tr>
+    <tr><td>Teor. 4.4</td><td>mesmo <math><mi>n</mi></math>, AASc no estrato, alocação pr. ou ótima</td><td>alocação arbitrária: (4.27) pode passar de 1</td></tr>
+    <tr><td>Teor. 4.5–4.6, (4.33)</td><td>AE com reposição, <math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub></math> 0–1</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="nota">
+  <p>Enunciados condensados de Bolfarine, H.; Bussab, W. O., <em>Elementos de Amostragem</em>, IME-USP (2004) / Blucher (2005), caps. 1–4, para estudo pessoal. A numeração é a do livro; o cap. 1 não traz resultados numerados. Demonstrações e exemplos: <a href="../cap01/01-00-nocoes-basicas.html">cap. 1</a>, <a href="../cap02/02-00-definicoes-e-notacoes-basicas.html">cap. 2</a>, <a href="../cap03/03-00-amostragem-aleatoria-simples.html">cap. 3</a>, <a href="../cap04/04-00-amostragem-estratificada.html">cap. 4</a>.</p>
+</div>
+
+<nav class="fim">
+  <span><a href="01-04-guia-de-prova.html">← Guia de prova (com exemplos e receitas)</a></span>
+  <span><a href="../index.html">Menu →</a></span>
+</nav>
+
+</div>
+</body>
+</html>
