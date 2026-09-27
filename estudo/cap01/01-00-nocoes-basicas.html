@@ -3,58 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Caderno de estudo pessoal: reproduz figuras e enunciados de obra protegida
+<!-- Caderno de estudo pessoal: reproduz figuras e tabelas de obra protegida
      (Bolfarine & Bussab, IME-USP) para uso próprio. Fora dos buscadores. -->
 <meta name="robots" content="noindex, nofollow">
 <title>Cap. 1 — Noções básicas</title>
 <link rel="stylesheet" href="../assets/tema.css?v=1">
 <link rel="stylesheet" href="../assets/estilo.css?v=1">
+<link rel="stylesheet" href="../assets/aula.css?v=1">
 </head>
 <body>
 
 <details class="menu-lateral" open>
   <summary>Índice da aula</summary>
   <nav class="painel">
-    <p class="painel-titulo">Cap. 1 — Noções básicas</p>
+    <p class="painel-titulo">Cap. 1 — em 12 passos</p>
     <ol>
-      <li><a href="#s1">Por que uma teoria de amostragem</a></li>
-      <li><details class="sub">
-        <summary><a href="#s2">O que se pretende conhecer</a></summary>
-        <ul class="subitens">
-          <li><a href="#s2-1">2.1 A questão e os constructos</a></li>
-          <li><a href="#s2-2">2.2 Variáveis, atributos e parâmetros</a></li>
-        </ul>
-      </details></li>
-      <li><details class="sub">
-        <summary><a href="#s3">De quem se está falando</a></summary>
-        <ul class="subitens">
-          <li><a href="#s3-1">3.1 Unidade elementar, amostral e de resposta</a></li>
-          <li><a href="#s3-2">3.2 Alvo, referida, amostrada</a></li>
-          <li><a href="#s3-3">3.3 Estratos e subclasses</a></li>
-        </ul>
-      </details></li>
-      <li><details class="sub">
-        <summary><a href="#s4">Como obter os dados</a></summary>
-        <ul class="subitens">
-          <li><a href="#s4-1">4.1 Tipos de investigação e de coleta</a></li>
-          <li><a href="#s4-2">4.2 “Representativa” × probabilística</a></li>
-          <li><a href="#s4-3">4.3 A tipologia de Jessen</a></li>
-          <li><a href="#s4-4">4.4 A tipologia de Kish</a></li>
-          <li><a href="#s4-5">4.5 Os planos que o livro vai estudar</a></li>
-          <li><a href="#s4-6">4.6 Estimadores e erro amostral</a></li>
-          <li><a href="#s4-7">4.7 Tamanho da amostra</a></li>
-          <li><a href="#s4-8">4.8 Censo ou amostra</a></li>
-        </ul>
-      </details></li>
-      <li><a href="#s5">Campo, preparação e análise</a></li>
-      <li><a href="#s6">Erros amostrais e não amostrais</a></li>
-      <li><a href="#s7">Relatório e banco de dados</a></li>
-      <li><a href="#recall">Cartões de recall ativo</a></li>
-      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+      <li><a href="#p1">Por que não fazer o censo</a></li>
+      <li><a href="#p2">Do objetivo ao parâmetro</a></li>
+      <li><a href="#p3">As três unidades</a></li>
+      <li><a href="#p4">As três populações</a></li>
+      <li><a href="#p5">Estrato × subclasse</a></li>
+      <li><a href="#p6">Como os dados chegam</a></li>
+      <li><a href="#p7">“Representativa” não é critério</a></li>
+      <li><a href="#p8">Os cinco critérios de Kish</a></li>
+      <li><a href="#p9">Os planos que vêm pela frente</a></li>
+      <li><a href="#p10">Erro amostral: o exemplo eleitoral</a></li>
+      <li><a href="#p11">Campo, preparação e os outros erros</a></li>
+      <li><a href="#p12">O relatório</a></li>
     </ol>
+    <p class="painel-titulo">Fim</p>
+    <ul>
+      <li><a href="#fecho">Fecho — escrever tudo</a></li>
+      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+    </ul>
     <p class="extras">
-      <a href="#topo">↑ Topo</a>
-      <a href="../index.html">Menu</a>
+      <a href="../index.html">↑ Menu</a>
+      <a href="../cap02/02-00-definicoes-e-notacoes-basicas.html">Cap. 2 →</a>
     </p>
   </nav>
 </details>
@@ -64,108 +48,256 @@
 <header class="topo">
   <p class="migalha"><a href="../index.html">Menu</a> · Bolfarine &amp; Bussab · Capítulo 1 · págs. 1–36</p>
   <h1>Noções básicas</h1>
-  <p class="subtitulo">O capítulo sem fórmulas. Ele fixa o vocabulário, separa as três populações, distingue amostra “representativa” de amostra probabilística e mostra onde o erro amostral — o único que a teoria controla — se encaixa no erro total de um levantamento.</p>
+  <p class="subtitulo">O capítulo sem fórmulas — e o mais cobrado em questão discursiva. Vocabulário, decisões de projeto, e o argumento de por que uma amostra pode ser melhor que o censo.</p>
 </header>
 
-<div class="caixa objetivo">
-  <span class="rotulo">Ao final desta aula você deve saber</span>
+<div class="objetivo">
+  <span class="rotulo">Ao final você deve saber fazer</span>
   <ul>
-    <li>Explicar por que a inferência clássica (amostra i.i.d. de uma distribuição) não basta para populações finitas.</li>
-    <li>Transformar um objetivo genérico em constructos, variáveis mensuráveis e <em>parâmetros</em> — e ver que “crescimento médio” admite pelo menos duas definições diferentes.</li>
-    <li>Distinguir unidade elementar, unidade amostral e unidade de resposta, e dar um exemplo em que as três diferem.</li>
-    <li>Definir população alvo, população referida e população amostrada, e dizer sobre qual delas valem as inferências estatísticas.</li>
-    <li>Separar estrato de subclasse, e saber qual dos dois entra no desenho amostral.</li>
-    <li>Argumentar contra a “amostra representativa” e a favor da amostra probabilística: cada amostra possível tem probabilidade conhecida <em>a priori</em>.</li>
-    <li>Situar um plano na tipologia de Jessen (2 × 2) e na de Kish (5 critérios dicotômicos, 32 combinações).</li>
-    <li>Descrever, em uma frase cada, AAS com e sem reposição, conglomerados, múltiplos estágios (UPA, USA), estratificação e sorteio sistemático.</li>
-    <li>Definir estimador não viesado, EQM e erro padrão, e dizer qual é a “estratégia de avaliação” da amostragem.</li>
-    <li>Refazer o exemplo eleitoral (100, 400 e 1600 eleitores) e explicar por que tamanho de amostra é um compromisso entre precisão e orçamento.</li>
-    <li>Listar as fontes de erro não amostral e explicar por que elas não somem no censo.</li>
-    <li>Dizer o que um relatório de plano amostral tem de conter no mínimo.</li>
+    <li>Distinguir unidade elementar, amostral e de resposta num enunciado.</li>
+    <li>Identificar as populações alvo, referida e amostrada, e dizer sobre qual valem as conclusões.</li>
+    <li>Separar estrato de subclasse — e explicar por que importa.</li>
+    <li>Argumentar contra “amostra representativa” e a favor de amostra probabilística.</li>
+    <li>Classificar um plano pelos cinco critérios de Kish.</li>
+    <li>Explicar por que o erro cai com <math><msqrt><mi>n</mi></msqrt></math> e por que <math><mi>N</mi></math> quase não entra.</li>
+    <li>Listar erros não amostrais e dizer por que <math><mi>n</mi></math> não os resolve.</li>
   </ul>
 </div>
 
-<h2 id="s1">1. Por que uma teoria de amostragem</h2>
-
-<p>Amostragem é coisa do cotidiano: o cozinheiro prova o tempero, a pessoa testa a temperatura da sopa com uma colherada, o médico julga o estado do paciente por um exame de sangue. Em todos os casos o objetivo é o mesmo — <strong>obter informação sobre o todo a partir de uma parte</strong>. E em todos os casos há um jeito de errar sistematicamente: não mexer a sopa antes de tirar a colher subestima a temperatura do prato todo. Esse erro não diminui provando mais colheradas da mesma superfície; é um <em>viés</em> do protocolo de escolha da amostra, e é dele que os cursos de inferência costumam não falar.</p>
-
-<p>Os cursos introdutórios de inferência também ensinam a generalizar da amostra para o todo, mas com uma ênfase diferente: a população é <em>infinita</em>, ou melhor, a amostra é retirada de uma <em>distribuição de probabilidade</em>. Garante-se que as observações são independentes, com igual probabilidade, de uma mesma população teoricamente infinita — e não se discute como a amostra foi obtida. Aqui a população é <strong>finita</strong>, enumerável ou pelo menos passível de descrição, e o modo de sortear é exatamente o objeto de estudo. É essa mudança de ponto de vista que o capítulo 2 vai formalizar: a aleatoriedade não está nos valores <math><msub><mi>Y</mi><mi>i</mi></msub></math> (que são fixos), está em <em>quais</em> unidades entram na amostra.</p>
-
-<div class="caixa definicao">
-  <span class="rotulo">A atitude do livro — e o guia do Apêndice B</span>
-  <p>Toda pesquisa quantitativa exige planejar, executar, corrigir e analisar. Um estatístico experiente desenvolve seus próprios procedimentos, mas tem dificuldade em transmiti-los sem convívio. O que se pode transmitir é uma <em>lista de tópicos</em> — um <em class="en">checklist</em> — que nunca é definitiva nem completa, mas serve de guia aproximado. A lista dos autores está no Apêndice B (livro p. 265); as palavras-chave, no Apêndice A (p. 261). As seções deste capítulo comentam os itens dessa lista; os capítulos técnicos aprofundam só o grupo “planejamento e seleção da amostra”.</p>
+<div class="caixa pratica">
+  <span class="rotulo">Como usar esta página</span>
+  <p><strong>Um passo por vez.</strong> Cada um termina com uma pergunta — <strong>responda antes de abrir</strong>.</p>
+  <p>Aqui quase não há conta. O que se cobra é vocabulário preciso e argumento. Por isso as checagens são de <em>julgamento</em>, não de cálculo.</p>
 </div>
 
-<h2 id="s2">2. O que se pretende conhecer</h2>
+<!-- ==================================================================== 1 -->
 
-<h3 id="s2-1">2.1 A questão e os constructos</h3>
+<h2 class="passo" id="p1"><span class="n">1</span> Por que não fazer o censo</h2>
+<p class="marco">Passo 1 de 12</p>
 
-<p>O objetivo geral de uma pesquisa costuma caber numa pergunta — “qual o potencial do mercado do município X para um novo produto cultural?”. As dificuldades começam na hora de responder: investigar os mais ricos ou os de maior escolaridade? Estudar levantamentos semelhantes já feitos, em outras regiões ou no passado, é uma das melhores fontes para operacionalizar objetivos — aprende-se muito com os erros dos outros. Postula-se até que “um problema corretamente definido já está resolvido”. Quase sempre o levantamento tem múltiplos objetivos; na prática, convém prender-se a um conjunto <em>pequeno</em> de questões-chave e resistir à tentação de acrescentar perguntas “só para aproveitar” a pesquisa.</p>
-
-<p>O passo seguinte é criar bons <strong>indicadores</strong> (variáveis, escalas) para os <strong>constructos</strong> de interesse: inteligência, nível socioeconômico, desempenho escolar, potencial de mercado, ansiedade, satisfação. O QI é o indicador clássico de inteligência; o Critério Brasil (antigo ABA/ABIPEME) combina escolaridade, moradia e bens para expressar nível socioeconômico; SAEB, ENEM e Pisa medem desempenho escolar; “pessoas, com dinheiro e disponibilidade para gastar” é a decomposição operacional de potencial de mercado. Essas escalas são aceitas porque foram <em>validadas</em>: criadas, analisadas no contexto, comparadas, e verificada a pertinência entre valores e significado. Boa parte dos livros de metodologia trata de transformar conceitos teóricos em escalas confiáveis (Pedhazur e Schmelkin, 1991, na abordagem mais quantitativa).</p>
-
-<h3 id="s2-2">2.2 Variáveis, atributos e parâmetros</h3>
-
-<p>A cada unidade elementar (UE — definida na seção 3.1) associam-se uma ou mais <strong>características de interesse</strong>: as variáveis ou atributos. Se a UE é a família, interessam renda total, número de membros, sexo e escolaridade do chefe; se é a empresa, faturamento, lucratividade, ramo, consumo de energia. É o objetivo específico que orienta a escolha da UE e das variáveis: para poder de compra usa-se renda familiar total; para política de emprego, renda individual do trabalhador. E a escolha da UE nem sempre é óbvia: num estudo do setor de alimentação, o restaurante dentro de uma montadora de automóveis é unidade ou não? Depende de a exploração ser própria ou terceirizada.</p>
-
-<p>Com as variáveis definidas, é preciso dizer <em>qual característica populacional</em> — o <strong>parâmetro</strong> — será estimado. A falta de uma definição inequívoca aqui já foi fatal para muitas pesquisas.</p>
-
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo do livro — o crescimento das vendas do setor de vestuário</span>
-  <p>Quer-se medir o crescimento das vendas das empresas do setor num ano. Há pelo menos duas maneiras:</p>
-  <ol>
-    <li>a <strong>média dos crescimentos</strong> de cada empresa, <math><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>/</mo><msub><mi>X</mi><mi>i</mi></msub></math> (vendas deste ano / vendas do ano anterior, empresa a empresa);</li>
-    <li>a <strong>razão dos totais</strong>, <math><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>/</mo><mo>∑</mo><msub><mi>X</mi><mi>i</mi></msub></math> (total vendido este ano dividido pelo total do ano passado).</li>
-  </ol>
-  <p>Os dois resultados podem ser bem diferentes, sobretudo se as grandes empresas se comportam de modo distinto das pequenas: em (1) cada empresa pesa igual; em (2) as grandes dominam. A escolha entre um e outro é fundamental para o desenho amostral. No capítulo 2 esses dois parâmetros reaparecem com nome — a <em>razão média populacional</em> <math><mover><mi>R</mi><mo>¯</mo></mover></math> e a <em>razão populacional</em> <math><mi>R</mi><mo>=</mo><msub><mi>τ</mi><mi>Y</mi></msub><mo>/</mo><msub><mi>τ</mi><mi>X</mi></msub></math> — e o capítulo 5 é inteiro sobre estimar <math><mi>R</mi></math>.</p>
+<div class="ideia">
+  <p>Custo e prazo são o motivo óbvio. O motivo bom é outro: <strong>qualidade</strong>.</p>
+  <p>Menos unidades permitem mais cuidado em cada uma — e o erro que sobra costuma ser menor que o de um censo mal feito.</p>
 </div>
 
-<p>Quando o levantamento exige estimativas também para <em>partes</em> da população (estratos, subpopulações), o cuidado no planejamento tem de ser redobrado, para garantir estimadores adequados para o todo e para as partes. E nada impede que se usem parâmetros diferentes em estratos distintos.</p>
-
-<h2 id="s3">3. De quem se está falando</h2>
-
-<h3 id="s3-1">3.1 Unidade elementar, amostral e de resposta</h3>
-
-<div class="caixa definicao">
-  <span class="rotulo">Três unidades</span>
-  <p><strong>Unidade elementar</strong> (ou <em>elemento</em>) é o objeto ou entidade portadora da informação que se quer coletar: pessoa, família, domicílio, loja, empresa, escola. Precisa ser definida com precisão — “família” parece natural, mas um domicílio com o casal, uma filha casada, o genro e um neto é uma família ou duas? E se a filha é divorciada? Em vez de inventar definições, busque as já usadas (os manuais do IBGE, no caso), que permitem comparar pesquisas.</p>
-  <p><strong>Unidade amostral</strong> é o que o plano de fato sorteia. Pode ser uma única unidade elementar ou um conjunto delas. Na pesquisa eleitoral, o eleitor é a unidade elementar; se o plano sorteia domicílios e entrevista todos os eleitores de cada um, a unidade amostral é o <em>domicílio</em>. Planos em múltiplos estágios usam várias unidades amostrais num mesmo desenho: cidades, quarteirões dentro das cidades, domicílios dentro dos quarteirões, eleitores dentro dos domicílios.</p>
-  <p><strong>Unidade de resposta</strong> (respondente) é quem fornece a informação. No censo demográfico, um único morador — usualmente o chefe ou o cônjuge — responde pelas questões simples sobre todos os moradores.</p>
+<div class="fileira">
+  <div><strong>Custo</strong><p>entrevistar 1 000 em vez de 200 000</p></div>
+  <div><strong>Tempo</strong><p>resultado em semanas, não anos</p></div>
+  <div><strong>Qualidade</strong><p>entrevistador treinado, supervisão, revisita</p></div>
+  <div><strong>Viabilidade</strong><p>às vezes medir destrói a unidade</p></div>
 </div>
 
-<h3 id="s3-2">3.2 População alvo, população referida, população amostrada</h3>
+<div class="caixa aviso">
+  <span class="rotulo">O argumento que vale a nota</span>
+  <p>Um censo tem erro amostral <strong>zero</strong> e erro não amostral <strong>alto</strong>: milhares de entrevistadores, pressa, controle fraco, não resposta.</p>
+  <p>Uma amostra tem erro amostral <em>calculável</em> e erro não amostral <em>baixo</em>. O erro total pode ser menor na amostra — e, ao contrário do censo, você sabe dizer de quanto ele é.</p>
+</div>
 
-<p>População é a reunião de todas as unidades elementares. Mas <em>qual</em> reunião? O livro acompanha o exemplo do potencial de mercado em três aproximações:</p>
+<p>Quando o censo se justifica: população pequena, necessidade legal de contar todos, ou exigência de resultado para subdivisões muito finas (cada bairro, cada empresa).</p>
 
-<ul>
-  <li><strong>População alvo</strong> (objetivo). Começa genérica: “todos os moradores do município”. Os jovens vão consumir? E a zona rural? Segunda aproximação: “adultos (18+) da região urbana de X”. E os inativos, os sem renda? Cada resposta pode exigir redefinir a população alvo.</li>
-  <li><strong>População referida</strong> (referenciada). Para sortear é preciso uma <em>lista</em> das unidades — o <strong>sistema de referência</strong> (SR), cujos itens são as <em>unidades de listagem</em>. Raramente existe o rol dos moradores; existem mapas, cadastros, censos. No exemplo, o SR é a relação de <strong>setores censitários</strong> (SC) do IBGE: cada SC urbano tem cerca de 300 domicílios, com mapa e totais agregados, atualizados a cada 10 anos. Ao examinar a lista, descobrem-se SC com domicílios coletivos (quartéis, internatos) e SC de favelas, que se decide excluir; e SC classificados como rurais no último censo mas já urbanizados, sem se saber quais. A população que de fato serve de base ao sorteio fica sendo “todos os moradores adultos, com residência em domicílios particulares classificados no último censo como urbanos, excluindo favelas” — e essa definição operacional <em>não</em> coincide com a população alvo.</li>
-  <li><strong>População amostrada</strong>. No campo, algumas unidades selecionadas se perdem (inexistentes, recusas, domicílios vagos ou fechados, condomínios inacessíveis) e outras aparecem sem terem sido previstas (novos conjuntos habitacionais, casas que viraram cortiços). A amostra acabou vindo de uma população que não é exatamente a referida — e que só pode ser descrita <em>depois</em> do trabalho de campo.</li>
-</ul>
+<details class="checagem">
+  <summary>Uma fábrica quer saber a vida útil média das lâmpadas que produz. Censo ou amostra?</summary>
+  <div class="resposta">
+    <p><strong>Amostra, obrigatoriamente.</strong> Medir a vida útil queima a lâmpada — o censo destruiria a produção inteira.</p>
+    <p>É o caso em que amostrar não é escolha de custo: é a única forma de haver informação.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 2 -->
+
+<h2 class="passo" id="p2"><span class="n">2</span> Do objetivo ao parâmetro</h2>
+<p class="marco">Passo 2 de 12</p>
+
+<div class="ideia">
+  <p>Entre a pergunta que interessa e o número que se calcula há três traduções. Cada uma pode errar.</p>
+  <p>E é aqui, antes de qualquer fórmula, que a pesquisa costuma se perder.</p>
+</div>
+
+<figure class="diagrama">
+  <svg viewBox="0 0 430 108" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cadeia em quatro caixas: objetivo, constructo, variável e parâmetro, ligadas por setas.">
+    <rect x="12"  y="30" width="92" height="34" class="cx"/>
+    <text x="58"  y="47" class="tx">objetivo</text>
+    <path d="M106 47 L 122 47" class="ramo"/>
+    <rect x="124" y="30" width="92" height="34" class="cx-folha"/>
+    <text x="170" y="47" class="tx">constructo</text>
+    <path d="M218 47 L 234 47" class="ramo"/>
+    <rect x="236" y="30" width="80" height="34" class="cx-folha"/>
+    <text x="276" y="47" class="tx">variável</text>
+    <path d="M318 47 L 334 47" class="ramo"/>
+    <rect x="336" y="30" width="82" height="34" class="cx"/>
+    <text x="377" y="47" class="tx-crit">parâmetro</text>
+    <text x="58"  y="80" class="tx-rot">o que se quer decidir</text>
+    <text x="170" y="80" class="tx-rot">a ideia, não observável</text>
+    <text x="276" y="80" class="tx-rot">o que se mede</text>
+    <text x="377" y="80" class="tx-rot">o número-alvo</text>
+    <text x="215" y="100" class="tx-rot">nenhuma fórmula protege de errar aqui</text>
+  </svg>
+  <figcaption>Escolher a variável que representa o constructo é decisão do pesquisador — e não há teste estatístico que a valide.</figcaption>
+</figure>
+
+<div class="par">
+  <div class="caso">
+    <h4>Um exemplo concreto</h4>
+    <p><strong>Objetivo:</strong> decidir se lançamos um produto popular na cidade.</p>
+    <p><strong>Constructo:</strong> poder de compra das famílias.</p>
+    <p><strong>Variável:</strong> renda familiar declarada, em reais.</p>
+    <p><strong>Parâmetro:</strong> a renda média, <math><mi>μ</mi></math>.</p>
+    <p class="miudo">Renda declarada representa bem poder de compra? Talvez não — e esse é um problema real, não estatístico.</p>
+  </div>
+  <div class="simb">
+    <h4>Duas razões que se confundem</h4>
+    <p>Com <math><mi>Y</mi></math> = despesa com comida e <math><mi>X</mi></math> = renda:</p>
+    <div class="eq"><math display="block"><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub></mrow><mrow><mo>∑</mo><msub><mi>X</mi><mi>i</mi></msub></mrow></mfrac></mrow></math></div>
+    <p>“que fração da renda <em>do conjunto</em> vai em comida”</p>
+    <div class="eq"><math display="block"><mrow><mover><mi>R</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munder><mo>∑</mo><mi>i</mi></munder><mfrac><msub><mi>Y</mi><mi>i</mi></msub><msub><mi>X</mi><mi>i</mi></msub></mfrac></mrow></math></div>
+    <p>“qual a fração média <em>por família</em>”</p>
+    <p class="miudo">Números diferentes, perguntas diferentes. Escolher errado é erro de objetivo, não de conta.</p>
+  </div>
+</div>
+
+<details class="checagem">
+  <summary>Você quer medir “satisfação do cliente”. Qual é o constructo, e qual poderia ser a variável?</summary>
+  <div class="resposta">
+    <p><strong>Constructo:</strong> satisfação — um estado mental, não observável.</p>
+    <p><strong>Variável:</strong> nota de 0 a 10 numa pergunta, ou taxa de recompra, ou número de reclamações. <em>Três variáveis diferentes para o mesmo constructo</em>, e elas não dão a mesma resposta.</p>
+    <p>Por isso a escolha tem de ser justificada no projeto, não escondida na metodologia.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 3 -->
+
+<h2 class="passo" id="p3"><span class="n">3</span> As três unidades</h2>
+<p class="marco">Passo 3 de 12</p>
+
+<div class="ideia">
+  <p>Sobre quem se quer saber, o que é sorteado, e quem abre a porta. Podem ser três coisas distintas.</p>
+  <p>Quando a amostral não é a elementar, o plano já é de conglomerados ou de estágios — capítulos 7 e 8.</p>
+</div>
+
+<div class="fileira">
+  <div><strong>Elementar</strong><p>de quem se quer a informação — o domicílio</p></div>
+  <div><strong>Amostral</strong><p>o que é sorteado — o quarteirão</p></div>
+  <div><strong>De resposta</strong><p>quem responde — o morador que atende</p></div>
+</div>
+
+<div class="par">
+  <div class="caso">
+    <h4>Pesquisa domiciliar típica</h4>
+    <p>Sorteio <strong>quarteirões</strong> num mapa (unidade amostral).</p>
+    <p>Quero dados de cada <strong>domicílio</strong> do quarteirão (unidade elementar).</p>
+    <p>Quem me atende é um <strong>morador adulto</strong> (unidade de resposta), que fala pelos outros.</p>
+  </div>
+  <div class="simb">
+    <h4>Quando as três coincidem</h4>
+    <p>Só quando há uma lista das próprias unidades elementares e se sorteia direto dela — e cada uma responde por si.</p>
+    <p>Exemplo: sortear alunos de uma lista de matrícula e entrevistar cada um.</p>
+    <p class="miudo">É o caso da AAS do capítulo 3. Fora dele, quase nunca coincidem.</p>
+  </div>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Por que isso muda a conta</span>
+  <p>A aleatoriedade entra pela <strong>unidade amostral</strong>. Se você sorteia quarteirões, a probabilidade que você controla é a do quarteirão — não a do domicílio.</p>
+  <p>E domicílios do mesmo quarteirão se parecem entre si, o que <em>reduz</em> a informação trazida por cada um. É o que o capítulo 7 chama de correlação intraclasse.</p>
+</div>
+
+<details class="checagem">
+  <summary>Uma pesquisa sorteia escolas, e dentro delas entrevista todos os professores. Quais são as três unidades?</summary>
+  <div class="resposta">
+    <p><strong>Amostral:</strong> a escola. <strong>Elementar:</strong> o professor. <strong>De resposta:</strong> o próprio professor.</p>
+    <p>Amostral ≠ elementar e observam-se <em>todos</em> os elementos da unidade sorteada: isso é <strong>amostragem por conglomerados em um estágio</strong>, o capítulo 7.</p>
+    <p class="miudo">Se em vez disso ela sorteasse alguns professores de cada escola, seria amostragem em dois estágios — capítulo 8.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 4 -->
+
+<h2 class="passo" id="p4"><span class="n">4</span> As três populações, e sobre qual valem as conclusões</h2>
+<p class="marco">Passo 4 de 12 · o passo mais cobrado do capítulo</p>
+
+<div class="ideia">
+  <p>A que você quer descrever, a que a sua lista descreve, e a que de fato podia ser sorteada.</p>
+  <p>A estatística só fala da última. Chegar da última à primeira é argumento, não probabilidade.</p>
+</div>
+
+<ol class="receita">
+  <li><strong>População alvo.</strong> A que você quer descrever. Começa genérica (“todos os moradores do município”) e vai sendo afinada até virar algo definível: “adultos de 18 anos ou mais da região urbana de X”.</li>
+  <li><strong>População referida.</strong> A que o <span class="chip">sistema de referência</span> descreve — o mapa, o cadastro, a lista que você <em>conseguiu</em>. Raramente existe o rol de moradores; existem mapas de quarteirões, cadastros de clientes, listas telefônicas.</li>
+  <li><strong>População amostrada.</strong> A que sobrou depois do campo: fora os endereços inexistentes, as recusas, os domicílios fechados, os condomínios inacessíveis — e dentro os conjuntos novos que ninguém previu.</li>
+</ol>
+
+<div class="caixa aviso">
+  <span class="rotulo">A frase que responde à questão de prova</span>
+  <p><math><mtext>alvo</mtext><mo>⊇</mo><mtext>referida</mtext><mo>⊇</mo><mtext>amostrada</mtext></math>, e as diferenças são <strong>erros de cobertura</strong>.</p>
+  <p>A amostra veio da população <strong>amostrada</strong>: é só sobre ela que a inferência estatística vale. Estender à referida exige analisar o que se perdeu; estender à alvo exige argumento substantivo. Nenhum dos dois é conta.</p>
+</div>
 
 <figure>
   <img src="img/fig-01-01.png" alt="Seis painéis: a população alvo (contorno irregular), a população referida (grade), as unidades selecionadas (células cinza), as unidades perdidas (células pretas), a população amostrada (grade com um canto preto) e a sobreposição das três; embaixo, um diagrama com os três contornos rotulados alvo, referência e amostrada.">
   <figcaption><b>Figura 1.1 — Comparações das populações alvo, referida e amostrada.</b> A grade é o sistema de referência (a lista que se consegue); o contorno irregular é a população alvo (a que se quer); as células escuras são as unidades perdidas no campo, que retiram um canto da população referida e definem a população amostrada. As três se sobrepõem mas não coincidem.</figcaption>
 </figure>
 
-<div class="caixa aviso">
-  <span class="rotulo">Sobre qual população valem as conclusões</span>
-  <p>A amostra foi retirada da <strong>população amostrada</strong>: é só sobre ela que valem as <em>inferências estatísticas</em>. Estender à população referida exige uma análise — qualitativa, às vezes quantitativa — das unidades perdidas e das agregadas; estender à população alvo exige conhecimento substantivo do assunto. No exemplo: os condomínios fechados (ricos) ficaram de fora, o que subestima o potencial; mas as favelas e os domicílios coletivos (pobres) também ficaram, o que o superestima. Qual efeito domina? <em>Não se sabe sem outros estudos</em> — e é isso que o relatório precisa dizer.</p>
+<details class="checagem">
+  <summary>Uma pesquisa telefônica sorteia números de uma lista fixa. Quem fica de fora de cada população?</summary>
+  <div class="resposta">
+    <p><strong>Alvo:</strong> todos os adultos da cidade.</p>
+    <p><strong>Referida:</strong> só quem tem telefone fixo cadastrado — já saem os que só têm celular, e esses não são um grupo aleatório (são mais jovens, mais urbanos).</p>
+    <p><strong>Amostrada:</strong> dos cadastrados, só quem atende e aceita responder — saem os que trabalham fora o dia todo e os que desconfiam.</p>
+    <p>Se o resultado for “68% dos adultos aprovam”, a frase honesta é: “68% dos adultos <em>com fixo cadastrado que atenderam e aceitaram responder</em>”. O resto é extrapolação, e precisa ser defendida.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 5 -->
+
+<h2 class="passo" id="p5"><span class="n">5</span> Estrato × subclasse</h2>
+<p class="marco">Passo 5 de 12</p>
+
+<div class="ideia">
+  <p>A mesma divisão da população, decidida em dois momentos diferentes — e com consequências diferentes.</p>
+  <p>Estrato é antes do sorteio. Subclasse é depois, na análise.</p>
 </div>
 
-<h3 id="s3-3">3.3 Estratos e subclasses</h3>
+<div class="par">
+  <div class="caso">
+    <h4>Estrato</h4>
+    <p>Divisão usada <strong>no sorteio</strong>.</p>
+    <p>Você separa o cadastro em Sul e Norte, e decide: 400 de cada.</p>
+    <p><math><msub><mi>N</mi><mi>h</mi></msub></math> é conhecido. <math><msub><mi>n</mi><mi>h</mi></msub></math> é <strong>constante</strong>, fixado por você.</p>
+    <p class="miudo">Precisão garantida em cada região.</p>
+  </div>
+  <div class="simb">
+    <h4>Subclasse (domínio)</h4>
+    <p>Divisão descoberta <strong>na análise</strong>.</p>
+    <p>“E entre os aposentados da amostra?” — você não sabia quem era aposentado antes de perguntar.</p>
+    <p>O tamanho na amostra é <strong>aleatório</strong>: pode sair 30, pode sair 12.</p>
+    <p class="miudo">Variância maior que a de um estrato do mesmo tamanho, porque <math><msub><mi>n</mi><mi>h</mi></msub></math> também varia.</p>
+  </div>
+</div>
 
-<p>Se a pesquisa deve responder separadamente para partes preestabelecidas da população (o mercado das regiões sul e norte, digamos), isso tem de ser conhecido <em>antes</em> do plano: separa-se o SR nos SC do sul e do norte, como se fossem duas populações. Cada uma dessas subpopulações é um <strong>estrato</strong>. A estratificação serve para dar respostas às partes <em>e</em> para melhorar a estimação — o capítulo 4 mostra o quanto.</p>
+<div class="caixa aviso">
+  <span class="rotulo">A tentação, e a solução de compromisso</span>
+  <p>Há uma pressão forte para querer resultado separado para tudo: região × sexo × faixa etária × renda. Isso multiplica estratos e leva a tamanhos de amostra inviáveis.</p>
+  <p>A saída que o livro recomenda: os fatores <strong>básicos</strong> viram estratos; os <strong>secundários</strong> ficam como subclasses, analisados com a precisão que sobrar.</p>
+</div>
 
-<p>Há uma tentação forte de querer conhecer todas as partes da população, o que multiplica estratos e leva a tamanhos de amostra inviáveis. A solução de compromisso: os fatores básicos viram estratos; os secundários viram <strong>subclasses</strong> — partes da população que não entram no desenho mas são analisadas <em>a posteriori</em>. No exemplo, controla-se a amostra por sul/norte, mas o sexo do respondente não é controlado: a amostra pode acabar com um número insignificante de uma das categorias, invalidando conclusões por sexo. A diferença: no estrato as estimativas confiáveis são garantidas <em>a priori</em> pelo desenho; na subclasse, dependem de haver unidades suficientes.</p>
+<details class="checagem">
+  <summary>Você quer publicar um número por região <em>e</em> um por faixa de renda. Qual vira estrato?</summary>
+  <div class="resposta">
+    <p><strong>Região</strong>, porque você a conhece antes de sortear (está no cadastro, no mapa).</p>
+    <p>Faixa de renda você só descobre <em>perguntando</em> — então ela só pode ser subclasse, a menos que exista um cadastro prévio de renda, o que é raro.</p>
+    <p>É a regra prática: <em>só pode ser estrato o que você já sabe antes de bater na porta.</em></p>
+  </div>
+</details>
 
-<p>Uma última advertência do livro: o sucesso do levantamento depende fortemente do conhecimento que se tem da população. Deve-se gastar boa parte do tempo (mais de 50%) estudando-a e definindo-a — a ponto de talvez a pesquisa se tornar dispensável.</p>
+<!-- ==================================================================== 6 -->
 
-<h2 id="s4">4. Como obter os dados</h2>
+<h2 class="passo" id="p6"><span class="n">6</span> Como os dados chegam</h2>
+<p class="marco">Passo 6 de 12</p>
 
-<h3 id="s4-1">4.1 Tipos de investigação e métodos de coleta</h3>
-
-<p>O exemplo canônico de coleta é o censo demográfico do IBGE — e mesmo nele nem tudo é perguntado a todos: renda, ocupação e outras variáveis vêm de uma amostra de cerca de um em cada dez domicílios, por custo. Censos e pesquisas eleitorais são <strong>levantamentos</strong> (<em class="en">surveys</em>): “passivos”, procuram descrever a população sem interferir. Quando se quer saber o que acontece com uma variável sob tratamentos controlados — a vacina reduz a incidência? a altura na gôndola aumenta a venda? — precisa-se de grupos tratados e de controle: é <strong>experimentação</strong>. A Figura 1.2 dá quatro critérios dicotômicos; só a combinação deles já produz 16 tipos de pesquisa. O livro fica com <em>levantamentos, descritivos, de dados simples, por amostra</em>.</p>
+<div class="ideia">
+  <p>Investigação por levantamento, experimento ou observação; coleta por entrevista, questionário, registro ou aparelho.</p>
+  <p>Cada combinação troca custo por controle.</p>
+</div>
 
 <figure class="diagrama">
 <svg viewBox="0 0 680 190" width="680" height="190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quatro critérios dicotômicos para classificar pesquisas: participação do pesquisador (experimentação ou levantamento), objetivo da análise (descritivo ou analítico), complexidade dos dados (simples ou multivariado) e amplitude da coleta (censo ou amostra). A alternativa adotada no livro aparece destacada.">
@@ -199,54 +331,90 @@
 <figcaption><b>Figura 1.2 — Critérios para classificar pesquisas</b> (redesenhada). Cada critério é dicotômico; as caixas destacadas são a escolha do livro — a segunda alternativa em (a) e (d), a primeira em (b) e (c).</figcaption>
 </figure>
 
-<p>Escolhido o tipo de investigação, escolhe-se o <strong>método de coleta</strong>. Dois critérios ajudam a organizar a variedade:</p>
-
-<ul>
-  <li><strong>Mensuração: com ou sem instrumento formalizado.</strong> Sem instrumento, o pesquisador anota livremente o que observa em cada UE, aprofundando o que lhe parece interessante — são os <em>estudos de caso, de profundidade ou de conteúdo</em> (o líder comunitário, o farmacêutico, a “benzedeira”, para entender como a população carente resolve problemas de saúde). Não servem para inferir sobre a população, mas aprofundam o conhecimento do assunto. Com instrumento estruturado, a versão mais conhecida é o <em>questionário</em>, de preferência com questões fechadas — que traduz a operacionalização dos conceitos e por isso precisa ser elaborado com cuidado, pré-testado e pré-analisado. Outros instrumentos: planilhas de estoque (consumo), <em class="en">peoplemeters</em> (audiência), cadernetas de consumo (ponderação em índices de custo de vida).</li>
-  <li><strong>Comunicação: verbalizada ou não.</strong> Não verbalizada são os <em>estudos observacionais</em> (comportamento de consumidores, discussões de grupo). Verbalizada pode ser oral ou escrita.</li>
-</ul>
-
-<p>Em amostragem, a combinação mais usada é <strong>comunicação verbal com mensuração estruturada</strong>: questionário com entrevista pessoal; as variações comuns são por correio ou telefone. E o método de coleta condiciona o plano: um levantamento por correio costuma precisar de <em>muito mais</em> elementos que um equivalente com entrevista pessoal — por quê? Porque a taxa de resposta pelo correio é baixa e seletiva; para chegar ao mesmo número de respondentes (e tentar compensar a não resposta) enviam-se muito mais questionários.</p>
-
-<h3 id="s4-2">4.2 “Amostra representativa” × amostra probabilística</h3>
-
-<p>Amostra é <em>qualquer parte</em> da população. Supõem-se já fixados as unidades de análise, o instrumento e o sistema de referência. O propósito da amostra é descrever os parâmetros do universo do modo mais adequado possível, permitindo generalizar dentro de limites aceitáveis de dúvida, com custo minimizado. Qualquer amostra fornece informação; nem toda amostra permite estender os resultados à população.</p>
-
-<div class="caixa aviso">
-  <span class="rotulo">O argumento contra a “amostra representativa”</span>
-  <p>Pergunte a quem diz que uma boa amostra é “representativa” o que isso significa; a resposta mais comum é “uma micro representação do universo”. Mas para saber que a amostra é uma micro representação para a característica de interesse seria preciso conhecer o comportamento dessa característica <em>na população</em> — e aí o conhecimento seria tão grande que a amostra se tornaria desnecessária.</p>
-  <p>Outras vezes “micro representação” quer dizer <strong>amostra estratificada proporcional</strong>: divide-se a população em estratos por uma variável auxiliar e sorteia-se de cada estrato um número proporcional ao seu tamanho. Só que isso <em>não</em> conduz obrigatoriamente a resultados mais precisos.</p>
-</div>
-
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo do livro — renda familiar em três classes de bairros</span>
-  <p>A geografia da cidade agrupa os bairros em ricos (A), médios (B) e pobres (C); a prefeitura diz que 10% dos domicílios são A, 30% B e 60% C. Com orçamento para 1 000 entrevistas, a amostra “representativa” seria 100 / 300 / 600. Mas uma amostra “não representativa” com 600 / 300 / 100 pode dar resultados <em>mais</em> confiáveis: no estrato C os salários são muito parecidos — 600 domicílios é exagero —, enquanto no estrato A as rendas variam muito e 100 é pouco. A alocação que minimiza a variância leva em conta a <em>dispersão</em> dentro de cada estrato, não só o tamanho: é a alocação ótima de Neyman, seção 4.3.3 do livro. Volte a este exemplo depois do capítulo 4.</p>
-</div>
-
-<p>Diante da dificuldade de definir “representativa”, os estatísticos preferem o conceito de <strong>amostra probabilística</strong>: um procedimento em que <em>cada amostra possível tem uma probabilidade conhecida, a priori, de ocorrer</em>. Com isso toda a teoria de probabilidade e de inferência dá suporte às conclusões. Para generalizar a partir de outro procedimento — amostras intencionais, digamos — seria preciso uma “teoria da intencionalidade”, caso exista. É exatamente essa definição que o capítulo 2 formaliza como <em>plano amostral</em>: uma função <math><mi>P</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>⩾</mo><mn>0</mn></math> sobre o conjunto de todas as amostras, somando 1.</p>
-
-<h3 id="s4-3">4.3 A tipologia de Jessen: quatro tipos de amostra</h3>
-
-<p>Jessen (1978) cruza dois critérios. O primeiro: há ou não um <em>mecanismo probabilístico</em> no plano de seleção. O segundo: o “amostrista” usa um procedimento <em>objetivo</em> — cujo protocolo é inequívoco, produz a mesma amostra (ou uma com as mesmas propriedades) quando aplicado por pessoas distintas — ou <em>subjetivo</em>, que permite julgamento e sentimento para escolher uma “boa” amostra.</p>
-
 <div class="rolagem">
 <table>
-  <caption>Tabela 1.1 — Tipos de amostras (Jessen, 1978).</caption>
-  <thead>
-    <tr><th class="txt">Critério do “amostrista”</th><th class="txt">Seleção probabilística</th><th class="txt">Seleção não probabilística</th></tr>
-  </thead>
+  <caption>Métodos de coleta: o que se ganha e o que se perde.</caption>
+  <thead><tr><th class="txt">Método</th><th class="txt">A favor</th><th class="txt">Contra</th></tr></thead>
   <tbody>
-    <tr><td>objetivo</td><td class="txt"><strong>amostras probabilísticas</strong> — ex.: estratificada proporcional</td><td class="txt">amostras criteriosas — ex.: a “cidade típica”</td></tr>
-    <tr><td>subjetivo</td><td class="txt">amostras quase-aleatórias — ex.: amostragem por quotas</td><td class="txt">amostras intencionais — ex.: júri de especialistas, voluntários</td></tr>
+    <tr><td class="txt">entrevista pessoal</td><td class="txt">maior taxa de resposta; dá para esclarecer dúvida</td><td class="txt">caro, lento, viés do entrevistador</td></tr>
+    <tr><td class="txt">telefone</td><td class="txt">rápido e barato; supervisão fácil</td><td class="txt">cobertura ruim; questionário tem de ser curto</td></tr>
+    <tr><td class="txt">questionário autoaplicado</td><td class="txt">barato; sem viés de entrevistador; tema delicado</td><td class="txt">não resposta alta e <em>seletiva</em></td></tr>
+    <tr><td class="txt">registro administrativo</td><td class="txt">custo quase zero; cobre todos</td><td class="txt">mede o que o registro mede, não o que você quer</td></tr>
+    <tr><td class="txt">aparelho (<em>peoplemeter</em>)</td><td class="txt">mede comportamento, não memória</td><td class="txt">caro; painel pode se comportar diferente por saber-se medido</td></tr>
   </tbody>
 </table>
 </div>
 
-<p>Uma imprecisão de linguagem que o livro assume: “amostra aleatória simples” e “plano aleatório simples” serão usados como sinônimos. A rigor, as amostras aleatórias simples são as obtidas pelo protocolo chamado plano aleatório simples.</p>
+<p>Duas escolhas de projeto que aparecem aqui e importam depois:</p>
 
-<h3 id="s4-4">4.4 A tipologia de Kish: cinco critérios, 32 planos</h3>
+<ul>
+  <li><strong>Transversal × longitudinal.</strong> Uma foto de agora, ou as mesmas unidades acompanhadas no tempo (painel). Painel mede <em>mudança</em> muito melhor, e desgasta.</li>
+  <li><strong>Pré-teste.</strong> Aplicar o instrumento em poucas unidades antes de ir a campo. É a etapa que mais economiza retrabalho e a que mais se corta do cronograma.</li>
+</ul>
 
-<p>A qualidade do sistema de referência e as informações disponíveis orientam o desenho. Kish (1965) organiza os planos probabilísticos por cinco critérios dicotômicos (Figura 1.3) — <math><msup><mn>2</mn><mn>5</mn></msup><mo>=</mo><mn>32</mn></math> combinações. Tomando a <em>primeira</em> opção de cada critério obtém-se a <strong>Amostragem Aleatória Simples</strong>: cada unidade elementar sorteada com igual probabilidade, individualmente, sem estratificação, num único estágio, por seleção aleatória.</p>
+<details class="checagem">
+  <summary>Pesquisa sobre uso de drogas entre estudantes: entrevista pessoal ou questionário anônimo?</summary>
+  <div class="resposta">
+    <p><strong>Questionário anônimo</strong>, quase certamente.</p>
+    <p>Na entrevista pessoal o viés de resposta é enorme — ninguém admite ao entrevistador. Você trocaria um erro que <em>sabe</em> medir (a não resposta maior do autoaplicado) por um que <em>não</em> sabe (a resposta falsa sistemática).</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 7 -->
+
+<h2 class="passo" id="p7"><span class="n">7</span> “Representativa” não é critério</h2>
+<p class="marco">Passo 7 de 12</p>
+
+<div class="ideia">
+  <p>Não há como verificar se uma amostra “se parece” com a população — se você soubesse a população, não precisaria da amostra.</p>
+  <p>O que se controla é o <strong>processo</strong>, não o resultado.</p>
+</div>
+
+<div class="caixa definicao">
+  <span class="rotulo">Amostra probabilística</span>
+  <p>Aquela em que <strong>toda amostra possível tem probabilidade conhecida</strong> de ser sorteada, e essa probabilidade é positiva para as unidades que interessam.</p>
+  <p>Só nessa condição existem viés, variância e intervalo de confiança. Fora dela, você tem um número sem medida de erro.</p>
+</div>
+
+<p>Jessen organiza isso cruzando dois critérios: há ou não mecanismo probabilístico na seleção; e o procedimento do amostrista é objetivo (protocolo inequívoco, que qualquer um repetiria igual) ou subjetivo.</p>
+
+<div class="rolagem">
+<table>
+  <caption>Tabela 1.1 — Tipos de amostra (Jessen, 1978). Só a primeira célula permite calcular erro.</caption>
+  <thead><tr><th class="txt">procedimento</th><th class="txt">seleção probabilística</th><th class="txt">seleção não probabilística</th></tr></thead>
+  <tbody>
+    <tr><td class="txt"><strong>objetivo</strong></td><td class="txt"><strong>amostras probabilísticas</strong><br><span class="miudo">ex.: estratificada proporcional</span></td><td class="txt">amostras criteriosas<br><span class="miudo">ex.: a “cidade típica”</span></td></tr>
+    <tr><td class="txt"><strong>subjetivo</strong></td><td class="txt">amostras quase-aleatórias<br><span class="miudo">ex.: amostragem por quotas</span></td><td class="txt">amostras intencionais<br><span class="miudo">ex.: júri de especialistas, voluntários</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Cuidado com a quota</span>
+  <p>Amostragem por <strong>quotas</strong> parece probabilística: o entrevistador tem de trazer 30 mulheres de 25 a 40 anos, e a amostra final bate com a população em sexo e idade.</p>
+  <p>Mas <em>quem</em> ele aborda dentro da quota é escolha dele — quem estava na rua, quem parecia acessível. Não há probabilidade conhecida, e não há erro calculável. A amostra “parece” a população nas variáveis controladas e pode ser muito enviesada em todas as outras.</p>
+</div>
+
+<p class="miudo">Uma imprecisão que o livro assume de propósito: “amostra aleatória simples” e “plano aleatório simples” são usados como sinônimos. A rigor, a amostra é o resultado; o plano é o protocolo que a gera.</p>
+
+<details class="checagem">
+  <summary>Uma enquete de site recebe 50 000 respostas. É melhor que uma amostra probabilística de 1 000?</summary>
+  <div class="resposta">
+    <p><strong>Não — e o tamanho não ajuda em nada.</strong> Quem responde enquete de site é voluntário: mais interessado, mais extremado, mais conectado.</p>
+    <p>Esse viés de seleção <em>não diminui</em> com o número de respostas. Com 50 000 você tem um número muito preciso da opinião de um grupo que você não sabe definir.</p>
+    <p>A de 1 000 traz margem de erro de cerca de 3 pontos — e você sabe sobre quem ela fala.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 8 -->
+
+<h2 class="passo" id="p8"><span class="n">8</span> Os cinco critérios de Kish</h2>
+<p class="marco">Passo 8 de 12</p>
+
+<div class="ideia">
+  <p>Todo plano probabilístico se descreve respondendo cinco perguntas de sim ou não.</p>
+  <p><math><msup><mn>2</mn><mn>5</mn></msup><mo>=</mo><mn>32</mn></math> combinações — e a AAS é a que responde “a primeira opção” em todas.</p>
+</div>
 
 <figure class="diagrama">
 <svg viewBox="0 0 640 300" width="640" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cinco critérios dicotômicos de Kish para classificar amostras probabilísticas: probabilidade de seleção (igual ou distinta), unidade amostral (elementar ou conglomerado), divisão em estratos (não estratificada ou estratificada), número de estágios (um ou mais de um) e seleção das unidades (aleatória ou sistemática).">
@@ -290,227 +458,235 @@
 <figcaption><b>Figura 1.3 — Critérios para classificar amostras probabilísticas</b> (Kish, 1965; redesenhada). Os capítulos 3 a 9 percorrem várias das 32 combinações: AAS (3), estratificada (4), conglomerados (7), dois estágios (8), probabilidades desiguais (9), sistemática (7.8).</figcaption>
 </figure>
 
-<h3 id="s4-5">4.5 Os planos que o livro vai estudar</h3>
-
-<div class="caixa definicao">
-  <span class="rotulo">Amostragem Aleatória Simples — AAS, com (AASc) e sem reposição (AASs)</span>
-  <p>Exige um SR <em>perfeito</em>, que liste uma a uma as unidades de análise. O protocolo: “da relação de unidades do SR, sorteie com igual probabilidade o primeiro elemento; repita para o segundo; e assim até o último programado”. Repor ou não a unidade antes do sorteio seguinte dá a primeira dicotomia. Na prática dever-se-ia sempre usar <em>sem</em> reposição — sortear a mesma unidade de novo não traz informação nova. Mas do ponto de vista estatístico a reposição recompõe o universo e torna as propriedades mais fáceis de deduzir (<em>independência</em>); o plano AASc é o dos livros de inferência. Sortear com igual probabilidade é uma simplificação; às vezes convém sortear com probabilidades <em>desiguais</em>, e aí, sem reposição, os modelos ficam bem difíceis (cap. 9).</p>
+<div class="rolagem">
+<table>
+  <caption>Os cinco critérios, e onde cada resposta leva no livro.</caption>
+  <thead><tr><th class="txt">critério</th><th class="txt">primeira opção</th><th class="txt">segunda opção</th><th>cap.</th></tr></thead>
+  <tbody>
+    <tr><td class="txt">a. probabilidade de seleção</td><td class="txt">igual</td><td class="txt">distinta</td><td class="c">9</td></tr>
+    <tr><td class="txt">b. unidade amostral</td><td class="txt">a própria unidade elementar</td><td class="txt">conglomerado</td><td class="c">7</td></tr>
+    <tr><td class="txt">c. estratos</td><td class="txt">não estratificada</td><td class="txt">estratificada</td><td class="c">4</td></tr>
+    <tr><td class="txt">d. estágios</td><td class="txt">um só</td><td class="txt">mais de um</td><td class="c">8</td></tr>
+    <tr><td class="txt">e. seleção das unidades</td><td class="txt">aleatória</td><td class="txt">sistemática</td><td class="c">7.8</td></tr>
+  </tbody>
+</table>
 </div>
 
-<div class="caixa definicao">
-  <span class="rotulo">Conglomerados e múltiplos estágios</span>
-  <p>Nem sempre há SR completo; é comum haver uma lista de <em>grupos</em> de unidades elementares — a relação de domicílios, na pesquisa eleitoral, em que o elemento é o eleitor. O grupo é um <strong>conglomerado</strong>, e o plano que os sorteia é a <strong>Amostragem por Conglomerados</strong>. O interesse continua sendo a unidade elementar: sorteado o domicílio, colhe-se a intenção de voto de <em>cada</em> eleitor dele. Como as opiniões dentro do conglomerado tendem a ser parecidas, entrevistar todos é desperdício — o que sugere sortear em <strong>dois estágios</strong>: o conglomerado (domicílio) e, dentro dele, a unidade elementar (eleitor). Em populações humanas é o padrão: cidades, bairros, quarteirões, domicílios, moradores. Cada estágio tem a sua unidade amostral: <strong>Unidade Primária de Amostragem (UPA)</strong> no primeiro, <strong>Unidade Secundária (USA)</strong> no segundo, e assim por diante.</p>
+<p><span class="chip">A leitura.</span> Escolher a primeira opção nos cinco critérios dá a <strong>AAS</strong> — o capítulo 3. Cada capítulo seguinte troca <em>uma</em> das respostas e estuda o que muda.</p>
+
+<details class="checagem">
+  <summary>Classifique: sorteio proporcional ao tamanho, de setores censitários, dentro de cada região, e dentro do setor sorteio domicílios.</summary>
+  <div class="resposta">
+    <ul class="compacta">
+      <li><strong>a.</strong> probabilidade <em>distinta</em> (proporcional ao tamanho) → cap. 9</li>
+      <li><strong>b.</strong> unidade amostral é o <em>setor</em>, um conglomerado → cap. 7</li>
+      <li><strong>c.</strong> <em>estratificada</em> por região → cap. 4</li>
+      <li><strong>d.</strong> <em>dois estágios</em> (setor, depois domicílio) → cap. 8</li>
+      <li><strong>e.</strong> aleatória</li>
+    </ul>
+    <p>É a segunda opção em quatro dos cinco critérios — e é, mais ou menos, como se faz uma pesquisa domiciliar de verdade. Por isso o livro leva nove capítulos para chegar lá.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 9 -->
+
+<h2 class="passo" id="p9"><span class="n">9</span> Os planos que vêm pela frente</h2>
+<p class="marco">Passo 9 de 12 · o mapa do livro inteiro</p>
+
+<div class="ideia">
+  <p>Cada plano existe para resolver um problema prático diferente — quase sempre uma limitação do sistema de referência ou do orçamento.</p>
+  <p>Ler esta lista agora faz os próximos capítulos parecerem inevitáveis em vez de arbitrários.</p>
 </div>
-
-<div class="caixa definicao">
-  <span class="rotulo">Estratificação</span>
-  <p>Informação adicional aprimora o desenho. Se se conhecem as regiões da cidade onde predominam moradias de cada classe de renda, definem-se subpopulações homogêneas — <strong>estratos</strong> — e sorteia-se dentro de cada uma: <strong>Amostragem Estratificada</strong>. A ideia: quanto mais homogênea a população, mais precisos os resultados. No limite absurdo em que um estrato reúne todas as famílias com a <em>mesma</em> renda, basta sortear uma. Quase todo plano real estratifica em alguma etapa; a maneira de alocar as unidades pelos estratos define as famílias de planos do capítulo 4.</p>
-</div>
-
-<div class="caixa definicao">
-  <span class="rotulo">Sorteio sistemático</span>
-  <p>Em vez de sortear uma a uma, formam-se <em>conglomerados artificiais</em> com unidades equidistantes na lista: o conglomerado {1, 11, 21, 31, …}, o {2, 12, 22, …}, e assim até 10 conglomerados; sortear um deles dá uma amostra de 10% da população. Facilita muito o sorteio, mas introduz problemas técnicos difíceis — com um só conglomerado sorteado não há como estimar a variância de dentro do plano (seção 7.8).</p>
-</div>
-
-<h3 id="s4-6">4.6 Estimadores e erro amostral</h3>
-
-<p>Definidos o SR, as variáveis, os parâmetros, o plano e o tamanho, resta escolher a <em>característica da amostra</em> que vai responder à pergunta: a <strong>estatística</strong> <math><mi>t</mi></math> que estima o parâmetro <math><mi>θ</mi></math>. O levantamento introduz um erro, resumido na diferença entre o valor observado na amostra e o parâmetro. Essa diferença pode vir só da amostra particular sorteada — o <strong>erro amostral</strong>, objeto da avaliação estatística — ou de fatores externos ao plano (seção 6).</p>
-
-<div class="caixa teorema">
-  <span class="rotulo">Como se avalia um estimador (a versão informal; a formal é a seção 2.5)</span>
-  <p>Estuda-se o comportamento de <math><mi>t</mi><mo>−</mo><mi>θ</mi></math> quando <math><mi>t</mi></math> percorre <em>todas as amostras possíveis</em> sob o plano. Se o valor esperado da diferença é zero, o estimador é <strong>não viesado</strong>. O valor esperado do quadrado da diferença é o <strong>erro quadrático médio</strong> (EQM), que mede a precisão; procuram-se estimadores de EQM baixo. Se o estimador é não viesado, o EQM é a <strong>variância</strong> do estimador, calculada na sua distribuição amostral. A raiz da variância, na unidade da variável, é o <strong>erro padrão</strong> — o erro médio esperado pelo uso <em>desse estimador com esse plano</em>. O objetivo estatístico ao desenhar plano e estimador é controlar o erro padrão (traduzido em intervalos de confiança) e, mais que isso, torná-lo baixo.</p>
-</div>
-
-<p>A informação adicional também pode melhorar o <em>estimador</em>, não só o plano. Para estimar o número de desempregados numa região, o registro civil dá com precisão a população em idade ativa (PIA, 15+); combina-se a taxa de desemprego da amostra com a PIA conhecida. São os estimadores de <strong>razão</strong> e <strong>regressão</strong> (capítulos 5 e 6), que incorporam variáveis auxiliares.</p>
-
-<h3 id="s4-7">4.7 Tamanho da amostra</h3>
-
-<p>O erro padrão decresce com o tamanho da amostra, então fixar <math><mi>n</mi></math> é um ponto-chave: grande demais custa à toa, pequena demais torna a pesquisa inconclusiva.</p>
-
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo do livro — dois partidos, 56% dos votos válidos</span>
-  <p>Um levantamento por AAS quer prever qual de dois partidos terá mais votos válidos; um deles obteve 56% na amostra. O intervalo de 95% de confiança para a proporção é, aproximadamente, <math><mi>p</mi><mo>±</mo><mn>1,96</mn><msqrt><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo><mo>/</mo><mi>n</mi></msqrt></math> (a justificativa é a normalidade assintótica, seção 3.2.4 do livro):</p>
-<pre><code>p &lt;- 0.56
-for (n in c(100, 400, 1600)) {
-  ep &lt;- sqrt(p * (1 - p) / n)
-  cat(n, ":", round(100 * (p + c(-1, 1) * 1.96 * ep), 1), "\n")
-}
-<span class="out">## 100 : 46.3 65.7
-## 400 : 51.1 60.9
-## 1600 : 53.6 58.4</span>
-</code></pre>
-  <p>Com 100 eleitores o intervalo vai de 46% a 66% — inconclusivo. Com 400, de 51% a 61% — sugere a vitória. Com 1 600, de 53,6% a 58,4% — conclusivo também, mas gastaram-se 1 200 entrevistas a mais para nada. (O livro imprime 53,5% a 59,5% para <math><mi>n</mi><mo>=</mo><mn>1600</mn></math>; a meia-largura correta é 2,4 pontos, não 3 — ver a nota no fim da página.) O problema real é bem mais complexo, mas a ilustração vale: o tamanho é um compromisso entre precisão e custo.</p>
-</div>
-
-<p>Custo é um aspecto pouco discutido em cursos de amostragem e fundamental na prática — da definição dos objetivos respondíveis ao tamanho economicamente viável e à sofisticação da análise (Kish, 1965; Lansing e Morgan, 1971). Muitas vezes a precisão desejada esbarra no orçamento, e decide-se entre baixar a precisão ou não fazer a pesquisa. Neste livro o tamanho será sempre determinado pela precisão estatística; mas os autores acreditam que na maioria dos casos ocorre o inverso — <strong>o orçamento define o tamanho, e então estima-se a precisão possível</strong>. Se os dois interesses coincidem, a pesquisa se faz.</p>
-
-<h3 id="s4-8">4.8 Censo ou amostra</h3>
-
-<p>“Levantamento” cobre tanto o recenseamento quanto a amostra; o que muda é o número de unidades entrevistadas — todas ou parte. Muita gente acredita que só o censo revela a “verdade”; em igualdade de condições, o censo é mais preciso, sim. Mas as condições raramente são iguais: com orçamento fixo, para conhecer o estado de saúde da população, o censo por questionário perde para uma amostra com exames clínicos e laboratoriais feitos por médicos.</p>
-
-<ul>
-  <li><strong>Censo</strong> quando a população é pequena, os erros amostrais seriam grandes, a informação é barata ou o custo de decidir errado é alto. Bom senso: se a precisão pede uma amostra maior que metade da população, faça o censo. Exemplo: a opinião dos chefes de departamento de uma universidade sobre a política de recrutamento de docentes.</li>
-  <li><strong>Amostra</strong> quando a população é muito grande e/ou obter informação custa caro (dinheiro e tempo). Exemplo: a opinião dos alunos da mesma universidade sobre a qualidade dos professores em sala.</li>
-</ul>
-
-<h2 id="s5">5. Campo, preparação e análise</h2>
-
-<p>Um plano tecnicamente perfeito não salva um levantamento cujos dados não foram recolhidos com fidedignidade. Numa pesquisa de salários em que o entrevistador não foi instruído a anotar se é líquido ou bruto, como analisar? Numa pesquisa domiciliar em que se deixa ao entrevistador a escolha de quem responde, ele escolherá quem está em casa — e a amostra terá uma proporção bem maior de mulheres. Jessen resume os cuidados: “selecionar boas pessoas, treiná-las bem e verificar se fazem o trabalho corretamente”.</p>
-
-<h4>Trabalho de campo (1.6)</h4>
-<ul>
-  <li><strong>Recrutamento.</strong> Pesquisas grandes e pontuais: contrate empresas especializadas; a alternativa “caseira” (contratar entrevistadores, listadores, supervisores, checadores) é mais barata e arrisca-se a pagar caro pelo noviciado. Pesquisas periódicas: um núcleo permanente de seleção.</li>
-  <li><strong>Treinamento.</strong> Conceitos, definições, uso do instrumento — e também como abordar as pessoas, postura, voz; entrevista presencial e por telefone são treinamentos diferentes. Manuais escritos para cada tarefa (o censo brasileiro treina mais de 150 mil entrevistadores). E instruções para o imprevisto: mais de um domicílio na casa sorteada, profissão que não cabe em nenhum código — contatar a supervisão ou anotar o máximo para correção no escritório.</li>
-  <li><strong>Verificação.</strong> Controle contínuo de qualidade, mais meticuloso no início; verificação rotineira <em>e</em> aleatória, com uma subamostra reentrevistada para apurar desde fraude até a qualidade das respostas. Supervisão em contato permanente com o planejamento e com o processamento.</li>
-  <li><strong>Registro.</strong> Das ocorrências e decisões imprevistas. As estatísticas das unidades perdidas e das incluídas indevidamente são o que permite descrever a população amostrada.</li>
-</ul>
-
-<h4>Preparação dos dados (1.7)</h4>
-<p>O banco de dados é uma matriz de <math><mi>n</mi><mo>+</mo><mn>1</mn></math> linhas por <math><mi>p</mi><mo>+</mo><mn>1</mn></math> colunas — as unidades respondentes e as variáveis, com a primeira coluna identificando a unidade e a primeira linha nomeando as variáveis; a célula <math><mo>(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo>)</mo></math> guarda o dado codificado. Construí-la exige <strong>transcrição</strong> (quanto menos intervenção entre um meio e outro, menos erro), <strong>escrutínio da qualidade</strong> (erros de transcrição, inconsistências; programas automáticos de consistência lógica são a ferramenta mais poderosa, hoje já no ato da coleta; <em>imputação</em> de itens fundamentais em branco ou incompatíveis, com manuais de crítica que homogeneízem os critérios) e <strong>documentação</strong> (um banco de dados sem descrição das variáveis, formatação, qualidade e sistema de ponderação é uma coleção de algarismos).</p>
-
-<h4>Análises estatísticas (1.8)</h4>
-<ul>
-  <li><strong>Exploratória.</strong> Distribuição de frequências de cada variável com medidas-resumo; detecta erros que a crítica não pegou, elementos desajustados, brancos, vieses de entrevistador; variáveis com quase todas as respostas numa categoria são inúteis. Tabelas cruzadas por estrato; comparação com censos.</li>
-  <li><strong>Plano tabular.</strong> O conjunto mínimo de tabelas e modelos definido <em>a priori</em> para responder aos objetivos. Imaginá-lo antes da coleta ajuda o planejamento, evita atraso na divulgação e permite preparar e testar os programas. Divulgue os erros amostrais junto (para muitas variáveis, de forma agregada — ver os compêndios do IBGE).</li>
-  <li><strong>Análises adicionais.</strong> Levantamentos têm muito mais informação do que a usada nos objetivos iniciais: um único levantamento da Fundação SEADE gerou mais de 10 trabalhos em 3 anos; censos são explorados por uma década. Daí saem novos índices — o grau de educação da <em>família</em> combinando chefe e um segundo membro, por exemplo.</li>
-</ul>
-
-<h2 id="s6">6. Erros amostrais e não amostrais</h2>
-
-<p>Todo levantamento, amostral ou não, produz uma diferença entre o parâmetro <math><mi>θ</mi></math> e o valor <math><mi>t</mi></math> usado para estimá-lo; <math><mi>t</mi><mo>−</mo><mi>θ</mi></math> é o <strong>erro da pesquisa</strong>. Os fatores que agem sobre ele caem em dois grupos:</p>
-
-<div class="caixa definicao">
-  <span class="rotulo">Erro amostral × erro não amostral</span>
-  <p><strong>Erros devidos ao plano amostral.</strong> Talvez seja equivocado chamá-los de erro — melhor <em>desvio</em>: são controlados pela teoria estatística (o resto do livro) e <strong>tendem a desaparecer quando a amostra cresce</strong>. Num plano probabilístico, a qualidade se traduz na estimativa do erro padrão. Para planos muito complexos nem sempre há expressão explícita, e recorre-se a aproximações. Emprestar a fórmula de um plano simples para um plano complexo é um “erro técnico”; se a escolha é consciente, informe e descreva a distorção provável. Para planos <em>não</em> probabilísticos, o desafio — de difícil aceitação — é estender o resultado à população e medir o erro: só resta o arrazoado qualitativo, nem sempre convincente.</p>
-  <p><strong>Erros devidos a outros fatores.</strong> Inadequações de mensuração, entrevista, codificação. <strong>Permanecem mesmo no censo</strong>, ocorrem em qualquer etapa (definições, coleta, codificação, análise) e podem comprometer um plano tecnicamente perfeito. Para cada um, explique: (i) a etapa em que ocorreu; (ii) as causas possíveis; (iii) a correção empregada; (iv) a avaliação, qualitativa e/ou quantitativa, do efeito sobre os resultados.</p>
-</div>
-
-<p>A qualidade do levantamento deveria ser expressa numa medida de <strong>erro total</strong>: a mensuração dos erros amostrais mais a avaliação dos possíveis efeitos dos demais — com interpretação substantiva das direções e magnitudes dos vieses. O livro lista, de modo abreviado, as ocorrências de erro não amostral:</p>
 
 <div class="rolagem">
 <table>
-  <caption>Ocorrências de erros não amostrais (seção 1.9.2 do livro).</caption>
-  <thead><tr><th class="txt">Grupo</th><th class="txt">Ocorrências</th></tr></thead>
+  <caption>O que cada plano exige, e o que ele resolve.</caption>
+  <thead><tr><th class="txt">plano</th><th class="txt">exige do sistema de referência</th><th class="txt">resolve</th><th>cap.</th></tr></thead>
   <tbody>
-    <tr><td class="txt"><strong>A. Unidades perdidas</strong> (não resposta)</td><td class="txt"><em>Total:</em> falta de contato, recusa, abandono durante a pesquisa, incapacidade de responder, perda de documento. <em>Parcial:</em> recusa em questões sensíveis (renda), incompreensão, dados incoerentes.</td></tr>
-    <tr><td class="txt"><strong>B. Falhas de definição e administração</strong></td><td class="txt"><em>Sistema de referência:</em> erros de <strong>omissão</strong> (cobertura incompleta — exclusão de elementos de interesse; é a diferença entre as populações) e de <strong>comissão</strong> (inclusão de elementos não sorteados ou de outras populações). Efeito do entrevistador; insuficiência do questionário (redação); erros de codificação e digitação.</td></tr>
-    <tr><td class="txt"><strong>C. Avaliação das consequências</strong></td><td class="txt">Comparação com outras pesquisas; efeito da imputação; programas de consistência; volume de não respondentes; diferença de perfil entre respondentes e não respondentes.</td></tr>
+    <tr><td class="txt"><strong>AAS</strong> (com e sem reposição)</td><td class="txt">lista completa das unidades elementares — um SR perfeito</td><td class="txt">o caso de referência; todo o resto se compara com ele</td><td class="c">3</td></tr>
+    <tr><td class="txt"><strong>Estratificada</strong></td><td class="txt">a lista, mais a que estrato cada unidade pertence</td><td class="txt">precisão; e resultado separado por parte da população</td><td class="c">4</td></tr>
+    <tr><td class="txt"><strong>Razão e regressão</strong></td><td class="txt">uma variável auxiliar conhecida na população</td><td class="txt">precisão, usando informação que você já tem</td><td class="c">5–6</td></tr>
+    <tr><td class="txt"><strong>Conglomerados</strong></td><td class="txt">só uma lista de <em>grupos</em> — não das unidades</td><td class="txt">viabilidade e custo de campo quando não há lista</td><td class="c">7</td></tr>
+    <tr><td class="txt"><strong>Dois estágios</strong></td><td class="txt">lista de grupos; a lista interna se faz depois</td><td class="txt">o conglomerado grande demais para observar inteiro</td><td class="c">8</td></tr>
+    <tr><td class="txt"><strong>Sistemática</strong></td><td class="txt">uma ordenação qualquer das unidades</td><td class="txt">simplicidade de execução no campo</td><td class="c">7.8</td></tr>
+    <tr><td class="txt"><strong>PPT</strong> (probab. proporcional ao tamanho)</td><td class="txt">o tamanho de cada unidade, além da lista</td><td class="txt">unidades muito desiguais em tamanho</td><td class="c">9</td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="caixa aviso">
-  <span class="rotulo">A armadilha do “n grande”</span>
-  <p>Aumentar a amostra reduz o erro amostral e <em>não faz nada</em> pelo erro não amostral. Uma pesquisa por correio com 20% de resposta não fica boa com 100 000 questionários enviados — fica com 20 000 respondentes autosselecionados. A não resposta seletiva é um erro de cobertura da população amostrada em relação à referida (Figura 1.1), e a única correção é qualitativa: comparar o perfil de quem respondeu com o de quem não respondeu.</p>
+  <span class="rotulo">A troca que organiza tudo</span>
+  <p>Os planos se dividem em dois grupos por <em>motivo</em>:</p>
+  <ul class="compacta">
+    <li><strong>Para ganhar precisão</strong> — estratificada, razão, regressão. Usam informação extra que você já tem.</li>
+    <li><strong>Para viabilizar o campo</strong> — conglomerados, estágios, sistemática. Custam precisão e compram execução.</li>
+  </ul>
+  <p>Daí a assimetria: no capítulo 4 o EPA fica <em>abaixo</em> de 1, e no 7 ele costuma ficar <em>acima</em>.</p>
 </div>
 
-<h2 id="s7">7. Relatório e banco de dados</h2>
+<details class="checagem">
+  <summary>Você quer pesquisar moradores de uma favela, e não existe cadastro de domicílios. Que plano sobra?</summary>
+  <div class="resposta">
+    <p>AAS está fora: exige a lista completa, que não existe.</p>
+    <p>A saída é <strong>conglomerados ou dois estágios</strong>: sorteie <em>trechos</em> do mapa (que dá para delimitar), e dentro do trecho liste e sorteie os domicílios na hora.</p>
+    <p>É exatamente para isso que o capítulo 7 existe — não por elegância teórica, mas porque o SR perfeito quase nunca existe.</p>
+  </div>
+</details>
 
-<p>O relatório do plano amostral presta contas de como as unidades foram escolhidas e os dados coletados. Um plano perfeito pode não ter a qualidade reconhecida por um relatório mal escrito. Decida primeiro a <em>audiência</em> (técnica ou leiga); às vezes o relatório é uma seção curta de metodologia, às vezes é o produto final. Sugestão dos autores: escreva sempre um relatório <em>completo</em>, elaborado ao longo do levantamento, como diário e memória, usando o Apêndice B como guia; extraia dele os outros produtos.</p>
+<!-- =================================================================== 10 -->
 
-<div class="caixa teorema">
-  <span class="rotulo">O mínimo que um relatório de plano amostral deve mencionar</span>
-  <p>Propósitos; as diversas populações; sistema de referência; unidades amostrais; plano de seleção; procedimento de coleta; desempenho da amostra; tamanho; sistema de ponderação; fórmulas para os erros amostrais; avaliação dos possíveis efeitos dos erros não amostrais. Se inclui análise, <strong>distinga os resultados descritivos da amostra dos que fazem inferência populacional</strong>. Para grandes volumes de tabelas, apresente erros aproximados globais em vez de poluir cada tabela.</p>
+<h2 class="passo" id="p10"><span class="n">10</span> Erro amostral: o exemplo eleitoral</h2>
+<p class="marco">Passo 10 de 12</p>
+
+<div class="ideia">
+  <p>A precisão depende de <strong>quantos</strong> você entrevista — não de que fração da população eles são.</p>
+  <p>E melhora com <math><msqrt><mi>n</mi></msqrt></math>: para cortar o erro pela metade, quadruplique a amostra.</p>
 </div>
 
-<p>Falta à maioria dos bancos de dados de levantamentos uma documentação “que descreva a utilidade das variáveis e liste os vínculos entre os códigos e os atributos” (Babbie, 1999). O descuido custa tempo perdido e trabalho duplicado quando o mesmo banco é analisado em ocasiões distintas. Os amostristas usam a documentação para caracterizar ponderação e recodificações; os analistas, para descrever novas variáveis e indicadores. Banco + dicionário permitem ainda disponibilizar a pesquisa a um público maior (modelos: IBGE e SEADE).</p>
+<div class="caixa exemplo">
+  <span class="rotulo">Candidato com 56% na amostra</span>
+  <p>Margem de erro de 95%: <math><mn>1,96</mn><msqrt><mrow><mi>p</mi><mi>q</mi><mo>/</mo><mi>n</mi></mrow></msqrt></math>.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th class="c"><math><mi>n</mi></math></th><th class="c">margem</th><th class="c">intervalo</th></tr></thead>
+    <tbody>
+      <tr><td class="c">100</td><td class="c">9,7 p.p.</td><td class="c">46,3 % – 65,7 %</td></tr>
+      <tr><td class="c">400</td><td class="c">4,9 p.p.</td><td class="c">51,1 % – 60,9 %</td></tr>
+      <tr><td class="c">1600</td><td class="c">2,4 p.p.</td><td class="c">53,6 % – 58,4 %</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Duas leituras.</strong> Quadruplicar <math><mi>n</mi></math> corta a margem pela metade, todas as vezes. E <math><mi>N</mi></math> <em>não aparece na conta</em>: 1 600 entrevistas dão a mesma precisão numa cidade de 100 mil e num país de 200 milhões.</p>
+  <p class="miudo">O livro imprime “53,5% a 59,5%” na última linha; é gralha — o intervalo correto é 53,6%–58,4%, centrado em 56.</p>
+</div>
 
-<h2 id="recall">Cartões de recall ativo</h2>
+<div class="caixa aviso">
+  <span class="rotulo">Por que <math><mi>N</mi></math> some</span>
+  <p>Sem reposição existe um fator de correção <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math>, que faz a população pequena ser <em>um pouco</em> mais fácil.</p>
+  <p>Com <math><mi>n</mi><mo>=</mo><mn>1600</mn></math> e <math><mi>N</mi></math> na casa dos milhões esse fator é praticamente 1, e desaparece. É por isso que a pergunta “mas eles entrevistaram só 2 000 pessoas num país inteiro?” tem resposta: sim, e está certo.</p>
+  <p class="miudo">O capítulo 3 deduz esse fator; o 1 só antecipa a consequência.</p>
+</div>
 
-<p>Tente responder antes de abrir. Se hesitar, volte à seção.</p>
-
-<details class="recall">
-  <summary>Em que a inferência para populações finitas difere da inferência “clássica” dos cursos introdutórios?</summary>
+<details class="checagem">
+  <summary>Uma margem de 2 p.p. custa quanto a mais que uma de 4 p.p.?</summary>
   <div class="resposta">
-    <p>Na clássica a amostra vem de uma distribuição de probabilidade (população infinita), com observações independentes e igualmente prováveis, e não se discute <em>como</em> foi obtida. Aqui a população é finita e descrita; os valores <math><msub><mi>Y</mi><mi>i</mi></msub></math> são fixos e a aleatoriedade está em <em>quais</em> unidades entram — o protocolo de seleção é o objeto de estudo. Mexer ou não a sopa antes da colherada é a diferença entre viés e não viés.</p>
+    <p><strong>Quatro vezes o tamanho da amostra</strong> — e, grosso modo, quatro vezes o custo de campo.</p>
+    <p>É a razão de quase toda pesquisa eleitoral parar entre 2 e 3 pontos: abaixo disso o preço cresce depressa demais para o ganho de informação.</p>
   </div>
 </details>
 
-<details class="recall">
-  <summary>Dê um exemplo em que unidade elementar, unidade amostral e unidade de resposta são três coisas diferentes.</summary>
+<!-- =================================================================== 11 -->
+
+<h2 class="passo" id="p11"><span class="n">11</span> Campo, preparação, e os erros que <math><mi>n</mi></math> não resolve</h2>
+<p class="marco">Passo 11 de 12</p>
+
+<div class="ideia">
+  <p>O erro amostral é o único que a teoria mede — e costuma ser o menor dos problemas.</p>
+  <p>Os outros não diminuem com <math><mi>n</mi></math>. Nenhum deles.</p>
+</div>
+
+<ol class="receita">
+  <li><strong>Campo.</strong> Treinar e supervisionar entrevistadores; controlar as perdas; revisitar. É aqui que a população amostrada se afasta da referida.</li>
+  <li><strong>Preparação.</strong> Crítica dos questionários, codificação das abertas, digitação, tratamento de valores faltantes (imputação).</li>
+  <li><strong>Análise.</strong> Com os <em>pesos do plano</em> — nunca a média simples, a menos que o plano seja autoponderado.</li>
+</ol>
+
+<div class="rolagem">
+<table>
+  <caption>Os erros não amostrais, e o que fazer com cada um.</caption>
+  <thead><tr><th class="txt">erro</th><th class="txt">o que é</th><th class="txt">o que atenua</th></tr></thead>
+  <tbody>
+    <tr><td class="txt">cobertura</td><td class="txt">o SR não corresponde à população alvo</td><td class="txt">melhorar ou combinar cadastros; declarar a limitação</td></tr>
+    <tr><td class="txt">não resposta</td><td class="txt">a unidade sorteada não responde — e quem não responde é <em>diferente</em></td><td class="txt">revisita, substituição controlada, ponderação por pós-estrato</td></tr>
+    <tr><td class="txt">resposta incorreta</td><td class="txt">o informante não sabe, não lembra ou não quer dizer</td><td class="txt">redação da pergunta, pré-teste, método de coleta adequado</td></tr>
+    <tr><td class="txt">processamento</td><td class="txt">digitação, codificação, programação</td><td class="txt">dupla digitação, críticas automáticas</td></tr>
+    <tr><td class="txt">entrevistador</td><td class="txt">induz a resposta, ou inventa</td><td class="txt">treino, supervisão, reentrevista de controle</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">A não resposta é a mais perigosa</span>
+  <p>Porque ela é <strong>seletiva</strong>, não aleatória. Quem não atende trabalha fora; quem recusa desconfia; quem não devolve o questionário não se interessa pelo tema.</p>
+  <p>Aumentar <math><mi>n</mi></math> não corrige nada: você só ganha mais respostas do mesmo tipo de pessoa. O que corrige é <em>ir buscar</em> quem faltou.</p>
+</div>
+
+<details class="checagem">
+  <summary>Duas pesquisas: uma com <math><mi>n</mi><mo>=</mo><mn>400</mn></math> e 90% de resposta; outra com <math><mi>n</mi><mo>=</mo><mn>4000</mn></math> e 20%. Qual você prefere?</summary>
   <div class="resposta">
-    <p>Censo demográfico: a unidade elementar é o <em>morador</em>; a unidade amostral (na parte amostrada do censo) é o <em>domicílio</em>; a unidade de resposta é o <em>chefe ou cônjuge</em>, que responde pelas questões simples de todos os moradores.</p>
+    <p><strong>A primeira</strong>, sem hesitar.</p>
+    <p>A segunda tem margem de erro <em>amostral</em> menor — e um viés de não resposta que pode ser de dez pontos e que ninguém consegue medir. Você teria um número muito preciso, e possivelmente muito errado.</p>
+    <p>É a lição do capítulo: o erro que você mede não é o erro que você tem.</p>
   </div>
 </details>
 
-<details class="recall">
-  <summary>Defina população alvo, referida e amostrada. Sobre qual valem as inferências estatísticas?</summary>
+<!-- =================================================================== 12 -->
+
+<h2 class="passo" id="p12"><span class="n">12</span> O relatório</h2>
+<p class="marco">Passo 12 de 12</p>
+
+<div class="ideia">
+  <p>Uma estimativa sem o plano que a gerou não é informação — é um número solto.</p>
+  <p>A ficha técnica é o que permite a outra pessoa julgar o seu resultado.</p>
+</div>
+
+<div class="fileira">
+  <div><strong>Objetivo</strong><p>a pergunta, e para que decisão</p></div>
+  <div><strong>População</strong><p>alvo, referida, amostrada — e as perdas</p></div>
+  <div><strong>Plano</strong><p>qual, estratos, alocação, <math><mi>n</mi></math></p></div>
+  <div><strong>Coleta</strong><p>método, período, taxa de resposta</p></div>
+  <div><strong>Estimativas</strong><p>com erro padrão ou IC, nunca sozinhas</p></div>
+  <div><strong>Limitações</strong><p>o que o número <em>não</em> diz</p></div>
+</div>
+
+<p>E o <strong>banco de dados</strong> junto: microdados com os pesos do plano, dicionário das variáveis, e o código de quem eram as unidades perdidas. Sem os pesos, ninguém consegue refazer a análise corretamente.</p>
+
+<div class="caixa aviso">
+  <span class="rotulo">A frase que não pode faltar</span>
+  <p>Sobre <em>qual população</em> vale a conclusão. Não “os brasileiros aprovam”, mas “entre os adultos urbanos das capitais, entrevistados em domicílio entre 3 e 7 de março, com 12% de perda”.</p>
+  <p>É chato de escrever e é o que separa um relatório de uma manchete.</p>
+</div>
+
+<details class="checagem">
+  <summary>Uma matéria diz “pesquisa mostra que 62% apoiam a medida”. O que falta para você poder julgar?</summary>
   <div class="resposta">
-    <p>Alvo: a que se quer conhecer (definida pelos objetivos). Referida: a que o sistema de referência de fato descreve e de onde se sorteia (“adultos em domicílios particulares urbanos, excluindo favelas”). Amostrada: a que sobra depois das perdas e acréscimos do campo — só descritível <em>depois</em>. As inferências estatísticas valem <strong>só para a população amostrada</strong>; passar à referida e à alvo é avaliação qualitativa/substantiva.</p>
+    <p>Quase tudo: <strong>qual população</strong>, <strong>que plano</strong>, <strong>que <math><mi>n</mi></math></strong>, <strong>que margem de erro</strong>, <strong>que taxa de resposta</strong>, <strong>como a pergunta foi redigida</strong> e <strong>quando</strong>.</p>
+    <p>Sem margem de erro, 62% pode ser 62 ± 2 ou 62 ± 15. Sem a redação da pergunta, pode ser outra pergunta.</p>
   </div>
 </details>
 
-<details class="recall">
-  <summary>Qual a diferença entre estrato e subclasse?</summary>
-  <div class="resposta">
-    <p>Os dois são partes da população. O estrato entra no <em>desenho</em>: garante-se a priori uma amostra dele e, portanto, estimativas confiáveis. A subclasse é analisada a posteriori, e a qualidade das estimativas depende de terem caído unidades suficientes nela — pode não ter caído quase nenhuma (o sexo do respondente, no exemplo). Regra prática: fatores básicos viram estratos; secundários, subclasses.</p>
-  </div>
-</details>
+<!-- ================================================================ fecho -->
 
-<details class="recall">
-  <summary>Por que “amostra representativa” não é um conceito útil, e o que se usa no lugar?</summary>
-  <div class="resposta">
-    <p>Para saber que a amostra é uma “micro representação” da população para a característica de interesse seria preciso conhecer essa característica na população — e aí a amostra seria desnecessária. A versão “estratificada proporcional” tampouco garante precisão (600/300/100 pode bater 100/300/600 quando a dispersão é maior no estrato pequeno). No lugar: <strong>amostra probabilística</strong> — cada amostra possível tem probabilidade conhecida a priori de ocorrer; é o que permite usar toda a teoria de probabilidade e inferência.</p>
-  </div>
-</details>
+<h2 class="passo" id="fecho"><span class="n">✓</span> Fecho — agora feche a página</h2>
 
-<details class="recall">
-  <summary>Os quatro tipos de amostra de Jessen, com um exemplo cada.</summary>
-  <div class="resposta">
-    <p>Probabilística e objetiva → <em>amostra probabilística</em> (estratificada proporcional). Probabilística e subjetiva → <em>quase-aleatória</em> (quotas). Não probabilística e objetiva → <em>criteriosa</em> (cidade típica). Não probabilística e subjetiva → <em>intencional</em> (júri de especialistas, voluntários).</p>
-  </div>
-</details>
+<div class="fecho">
+  <h3>Escreva o capítulo de memória, de uma vez só</h3>
+  <p><strong>Papel, aba fechada, tudo o que lembrar</strong> — não passo por passo. Sai menos na hora e mais dois dias depois, e mais organizado.</p>
+  <p>Este capítulo cai em questão <em>discursiva</em>, então escrever em frases completas é o próprio treino da prova.</p>
+  <ol class="conferir">
+    <li>Amostra ganha do censo em custo, prazo e <strong>qualidade por unidade</strong>.</li>
+    <li>Objetivo → constructo → variável → parâmetro; <math><mi>R</mi></math> ≠ <math><mover><mi>R</mi><mo>¯</mo></mover></math>.</li>
+    <li>Unidade <strong>elementar</strong>, <strong>amostral</strong>, <strong>de resposta</strong> — e quando coincidem.</li>
+    <li>População <strong>alvo ⊇ referida ⊇ amostrada</strong>; a inferência vale para a amostrada.</li>
+    <li><strong>Estrato</strong> é antes do sorteio (<math><msub><mi>n</mi><mi>h</mi></msub></math> fixo); <strong>subclasse</strong> é depois (tamanho aleatório).</li>
+    <li>Métodos de coleta trocam custo por controle; pré-teste sempre.</li>
+    <li>Probabilística, não “representativa”: <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo></math> conhecida. Quota não é probabilística.</li>
+    <li>Kish: cinco critérios, <math><msup><mn>2</mn><mn>5</mn></msup></math> planos; a primeira opção em todos é a AAS.</li>
+    <li>Os planos se dividem em <em>ganhar precisão</em> e <em>viabilizar o campo</em>.</li>
+    <li>Erro cai com <math><msqrt><mi>n</mi></msqrt></math>; <math><mi>N</mi></math> quase não entra (100 / 400 / 1600).</li>
+    <li>Erros não amostrais <strong>não</strong> diminuem com <math><mi>n</mi></math>; a não resposta é seletiva.</li>
+    <li>Relatório com ficha técnica e a frase sobre qual população vale.</li>
+  </ol>
+</div>
 
-<details class="recall">
-  <summary>Os cinco critérios de Kish. Que plano resulta da primeira opção em todos?</summary>
-  <div class="resposta">
-    <p>(a) probabilidade de seleção igual / distinta; (b) unidade amostral elementar / conglomerado; (c) não estratificada / estratificada; (d) um / mais de um estágio; (e) seleção aleatória / sistemática. Primeira opção em todos: <strong>Amostragem Aleatória Simples</strong>. São 32 combinações.</p>
-  </div>
-</details>
+<div class="caixa pratica">
+  <span class="rotulo">Se travou em algum item</span>
+  <p>Volte ao passo e refaça <em>só a checagem</em>, sem reler.</p>
+  <p>Os itens 4 e 7 são os que mais caem: saber dizer sobre qual população vale a conclusão, e por que “representativa” não é um critério verificável.</p>
+</div>
 
-<details class="recall">
-  <summary>Com ou sem reposição: qual se deveria usar na prática e por que os livros usam a outra?</summary>
-  <div class="resposta">
-    <p>Sem reposição, na prática: sortear de novo a mesma unidade não traz informação nova. Com reposição, nos livros de inferência: recompõe o universo e torna as observações independentes, o que simplifica as deduções. O capítulo 3 compara as duas (AASc × AASs) e mostra o ganho de precisão da AASs pelo fator <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>O que é UPA e USA? Por que sortear em dois estágios em vez de entrevistar o conglomerado inteiro?</summary>
-  <div class="resposta">
-    <p>Unidade Primária e Unidade Secundária de Amostragem: a unidade amostral de cada estágio (domicílio, depois eleitor). Dentro do conglomerado as unidades tendem a ser parecidas (opiniões no mesmo domicílio); entrevistar todas é desperdício — sorteia-se uma parte. O capítulo 7 quantifica isso com o coeficiente de correlação intraclasse.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Qual é a “estratégia de avaliação” em amostragem: julga-se a amostra ou o plano?</summary>
-  <div class="resposta">
-    <p>O <strong>plano</strong>. Para uma amostra particular o erro <math><mi>t</mi><mo>−</mo><mi>θ</mi></math> só se calcularia conhecendo <math><mi>θ</mi></math>. O que se avalia é o comportamento de <math><mi>t</mi><mo>−</mo><mi>θ</mi></math> sobre <em>todas</em> as amostras possíveis do plano: esperança zero = não viesado; esperança do quadrado = EQM; se não viesado, EQM = variância, cuja raiz é o erro padrão.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>No exemplo eleitoral (56%), por que 100 é pouco, 400 basta e 1 600 é demais?</summary>
-  <div class="resposta">
-    <p>Meia-largura do IC de 95%: <math><mn>1,96</mn><msqrt><mn>0,56</mn><mo>×</mo><mn>0,44</mn><mo>/</mo><mi>n</mi></msqrt></math> = 9,7 pontos (n = 100: 46–66%, contém 50%, inconclusivo), 4,9 pontos (n = 400: 51–61%, exclui 50%) e 2,4 pontos (n = 1 600: 53,6–58,4% — conclusivo também, mas a decisão já estava tomada com 400; 1 200 entrevistas a mais). Quadruplicar <math><mi>n</mi></math> só divide o erro por 2.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Por que os erros não amostrais não desaparecem no censo? Cite quatro fontes.</summary>
-  <div class="resposta">
-    <p>Porque não vêm do sorteio: vêm de mensuração, entrevista, codificação, cobertura — e continuam lá quando se entrevistam todos. Fontes: não resposta total (recusa, falta de contato) e parcial (renda); erros de omissão e comissão do sistema de referência; efeito do entrevistador; questionário mal redigido; codificação e digitação.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Cite os itens mínimos de um relatório de plano amostral.</summary>
-  <div class="resposta">
-    <p>Propósitos; as diversas populações; sistema de referência; unidades amostrais; plano de seleção; procedimento de coleta; desempenho da amostra; tamanho; sistema de ponderação; fórmulas dos erros amostrais; avaliação dos efeitos dos erros não amostrais. E separar o descritivo da amostra da inferência populacional.</p>
-  </div>
-</details>
-
-<h2 id="exercicios">Exercícios resolvidos</h2>
+<h2 class="passo" id="exercicios"><span class="n">+</span> Exercícios resolvidos</h2>
+<p class="marco">Depois do fecho · seis exercícios de discussão, com resposta comentada</p>
 
 <p>Os exercícios do capítulo são de discussão: pedem que se aplique o vocabulário a situações concretas. Escolhi seis, cada um exercitando uma ideia: contar as palavras deste livro (1.2 — dá para conferir com um censo!), três maneiras de estimar uma proporção e o viés de tamanho (1.3), a “amostra da letra S” e o sorteio sistemático (1.6), escolha da UPA (1.10), carros ou estacionamentos (1.12) e método de coleta (1.13). As respostas são minhas; o livro não traz gabarito para este capítulo.</p>
 
@@ -594,50 +770,16 @@ round(N * mean(y) + c(-1, 1) * 1.96 * ep)
   </ul>
 </div>
 
+
 <div class="nota">
-  <p><strong>Fonte:</strong> Bolfarine, H.; Bussab, W. O. <em>Elementos de Amostragem</em>. IME-USP, maio de 2004 — capítulo 1, págs. 1–36. Figura 1.1 reproduzida do original para fins de estudo pessoal; as Figuras 1.2 e 1.3 foram redesenhadas em SVG a partir dos rótulos do livro.</p>
-  <p><strong>Nota sobre o exemplo eleitoral (p. 21):</strong> o livro imprime, para 1 600 eleitores, o intervalo “entre 53,5% e 59,5%”. Com <math><mi>p</mi><mo>=</mo><mn>0,56</mn></math> a meia-largura de 95% é <math><mn>1,96</mn><msqrt><mn>0,56</mn><mo>×</mo><mn>0,44</mn><mo>/</mo><mn>1600</mn></msqrt><mo>=</mo><mn>0,024</mn></math>, e o intervalo é 53,6%–58,4% (o impresso não é sequer centrado em 56%). Os intervalos para 100 e 400 conferem com o livro no arredondamento.</p>
-  <p><strong>Nota sobre o Exercício 1.2:</strong> o censo de palavras foi feito sobre o texto do PDF com o critério declarado na resolução; outro critério (contar “2,5” como palavra, excluir cabeçalhos) dá outro total — o que é, aliás, a lição da seção 2.2 sobre operacionalizar o conceito.</p>
+  <p><strong>Sobre esta versão.</strong> Mesmo conteúdo do capítulo 1 de Bolfarine &amp; Bussab (págs. 1–36), reorganizado em doze passos curtos, cada um com o caso concreto antes da abstração e uma pergunta de recuperação no fim. As figuras 1.1 (recortada do livro), 1.2 e 1.3 (redesenhadas em SVG) foram mantidas. O exemplo eleitoral da pág. 21 sai impresso com o intervalo “53,5% a 59,5%” para <math><mi>n</mi><mo>=</mo><mn>1600</mn></math>; o correto, centrado em 56%, é 53,6%–58,4%. Os exercícios do capítulo são de discussão e o livro não traz gabarito — as respostas são minhas.</p>
 </div>
 
 <nav class="nav-rodape">
-  <span><a href="../index.html">← Menu</a></span>
+  <span><a href="../index.html">Menu</a></span>
   <span><a href="../cap02/02-00-definicoes-e-notacoes-basicas.html">Cap. 2 — Definições e notações básicas →</a></span>
 </nav>
 
-
 </div>
-<script>
-/* Em tela larga a barra lateral fica sempre aberta (o CSS esconde o
-   alternador). Abaixo de 62rem ela vira aba: aí começa fechada e fecha
-   sozinha ao escolher um link. Nada aqui depende de rede ou biblioteca —
-   sem JavaScript a barra apenas fica sempre aberta, que é o estado bom. */
-(function () {
-  var menu = document.querySelector(".menu-lateral");
-  if (!menu) return;
-
-  /* Seções com subtópicos: clicar no título abre a lista e segue o link.
-     Só ABRE — para fechar, clique na setinha. É preciso fazer à mão porque
-     o navegador dá prioridade ao <a> e não alterna o <details> sozinho.
-     Sem JavaScript a setinha continua abrindo e fechando normalmente. */
-  menu.querySelectorAll("details.sub > summary > a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var d = a.closest("details.sub");
-      if (d) d.open = true;
-    });
-  });
-
-  if (!window.matchMedia) return;
-  var estreito = window.matchMedia("(max-width: 62rem)");
-  function ajustar() { menu.open = !estreito.matches; }
-  ajustar();
-  estreito.addEventListener("change", ajustar);
-  menu.querySelectorAll(".painel a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      if (estreito.matches) menu.open = false;
-    });
-  });
-})();
-</script>
 </body>
 </html>

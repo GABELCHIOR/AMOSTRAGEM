@@ -36,12 +36,25 @@ capítulos em cinco páginas A4 de duas colunas, para levar impressas (Ctrl+P �
   capítulos, na numeração do livro e **com as hipóteses que cada um exige**,
   fechando num quadro “resultado × o que exige × quando quebra”.
 
-Cada aula traz o objetivo, o conceito com as derivações, as **definições,
-resultados, demonstrações e exemplos em caixas de cores distintas**, figuras
-do livro e diagramas redesenhados, os exemplos resolvidos passo a passo com
-código em **R**, cartões de recall ativo e uma seleção de exercícios com
-gabarito comentado. **Todo resultado numérico foi recalculado**, não copiado —
-e as poucas divergências com o impresso estão anotadas no fim de cada página.
+## Como as aulas são organizadas
+
+Cada capítulo é uma página dividida em **12 passos**, cada um do tamanho de uma
+tela:
+
+- abre com **a ideia em uma linha** — a conclusão vem antes do desenvolvimento;
+- traz o **caso numérico à esquerda e o símbolo à direita**, lado a lado e
+  sempre nessa ordem;
+- mostra as contas em **lista numerada**, uma operação por linha;
+- e termina com **uma pergunta de recuperação**, com a resposta escondida.
+
+No fim há um **fecho**: fechar a página e escrever o capítulo inteiro de
+memória, de uma vez só, conferindo depois contra uma lista de 12 itens. Só
+então vêm os **exercícios resolvidos** com gabarito comentado.
+
+Ainda há figuras do livro e diagramas redesenhados, código em **R** com a
+saída, e as definições, resultados e demonstrações em caixas de cores
+distintas. **Todo resultado numérico foi recalculado**, não copiado — e as
+divergências com o impresso estão anotadas no fim de cada página.
 
 ## Estrutura
 
@@ -52,6 +65,7 @@ e as poucas divergências com o impresso estão anotadas no fim de cada página.
 │   ├── assets/
 │   │   ├── tema.css        cores, fontes e medidas (tema azul-cobalto)
 │   │   ├── estilo.css      estrutura e layout das aulas
+│   │   ├── aula.css        o formato em 12 passos
 │   │   └── guia.css        layout da folha de consulta (A4, duas colunas)
 │   ├── capNN/
 │   │   ├── NN-00-titulo.html

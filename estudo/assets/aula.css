@@ -1,0 +1,278 @@
+/* ==========================================================================
+   AMOSTRAGEM — camada "aula em passos"
+   --------------------------------------------------------------------------
+   Carrega DEPOIS de estilo.css e só acrescenta peças novas; nada aqui
+   redefine classe existente, então as páginas antigas não mudam.
+
+   Cada peça responde a um achado da literatura de aprendizagem:
+
+     .passo / .marco   segmentação: um passo por tela, com o leitor no
+                       controle do ritmo (efeito do segmenting, d ≈ 0,79)
+     .ideia            sinalização: a conclusão vem ANTES do desenvolvimento
+     .par              concreteness fading: o caso numérico à esquerda, o
+                       símbolo à direita, lado a lado e na mesma ordem
+     .receita          exemplo resolvido, uma operação por linha
+     .checagem         recuperação ativa ao fim de cada passo
+     .fecho            recuperação livre do texto inteiro no fim (a versão
+                       curta parece melhor na hora e rende menos depois)
+     .chip             termo técnico marcado, para achar de relance
+
+   Cor nenhuma escrita aqui: tudo vem das variáveis de tema.css.
+   ========================================================================== */
+
+/* -------------------------------------------------------------- o passo -- */
+
+/* o h2 vira faixa de passo: número grande à esquerda, título ao lado */
+.pagina > h2.passo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  border-top: 2px solid var(--realce);
+  padding-top: 0.8rem;
+  margin-top: 3.2rem;
+}
+
+h2.passo .n {
+  font-family: var(--sans);
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--realce);
+  opacity: 0.35;
+  letter-spacing: -0.03em;
+}
+
+/* "passo 4 de 12" — dá o tamanho do caminho e o quanto falta */
+.marco {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  margin: 0 0 0.6rem;
+}
+
+/* ------------------------------------------------------ a ideia em uma linha */
+
+.ideia {
+  border-left: 4px solid var(--realce);
+  background: color-mix(in srgb, var(--realce) 6%, var(--fundo-caixa));
+  border-radius: 0 4px 4px 0;
+  padding: 0.8rem 1rem;
+  margin: 0 0 1.2rem;
+  font-size: 1.12rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.ideia p { margin: 0; }
+.ideia p + p { margin-top: 0.45rem; font-weight: 400; font-size: 0.94rem; color: var(--texto-fraco); }
+
+/* ------------------------------------------- concreto ao lado do símbolo -- */
+
+.par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.par > div {
+  border: 1px solid var(--linha);
+  border-radius: 4px;
+  padding: 0.7rem 0.85rem;
+  background: var(--fundo-caixa);
+}
+
+.par > div > h4 {
+  margin: 0 0 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+/* o lado concreto recebe o filete âmbar; o abstrato, o petróleo */
+.par > .caso  { border-left: 3px solid var(--exemplo); }
+.par > .simb  { border-left: 3px solid var(--teorema); }
+
+.par p:last-child, .par ul:last-child { margin-bottom: 0; }
+
+@media (max-width: 46rem) {
+  .par { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------- exemplo resolvido em linhas */
+
+ol.receita {
+  list-style: none;
+  counter-reset: passo;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+ol.receita > li {
+  counter-increment: passo;
+  position: relative;
+  padding: 0.35rem 0 0.35rem 2.2rem;
+  border-bottom: 1px dashed var(--linha);
+}
+
+ol.receita > li:last-child { border-bottom: none; }
+
+ol.receita > li::before {
+  content: counter(passo);
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--realce) 12%, transparent);
+  color: var(--realce);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* ----------------------------------------------- recuperação ativa curta -- */
+
+.checagem {
+  border: 1px solid color-mix(in srgb, var(--demo) 40%, var(--linha));
+  border-radius: 4px;
+  background: var(--demo-fundo);
+  margin: 1.3rem 0 0;
+  overflow: hidden;
+}
+
+.checagem > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.7rem 0.9rem;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.checagem > summary::-webkit-details-marker { display: none; }
+
+.checagem > summary::before {
+  content: "?";
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: var(--demo);
+  color: var(--menu-texto);
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  transform: translateY(0.1rem);
+}
+
+.checagem[open] > summary { border-bottom: 1px solid color-mix(in srgb, var(--demo) 30%, var(--linha)); }
+
+.checagem .resposta { padding: 0.7rem 0.9rem 0.8rem 2.75rem; font-size: 0.96rem; }
+.checagem .resposta > :first-child { margin-top: 0; }
+.checagem .resposta > :last-child { margin-bottom: 0; }
+
+/* o detalhe que não cabe na frase principal, em corpo menor */
+.miudo { font-size: 0.85em; color: var(--texto-fraco); }
+
+/* ------------------------------------------------------- termo destacado -- */
+
+.chip {
+  font-family: var(--sans);
+  font-size: 0.86em;
+  font-weight: 700;
+  color: var(--realce);
+  background: color-mix(in srgb, var(--realce) 9%, transparent);
+  border-radius: 3px;
+  padding: 0.05em 0.35em;
+}
+
+/* ------------------------------------------------ cartõezinhos em fileira -- */
+
+.fileira {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.fileira > div {
+  border: 1px solid var(--linha);
+  border-top: 3px solid var(--teorema);
+  border-radius: 4px;
+  padding: 0.6rem 0.7rem;
+  background: var(--fundo-caixa);
+  font-size: 0.92rem;
+}
+
+.fileira > div > strong {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  margin-bottom: 0.3rem;
+}
+
+.fileira p { margin: 0.2rem 0 0; }
+
+/* o número que é o ponto do cartão, em corpo grande e centrado */
+.numerao {
+  font-size: 1.35rem;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+/* ------------------------------------------------------- fecho do capítulo */
+
+.fecho {
+  border: 2px solid var(--realce);
+  border-radius: 6px;
+  padding: 1.1rem 1.2rem;
+  margin: 1.2rem 0;
+  background: color-mix(in srgb, var(--realce) 5%, var(--fundo-caixa));
+}
+
+.fecho > h3 { margin-top: 0; border: none; padding-top: 0; }
+
+/* lista de conferência do fecho: 12 linhas para bater com o que foi escrito */
+ol.conferir { margin: 0.6rem 0 0; padding-left: 1.3rem; font-size: 0.95rem; }
+ol.conferir > li { margin-bottom: 0.3rem; }
+
+/* --------------------------------------------------------------- figuras -- */
+
+/* rótulo curto dentro do SVG, acima do valor. O `fill` precisa ser explícito:
+   texto de SVG não herda a cor do corpo, e sem isto o rótulo sai preto no
+   modo escuro. */
+figure.diagrama .tx-rot {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  fill: var(--texto-fraco);
+  text-anchor: middle;
+}
+
+/* barra de frequência das distribuições amostrais */
+figure.diagrama .barra      { fill: color-mix(in srgb, var(--realce) 45%, var(--fundo-caixa)); }
+figure.diagrama .barra-alvo { fill: var(--realce); }
+figure.diagrama .eixo       { stroke: var(--linha); stroke-width: 1; }
+
+@media print {
+  .checagem { break-inside: avoid; }
+  .checagem .resposta { display: block; }
+  .par { break-inside: avoid; }
+}

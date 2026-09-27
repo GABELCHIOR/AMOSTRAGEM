@@ -64,20 +64,28 @@ borda direita (`x1`), como se fez para a Tabela 2.8.
 **Geração sob demanda, capítulo por capítulo.** A cada sessão o usuário escolhe
 o próximo capítulo e eu gero uma página de estudo focada.
 
-Cada página contém, nesta ordem:
+### Formato "aula em 12 passos" (refeito em 2026-09-27)
 
-1. **Objetivo da aula** — o que se deve saber fazer ao final
-2. **Conceito** em português, com a matemática em MathML; definições,
-   resultados, demonstrações e exemplos nas caixas
-3. **Figuras** recortadas do PDF e **diagramas em SVG inline**
-   (`<figure class="diagrama">`, cores via variáveis do tema)
-4. **Exemplos do livro resolvidos passo a passo**, com o código em R e a saída
-5. **Cartões de recall ativo** — pergunta com resposta escondida (`<details>`)
-6. **Exercícios selecionados** do fim do capítulo, com gabarito comentado
+Os capítulos 1 a 4 foram reescritos neste formato, a pedido do usuário, para
+leitura com dificuldade de atenção. **Não mencionar isso no texto nem no site.**
+Cada decisão de layout responde a um achado da literatura:
 
-**Tom das aulas:** professor dando aula, não resumo. Explicar o *porquê*,
-mostrar as derivações, ligar cada conceito a onde ele reaparece nos capítulos
-seguintes.
+| Achado | Peça da página |
+|---|---|
+| Segmentação — segmentos curtos controlados pelo leitor batem texto corrido (10 de 10 testes, efeito mediano d ≈ 0,79; meta-análise de 88 estudos confirma, com queda de carga cognitiva) | **12 passos numerados**, um por tela: `<h2 class="passo"><span class="n">N</span> título</h2>` + `<p class="marco">Passo N de 12</p>` |
+| Sinalização — conclusão antes do desenvolvimento | `.ideia`: uma ou duas frases em corpo grande abrindo o passo |
+| *Concreteness fading* — concreto primeiro, símbolo depois, é melhor que o inverso (Fyfe et al.), para quem tem pouca e muita base | `.par` com `.caso` (âmbar, "No exemplo") à esquerda e `.simb` (petróleo, "Em símbolos") à direita, sempre nessa ordem |
+| Recuperação ativa — a técnica mais apoiada, com benefício igual para leitores com e sem déficit de atenção | `.checagem`: uma pergunta ao fim de **cada** passo, resposta em `<details>` |
+| Mas recall por seções parece melhor na hora (81% × 54%) e rende **menos** dois dias depois (37% × 45%, d = 0,45), com lembrança menos organizada | `.fecho` no fim manda escrever o capítulo **inteiro de uma vez**, e diz por quê; segue a lista `ol.conferir` de 12 itens |
+| Redução de carga estranha | frases curtas; contas em `ol.receita`, uma operação por linha |
+
+Estrutura fixa de cada página: topo → `.objetivo` → caixa "Como usar esta
+página" → 12 passos → `.fecho` → exercícios resolvidos (carregados intactos da
+versão anterior) → `.nota` → `.nav-rodape`.
+
+**Tom:** professor dando aula, não resumo. Frase curta. Explicar o *porquê* e
+ligar cada conceito a onde ele reaparece depois. Evitar parênteses encaixados e
+orações subordinadas em cadeia — foi o que mais se cortou na reescrita.
 
 **Regra dos números:** todo resultado numérico é *calculado* (Python com
 `fractions.Fraction` no scratchpad, para as distribuições amostrais; numpy para
@@ -96,6 +104,9 @@ e dizer o que esperar.
   composição; leia “1/9 se s ∈ S₂”. Anotado.
 - Cap. 2, Ex. 2.14: EQM impresso 0,6458 (viés arredondado 0,13 ao quadrado);
   exato 97/150 = 0,6467. Anotado.
+- Cap. 3, Ex. 3.2: o erro máximo do livro é **B = √2** (daí D = 2/2² = 0,5 e
+  n = 48/0,5 = 96). A primeira versão da aula transcreveu "B = 2", que daria
+  n = 48 — corrigido em 2026-09-27. Com z = 1,96, n = 93.
 - Cap. 3: nos tamanhos de amostra o livro usa z ≈ 2 (D = B²/4) e nos
   intervalos 1,96 (Ex. 3.2: n = 96 com z = 2, 93 com 1,96; Ex. 3.6: 3466 vs
   3341). Segui o livro nos exemplos, 1,96 nos exercícios. Ex. 3.3: limite
@@ -300,6 +311,12 @@ O CSS está separado em dois arquivos e essa separação é para valer:
   acrescido das classes de árvore para SVG: `.cx` (nó destacado), `.cx-folha`
   (nó neutro), `.ramo` (traço sem seta), `.tx`, `.tx-crit`. **Nunca escrever
   cor literal aqui.**
+- `estudo/assets/aula.css` — **camada do formato em passos**, carregada
+  *depois* de `estilo.css` nas quatro aulas. Só acrescenta; não redefine nada
+  do que já existia. Peças: `h2.passo`/`.n`, `.marco`, `.ideia`, `.par` com
+  `.caso`/`.simb`, `ol.receita`, `.checagem`, `.chip`, `.fileira`, `.numerao`,
+  `.miudo`, `.fecho`/`ol.conferir`, e os complementos de SVG `.tx-rot`,
+  `.barra`, `.barra-alvo`, `.eixo`. Cor nenhuma literal, como sempre.
 
 O `<head>` de toda página de aula:
 
@@ -310,6 +327,7 @@ O `<head>` de toda página de aula:
 <title>Cap. N — Título</title>
 <link rel="stylesheet" href="../assets/tema.css?v=1">
 <link rel="stylesheet" href="../assets/estilo.css?v=1">
+<link rel="stylesheet" href="../assets/aula.css?v=1">
 ```
 
 Tudo o mais (grade de quebra de coluna, `.topo + .objetivo`, barra lateral
@@ -321,12 +339,27 @@ fixa com `<details class="sub">`, `h3` com `id="{h2}-{k}"`, `td.txt`,
 - Espaço nas bordas de `<mtext>` é descartado. Use `<mspace width="0.35em"/>`
   fora do `<mtext>`.
 - `<mfrac linethickness="0">` para coeficientes binomiais.
+- `<mo>(</mo>` é **stretchy** por padrão, e em `math[display="block"]` isso
+  estica `n(s)`, `P(s)`, `E[t]` até ficarem enormes. Use
+  `<mo stretchy="false">` quando o conteúdo entre os delimitadores for baixo —
+  e **só** nesse caso: em volta de `mfrac`, `msqrt`, `munder`, `mover`,
+  `msup` etc. o esticamento é o certo.
 - **Equações em bloco com mais de ~700 px estouram a coluna de leitura** (46rem)
   e viram rolagem horizontal. Regra: no máximo duas igualdades por
   `<math display="block">`; a cadeia longa da demonstração de (2.15) foi
   partida em dois blocos. Conferir com JS no preview:
   `[...document.querySelectorAll('math[display=block]')].filter(m => m.scrollWidth > m.clientWidth + 1)`.
-- Um `Write` só não cabe: cada aula tem 640–860 linhas. Escrever em três partes
+**SVG — armadilhas do formato novo:**
+
+- `.tx-rot` (o rótulo curto dos diagramas) tem `text-transform: uppercase`.
+  **Nunca pôr símbolo matemático dentro dele**: `n = 2` vira `N = 2` e `r` vira
+  `R`, que são outros parâmetros. Reescrever o rótulo em palavras.
+- Texto de SVG **não herda** a cor do corpo: toda classe nova precisa de `fill`
+  explícito, ou o rótulo sai preto no modo escuro.
+- Subíndices com `<tspan baseline-shift="sub" font-size="8.5">`; escrever
+  `f i` com espaço sai feio e é o que acontece se esquecer.
+
+- Um `Write` só não cabe: cada aula tem 640–920 linhas. Escrever em três partes
   no scratchpad e concatenar com `cat`; validar o aninhamento com o
   `valida.py` (html.parser) a cada passada. **Heredocs no Bash quebram com
   conteúdo HTML longo** (aspas/contra-barras): usar o `Write` para os HTML.
@@ -358,6 +391,7 @@ AMOSTRAGEM/
     ├── assets/
     │   ├── tema.css        cores, fontes, medidas (azul-cobalto)
     │   ├── estilo.css      estrutura e layout das aulas
+    │   ├── aula.css        formato "12 passos" (carrega depois de estilo.css)
     │   └── guia.css        layout da folha de consulta (A4, 2 colunas)
     ├── cap01/
     │   ├── 01-00-nocoes-basicas.html
@@ -382,9 +416,12 @@ Pages servir o site, ativar em Settings → Pages → branch `main`, pasta `/`
 ## Progresso
 
 **Capítulos 1 a 4 prontos** (caps. 1–2 em 2026-09-11; caps. 3–4 em
-2026-09-21) e as **duas folhas de consulta dos caps. 1–4** (guia de prova em
-2026-09-22; definições e resultados em 2026-09-27; 5 páginas A4 cada).
-Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
+2026-09-21), **reescritos no formato de 12 passos em 2026-09-27** — as versões
+antigas foram substituídas, não há cópia no repositório (o histórico do git
+tem). E as **duas folhas de consulta dos caps. 1–4** (guia de prova em
+2026-09-22; definições e resultados em 2026-09-27; 5 páginas A4 cada), que
+continuam no formato denso original — folha de consulta não é aula.
+**O capítulo 5 em diante nasce direto no formato de 12 passos.** Próximo: capítulo 5 (Estimadores do tipo razão, livro 127–144,
 PDF 139–156). Ao gerar, retomar: a leitura "parte não observada" do estimador
 expansão (cap. 3, seção 2.2); o Ex. 3.7 dos dentistas como razão com X
 conhecido; a Tabela 2.8 (ρ_XY = 0,96, R = 0,682) é a população natural para

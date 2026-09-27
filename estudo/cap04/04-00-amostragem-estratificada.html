@@ -9,48 +9,36 @@
 <title>Cap. 4 — Amostragem estratificada</title>
 <link rel="stylesheet" href="../assets/tema.css?v=1">
 <link rel="stylesheet" href="../assets/estilo.css?v=1">
+<link rel="stylesheet" href="../assets/aula.css?v=1">
 </head>
 <body>
 
 <details class="menu-lateral" open>
   <summary>Índice da aula</summary>
   <nav class="painel">
-    <p class="painel-titulo">Cap. 4 — Amostragem estratificada</p>
+    <p class="painel-titulo">Cap. 4 — em 12 passos</p>
     <ol>
-      <li><details class="sub">
-        <summary><a href="#s1">Por que estratificar</a></summary>
-        <ul class="subitens">
-          <li><a href="#s1-1">1.1 Exemplo 4.1: EPA = 0,40</a></li>
-          <li><a href="#s1-2">1.2 Exemplo 4.2: estratos que não ajudam</a></li>
-        </ul>
-      </details></li>
-      <li><details class="sub">
-        <summary><a href="#s2">Notação e relações úteis</a></summary>
-        <ul class="subitens">
-          <li><a href="#s2-1">2.1 Índices duplos, <math><msub><mi>W</mi><mi>h</mi></msub></math> e a média ponderada</a></li>
-          <li><a href="#s2-2">2.2 <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math></a></li>
-          <li><a href="#s2-3">2.3 Estatísticas por estrato</a></li>
-        </ul>
-      </details></li>
-      <li><a href="#s3">O estimador estratificado (Teorema 4.1)</a></li>
-      <li><details class="sub">
-        <summary><a href="#s4">Alocação da amostra</a></summary>
-        <ul class="subitens">
-          <li><a href="#s4-1">4.1 Exemplo 4.4: a alocação importa</a></li>
-          <li><a href="#s4-2">4.2 Proporcional (Teorema 4.2)</a></li>
-          <li><a href="#s4-3">4.3 Uniforme</a></li>
-          <li><a href="#s4-4">4.4 Ótima de Neyman (Teorema 4.3)</a></li>
-          <li><a href="#s4-5">4.5 <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math> (Teorema 4.4)</a></li>
-        </ul>
-      </details></li>
-      <li><a href="#s5">IC e tamanho da amostra</a></li>
-      <li><a href="#s6">Proporções</a></li>
-      <li><a href="#recall">Cartões de recall ativo</a></li>
-      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+      <li><a href="#p1">Por que estratificar</a></li>
+      <li><a href="#p2">Índices duplos e <math><msub><mi>W</mi><mi>h</mi></msub></math></a></li>
+      <li><a href="#p3">A variância se parte em duas</a></li>
+      <li><a href="#p4">O estimador e as três hipóteses</a></li>
+      <li><a href="#p5">AASc dentro dos estratos</a></li>
+      <li><a href="#p6">A alocação muda tudo</a></li>
+      <li><a href="#p7">Proporcional</a></li>
+      <li><a href="#p8">Uniforme</a></li>
+      <li><a href="#p9">Ótima, e Neyman</a></li>
+      <li><a href="#p10">As três variâncias em fila</a></li>
+      <li><a href="#p11">IC e tamanho da amostra</a></li>
+      <li><a href="#p12">Proporções, e quando estratificar perde</a></li>
     </ol>
+    <p class="painel-titulo">Fim</p>
+    <ul>
+      <li><a href="#fecho">Fecho — escrever tudo</a></li>
+      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+    </ul>
     <p class="extras">
-      <a href="#topo">↑ Topo</a>
-      <a href="../index.html">Menu</a>
+      <a href="../index.html">↑ Menu</a>
+      <a href="../cap03/03-00-amostragem-aleatoria-simples.html">← Cap. 3</a>
     </p>
   </nav>
 </details>
@@ -60,343 +48,636 @@
 <header class="topo">
   <p class="migalha"><a href="../index.html">Menu</a> · Bolfarine &amp; Bussab · Capítulo 4 · págs. 93–126</p>
   <h1>Amostragem estratificada</h1>
-  <p class="subtitulo">Divida a população em grupos internamente homogêneos, sorteie em cada um, combine. A variância que sobra é só a variância <em>dentro</em> dos estratos — a variância <em>entre</em> as médias é eliminada de graça. E a alocação de Neyman elimina mais um pedaço.</p>
+  <p class="subtitulo">Dividir a população em grupos e sortear dentro de cada um. O ganho tem nome, tem fórmula, e dá para calcular antes de ir a campo.</p>
 </header>
 
-<div class="caixa objetivo">
-  <span class="rotulo">Ao final desta aula você deve saber</span>
+<div class="objetivo">
+  <span class="rotulo">Ao final você deve saber fazer</span>
   <ul>
-    <li>Escrever a população com índices duplos, os pesos <math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math>, e provar que <math><mi>μ</mi><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></math>.</li>
-    <li>Demonstrar a decomposição (4.3)–(4.4): <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>, dentro mais entre.</li>
-    <li>Provar que <math><msub><mi>T</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> e <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> são não viesados, com variância <math><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mi>Var</mi><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo></math> — para qualquer plano dentro dos estratos.</li>
-    <li>Escrever as fórmulas com AASc e com AASs dentro dos estratos, e seus estimadores de variância.</li>
-    <li>Distinguir as alocações proporcional, uniforme e ótima; mostrar que na proporcional <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math> e <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>.</li>
-    <li>Deduzir a alocação ótima <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> por Cauchy–Schwarz, e a de Neyman <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>.</li>
-    <li>Provar <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math> e ler (4.25): a AASc paga <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> pelas médias diferentes e <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> pelos desvios diferentes.</li>
-    <li>Calcular EPA da AE proporcional e da ótima em relação à AASc, e explicar por que a AE com alocação arbitrária pode até perder.</li>
-    <li>Montar IC, determinar <math><mi>n</mi></math> (4.31) e fazer tudo isso para proporções (Teoremas 4.5–4.6, alocação (4.33)).</li>
+    <li>Decompor <math><msup><mi>σ</mi><mn>2</mn></msup></math> em “dentro” e “entre”, e dizer qual parte a estratificação elimina.</li>
+    <li>Escrever <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub></math> e sua variância, para qualquer plano dentro dos estratos.</li>
+    <li>Repartir <math><mi>n</mi></math> pelas quatro alocações, inclusive com custos diferentes.</li>
+    <li>Justificar <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math> e ler as duas diferenças.</li>
+    <li>Montar IC e calcular <math><mi>n</mi></math> — e saber por que a alocação tem de ser fixada antes.</li>
+    <li>Reconhecer os casos em que estratificar <em>não</em> ajuda, ou atrapalha.</li>
   </ul>
 </div>
 
-<h2 id="s1">1. Por que estratificar</h2>
+<div class="caixa pratica">
+  <span class="rotulo">Como usar esta página</span>
+  <p><strong>Um passo por vez</strong>, e responda a pergunta antes de abrir a resposta.</p>
+  <p>Os passos 1 a 5 montam o estimador. Os 6 a 10 são sobre <em>como repartir a amostra</em>, que é onde o capítulo realmente vive.</p>
+</div>
 
-<p>Estratificar é dividir a população em grupos (<strong>estratos</strong>) segundo características <em>conhecidas</em> de antemão, e sortear de cada estrato uma amostra em proporções convenientes. Serve para três coisas: melhorar a precisão; produzir estimativas para subpopulações; e razões administrativas (equipes por região). O capítulo trata sobretudo da primeira. A ideia: na AASc, <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>; se a população é muito heterogênea e o custo limita <math><mi>n</mi></math>, a saída é dividi-la em subpopulações com <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> pequenos.</p>
+<!-- ==================================================================== 1 -->
 
-<h3 id="s1-1">1.1 Exemplo 4.1 — oito domicílios, região alta e baixa</h3>
+<h2 class="passo" id="p1"><span class="n">1</span> Por que estratificar</h2>
+<p class="marco">Passo 1 de 12</p>
+
+<div class="ideia">
+  <p>Se você já sabe que a população tem grupos bem diferentes entre si, sortear às cegas desperdiça essa informação.</p>
+  <p>Fixando quantos vêm de cada grupo, você elimina de uma vez a variação <em>entre</em> os grupos.</p>
+</div>
 
 <div class="caixa exemplo">
-  <span class="rotulo">Exemplo 4.1 — a população que serve o capítulo inteiro</span>
-  <p><math><mi>N</mi><mo>=</mo><mn>8</mn></math> domicílios, renda <math><mi>Y</mi></math> e região <math><mi>W</mi></math> (A = alta, B = baixa):</p>
+  <span class="rotulo">Exemplo 4.1 — oito domicílios, e a população do capítulo inteiro</span>
   <div class="rolagem">
   <table>
-    <thead><tr><th class="txt"><math><mi>i</mi></math></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
+    <thead><tr><th>domicílio</th><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th></tr></thead>
     <tbody>
-      <tr><td><math><msub><mi>Y</mi><mi>i</mi></msub></math> (renda)</td><td>13</td><td>17</td><td>6</td><td>5</td><td>10</td><td>12</td><td>19</td><td>6</td></tr>
-      <tr><td><math><msub><mi>W</mi><mi>i</mi></msub></math> (região)</td><td>B</td><td>A</td><td>B</td><td>B</td><td>B</td><td>A</td><td>A</td><td>B</td></tr>
+      <tr><td>renda <math><msub><mi>Y</mi><mi>i</mi></msub></math></td><td class="c">13</td><td class="c">17</td><td class="c">6</td><td class="c">5</td><td class="c">10</td><td class="c">12</td><td class="c">19</td><td class="c">6</td></tr>
+      <tr><td>região</td><td class="c">B</td><td class="c">A</td><td class="c">B</td><td class="c">B</td><td class="c">B</td><td class="c">A</td><td class="c">A</td><td class="c">B</td></tr>
     </tbody>
   </table>
   </div>
-  <p><math><mi>μ</mi><mo>=</mo><mn>11</mn></math>, <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>24</mn></math>; com AASc de <math><mi>n</mi><mo>=</mo><mn>4</mn></math>, <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>24</mn><mo>/</mo><mn>4</mn><mo>=</mo><mn>6</mn></math>. Estratificando pela região:</p>
-  <math display="block"><mrow><msub><mi>U</mi><mi>A</mi></msub><mo>=</mo><mo>{</mo><mn>2</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>7</mn><mo>}</mo><mo>,</mo><mspace width="0.5em"/><msub><mi mathvariant="bold">D</mi><mi>A</mi></msub><mo>=</mo><mo>(</mo><mn>17</mn><mo>,</mo><mn>12</mn><mo>,</mo><mn>19</mn><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mi>μ</mi><mi>A</mi></msub><mo>=</mo><mn>16</mn><mo>,</mo><mspace width="0.5em"/><msubsup><mi>σ</mi><mi>A</mi><mn>2</mn></msubsup><mo>=</mo><mn>26</mn><mo>/</mo><mn>3</mn><mo>≅</mo><mn>8,7</mn><mo>;</mo></mrow></math>
-  <math display="block"><mrow><msub><mi>U</mi><mi>B</mi></msub><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>8</mn><mo>}</mo><mo>,</mo><mspace width="0.5em"/><msub><mi mathvariant="bold">D</mi><mi>B</mi></msub><mo>=</mo><mo>(</mo><mn>13</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>6</mn><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mi>μ</mi><mi>B</mi></msub><mo>=</mo><mn>8</mn><mo>,</mo><mspace width="0.5em"/><msubsup><mi>σ</mi><mi>B</mi><mn>2</mn></msubsup><mo>=</mo><mn>46</mn><mo>/</mo><mn>5</mn><mo>=</mo><mn>9,2</mn><mo>.</mo></mrow></math>
-  <p>Com AASc de <math><mi>n</mi><mo>=</mo><mn>2</mn></math> em cada estrato, <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>A</mi></msub><mo>]</mo><mo>=</mo><mn>8,7</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>4,35</mn></math> e <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>B</mi></msub><mo>]</mo><mo>=</mo><mn>9,2</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>4,6</mn></math>. Como <math><mn>3</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>A</mi></msub></math> estima <math><msub><mi>τ</mi><mi>A</mi></msub></math> e <math><mn>5</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>B</mi></msub></math> estima <math><msub><mi>τ</mi><mi>B</mi></msub></math>, o estimador natural de <math><mi>μ</mi></math> é</p>
-  <math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mfrac><mrow><mn>3</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>A</mi></msub><mo>+</mo><mn>5</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>B</mi></msub></mrow><mn>8</mn></mfrac><mo>,</mo><mspace width="1.5em"/><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>9</mn><mn>64</mn></mfrac><mo>(</mo><mn>4,35</mn><mo>)</mo><mo>+</mo><mfrac><mn>25</mn><mn>64</mn></mfrac><mo>(</mo><mn>4,6</mn><mo>)</mo><mo>≅</mo><mn>2,4</mn><mo>,</mo><mspace width="1.5em"/><mi>EPA</mi><mo>=</mo><mfrac><mn>2,4</mn><mn>6,0</mn></mfrac><mo>=</mo><mn>0,40</mn><mo>.</mo></mrow></math>
-  <p>Com o <em>mesmo</em> <math><mi>n</mi><mo>=</mo><mn>4</mn></math>, a variância caiu a menos da metade. Quanto mais homogêneos os estratos, maior o ganho; no limite (variância nula dentro de cada estrato) a estimativa acerta <math><mi>μ</mi></math> exatamente.</p>
+  <p><math><mi>μ</mi><mo>=</mo><mn>11</mn></math>, <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>24</mn></math>. Com AASc de <math><mi>n</mi><mo>=</mo><mn>4</mn></math>: <math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mn>24</mn><mo>/</mo><mn>4</mn><mo>=</mo><mn>6,00</mn></math>.</p>
 </div>
 
 <figure class="diagrama">
-<svg viewBox="0 0 640 210" width="640" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A população de oito domicílios do Exemplo 4.1 dividida nos estratos A (rendas 17, 12, 19; média 16) e B (rendas 13, 6, 5, 10, 6; média 8), com a média global 11 e a decomposição da variância 24 em 9,0 dentro mais 15,0 entre.">
-  <rect x="20" y="30" width="230" height="110" class="cx"/>
-  <text x="135" y="46" class="tx-crit">estrato A (região alta), N<tspan baseline-shift="sub" font-size="8.5">A</tspan> = 3</text>
-  <rect x="45" y="62" width="50" height="34" class="cx-folha"/><text x="70" y="79" class="tx">17</text>
-  <rect x="110" y="62" width="50" height="34" class="cx-folha"/><text x="135" y="79" class="tx">12</text>
-  <rect x="175" y="62" width="50" height="34" class="cx-folha"/><text x="200" y="79" class="tx">19</text>
-  <text x="135" y="118" class="tx">μ<tspan baseline-shift="sub" font-size="8.5">A</tspan> = 16 · σ²<tspan baseline-shift="sub" font-size="8.5">A</tspan> = 8,67</text>
-  <rect x="270" y="30" width="350" height="110" class="cx"/>
-  <text x="445" y="46" class="tx-crit">estrato B (região baixa), N<tspan baseline-shift="sub" font-size="8.5">B</tspan> = 5</text>
-  <rect x="285" y="62" width="50" height="34" class="cx-folha"/><text x="310" y="79" class="tx">13</text>
-  <rect x="350" y="62" width="50" height="34" class="cx-folha"/><text x="375" y="79" class="tx">6</text>
-  <rect x="415" y="62" width="50" height="34" class="cx-folha"/><text x="440" y="79" class="tx">5</text>
-  <rect x="480" y="62" width="50" height="34" class="cx-folha"/><text x="505" y="79" class="tx">10</text>
-  <rect x="545" y="62" width="50" height="34" class="cx-folha"/><text x="570" y="79" class="tx">6</text>
-  <text x="445" y="118" class="tx">μ<tspan baseline-shift="sub" font-size="8.5">B</tspan> = 8 · σ²<tspan baseline-shift="sub" font-size="8.5">B</tspan> = 9,2</text>
-  <text x="320" y="168" class="tx">μ = (3·16 + 5·8)/8 = 11 · σ² = 24 = σ²<tspan baseline-shift="sub" font-size="8.5">d</tspan> + σ²<tspan baseline-shift="sub" font-size="8.5">e</tspan> = 9,0 + 15,0</text>
-  <text x="320" y="192" class="tx" style="font-style:italic">a estratificação elimina os 15,0 “entre”; sobra 9,0 “dentro”</text>
-</svg>
-<figcaption><b>A população do Exemplo 4.1 estratificada.</b> A variância total 24 se decompõe em 9,0 dentro dos estratos (<math><mn>0,375</mn><mo>×</mo><mn>8,67</mn><mo>+</mo><mn>0,625</mn><mo>×</mo><mn>9,2</mn></math>) e 15,0 entre as médias (<math><mn>0,375</mn><mo>×</mo><msup><mn>5</mn><mn>2</mn></msup><mo>+</mo><mn>0,625</mn><mo>×</mo><msup><mn>3</mn><mn>2</mn></msup></math>). É a seção 2.2.</figcaption>
+  <svg viewBox="0 0 430 188" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A população de oito domicílios separada em dois estratos: região alta com 17, 12 e 19, média 16; região baixa com 13, 6, 5, 10 e 6, média 8.">
+    <text x="215" y="15" class="tx-rot">estrato A — região alta</text>
+    <rect x="128" y="24" width="38" height="28" class="cx"/>
+    <rect x="174" y="24" width="38" height="28" class="cx"/>
+    <rect x="220" y="24" width="38" height="28" class="cx"/>
+    <text x="147" y="38" class="tx-crit">17</text>
+    <text x="193" y="38" class="tx-crit">12</text>
+    <text x="239" y="38" class="tx-crit">19</text>
+    <text x="215" y="66" class="tx">média 16 · variância 8,67</text>
+
+    <text x="215" y="99" class="tx-rot">estrato B — região baixa</text>
+    <rect x="82"  y="108" width="38" height="28" class="cx-folha"/>
+    <rect x="128" y="108" width="38" height="28" class="cx-folha"/>
+    <rect x="174" y="108" width="38" height="28" class="cx-folha"/>
+    <rect x="220" y="108" width="38" height="28" class="cx-folha"/>
+    <rect x="266" y="108" width="38" height="28" class="cx-folha"/>
+    <text x="101" y="122" class="tx">13</text>
+    <text x="147" y="122" class="tx">6</text>
+    <text x="193" y="122" class="tx">5</text>
+    <text x="239" y="122" class="tx">10</text>
+    <text x="285" y="122" class="tx">6</text>
+    <text x="215" y="150" class="tx">média 8 · variância 9,2</text>
+
+    <text x="215" y="178" class="tx-crit">16 contra 8 — é esta distância que a estratificação aproveita</text>
+  </svg>
+  <figcaption>Os estratos são homogêneos por dentro e bem diferentes por fora. É a situação ideal.</figcaption>
 </figure>
 
-<h3 id="s1-2">1.2 Exemplo 4.2 — estratos que não ajudam</h3>
+<p>Sorteando <strong>2 de cada estrato</strong> — o mesmo <math><mi>n</mi><mo>=</mo><mn>4</mn></math> — e combinando com pesos:</p>
 
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo 4.2 — a mesma população, cortada pela metade da lista</span>
-  <p><math><msub><mi>U</mi><mn>1</mn></msub><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>}</mo></math>, <math><msub><mi mathvariant="bold">D</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>13</mn><mo>,</mo><mn>17</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>5</mn><mo>)</mo></math>, <math><msub><mi>μ</mi><mn>1</mn></msub><mo>=</mo><mn>10,25</mn></math>, <math><msubsup><mi>σ</mi><mn>1</mn><mn>2</mn></msubsup><mo>≅</mo><mn>24,69</mn></math>; <math><msub><mi>U</mi><mn>2</mn></msub><mo>=</mo><mo>{</mo><mn>5</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>7</mn><mo>,</mo><mn>8</mn><mo>}</mo></math>, <math><msub><mi mathvariant="bold">D</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>10</mn><mo>,</mo><mn>12</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>6</mn><mo>)</mo></math>, <math><msub><mi>μ</mi><mn>2</mn></msub><mo>=</mo><mn>11,75</mn></math>, <math><msubsup><mi>σ</mi><mn>2</mn><mn>2</mn></msubsup><mo>≅</mo><mn>22,19</mn></math>. Com <math><msub><mi>n</mi><mn>1</mn></msub><mo>=</mo><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></math>: <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mn>1</mn></msub><mo>]</mo><mo>≅</mo><mn>12,34</mn></math>, <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mn>2</mn></msub><mo>]</mo><mo>≅</mo><mn>11,09</mn></math>,</p>
-  <math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><mfrac><mn>16</mn><mn>64</mn></mfrac><mo>(</mo><mn>12,34</mn><mo>)</mo><mo>+</mo><mfrac><mn>16</mn><mn>64</mn></mfrac><mo>(</mo><mn>11,09</mn><mo>)</mo><mo>≅</mo><mn>5,86</mn><mo>,</mo><mspace width="1.5em"/><mi>EPA</mi><mo>≅</mo><mfrac><mn>5,86</mn><mn>6,00</mn></mfrac><mo>=</mo><mn>0,98</mn><mo>.</mo></mrow></math>
-  <p>Praticamente nenhum ganho: as médias dos estratos (10,25 e 11,75) quase não diferem, e cada estrato é tão heterogêneo quanto a população. <strong>Estratificar só ajuda se a variável de estratificação está associada à variável de interesse.</strong></p>
-</div>
+<div class="eq"><math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mfrac><mrow><mn>3</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>A</mi></msub><mo>+</mo><mn>5</mn><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>B</mi></msub></mrow><mn>8</mn></mfrac><mo>,</mo><mspace width="1.2em"/><mi>Var</mi><mo>=</mo><mfrac><mn>9</mn><mn>64</mn></mfrac><mo stretchy="false">(</mo><mn>4,33</mn><mo stretchy="false">)</mo><mo>+</mo><mfrac><mn>25</mn><mn>64</mn></mfrac><mo stretchy="false">(</mo><mn>4,6</mn><mo stretchy="false">)</mo><mo>≅</mo><mn>2,41</mn></mrow></math></div>
 
-<p>Um plano de amostragem estratificada (AE) tem quatro passos: (i) dividir a população em estratos bem definidos; (ii) sortear de cada um uma amostra, usualmente independentes; (iii) em cada amostra, estimar os parâmetros do estrato; (iv) combinar os estimadores num estimador para a população e obter suas propriedades.</p>
-
-<h2 id="s2">2. Notação e relações úteis</h2>
-
-<h3 id="s2-1">2.1 Índices duplos, <math><msub><mi>W</mi><mi>h</mi></msub></math> e a média ponderada</h3>
-
-<div class="caixa definicao">
-  <span class="rotulo">A população estratificada</span>
-  <p>Uma partição <math><msub><mi>U</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>U</mi><mi>H</mi></msub></math> de <math><mi>U</mi></math>: <math><mi>U</mi><mo>=</mo><mo>∪</mo><msub><mi>U</mi><mi>h</mi></msub></math> e <math><msub><mi>U</mi><mi>h</mi></msub><mo>∩</mo><msub><mi>U</mi><msup><mi>h</mi><mo>′</mo></msup></msub><mo>=</mo><mi>∅</mi></math> (4.1). Cada unidade ganha um par de índices: <math><msub><mi>U</mi><mi>h</mi></msub><mo>=</mo><mo>{</mo><mo>(</mo><mi>h</mi><mo>,</mo><mn>1</mn><mo>)</mo><mo>,</mo><mo>…</mo><mo>,</mo><mo>(</mo><mi>h</mi><mo>,</mo><msub><mi>N</mi><mi>h</mi></msub><mo>)</mo><mo>}</mo></math>, e o vetor de dados é <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mn>11</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mrow><mn>1</mn><msub><mi>N</mi><mn>1</mn></msub></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>Y</mi><mrow><mi>H</mi><msub><mi>N</mi><mi>H</mi></msub></mrow></msub><mo>)</mo></math> (4.2). Por estrato: tamanho <math><msub><mi>N</mi><mi>h</mi></msub></math>, total <math><msub><mi>τ</mi><mi>h</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub></math>, média <math><msub><mi>μ</mi><mi>h</mi></msub><mo>=</mo><msub><mi>τ</mi><mi>h</mi></msub><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>, variâncias <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> (por <math><msub><mi>N</mi><mi>h</mi></msub></math>) e <math><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math> (por <math><msub><mi>N</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></math>). Globais: <math><mi>N</mi><mo>=</mo><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub></math>, o <strong>peso</strong> <math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math> (soma 1), e</p>
-  <math display="block"><mrow><mi>τ</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>τ</mi><mi>h</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub><mo>,</mo><mspace width="2em"/><mi>μ</mi><mo>=</mo><mfrac><mi>τ</mi><mi>N</mi></mfrac><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub><mo>:</mo></mrow></math>
-  <p><strong>a média global é a média ponderada das médias dos estratos</strong>, com pesos <math><msub><mi>W</mi><mi>h</mi></msub></math>. É este o fato que o estimador estratificado imita.</p>
-</div>
-
-<h3 id="s2-2">2.2 A decomposição <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math></h3>
-
-<div class="caixa teorema">
-  <span class="rotulo">(4.3)–(4.4) — dentro e entre</span>
-  <div class="eq"><math display="block"><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>h</mi></msub></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>h</mi></msub></munderover><msup><mrow><mo>(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(4.3)</span></div>
-  <p>Dividindo por <math><mi>N</mi></math>:</p>
-  <div class="eq"><math display="block"><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>,</mo></mrow></math><span class="num">(4.4)</span></div>
-  <p>com <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> a <strong>variância dentro</strong> (média ponderada das variâncias dos estratos) e <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math> a <strong>variância entre</strong> (variação das médias dos estratos). Para <math><msup><mi>S</mi><mn>2</mn></msup></math>: <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mo>∑</mo><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup><mo>+</mo><mo>∑</mo><mfrac><msub><mi>N</mi><mi>h</mi></msub><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msup><mrow><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>≃</mo><msubsup><mi>S</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math> para estratos grandes.</p>
-</div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração (Exercício 4.30)</span>
-  <p>Escreva <math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><mi>μ</mi><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>)</mo><mo>+</mo><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></math> e eleve ao quadrado. O termo cruzado, somado em <math><mi>i</mi></math> dentro do estrato <math><mi>h</mi></math>, é <math><mn>2</mn><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo><mo>∑</mo><mo>(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>)</mo><mo>=</mo><mn>0</mn></math>, porque os desvios em torno da própria média somam zero (Exercício 3.32). O segundo termo não depende de <math><mi>i</mi></math> e soma <math><msub><mi>N</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup></math>.<span class="qed">∎</span></p>
+<div class="fileira">
+  <div><strong>Sem estratificar</strong><p class="numerao"><strong>6,00</strong></p><p>AASc, <math><mi>n</mi><mo>=</mo><mn>4</mn></math></p></div>
+  <div><strong>Estratificando</strong><p class="numerao"><strong>2,41</strong></p><p>2 de cada estrato</p></div>
+  <div><strong>EPA</strong><p class="numerao"><strong>0,40</strong></p><p>menos da metade do erro</p></div>
 </div>
 
 <div class="caixa aviso">
-  <span class="rotulo">Leitura</span>
-  <p>Se todas as médias coincidem (<math><msub><mi>μ</mi><mi>h</mi></msub><mo>=</mo><mi>μ</mi></math>), <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> e estratificar não elimina nada — é o Exemplo 4.2. Quanto maior <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>, maior a diferença <math><msup><mi>σ</mi><mn>2</mn></msup><mo>−</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> — é o que a AE com alocação proporcional ganha (Teorema 4.2). No Exemplo 4.1: <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>=</mo><mn>9,0</mn></math>, <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>=</mo><mn>15,0</mn></math>.</p>
+  <span class="rotulo">Quando <em>não</em> ajuda — Exemplo 4.2</span>
+  <p>Divida a mesma população pela metade da lista: <math><msub><mi>U</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo stretchy="false">}</mo></math> e <math><msub><mi>U</mi><mn>2</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mn>5</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>7</mn><mo>,</mo><mn>8</mn><mo stretchy="false">}</mo></math>. As médias ficam 10,25 e 11,75 — quase iguais.</p>
+  <p>Resultado: <math><mi>Var</mi><mo>≅</mo><mn>5,86</mn></math> e <strong>EPA ≅ 0,98</strong>. Ganho nenhum.</p>
+  <p><span class="chip">A regra.</span> Estratificar só ajuda se a variável usada para dividir estiver <em>associada</em> à variável de interesse. Região e renda estão; posição na lista não está.</p>
 </div>
 
-<h3 id="s2-3">2.3 Estatísticas por estrato</h3>
+<details class="checagem">
+  <summary>Você vai pesquisar consumo de energia e pode estratificar por CEP ou pela inicial do sobrenome. Qual escolhe, e por quê?</summary>
+  <div class="resposta">
+    <p><strong>CEP.</strong> Bairro está associado a renda, tipo de imóvel e consumo — as médias por estrato vão diferir.</p>
+    <p>Inicial do sobrenome é o Exemplo 4.2 disfarçado: cada estrato seria uma cópia em miniatura da população, com as mesmas médias. Você teria o trabalho da estratificação sem nenhum ganho.</p>
+  </div>
+</details>
 
-<p>Do estrato <math><mi>h</mi></math> sorteia-se <math><msub><mi>s</mi><mi>h</mi></msub></math> por algum plano <math><msub><mi>A</mi><mi>h</mi></msub></math>, com as variáveis de posição <math><msub><mi>y</mi><mrow><mi>h</mi><mn>1</mn></mrow></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mrow><mi>h</mi><msub><mi>n</mi><mi>h</mi></msub></mrow></msub></math> (4.5). A nomenclatura copia a dos parâmetros: <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math>, <math><msub><mi>T</mi><mi>h</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>s</mi><mi>h</mi></msub></mrow></munder><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub></math> e <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math> são média, total e variância amostrais do estrato; para a amostra toda, <math><mi>s</mi><mo>=</mo><mo>∪</mo><msub><mi>s</mi><mi>h</mi></msub></math> com <math><mi>n</mi><mo>=</mo><mo>∑</mo><msub><mi>n</mi><mi>h</mi></msub></math>, <math><mover><mi>y</mi><mo>¯</mo></mover></math>, <math><mi>T</mi></math> e <math><msup><mi>s</mi><mn>2</mn></msup></math> são a média, o total e a variância simples, sem pesos. E o que o capítulo vai usar da probabilidade elementar: se <math><msub><mi>X</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>X</mi><mi>H</mi></msub></math> são independentes e <math><mi>X</mi><mo>=</mo><mo>∑</mo><msub><mi>l</mi><mi>h</mi></msub><msub><mi>X</mi><mi>h</mi></msub></math>,</p>
+<!-- ==================================================================== 2 -->
 
-<div class="eq"><math display="block"><mrow><mi>E</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>l</mi><mi>h</mi></msub><mi>E</mi><mo>[</mo><msub><mi>X</mi><mi>h</mi></msub><mo>]</mo><mo>,</mo><mspace width="2em"/><mi>Var</mi><mo>[</mo><mi>X</mi><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>l</mi><mi>h</mi><mn>2</mn></msubsup><mi>Var</mi><mo>[</mo><msub><mi>X</mi><mi>h</mi></msub><mo>]</mo><mo>.</mo></mrow></math><span class="num">(4.6), (4.7)</span></div>
+<h2 class="passo" id="p2"><span class="n">2</span> Índices duplos, e o peso <math><msub><mi>W</mi><mi>h</mi></msub></math></h2>
+<p class="marco">Passo 2 de 12</p>
 
-<h2 id="s3">3. O estimador estratificado — Teorema 4.1</h2>
+<div class="ideia">
+  <p>Cada unidade ganha dois índices: de que estrato, e qual dentro dele.</p>
+  <p>E a média da população é a média <strong>ponderada</strong> das médias dos estratos — nunca a média simples.</p>
+</div>
 
-<p>Suponha: (a) a população estratificada; (b) de cada estrato, uma amostra de tamanho <math><msub><mi>n</mi><mi>h</mi></msub></math>, sorteada <em>independentemente</em>, por qualquer plano (não precisa ser o mesmo em todos); (c) <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> um estimador não viesado de <math><msub><mi>μ</mi><mi>h</mi></msub></math> sob o plano do estrato.</p>
+<div class="par">
+  <div class="caso">
+    <h4>No exemplo</h4>
+    <p>Estrato A tem <math><msub><mi>N</mi><mi>A</mi></msub><mo>=</mo><mn>3</mn></math>, estrato B tem <math><msub><mi>N</mi><mi>B</mi></msub><mo>=</mo><mn>5</mn></math>, <math><mi>N</mi><mo>=</mo><mn>8</mn></math>.</p>
+    <p><math><msub><mi>W</mi><mi>A</mi></msub><mo>=</mo><mn>3</mn><mo>/</mo><mn>8</mn></math>, <math><msub><mi>W</mi><mi>B</mi></msub><mo>=</mo><mn>5</mn><mo>/</mo><mn>8</mn></math>.</p>
+    <p><math><mi>μ</mi><mo>=</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo stretchy="false">(</mo><mn>16</mn><mo stretchy="false">)</mo><mo>+</mo><mfrac><mn>5</mn><mn>8</mn></mfrac><mo stretchy="false">(</mo><mn>8</mn><mo stretchy="false">)</mo><mo>=</mo><mn>11</mn></math> ✓</p>
+    <p class="miudo">A média simples de 16 e 8 daria 12. Errado.</p>
+  </div>
+  <div class="simb">
+    <h4>Em símbolos</h4>
+    <p>Partição: <math><mi>U</mi><mo>=</mo><mo>∪</mo><msub><mi>U</mi><mi>h</mi></msub></math>, <math><msub><mi>U</mi><mi>h</mi></msub><mo>∩</mo><msub><mi>U</mi><msup><mi>h</mi><mo>′</mo></msup></msub><mo>=</mo><mi>ϕ</mi></math>&nbsp;(4.1).</p>
+    <p>Peso: <math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math>, com <math><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><mn>1</mn></math>.</p>
+    <div class="eq"><math display="block"><mrow><mi>τ</mi><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>τ</mi><mi>h</mi></msub><mo>,</mo><mspace width="1em"/><mi>μ</mi><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></mrow></math></div>
+  </div>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">A hipótese escondida</span>
+  <p>Tudo isto exige <math><msub><mi>N</mi><mi>h</mi></msub></math> <strong>conhecido antes do sorteio</strong>. Sem saber quantos domicílios há em cada região, não há <math><msub><mi>W</mi><mi>h</mi></msub></math> e não há estimador.</p>
+  <p>Se você só descobre os grupos <em>depois</em> de sortear, isso é pós-estratificação ou domínio — outra coisa, com outra variância.</p>
+</div>
+
+<details class="checagem">
+  <summary>Dois estratos: <math><msub><mi>N</mi><mn>1</mn></msub><mo>=</mo><mn>900</mn></math> com <math><msub><mi>μ</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn></math>, <math><msub><mi>N</mi><mn>2</mn></msub><mo>=</mo><mn>100</mn></math> com <math><msub><mi>μ</mi><mn>2</mn></msub><mo>=</mo><mn>50</mn></math>. Qual é <math><mi>μ</mi></math>?</summary>
+  <div class="resposta">
+    <p><math><mn>0,9</mn><mo>×</mo><mn>10</mn><mo>+</mo><mn>0,1</mn><mo>×</mo><mn>50</mn><mo>=</mo><mn>9</mn><mo>+</mo><mn>5</mn><mo>=</mo><mn>14</mn></math>.</p>
+    <p>Não 30. O estrato pequeno tem média alta, mas pesa 10%. Esse é o erro mais comum do capítulo.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 3 -->
+
+<h2 class="passo" id="p3"><span class="n">3</span> A variância se parte em duas</h2>
+<p class="marco">Passo 3 de 12 · o resultado que explica o capítulo</p>
+
+<div class="ideia">
+  <p>Toda a variação da população se separa em: variação <em>dentro</em> dos estratos + variação <em>entre</em> as médias deles.</p>
+  <p>A estratificação elimina a segunda parcela. Só ela, e ela inteira.</p>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">(4.3)–(4.4)</span>
+  <div class="eq"><math display="block"><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>+</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo stretchy="false">(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></mrow></math></div>
+  <p class="miudo">Vale para <strong>qualquer</strong> divisão da população — é identidade algébrica, não resultado de amostragem.</p>
+</div>
+
+<div class="par">
+  <div class="caso">
+    <h4>No Exemplo 4.1</h4>
+    <p><strong>Dentro</strong> — média das variâncias:</p>
+    <p><math><mn>0,375</mn><mo>×</mo><mn>8,67</mn><mo>+</mo><mn>0,625</mn><mo>×</mo><mn>9,2</mn><mo>=</mo><mn>9,0</mn></math></p>
+    <p><strong>Entre</strong> — variância das médias, em torno de 11:</p>
+    <p><math><mn>0,375</mn><mo>×</mo><msup><mn>5</mn><mn>2</mn></msup><mo>+</mo><mn>0,625</mn><mo>×</mo><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mn>15,0</mn></math></p>
+    <p>Soma: <strong>24</strong> ✓</p>
+  </div>
+  <div class="simb">
+    <h4>A demonstração, em uma linha</h4>
+    <p>Escreva <math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><mi>μ</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></math> e eleve ao quadrado.</p>
+    <p>O termo cruzado some: dentro do estrato <math><mi>h</mi></math>, <math><mo>∑</mo><mo stretchy="false">(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></math>.</p>
+    <p class="miudo">Sobram os dois quadrados. É a mesma conta da soma de quadrados de uma ANOVA.</p>
+  </div>
+</div>
+
+<figure class="diagrama">
+  <svg viewBox="0 0 430 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barra de comprimento 24 dividida em 9 de variância dentro dos estratos e 15 de variância entre as médias.">
+    <text x="215" y="16" class="tx-rot">a variância total da população</text>
+    <rect x="30" y="26" width="370" height="30" class="cx-folha"/>
+    <text x="215" y="42" class="tx-crit">σ² = 24</text>
+
+    <path d="M120 58 L 120 72" class="ramo"/>
+    <path d="M300 58 L 300 72" class="ramo"/>
+
+    <rect x="30" y="74" width="139" height="30" class="cx"/>
+    <text x="99" y="90" class="tx-crit">dentro: 9,0</text>
+    <rect x="169" y="74" width="231" height="30" class="cx-folha"/>
+    <text x="284" y="90" class="tx">entre: 15,0</text>
+
+    <text x="99"  y="120" class="tx-rot">sobra — é o que você paga</text>
+    <text x="284" y="120" class="tx-rot">some — é o que você ganha</text>
+  </svg>
+  <figcaption>Estratificando bem, os 15,0 “entre” desaparecem da variância do estimador. Os 9,0 “dentro” continuam lá.</figcaption>
+</figure>
+
+<details class="checagem">
+  <summary>Se todos os estratos tivessem a mesma média, quanto valeria <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>? E o ganho?</summary>
+  <div class="resposta">
+    <p><math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>=</mo><mn>0</mn></math>, porque cada <math><mo stretchy="false">(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo stretchy="false">)</mo></math> seria zero.</p>
+    <p>Então <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> e <strong>o ganho é nenhum</strong>. É exatamente o Exemplo 4.2.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 4 -->
+
+<h2 class="passo" id="p4"><span class="n">4</span> O estimador, e as três hipóteses que ele pede</h2>
+<p class="marco">Passo 4 de 12</p>
+
+<div class="ideia">
+  <p>Estime a média de cada estrato como quiser, e combine com os pesos <math><msub><mi>W</mi><mi>h</mi></msub></math>.</p>
+  <p>O teorema é surpreendentemente generoso: <strong>não</strong> exige AAS dentro dos estratos.</p>
+</div>
+
+<div class="caixa aviso">
+  <span class="rotulo">As três hipóteses — o livro as lista antes do enunciado</span>
+  <ol>
+    <li><strong>(a)</strong> a população está estratificada, com <math><msub><mi>N</mi><mi>h</mi></msub></math> conhecidos;</li>
+    <li><strong>(b)</strong> de cada estrato sorteia-se <strong>independentemente</strong> uma amostra de tamanho <math><msub><mi>n</mi><mi>h</mi></msub></math> — podendo usar planos <em>diferentes</em> em cada um;</li>
+    <li><strong>(c)</strong> <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> é não viesado para <math><msub><mi>μ</mi><mi>h</mi></msub></math> sob o plano daquele estrato.</li>
+  </ol>
+  <p>É <strong>(b)</strong> que faz a variância sair sem termos cruzados. E é o “podendo usar planos diferentes” que dá ao teorema o alcance que ele tem.</p>
+</div>
 
 <div class="caixa teorema">
   <span class="rotulo">Teorema 4.1 e Corolário 4.1</span>
-  <div class="eq"><math display="block"><mrow><msub><mi>T</mi><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mspace width="0.8em"/><mtext>é não viesado para</mtext><mspace width="0.4em"/><mi>τ</mi><mo>,</mo><mspace width="1.5em"/><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mi>T</mi><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>N</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo><mo>;</mo></mrow></math></div>
-  <div class="eq"><math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mspace width="0.8em"/><mtext>é não viesado para</mtext><mspace width="0.4em"/><mi>μ</mi><mo>,</mo></mrow></math></div>
-  <div class="eq"><math display="block"><mrow><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>Var</mi><mi>A</mi></msub><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo><mo>.</mo></mrow></math></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>T</mi><mi>es</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>,</mo><mspace width="1.4em"/><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></mrow></math></div>
+  <p>Os dois são não viesados, e</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo stretchy="false">[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mi>Var</mi><mo stretchy="false">[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo stretchy="false">]</mo></mrow></math></div>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>(4.6) com <math><msub><mi>l</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub></math>: <math><mi>E</mi><mo>[</mo><msub><mi>T</mi><mi>es</mi></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><mi>E</mi><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>τ</mi><mi>h</mi></msub><mo>=</mo><mi>τ</mi></math>; (4.7), pela independência entre estratos, dá a variância sem termos cruzados. O corolário é o teorema dividido por <math><mi>N</mi></math>.<span class="qed">∎</span></p>
+
+<p><strong>Repare no quadrado.</strong> O peso entra ao quadrado na variância e sem quadrado na média — é (4.6)–(4.7), a regra de sempre para combinação linear de variáveis independentes.</p>
+
+<details class="checagem">
+  <summary>Por que não aparece covariância entre estratos na fórmula da variância?</summary>
+  <div class="resposta">
+    <p>Pela hipótese <strong>(b)</strong>: os sorteios são independentes de um estrato para outro.</p>
+    <p>Se você sorteasse de forma ligada — por exemplo, “se saiu o domicílio 2 no estrato A, então sorteio o 5 no B” — haveria covariância, e a fórmula perderia a validade.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 5 -->
+
+<h2 class="passo" id="p5"><span class="n">5</span> AASc dentro dos estratos</h2>
+<p class="marco">Passo 5 de 12</p>
+
+<div class="ideia">
+  <p>Escolhido o plano mais simples dentro de cada estrato, a variância vira uma soma de <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> com pesos ao quadrado.</p>
+  <p>É esta fórmula que você vai minimizar nos passos 6 a 10.</p>
 </div>
 
 <div class="caixa teorema">
-  <span class="rotulo">Corolário 4.2 — AASc dentro dos estratos (e a variante AASs, Exercício 4.35)</span>
-  <p>Com <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math> e AASc em cada estrato, <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub><mo>]</mo><mo>=</mo><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> (Teorema 3.3), logo</p>
-  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>,</mo><mspace width="2em"/><mi>var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>,</mo></mrow></math></div>
-  <p>e <math><mi>Var</mi><mo>[</mo><msub><mi>T</mi><mi>es</mi></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msubsup><mi>N</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, estimada com <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math>. <strong>Com AASs</strong> dentro dos estratos, troca-se <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> por <math><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>f</mi><mi>h</mi></msub><mo>)</mo><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, com <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>, e <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math> continua não viesada (Teorema 3.9). É um dos planos mais usados em problemas reais.</p>
+  <span class="rotulo">Corolário 4.2</span>
+  <p><strong>Hipóteses:</strong> as do Teorema 4.1, e <strong>AASc</strong> em cada estrato, com <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math>.</p>
+  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo stretchy="false">[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo stretchy="false">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>,</mo><mspace width="1.2em"/><mi>var</mi><mo stretchy="false">[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo stretchy="false">]</mo><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac></mrow></math></div>
+  <p><strong>Com AASs</strong> em cada estrato, troque <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> por <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>f</mi><mi>h</mi></msub><mo stretchy="false">)</mo><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, com <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>. É o capítulo 3 aplicado estrato por estrato.</p>
 </div>
-
-<p><strong>Exemplo 4.3</strong> é só a conferência: no Exemplo 4.1, <math><msubsup><mi>W</mi><mi>A</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>A</mi><mn>2</mn></msubsup><mo>/</mo><mn>2</mn><mo>+</mo><msubsup><mi>W</mi><mi>B</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>B</mi><mn>2</mn></msubsup><mo>/</mo><mn>2</mn><mo>=</mo><mo>(</mo><mn>9</mn><mo>/</mo><mn>64</mn><mo>)</mo><mo>(</mo><mn>4,33</mn><mo>)</mo><mo>+</mo><mo>(</mo><mn>25</mn><mo>/</mo><mn>64</mn><mo>)</mo><mo>(</mo><mn>4,6</mn><mo>)</mo><mo>=</mo><mn>2,41</mn></math>.</p>
-<pre><code>Y &lt;- c(13, 17, 6, 5, 10, 12, 19, 6); h &lt;- c("B","A","B","B","B","A","A","B")
-sig2 &lt;- function(x) mean((x - mean(x))^2)               <span class="cmt"># variância "por N"</span>
-Nh &lt;- table(h); W &lt;- Nh / 8; s2h &lt;- tapply(Y, h, sig2); nh &lt;- c(A = 2, B = 2)
-c(sig2(Y) / 4, sum(W^2 * s2h / nh))                     <span class="cmt"># Var AASc n=4; Var y_es</span>
-<span class="out">## [1] 6.00000 2.40625</span>
-</code></pre>
-
-<h2 id="s4">4. Alocação da amostra pelos estratos</h2>
-
-<p>Distribuir as <math><mi>n</mi></math> unidades pelos estratos é a <strong>alocação</strong>, e é ela que garante (ou não) a precisão.</p>
-
-<h3 id="s4-1">4.1 Exemplo 4.4 — a alocação importa</h3>
 
 <div class="caixa exemplo">
-  <span class="rotulo">Exemplo 4.4 — mesma amostra, duas alocações</span>
-  <p>Ainda a população do Exemplo 4.1, agora com <math><msub><mi>U</mi><mn>1</mn></msub><mo>=</mo><mo>{</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo>}</mo></math>, <math><msub><mi mathvariant="bold">D</mi><mn>1</mn></msub><mo>=</mo><mo>(</mo><mn>17</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>19</mn><mo>)</mo></math>, <math><msub><mi>μ</mi><mn>1</mn></msub><mo>≅</mo><mn>13,7</mn></math>, <math><msubsup><mi>S</mi><mn>1</mn><mn>2</mn></msubsup><mo>≅</mo><mn>57,3</mn></math>, e <math><msub><mi>U</mi><mn>2</mn></msub><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>8</mn><mo>}</mo></math>, <math><msub><mi mathvariant="bold">D</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><mn>13</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>12</mn><mo>,</mo><mn>6</mn><mo>)</mo></math>, <math><msub><mi>μ</mi><mn>2</mn></msub><mo>=</mo><mn>9,4</mn></math>, <math><msubsup><mi>S</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mn>10,8</mn></math>. AASs em ambos, <math><mi>n</mi><mo>=</mo><mn>3</mn></math>. Alocação AL1: <math><msub><mi>n</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></math>, <math><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></math>:</p>
-  <math display="block"><mrow><msub><mi>Var</mi><mi>AL1</mi></msub><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><msup><mrow><mo>(</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>3</mn></mfrac><mo>)</mo></mrow><mfrac><mn>57,3</mn><mn>1</mn></mfrac><mo>+</mo><msup><mrow><mo>(</mo><mfrac><mn>5</mn><mn>8</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mn>5</mn></mfrac><mo>)</mo></mrow><mfrac><mn>10,8</mn><mn>2</mn></mfrac><mo>≅</mo><mn>5,37</mn><mo>+</mo><mn>1,27</mn><mo>=</mo><mn>6,64</mn><mo>.</mo></mrow></math>
-  <p>Alocação AL2, invertida (<math><msub><mi>n</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn></math>, <math><msub><mi>n</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></math>):</p>
-  <math display="block"><mrow><msub><mi>Var</mi><mi>AL2</mi></msub><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><msup><mrow><mo>(</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo>)</mo></mrow><mfrac><mn>57,3</mn><mn>2</mn></mfrac><mo>+</mo><msup><mrow><mo>(</mo><mfrac><mn>5</mn><mn>8</mn></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mn>5</mn></mfrac><mo>)</mo></mrow><mfrac><mn>10,8</mn><mn>1</mn></mfrac><mo>≅</mo><mn>1,34</mn><mo>+</mo><mn>3,38</mn><mo>=</mo><mn>4,72</mn><mo>.</mo></mrow></math>
-  <p><math><mn>6,64</mn><mo>/</mo><mn>4,72</mn><mo>≅</mo><mn>1,41</mn></math>: a segunda alocação reduz a variância em 29% — porque põe mais amostra no estrato <em>mais variável</em> (<math><msubsup><mi>S</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><mn>57</mn></math> contra 11), mesmo sendo o menor. A regra que emerge: quanto maior a variância do estrato, maior a amostra nele — balanceado pelo tamanho <math><msub><mi>W</mi><mi>h</mi></msub></math>. É o embrião de Neyman.</p>
+  <span class="rotulo">Conferindo o 2,41 do passo 1</span>
+  <p><math><msub><mi>n</mi><mi>A</mi></msub><mo>=</mo><msub><mi>n</mi><mi>B</mi></msub><mo>=</mo><mn>2</mn></math>:</p>
+  <div class="eq"><math display="block"><mrow><msup><mrow><mo stretchy="false">(</mo><mfrac><mn>3</mn><mn>8</mn></mfrac><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mfrac><mn>8,67</mn><mn>2</mn></mfrac><mo>+</mo><msup><mrow><mo stretchy="false">(</mo><mfrac><mn>5</mn><mn>8</mn></mfrac><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mfrac><mn>9,2</mn><mn>2</mn></mfrac><mo>=</mo><mn>0,61</mn><mo>+</mo><mn>1,80</mn><mo>=</mo><mn>2,41</mn></mrow></math></div>
 </div>
 
-<p>Daqui em diante as deduções supõem AASc dentro dos estratos; com outro plano, o procedimento é o mesmo com a variância correspondente.</p>
+<pre><code>Y  &lt;- c(13, 17, 6, 5, 10, 12, 19, 6)
+h  &lt;- c("B","A","B","B","B","A","A","B")
+sig2 &lt;- function(x) mean((x - mean(x))^2)
+Nh &lt;- table(h); W &lt;- as.numeric(Nh / sum(Nh))
+s2 &lt;- as.numeric(tapply(Y, h, sig2))
+sum(W^2 * s2 / c(2, 2))
+<span class="out">## [1] 2.40625</span></code></pre>
 
-<h3 id="s4-2">4.2 Alocação proporcional — Teorema 4.2</h3>
+<details class="checagem">
+  <summary>Por que o peso entra ao <em>quadrado</em> na variância?</summary>
+  <div class="resposta">
+    <p>Porque <math><mi>Var</mi><mo stretchy="false">[</mo><mi>a</mi><mi>X</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mi>Var</mi><mo stretchy="false">[</mo><mi>X</mi><mo stretchy="false">]</mo></math>. É (4.7), a regra de sempre.</p>
+    <p>Consequência prática: um estrato com peso pequeno contribui <em>muito</em> pouco para a variância — <math><msup><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>/</mo><mn>10</mn><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>1</mn><mo>/</mo><mn>100</mn></math>. Por isso não adianta encher de amostra um estrato minúsculo.</p>
+  </div>
+</details>
 
-<div class="caixa definicao">
-  <span class="rotulo">AEpr</span>
-  <p><math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math> (4.8): a amostra reparte-se como a população. É a “amostra representativa” do senso comum (capítulo 1), aqui com nome próprio: <strong>Amostragem Estratificada Proporcional</strong>.</p>
+<!-- ==================================================================== 6 -->
+
+<h2 class="passo" id="p6"><span class="n">6</span> A alocação muda tudo</h2>
+<p class="marco">Passo 6 de 12</p>
+
+<div class="ideia">
+  <p>Decidido <math><mi>n</mi></math>, ainda falta a pergunta cara: quantos de cada estrato?</p>
+  <p>Trocar a repartição, com o mesmo <math><mi>n</mi></math> e a mesma população, pode cortar 29% da variância.</p>
 </div>
 
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 4.2</span>
-  <p>Na AEpr, <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math> (a média simples da amostra toda), e</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>,</mo><mspace width="2em"/><mi>var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>.</mo></mrow></math><span class="num">(4.9)</span></div>
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 4.4 — mesma amostra, duas repartições</span>
+  <p>Outra divisão da mesma população: <math><msub><mi>U</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">{</mo><mn>2</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>7</mn><mo stretchy="false">}</mo></math> com <math><msubsup><mi>S</mi><mn>1</mn><mn>2</mn></msubsup><mo>≅</mo><mn>57,3</mn></math> (muito heterogêneo) e <math><msub><mi>U</mi><mn>2</mn></msub></math> com 5 unidades e <math><msubsup><mi>S</mi><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mn>10,8</mn></math>. AASs em ambos, <math><mi>n</mi><mo>=</mo><mn>3</mn></math>.</p>
+  <div class="rolagem">
+  <table>
+    <thead><tr><th>alocação</th><th class="c"><math><msub><mi>n</mi><mn>1</mn></msub></math></th><th class="c"><math><msub><mi>n</mi><mn>2</mn></msub></math></th><th class="c">parcela 1</th><th class="c">parcela 2</th><th class="c">Var</th></tr></thead>
+    <tbody>
+      <tr><td>AL1</td><td class="c">1</td><td class="c">2</td><td class="c">5,37</td><td class="c">1,27</td><td class="c"><strong>6,64</strong></td></tr>
+      <tr><td>AL2</td><td class="c">2</td><td class="c">1</td><td class="c">1,34</td><td class="c">3,38</td><td class="c"><strong>4,72</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><math><mn>6,64</mn><mo>/</mo><mn>4,72</mn><mo>≅</mo><mn>1,41</mn></math>: a AL2 reduz a variância em <strong>29%</strong>, de graça.</p>
+  <p><span class="chip">Por quê.</span> A AL2 manda mais amostra para o estrato <em>mais variável</em> — <math><msubsup><mi>S</mi><mn>1</mn><mn>2</mn></msubsup><mo>=</mo><mn>57</mn></math> contra 11 — mesmo sendo o estrato <em>menor</em>.</p>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p><math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><mfrac><mn>1</mn><msub><mi>n</mi><mi>h</mi></msub></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>s</mi><mi>h</mi></msub></mrow></munder><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><mfrac><mn>1</mn><mrow><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>s</mi><mi>h</mi></msub></mrow></munder><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mi>h</mi></munder><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><msub><mi>s</mi><mi>h</mi></msub></mrow></munder><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math>: os pesos cancelam. Na variância, <math><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><mo>(</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub><mo>)</mo><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi></math>, e o Corolário 4.2 dá (4.9). Note também que <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub><mo>/</mo><mo>(</mo><mi>N</mi><msub><mi>W</mi><mi>h</mi></msub><mo>)</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> — a mesma fração em todos os estratos.<span class="qed">∎</span></p>
+
+<div class="caixa aviso">
+  <span class="rotulo">A intuição que vai virar fórmula</span>
+  <p>Amostre mais onde há mais o que descobrir. Um estrato homogêneo já se revela com poucas unidades; um estrato bagunçado precisa de mais.</p>
+  <p>Isso, balanceado pelo tamanho do estrato, é a <strong>alocação de Neyman</strong> do passo 9.</p>
+</div>
+
+<details class="checagem">
+  <summary>Um estrato tem variância zero (todos iguais). Quantas unidades você sorteia dele?</summary>
+  <div class="resposta">
+    <p><strong>Uma.</strong> Ela já revela o valor de todos — a média do estrato fica conhecida exatamente.</p>
+    <p>Qualquer unidade a mais é desperdício: use-a em outro estrato. Neyman formaliza isso com <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>, que dá zero quando <math><msub><mi>σ</mi><mi>h</mi></msub><mo>=</mo><mn>0</mn></math>.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 7 -->
+
+<h2 class="passo" id="p7"><span class="n">7</span> Alocação proporcional</h2>
+<p class="marco">Passo 7 de 12</p>
+
+<div class="ideia">
+  <p>Reparta <math><mi>n</mi></math> como a população está repartida. Estrato com 30% da população recebe 30% da amostra.</p>
+  <p>É a “amostra representativa” do senso comum — e aqui, pela primeira vez, com nome e variância calculada.</p>
+</div>
+
+<div class="par">
+  <div class="caso">
+    <h4>No exemplo</h4>
+    <p><math><mi>n</mi><mo>=</mo><mn>4</mn></math>, <math><msub><mi>W</mi><mi>A</mi></msub><mo>=</mo><mn>0,375</mn></math>:</p>
+    <p><math><msub><mi>n</mi><mi>A</mi></msub><mo>=</mo><mn>4</mn><mo>×</mo><mn>0,375</mn><mo>=</mo><mn>1,5</mn></math></p>
+    <p><math><msub><mi>n</mi><mi>B</mi></msub><mo>=</mo><mn>4</mn><mo>×</mo><mn>0,625</mn><mo>=</mo><mn>2,5</mn></math></p>
+    <p><math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><mn>9</mn><mo>/</mo><mn>4</mn><mo>=</mo><mn>2,25</mn></math></p>
+    <p class="miudo">Melhor que os 2,41 da alocação 2/2, que não era exatamente proporcional.</p>
+  </div>
+  <div class="simb">
+    <h4>Teorema 4.2</h4>
+    <p>Com <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub></math>&nbsp;(4.8), acontecem duas coisas:</p>
+    <p><strong>1.</strong> <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math> — a média <em>simples</em> da amostra toda já é o estimador certo. Os pesos cancelam.</p>
+    <p><strong>2.</strong> A variância fica com uma cara memorável:</p>
+    <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.9)</span></div>
+  </div>
 </div>
 
 <div class="caixa aviso">
   <span class="rotulo">O que (4.9) quer dizer</span>
-  <p>A AE proporcional “equivale” a uma AASc de uma população cuja variância fosse <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> em vez de <math><msup><mi>σ</mi><mn>2</mn></msup></math>: a variância entre estratos, <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>, foi eliminada. Ganha-se exatamente <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> — nada mais, nada menos.</p>
+  <p>A AE proporcional <strong>equivale</strong> a fazer uma AASc numa população cuja variância fosse <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math> em vez de <math><msup><mi>σ</mi><mn>2</mn></msup></math>.</p>
+  <p>Ou seja: você ganha <em>exatamente</em> <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> — nada mais, nada menos. No exemplo, <math><mn>15</mn><mo>/</mo><mn>4</mn><mo>=</mo><mn>3,75</mn></math>, e de fato <math><mn>6,00</mn><mo>−</mo><mn>2,25</mn><mo>=</mo><mn>3,75</mn></math>. ✓</p>
 </div>
 
-<h3 id="s4-3">4.3 Alocação uniforme</h3>
+<p>Outro efeito da proporcional: a fração amostral fica <strong>a mesma em todos os estratos</strong>, <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>. Todo mundo tem a mesma chance de entrar — o que torna a análise e a comunicação mais simples.</p>
 
-<p>Na <strong>AEun</strong>, <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mo>/</mo><mi>H</mi><mo>=</mo><mi>k</mi></math> para todos os estratos, <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><mi>k</mi><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>. É a indicada quando se querem estimativas <em>separadas</em> por estrato com a mesma precisão. <strong>Corolário 4.3:</strong> <math><msub><mi>V</mi><mi>un</mi></msub><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><mi>k</mi></math>, estimada com <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math>. Para a média global costuma ser pior que a proporcional (Exercício 4.24 mede quanto).</p>
+<details class="checagem">
+  <summary>Qual a grande vantagem prática da proporcional sobre a de Neyman?</summary>
+  <div class="resposta">
+    <p><strong>Ela não precisa de <math><msub><mi>σ</mi><mi>h</mi></msub></math>.</strong> Só de <math><msub><mi>N</mi><mi>h</mi></msub></math>, que você já tem por definição (hipótese (a)).</p>
+    <p>Neyman exige saber a variabilidade de cada estrato <em>antes</em> de coletar — o que quase nunca se sabe direito. É por isso que a proporcional é o padrão na prática.</p>
+  </div>
+</details>
 
-<h3 id="s4-4">4.4 Alocação ótima de Neyman — Teorema 4.3</h3>
+<!-- ==================================================================== 8 -->
 
-<p>Custo linear: <math><mi>C</mi><mo>=</mo><msub><mi>c</mi><mn>0</mn></msub><mo>+</mo><mo>∑</mo><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></math> (4.10), com <math><msub><mi>c</mi><mn>0</mn></msub></math> fixo e <math><msub><mi>c</mi><mi>h</mi></msub></math> o custo por unidade no estrato <math><mi>h</mi></math>; <math><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mi>C</mi><mo>−</mo><msub><mi>c</mi><mn>0</mn></msub></math> é o custo variável. Problema: minimizar <math><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> com <math><msup><mi>C</mi><mo>′</mo></msup></math> fixo, ou <math><msup><mi>C</mi><mo>′</mo></msup></math> com <math><msub><mi>V</mi><mi>es</mi></msub></math> fixo. A ferramenta é Cauchy–Schwarz: <math><mo>(</mo><mo>∑</mo><msubsup><mi>a</mi><mi>h</mi><mn>2</mn></msubsup><mo>)</mo><mo>(</mo><mo>∑</mo><msubsup><mi>b</mi><mi>h</mi><mn>2</mn></msubsup><mo>)</mo><mo>⩾</mo><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>a</mi><mi>h</mi></msub><msub><mi>b</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></math> (4.11), com igualdade sse <math><msub><mi>b</mi><mi>h</mi></msub><mo>/</mo><msub><mi>a</mi><mi>h</mi></msub></math> é constante.</p>
+<h2 class="passo" id="p8"><span class="n">8</span> Alocação uniforme</h2>
+<p class="marco">Passo 8 de 12 · o passo mais curto</p>
+
+<div class="ideia">
+  <p>O mesmo número em cada estrato, independentemente do tamanho.</p>
+  <p>Não é para estimar a média global com precisão — é para estimar <em>cada estrato</em> com a mesma precisão.</p>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">Corolário 4.3</span>
+  <p>Com <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>k</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>H</mi></math>:</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>un</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mi>k</mi></mfrac></mrow></math></div>
+</div>
+
+<p>Quando usar: pesquisa que precisa publicar um número <em>por região</em>, e não só o total do país. Se a região pequena recebesse amostra proporcional, o número dela sairia com erro grande demais para publicar.</p>
+
+<p class="miudo">É o caso da alocação 2/2 do passo 1 — que deu 2,41, um pouco pior que os 2,25 da proporcional. Você paga um pouco na média global para poder falar de cada estrato.</p>
+
+<details class="checagem">
+  <summary>Cinco estratos de tamanhos 1000, 50, 50, 50 e 50. Alocação uniforme com <math><mi>n</mi><mo>=</mo><mn>250</mn></math>. Faz sentido?</summary>
+  <div class="resposta">
+    <p>Para a <strong>média global, não</strong>: o estrato de 1000 tem <math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><mn>0,83</mn></math> e domina a variância, mas receberia só 50 unidades.</p>
+    <p>Para <strong>relatar cada estrato</strong>, sim: os quatro pequenos ganham 50 cada e saem com erro utilizável. É uma escolha entre dois objetivos, não um erro.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 9 -->
+
+<h2 class="passo" id="p9"><span class="n">9</span> Alocação ótima, e o caso de Neyman</h2>
+<p class="marco">Passo 9 de 12</p>
+
+<div class="ideia">
+  <p>Amostre mais onde o estrato é <strong>grande</strong>, <strong>variável</strong> e <strong>barato</strong>.</p>
+  <p>Os três fatores aparecem literalmente na fórmula, um em cada lugar.</p>
+</div>
 
 <div class="caixa teorema">
   <span class="rotulo">Teorema 4.3 — alocação ótima com custos</span>
-  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow></mfrac><mo>,</mo><mspace width="1em"/><mi>h</mi><mo>=</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>H</mi><mo>.</mo></mrow></math><span class="num">(4.12)</span></div>
-  <p>Mais unidades onde o estrato é grande, onde é variável, e onde é <em>barato</em>.</p>
+  <p><strong>Hipóteses:</strong> as do Corolário 4.2, e custo <strong>linear</strong> <math><mi>C</mi><mo>=</mo><msub><mi>c</mi><mn>0</mn></msub><mo>+</mo><mo>∑</mo><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></math>&nbsp;(4.10).</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow><mrow><mo>∑</mo><msub><mi>W</mi><mi>k</mi></msub><msub><mi>σ</mi><mi>k</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>k</mi></msub></msqrt></mrow></mfrac></mrow></math><span class="num">(4.12)</span></div>
+  <p>Ela resolve os <em>dois</em> problemas ao mesmo tempo: minimiza a variância com orçamento dado, e minimiza o custo com precisão dada.</p>
 </div>
+
+<div class="fileira">
+  <div><strong><math><msub><mi>W</mi><mi>h</mi></msub></math></strong><p>estrato grande pesa mais na média — merece mais amostra</p></div>
+  <div><strong><math><msub><mi>σ</mi><mi>h</mi></msub></math></strong><p>estrato bagunçado precisa de mais observações</p></div>
+  <div><strong><math><mn>1</mn><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math></strong><p>estrato caro merece menos — cada unidade custa mais</p></div>
+</div>
+
 <div class="caixa demonstracao">
-  <span class="rotulo">Demonstração — o truque do produto</span>
-  <p>Minimizar <math><msub><mi>V</mi><mi>es</mi></msub></math> com <math><msup><mi>C</mi><mo>′</mo></msup></math> fixo (ou vice-versa) equivale a minimizar o produto</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>es</mi></msub><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mrow><mo>(</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><mfrac><mrow><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></mrow><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>)</mo></mrow><mrow><mo>(</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub><mo>)</mo></mrow><mo>.</mo></mrow></math><span class="num">(4.14)</span></div>
-  <p>Ponha <math><msub><mi>a</mi><mi>h</mi></msub><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>n</mi><mi>h</mi></msub></msqrt></math> e <math><msub><mi>b</mi><mi>h</mi></msub><mo>=</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></msqrt></math>: (4.14) é o lado esquerdo de (4.11), e o lado direito, <math><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></mrow><mn>2</mn></msup></math>, <em>não depende dos <math><msub><mi>n</mi><mi>h</mi></msub></math></em>. Logo o produto é mínimo quando há igualdade, isto é, quando <math><msub><mi>b</mi><mi>h</mi></msub><mo>/</mo><msub><mi>a</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>/</mo><mo>(</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>)</mo><mo>=</mo><mi>k</mi></math> (4.15), ou seja, <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>k</mi><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> (4.16). Somando em <math><mi>h</mi></math>, <math><mi>k</mi><mo>=</mo><mi>n</mi><mo>/</mo><mo>∑</mo><mo>(</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></math> (4.17), que substituído em (4.16) dá (4.12).<span class="qed">∎</span></p>
+  <span class="rotulo">Por que — Cauchy–Schwarz em três linhas</span>
+  <p>Minimizar <math><mo>∑</mo><msubsup><mi>a</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> com <math><mo>∑</mo><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi></math>, onde <math><msub><mi>a</mi><mi>h</mi></msub><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>. Escreva <math><msub><mi>a</mi><mi>h</mi></msub><mo>=</mo><mfrac><msub><mi>a</mi><mi>h</mi></msub><msqrt><msub><mi>n</mi><mi>h</mi></msub></msqrt></mfrac><msqrt><msub><mi>n</mi><mi>h</mi></msub></msqrt></math> e aplique a desigualdade:</p>
+  <div class="eq"><math display="block"><mrow><msup><mrow><mo stretchy="false">(</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>a</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>⩽</mo><mrow><mo stretchy="false">(</mo><munder><mo>∑</mo><mi>h</mi></munder><mfrac><msubsup><mi>a</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo stretchy="false">)</mo></mrow><mi>n</mi></mrow></math></div>
+  <p>Logo <math><mo>∑</mo><msubsup><mi>a</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub><mo>⩾</mo><msup><mrow><mo stretchy="false">(</mo><mo>∑</mo><msub><mi>a</mi><mi>h</mi></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>, com igualdade só quando <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>a</mi><mi>h</mi></msub></math>.<span class="qed">∎</span></p>
 </div>
 
 <div class="caixa teorema">
-  <span class="rotulo">Corolários 4.4 e 4.5 — o <math><mi>n</mi></math> ótimo e o caso de custo constante</span>
-  <p>(i) Para <math><msup><mi>C</mi><mo>′</mo></msup></math> fixo: <math><mi>n</mi><mo>=</mo><msup><mi>C</mi><mo>′</mo></msup><mo>∑</mo><mo>(</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo><mo>/</mo><mo>∑</mo><mo>(</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></math> (4.18). (ii) Para <math><msub><mi>V</mi><mi>es</mi></msub></math> fixo: <math><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>V</mi><mi>es</mi></msub></mfrac><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></math> (4.19). <em>(O livro imprime (4.19) com os dois fatores iguais, um deslize; a forma correta tem <math><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> no numerador de um e no denominador do outro — e para custo constante os dois colapsam em <math><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>/</mo><msub><mi>V</mi><mi>es</mi></msub></math>, que é o que os exercícios usam.)</em></p>
-  <p><strong>Custo constante</strong> <math><msub><mi>c</mi><mi>h</mi></msub><mo>=</mo><mi>c</mi></math>, <math><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mi>c</mi></math>: a alocação vira a <strong>alocação ótima de Neyman</strong>,</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow></mfrac><mo>,</mo><mspace width="2em"/><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><msup><mrow><mo>(</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo></mrow></math><span class="num">(4.20), (4.21)</span></div>
-  <p>com <math><mover><mi>σ</mi><mo>¯</mo></mover><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math> o <em>desvio padrão médio dentro</em>. Compare com <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>: média dos quadrados contra quadrado da média.</p>
+  <span class="rotulo">Corolário 4.5 — Neyman</span>
+  <p>Se o custo por unidade é <strong>o mesmo</strong> em todos os estratos, o <math><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> cancela:</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></mrow><mrow><mo>∑</mo><msub><mi>N</mi><mi>k</mi></msub><msub><mi>σ</mi><mi>k</mi></msub></mrow></mfrac><mo>,</mo><mspace width="1.2em"/><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math><span class="num">(4.20)–(4.21)</span></div>
+  <p>com <math><mover><mi>σ</mi><mo>¯</mo></mover><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>, um desvio padrão médio dentro dos estratos.</p>
 </div>
 
-<h3 id="s4-5">4.5 <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math> — Teorema 4.4 e o efeito do planejamento</h3>
+<p>E o tamanho total, quando o que está fixado é o orçamento&nbsp;(4.18) ou a precisão&nbsp;(4.19):</p>
+
+<div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mo stretchy="false">(</mo><mi>C</mi><mo>−</mo><msub><mi>c</mi><mn>0</mn></msub><mo stretchy="false">)</mo><mfrac><mrow><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow><mrow><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></mrow></mfrac></mrow></math><span class="num">(4.18)</span></div>
+
+<p class="miudo">Cuidado ao copiar (4.19) do livro: ela sai impressa com os <em>dois</em> fatores iguais a <math><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>. É gralha — um deles leva <math><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> no numerador.</p>
+
+<details class="checagem">
+  <summary>Entrevistar no estrato rural custa 4× o urbano. Como isso muda a alocação?</summary>
+  <div class="resposta">
+    <p>O fator é <math><mn>1</mn><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>, então o rural recebe <math><mn>1</mn><mo>/</mo><msqrt><mn>4</mn></msqrt><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math> do que receberia se custasse igual.</p>
+    <p><strong>Metade, não um quarto.</strong> A raiz suaviza a penalização — vale a pena pagar caro por alguma informação rural, só não por muita.</p>
+  </div>
+</details>
+
+<!-- =================================================================== 10 -->
+
+<h2 class="passo" id="p10"><span class="n">10</span> As três variâncias em fila</h2>
+<p class="marco">Passo 10 de 12 · o resultado que resume o capítulo</p>
+
+<div class="ideia">
+  <p>Ótima ⩽ proporcional ⩽ sem estratificar. Nunca ao contrário — desde que a alocação seja uma dessas duas.</p>
+  <p>E as duas diferenças têm nome: uma é a variação entre médias, a outra é a variação entre desvios.</p>
+</div>
 
 <div class="caixa teorema">
   <span class="rotulo">Teorema 4.4</span>
-  <p>Com <math><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>Var</mi><mi>AASc</mi></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>, <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> e <math><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (mesmo <math><mi>n</mi></math>, custo constante): <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math>, e mais precisamente</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>=</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>,</mo><mspace width="1.5em"/><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>−</mo><mover><mi>σ</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow></math><span class="num">(4.25)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></mrow></math></div>
+  <p>com <math><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (AASc), <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>&nbsp;(4.22) e <math><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>&nbsp;(4.21). As diferenças:</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>−</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>−</mo><mover><mi>σ</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.24)</span></div>
+  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>+</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac></mrow></math><span class="num">(4.25)</span></div>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>Por (4.4), <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>, logo <math><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi><mo>⩾</mo><msub><mi>V</mi><mi>pr</mi></msub></math>. <math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub></math> vale por construção (a ótima minimiza); a diferença é (Exercício 4.31)</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>pr</mi></msub><mo>−</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mrow><mo>{</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>−</mo><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>}</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>−</mo><mover><mi>σ</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mi>n</mi></mfrac><mo>,</mo></mrow></math><span class="num">(4.24)</span></div>
-  <p>que é a identidade “média dos quadrados menos quadrado da média = variância” (a (2.2) de novo) aplicada aos <math><msub><mi>σ</mi><mi>h</mi></msub></math> com pesos <math><msub><mi>W</mi><mi>h</mi></msub></math>. <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup></math> mede a variabilidade dos <em>desvios padrões</em> entre estratos.<span class="qed">∎</span></p>
+
+<div class="ideia">
+  <p>A leitura: a AASc paga <strong>dois pedágios</strong>.</p>
+  <p>Um porque as <em>médias</em> dos estratos diferem — a proporcional já elimina esse. Outro porque os <em>desvios</em> diferem — só a ótima elimina esse.</p>
+</div>
+
+<figure class="diagrama">
+  <svg viewBox="0 0 430 152" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Três barras comparando as variâncias no Exemplo 4.1: sem estratificar 6,00, proporcional 2,25, ótima 2,2495. As duas últimas são praticamente iguais.">
+    <text x="215" y="15" class="tx-rot">Exemplo 4.1, mesmo n = 4</text>
+
+    <rect x="60" y="26" width="340" height="24" class="barra"/>
+    <text x="30" y="40" class="tx">Vc</text>
+    <text x="230" y="41" class="tx-crit">6,00 — sem estratificar</text>
+
+    <rect x="60" y="60" width="128" height="24" class="barra-alvo"/>
+    <text x="30" y="74" class="tx">Vpr</text>
+    <text x="252" y="75" class="tx">2,25 — proporcional</text>
+
+    <rect x="60" y="94" width="127" height="24" class="barra-alvo"/>
+    <text x="30" y="108" class="tx">Vot</text>
+    <text x="252" y="109" class="tx">2,2495 — ótima</text>
+
+    <path d="M196 60 L 214 60" class="ramo"/>
+    <path d="M196 118 L 214 118" class="ramo"/>
+    <text x="215" y="140" class="tx-rot">a diferença entre as duas últimas é 0,0005</text>
+  </svg>
+  <figcaption>O salto grande é a estratificação. Neyman refina, mas aqui rende quase nada — porque <math><msub><mi>σ</mi><mi>A</mi></msub><mo>=</mo><mn>2,94</mn></math> e <math><msub><mi>σ</mi><mi>B</mi></msub><mo>=</mo><mn>3,03</mn></math> são quase iguais, e é exatamente isso que (4.24) prevê.</figcaption>
+</figure>
+
+<div class="rolagem">
+<table>
+  <caption>As quatro contas do Exemplo 4.1 com <math><mi>n</mi><mo>=</mo><mn>4</mn></math>, lado a lado.</caption>
+  <thead><tr><th>plano</th><th class="c"><math><mo stretchy="false">(</mo><msub><mi>n</mi><mi>A</mi></msub><mo>,</mo><msub><mi>n</mi><mi>B</mi></msub><mo stretchy="false">)</mo></math></th><th class="c">Var</th><th class="c">EPA</th></tr></thead>
+  <tbody>
+    <tr><td>AASc, sem estratificar</td><td class="c">—</td><td class="c">6,00</td><td class="c">1,00</td></tr>
+    <tr><td>AE uniforme</td><td class="c">(2 ; 2)</td><td class="c">2,41</td><td class="c">0,40</td></tr>
+    <tr><td>AE proporcional</td><td class="c">(1,5 ; 2,5)</td><td class="c">2,25</td><td class="c">0,375</td></tr>
+    <tr><td>AE ótima (Neyman)</td><td class="c">(1,47 ; 2,53)</td><td class="c">2,2495</td><td class="c">0,375</td></tr>
+  </tbody>
+</table>
+</div>
+
+<details class="checagem">
+  <summary>Quando vale a pena o trabalho extra de estimar <math><msub><mi>σ</mi><mi>h</mi></msub></math> e usar Neyman?</summary>
+  <div class="resposta">
+    <p>Quando os <strong>desvios padrão dos estratos são muito diferentes</strong> — é o que (4.24) diz: o ganho é <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>, a variabilidade <em>entre os desvios</em>.</p>
+    <p>Caso típico: estratos por tamanho de empresa. As grandes têm faturamento muito mais disperso que as pequenas, e Neyman manda muito mais amostra para lá. No Exemplo 4.1 os desvios eram quase iguais, então não rendeu.</p>
+  </div>
+</details>
+
+<!-- =================================================================== 11 -->
+
+<h2 class="passo" id="p11"><span class="n">11</span> Intervalo de confiança e tamanho da amostra</h2>
+<p class="marco">Passo 11 de 12</p>
+
+<div class="ideia">
+  <p>O IC é o de sempre, com a variância do passo 5 e <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math> no lugar de <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math>.</p>
+  <p>O tamanho da amostra tem uma pegadinha: você precisa decidir a <em>forma</em> da alocação antes de achar <math><mi>n</mi></math>.</p>
+</div>
+
+<div class="eq"><math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac></mrow></msqrt></mrow></math><span class="num">(4.30)</span></div>
+
+<div class="caixa aviso">
+  <span class="rotulo">Por que a alocação vem antes do <math><mi>n</mi></math></span>
+  <p>A variância depende dos <math><msub><mi>n</mi><mi>h</mi></msub></math> <em>individualmente</em>, não só da soma. Há infinitas maneiras de repartir um mesmo <math><mi>n</mi></math>, com variâncias diferentes.</p>
+  <p>A saída: escreva <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>w</mi><mi>h</mi></msub></math> com os <math><msub><mi>w</mi><mi>h</mi></msub></math> fixados, e aí sobra um <math><mi>n</mi></math> só para resolver.</p>
+</div>
+
+<div class="par">
+  <div class="caso">
+    <h4>Com proporcional</h4>
+    <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>D</mi></mfrac></mrow></math><span class="num">(4.31)</span></div>
+    <p>Compare com a AASc, <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>.</p>
+  </div>
+  <div class="simb">
+    <h4>Com Neyman</h4>
+    <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mi>D</mi></mfrac></mrow></math></div>
+    <p>Para o <strong>total</strong>, use <math><mi>D</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> no lugar de <math><mi>D</mi></math>.</p>
+  </div>
+</div>
+
+<p><span class="chip">A economia de amostra é a razão <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup></math>.</span> No Exemplo 4.1: <math><mn>9</mn><mo>/</mo><mn>24</mn><mo>=</mo><mn>0,375</mn></math>. Para a mesma precisão, a estratificada precisa de <strong>37,5% da amostra</strong> que a AASc precisaria.</p>
+
+<details class="checagem">
+  <summary>Uma AASc precisaria de <math><mi>n</mi><mo>=</mo><mn>1600</mn></math>. Com estratificação proporcional e <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>0,3</mn></math>, quantos bastam?</summary>
+  <div class="resposta">
+    <p><math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>1</mn><mo>−</mo><mn>0,3</mn><mo>=</mo><mn>0,7</mn></math>, então <math><mi>n</mi><mo>=</mo><mn>0,7</mn><mo>×</mo><mn>1600</mn><mo>=</mo><mn>1120</mn></math>.</p>
+    <p>480 entrevistas a menos, pela mesma precisão — só por ter usado a informação de estrato que você já tinha.</p>
+  </div>
+</details>
+
+<!-- =================================================================== 12 -->
+
+<h2 class="passo" id="p12"><span class="n">12</span> Proporções, e quando estratificar perde</h2>
+<p class="marco">Passo 12 de 12</p>
+
+<div class="ideia">
+  <p>Proporção é a mesma teoria com <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></math>.</p>
+  <p>E há duas maneiras de a estratificação não compensar — vale conhecer as duas.</p>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">Teoremas 4.5 e 4.6</span>
+  <p><strong>Hipóteses:</strong> AE com reposição nos estratos, <math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub></math> valendo 0 ou 1.</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>p</mi><mi>es</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub><mo>,</mo><mspace width="1.2em"/><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow><msub><mi>n</mi><mi>h</mi></msub></mfrac></mrow></math><span class="num">(4.32)</span></div>
+  <p>Estimador da variância com <math><msub><mi>n</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></math> no denominador, e Neyman vira</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msqrt><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow></msqrt></mrow><mrow><mo>∑</mo><msub><mi>N</mi><mi>k</mi></msub><msqrt><mrow><msub><mi>P</mi><mi>k</mi></msub><msub><mi>Q</mi><mi>k</mi></msub></mrow></msqrt></mrow></mfrac></mrow></math><span class="num">(4.33)</span></div>
+  <p class="miudo">Como <math><msqrt><mrow><mi>P</mi><mi>Q</mi></mrow></msqrt></math> varia pouco para <math><mi>P</mi></math> entre 0,2 e 0,8 (de 0,40 a 0,50), Neyman e proporcional quase coincidem em proporções moderadas. A diferença só aparece com proporções raras.</p>
+</div>
+
+<h3 id="p12-1">12.1 Os dois jeitos de não compensar</h3>
+
+<div class="par">
+  <div class="caso">
+    <h4>Não ganha nada</h4>
+    <p>Se <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>=</mo><mn>0</mn></math>, o EPA é 1:</p>
+    <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo stretchy="false">[</mo><mi>AEpr</mi><mo stretchy="false">]</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac></mrow></math></div>
+    <p>É o Exemplo 4.2: médias iguais, ganho zero. Você teve o trabalho e não levou nada.</p>
+  </div>
+  <div class="simb">
+    <h4>Perde de verdade</h4>
+    <p>Com alocação <strong>arbitrária</strong> (pesos <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi></math> quaisquer):</p>
+    <div class="eq"><math display="block"><mrow><mi>EPA</mi><mo>=</mo><munder><mo>∑</mo><mi>h</mi></munder><msub><mi>W</mi><mi>h</mi></msub><mfrac><msub><mi>W</mi><mi>h</mi></msub><msub><mi>w</mi><mi>h</mi></msub></mfrac><msup><mrow><mo stretchy="false">(</mo><mfrac><msub><mi>σ</mi><mi>h</mi></msub><mi>σ</mi></mfrac><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(4.27)</span></div>
+    <p><strong>Isto pode passar de 1.</strong> Basta um estrato grande e variável receber amostra pequena.</p>
+  </div>
 </div>
 
 <div class="caixa aviso">
-  <span class="rotulo">Quando usar cada alocação — a leitura de (4.25)</span>
-  <p>A AASc paga dois pedágios: <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> por as médias dos estratos serem diferentes, e <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> por os desvios padrões serem diferentes. A alocação proporcional elimina o primeiro; a ótima elimina os dois. Portanto: médias distintas → proporcional ou ótima; desvios padrões também muito distintos → ótima. Os efeitos do planejamento em relação à AASc são</p>
-  <math display="block"><mrow><mi>EPA</mi><mo>[</mo><mi>AEpr</mi><mo>]</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac><mo>,</mo><mspace width="2em"/><mi>EPA</mi><mo>[</mo><mi>AEot</mi><mo>]</mo><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac><mo>−</mo><mfrac><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><msup><mi>σ</mi><mn>2</mn></msup></mfrac><mo>,</mo></mrow></math>
-  <p>ambos ⩽ 1 (4.26). No Exemplo 4.1, <math><mn>1</mn><mo>−</mo><mn>15</mn><mo>/</mo><mn>24</mn><mo>=</mo><mn>0,375</mn></math> seria o EPA da proporcional exata; o 0,40 do exemplo vem da alocação 2/2, que não é exatamente proporcional a 3/5.</p>
+  <span class="rotulo">Mais uma armadilha: a média simples da amostra estratificada</span>
+  <p><math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>m</mi></msub><mo>=</mo><mo>∑</mo><mo stretchy="false">(</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi><mo stretchy="false">)</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math> é <strong>viesada</strong> para <math><mi>μ</mi></math>, a menos que <math><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub></math>.</p>
+  <p>Use sempre os pesos <strong>da população</strong> (<math><msub><mi>W</mi><mi>h</mi></msub></math>), nunca os da amostra. É só na alocação proporcional que os dois coincidem — e é por isso que lá a média simples funciona.</p>
+  <p class="miudo">Essa ideia vira <span class="chip">peso amostral</span> nos capítulos 8 e 9.</p>
 </div>
 
-<p><strong>E com alocação arbitrária?</strong> Para AASc dentro dos estratos com pesos amostrais <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi></math>,</p>
+<details class="checagem">
+  <summary>Dois estratos iguais em tamanho. O estrato 1 tem <math><msub><mi>σ</mi><mn>1</mn></msub></math> três vezes maior. Você aloca 1/4 da amostra nele. Melhor ou pior que a AASc?</summary>
+  <div class="resposta">
+    <p>Você está fazendo o contrário do certo: mandando <em>menos</em> amostra para o estrato mais variável.</p>
+    <p>Em (4.27), o termo desse estrato tem <math><msub><mi>W</mi><mi>h</mi></msub><mo>/</mo><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><mn>0,5</mn><mo>/</mo><mn>0,25</mn><mo>=</mo><mn>2</mn></math> multiplicando um <math><msup><mrow><mo stretchy="false">(</mo><msub><mi>σ</mi><mn>1</mn></msub><mo>/</mo><mi>σ</mi><mo stretchy="false">)</mo></mrow><mn>2</mn></msup></math> grande. <strong>O EPA passa de 1</strong> — estratificar assim é pior que não estratificar.</p>
+  </div>
+</details>
 
-<div class="eq"><math display="block"><mrow><mi>EPA</mi><mo>[</mo><mi>AEc</mi><mo>]</mo><mo>=</mo><mfrac><mrow><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></mrow><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></mfrac><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><mfrac><msub><mi>W</mi><mi>h</mi></msub><msub><mi>w</mi><mi>h</mi></msub></mfrac><msup><mrow><mo>(</mo><mfrac><msub><mi>σ</mi><mi>h</mi></msub><mi>σ</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>.</mo></mrow></math><span class="num">(4.27)</span></div>
+<!-- ================================================================ fecho -->
 
-<p>Normalmente <math><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><mi>σ</mi><mo>&lt;</mo><mn>1</mn></math> e o quadrado compensa estratos subamostrados (<math><msub><mi>W</mi><mi>h</mi></msub><mo>/</mo><msub><mi>w</mi><mi>h</mi></msub><mo>&gt;</mo><mn>1</mn></math>), e a AE ganha. Mas é possível construir contraexemplos: um estrato grande e variável com amostra minúscula (Exercício 4.34). O próprio AL1 do Exemplo 4.4 é um: 6,64 contra <math><mo>(</mo><mn>1</mn><mo>−</mo><mn>3</mn><mo>/</mo><mn>8</mn><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mn>3</mn><mo>=</mo><mn>0,625</mn><mo>×</mo><mn>27,43</mn><mo>/</mo><mn>3</mn><mo>=</mo><mn>5,71</mn></math> de uma AASs de 3 sem estratificar. Estratificar mal alocado não é garantia de nada.</p>
+<h2 class="passo" id="fecho"><span class="n">✓</span> Fecho — agora feche a página</h2>
 
-<h2 id="s5">5. Intervalos de confiança e tamanho da amostra</h2>
-
-<p>Com <math><msub><mi>n</mi><mi>h</mi></msub></math> e <math><msub><mi>N</mi><mi>h</mi></msub></math> grandes, o TLC dá (4.28)–(4.29): <math><mo>(</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo><mo>/</mo><msqrt><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></msqrt></math> e o análogo para <math><msub><mover><mi>τ</mi><mo>^</mo></mover><mi>es</mi></msub></math> são aproximadamente <math><mi>N</mi><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo></math>, valendo com as alocações vistas. Trocando <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> por <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math>:</p>
-
-<div class="caixa teorema">
-  <span class="rotulo">IC para <math><mi>μ</mi></math> e tamanho da amostra</span>
-  <div class="eq"><math display="block"><mrow><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>n</mi><mi>h</mi></msub></mfrac></msqrt><mo>.</mo></mrow></math></div>
-  <p>Para <math><mi>P</mi><mo>(</mo><mo>|</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>−</mo><mi>μ</mi><mo>|</mo><mo>⩽</mo><mi>B</mi><mo>)</mo><mo>≃</mo><mn>1</mn><mo>−</mo><mi>α</mi></math> é preciso fixar antes a <em>forma</em> da alocação, <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>w</mi><mi>h</mi></msub></math>, porque (4.30) depende dos <math><msub><mi>n</mi><mi>h</mi></msub></math>. Com <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub></math> (proporcional):</p>
-  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mi>D</mi></mfrac><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mi>D</mi></mfrac><mo>,</mo><mspace width="1.5em"/><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup><mo>;</mo></mrow></math><span class="num">(4.31)</span></div>
-  <p>com Neyman, <math><mi>n</mi><mo>=</mo><msup><mover><mi>σ</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>/</mo><mi>D</mi></math> (é (4.19) com custo constante e <math><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><mi>D</mi></math>). Para o total, <math><mi>D</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> no lugar de <math><mi>D</mi></math> (Exercício 4.28). Compare com a AASc, <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>: a estratificação economiza na razão <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup></math>.</p>
+<div class="fecho">
+  <h3>Escreva o capítulo de memória, de uma vez só</h3>
+  <p><strong>Papel, aba fechada, tudo o que lembrar</strong> — não passo por passo. Sai menos na hora e mais dois dias depois, e mais organizado.</p>
+  <p>Depois confira. O que não apareceu, releia <em>só aquele passo</em>.</p>
+  <ol class="conferir">
+    <li>Estratificar ajuda quando a variável de divisão está <strong>associada</strong> à de interesse.</li>
+    <li><math><msub><mi>W</mi><mi>h</mi></msub><mo>=</mo><msub><mi>N</mi><mi>h</mi></msub><mo>/</mo><mi>N</mi></math>, conhecido antes; <math><mi>μ</mi><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></math> (ponderada!).</li>
+    <li><math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>; a estratificação elimina <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>.</li>
+    <li>Teorema 4.1: (a) <math><msub><mi>N</mi><mi>h</mi></msub></math> conhecidos, (b) sorteios <strong>independentes</strong>, (c) <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> não viesado.</li>
+    <li>Com AASc no estrato: <math><mi>Var</mi><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math> — peso ao <em>quadrado</em>.</li>
+    <li>A alocação importa: 6,64 contra 4,72 no Exemplo 4.4.</li>
+    <li>Proporcional: <math><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><msub><mi>W</mi><mi>h</mi></msub></math>, <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>, e <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math>.</li>
+    <li>Uniforme: para estimar <em>cada estrato</em> igual, não a média global.</li>
+    <li>Ótima: <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> — grande, variável, barato.</li>
+    <li><math><msub><mi>V</mi><mi>ot</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>pr</mi></msub><mo>⩽</mo><msub><mi>V</mi><mi>c</mi></msub></math>; os dois pedágios são <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math> e <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup></math>.</li>
+    <li>Para achar <math><mi>n</mi></math>, fixe a alocação antes; a economia é <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup></math>.</li>
+    <li>Proporções: <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></math>; com alocação ruim, (4.27) passa de 1.</li>
+  </ol>
 </div>
 
-<h2 id="s6">6. Proporções</h2>
-
-<p>Variável 0–1 em cada estrato: <math><msub><mi>P</mi><mi>h</mi></msub><mo>=</mo><msub><mi>τ</mi><mi>h</mi></msub><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub><mo>=</mo><msub><mi>μ</mi><mi>h</mi></msub></math> é a proporção no estrato, e <math><mi>P</mi><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>P</mi><mi>h</mi></msub></math> a global. Da amostra, <math><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub><mo>=</mo><msub><mi>p</mi><mi>h</mi></msub><mo>=</mo><msub><mi>T</mi><mi>h</mi></msub><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, e como <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></math>:</p>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teoremas 4.5 e 4.6 — AE com reposição</span>
-  <div class="eq"><math display="block"><mrow><msub><mi>p</mi><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>W</mi><mi>h</mi></msub><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub><mspace width="0.6em"/><mtext>não viesado,</mtext></mrow></math></div>
-  <div class="eq"><math display="block"><mrow><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><mrow><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></mrow><msub><mi>n</mi><mi>h</mi></msub></mfrac><mo>,</mo><mspace width="1.2em"/><msub><mover><mi>V</mi><mo>^</mo></mover><mi>es</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mfrac><mrow><msub><mover><mi>P</mi><mo>^</mo></mover><mi>h</mi></msub><msub><mover><mi>Q</mi><mo>^</mo></mover><mi>h</mi></msub></mrow><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></mrow></mfrac><mo>.</mo></mrow></math><span class="num">(4.32)</span></div>
-  <p>IC: <math><msub><mi>p</mi><mi>es</mi></msub><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><msub><mover><mi>V</mi><mo>^</mo></mover><mi>es</mi></msub></msqrt></math>. Alocação ótima com custos, direto do Teorema 4.3 com <math><msub><mi>σ</mi><mi>h</mi></msub><mo>=</mo><msqrt><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></msqrt></math>; com custo constante, Neyman:</p>
-  <div class="eq"><math display="block"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mfrac><mrow><msub><mi>N</mi><mi>h</mi></msub><msqrt><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></msqrt></mrow><mrow><munderover><mo>∑</mo><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><msub><mi>N</mi><mi>h</mi></msub><msqrt><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></msqrt></mrow></mfrac><mo>.</mo></mrow></math><span class="num">(4.33)</span></div>
-  <p>Sem informação prévia sobre <math><msub><mi>P</mi><mi>h</mi></msub></math>, substitui-se <math><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></math> pelo teto 1/4 — e (4.33) vira a alocação <em>proporcional</em>. Como <math><msqrt><msub><mi>P</mi><mi>Q</mi></msub></msqrt></math> varia pouco para <math><mi>P</mi></math> entre 0,2 e 0,8 (de 0,40 a 0,50), Neyman e proporcional quase coincidem para proporções “moderadas”; a diferença aparece com proporções raras (Exercício 4.13).</p>
+<div class="caixa pratica">
+  <span class="rotulo">Se travou em algum item</span>
+  <p>Volte ao passo e refaça <em>só a checagem</em>, sem reler.</p>
+  <p>Os itens 3 e 10 são o eixo: quem souber a decomposição sabe dizer, sem conta nenhuma, se vale a pena estratificar e quanto se ganha.</p>
 </div>
 
-<h2 id="recall">Cartões de recall ativo</h2>
-
-<p>Tente responder antes de abrir. Se hesitar, volte à seção.</p>
-
-<details class="recall">
-  <summary>Para que serve estratificar? Quando <em>não</em> ajuda?</summary>
-  <div class="resposta">
-    <p>Precisão, estimativas por subpopulação, administração. Ajuda quando a variável de estratificação está associada à de interesse — médias diferentes entre estratos (<math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math> grande). Cortar a lista ao meio (Exemplo 4.2) dá EPA 0,98: nada.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Demonstre <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup></math>. Quem são os dois termos?</summary>
-  <div class="resposta">
-    <p><math><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><mi>μ</mi><mo>=</mo><mo>(</mo><msub><mi>Y</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>)</mo><mo>+</mo><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></math>; ao quadrar e somar, o termo cruzado some porque os desvios em torno de <math><msub><mi>μ</mi><mi>h</mi></msub></math> somam zero. <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> (dentro), <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>μ</mi><mi>h</mi></msub><mo>−</mo><mi>μ</mi><mo>)</mo></mrow><mn>2</mn></msup></math> (entre).</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Enuncie o Teorema 4.1. Que hipóteses usa, e o que <em>não</em> exige?</summary>
-  <div class="resposta">
-    <p><math><msub><mi>T</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> é não viesado com <math><mi>Var</mi><mo>=</mo><mo>∑</mo><msubsup><mi>N</mi><mi>h</mi><mn>2</mn></msubsup><mi>Var</mi><mo>[</mo><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub><mo>]</mo></math>. Usa: amostras independentes entre estratos e <math><msub><mover><mi>μ</mi><mo>^</mo></mover><mi>h</mi></msub></math> não viesados. Não exige o mesmo plano em todos os estratos, nem AAS.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Fórmulas de <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>]</mo></math> com AASc e com AASs dentro dos estratos.</summary>
-  <div class="resposta">
-    <p>AASc: <math><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>. AASs: <math><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><mo>(</mo><mn>1</mn><mo>−</mo><msub><mi>f</mi><mi>h</mi></msub><mo>)</mo><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>. Estimadores: trocar <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> ou <math><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math> por <math><msubsup><mi>s</mi><mi>h</mi><mn>2</mn></msubsup></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Na alocação proporcional, o que acontece com <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub></math>, com <math><msub><mi>f</mi><mi>h</mi></msub></math> e com a variância?</summary>
-  <div class="resposta">
-    <p><math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>es</mi></msub><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover></math> (os pesos cancelam); <math><msub><mi>f</mi><mi>h</mi></msub><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> em todo estrato; <math><msub><mi>V</mi><mi>pr</mi></msub><mo>=</mo><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math> — como uma AASc de uma população com variância <math><msubsup><mi>σ</mi><mi>d</mi><mn>2</mn></msubsup></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Deduza a alocação ótima com custos. Onde entra Cauchy–Schwarz?</summary>
-  <div class="resposta">
-    <p>Minimizar <math><msub><mi>V</mi><mi>es</mi></msub><msup><mi>C</mi><mo>′</mo></msup><mo>=</mo><mo>(</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub><mo>)</mo><mo>(</mo><mo>∑</mo><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub><mo>)</mo></math>. Com <math><msub><mi>a</mi><mi>h</mi></msub><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>n</mi><mi>h</mi></msub></msqrt></math>, <math><msub><mi>b</mi><mi>h</mi></msub><mo>=</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub><msub><mi>n</mi><mi>h</mi></msub></msqrt></math>, C–S diz que o produto é ⩾ <math><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo></mrow><mn>2</mn></msup></math>, que não depende dos <math><msub><mi>n</mi><mi>h</mi></msub></math>; igualdade sse <math><msub><mi>b</mi><mi>h</mi></msub><mo>/</mo><msub><mi>a</mi><mi>h</mi></msub></math> constante, i.e. <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>. Custo constante: Neyman, <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>N</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Escreva (4.25) e diga quando usar proporcional e quando usar ótima.</summary>
-  <div class="resposta">
-    <p><math><msub><mi>V</mi><mi>c</mi></msub><mo>=</mo><msub><mi>V</mi><mi>ot</mi></msub><mo>+</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi><mo>+</mo><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>, com <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msup><mrow><mo>(</mo><msub><mi>σ</mi><mi>h</mi></msub><mo>−</mo><mover><mi>σ</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></math>. Médias distintas → proporcional já ganha <math><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>; desvios padrões distintos → ótima ganha mais <math><msubsup><mi>σ</mi><mi>dp</mi><mn>2</mn></msubsup><mo>/</mo><mi>n</mi></math>. Se os <math><msub><mi>σ</mi><mi>h</mi></msub></math> são parecidos (Exercício 4.1, proporções moderadas), as duas empatam.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>A AE é sempre melhor que a AASc?</summary>
-  <div class="resposta">
-    <p>Com alocação proporcional ou ótima, sim (EPA ⩽ 1). Com alocação arbitrária, não: (4.27) pode passar de 1 se um estrato grande e variável recebe amostra pequena — o AL1 do Exemplo 4.4 (6,64) perde para a AASs de 3 (5,71).</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Proporções: estimador, variância, alocação de Neyman, e o que fazer sem informação prévia.</summary>
-  <div class="resposta">
-    <p><math><msub><mi>p</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>p</mi><mi>h</mi></msub></math>; <math><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, estimada com <math><msub><mi>n</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn></math>; Neyman <math><msub><mi>n</mi><mi>h</mi></msub><mo>∝</mo><msub><mi>N</mi><mi>h</mi></msub><msqrt><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub></msqrt></math>. Sem informação, <math><msub><mi>P</mi><mi>h</mi></msub><msub><mi>Q</mi><mi>h</mi></msub><mo>→</mo><mn>1</mn><mo>/</mo><mn>4</mn></math> e a alocação vira proporcional.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Por que <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>m</mi></msub><mo>=</mo><mo>∑</mo><mo>(</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi><mo>)</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>h</mi></msub></math> é viesado?</summary>
-  <div class="resposta">
-    <p><math><mi>E</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>m</mi></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msub><mi>w</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></math>, com <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>n</mi><mi>h</mi></msub><mo>/</mo><mi>n</mi></math>, e <math><mi>μ</mi><mo>=</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>μ</mi><mi>h</mi></msub></math>. Só coincidem se <math><msub><mi>w</mi><mi>h</mi></msub><mo>=</mo><msub><mi>W</mi><mi>h</mi></msub></math> (proporcional). O viés é <math><mo>∑</mo><mo>(</mo><msub><mi>w</mi><mi>h</mi></msub><mo>−</mo><msub><mi>W</mi><mi>h</mi></msub><mo>)</mo><msub><mi>μ</mi><mi>h</mi></msub></math> — foi o erro do Exercício 3.6.</p>
-  </div>
-</details>
-
-<h2 id="exercicios">Exercícios resolvidos</h2>
+<h2 class="passo" id="exercicios"><span class="n">+</span> Exercícios resolvidos</h2>
+<p class="marco">Depois do fecho · quinze exercícios, com a resposta comentada</p>
 
 <p>Escolhi: a população de cinco estratos com as três alocações (4.1, e 4.5 sem reposição), os problemas de alocação com variância ou desvio padrão fixados (4.3, 4.4), o estimador <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mi>m</mi></msub></math> (4.6, com os teóricos 4.27 e 4.34), alocações desiguais no Exemplo 4.2 (4.7), a proporção com amostra piloto (4.8), a Tabela 2.8 estratificada (4.9), a enumeração completa de AASs × AEun na população de oito (4.10), alfabetização com CV fixado e custos (4.13), a AE proporcional das indústrias (4.14), as fazendas de leite (4.19), a partilha ótima de 10% (4.21) e o custo da alocação uniforme (4.24). Os teóricos 4.29, 4.30 e 4.31 estão demonstrados no corpo da aula.</p>
 
@@ -603,50 +884,16 @@ round(28 * Nh * sqrt(s2) / sum(Nh * sqrt(s2)), 1)                <span class="cm
   <p>No 4.3(a), <math><mi>r</mi><mo>=</mo><mn>384</mn><mo>/</mo><mn>192</mn><mo>=</mo><mn>2</mn></math>: a uniforme custa <math><msup><mrow><mo>(</mo><mn>1</mn><mo>/</mo><mn>3</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>11</mn><mo>%</mo></math> a mais de variância (0,0111 contra 0,0100 com <math><mi>n</mi><mo>=</mo><mn>576</mn></math>). A fórmula diz que o preço da conveniência é pequeno enquanto <math><mi>r</mi></math> fica entre 1/2 e 2, e explode quando um estrato deveria receber muito mais que o outro (<math><mi>r</mi><mo>=</mo><mn>10</mn></math>: 67%).</p>
 </div>
 
+
 <div class="nota">
-  <p><strong>Fonte:</strong> Bolfarine, H.; Bussab, W. O. <em>Elementos de Amostragem</em>. IME-USP, maio de 2004 — capítulo 4, págs. 93–126. Tabela 4.1 e os dados dos exemplos e exercícios transcritos do original para fins de estudo pessoal; o diagrama da população estratificada foi desenhado para esta aula.</p>
-  <p><strong>Nota sobre (4.19):</strong> o livro imprime o tamanho ótimo para <math><msub><mi>V</mi><mi>es</mi></msub></math> fixo com os dois fatores iguais a <math><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>; a forma correta, que sai de (4.16)–(4.17) e de <math><msub><mi>V</mi><mi>es</mi></msub><mo>=</mo><mo>∑</mo><msubsup><mi>W</mi><mi>h</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>/</mo><msub><mi>n</mi><mi>h</mi></msub></math>, é <math><mi>n</mi><mo>=</mo><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo><mo>(</mo><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt><mo>)</mo><mo>/</mo><msub><mi>V</mi><mi>es</mi></msub></math>. Com custo constante as duas coincidem.</p>
-  <p><strong>Nota sobre o Exercício 4.1:</strong> a tabela dá <math><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math>, e as fórmulas com AASc pedem <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math>; converti por <math><mo>(</mo><msub><mi>N</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>. Usar <math><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math> diretamente muda os resultados na terceira casa. Os Exemplos 4.1, 4.2 e 4.4 conferem com o livro em todas as casas impressas.</p>
+  <p><strong>Sobre esta versão.</strong> Mesmo conteúdo do capítulo 4 de Bolfarine &amp; Bussab (págs. 93–126), reorganizado em doze passos curtos, cada um com o caso numérico antes do símbolo e uma pergunta de recuperação no fim. Todos os valores foram recalculados. Duas observações sobre o impresso: a fórmula (4.19) sai com os dois fatores iguais a <math><mo>∑</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>σ</mi><mi>h</mi></msub><mo>/</mo><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math>, e o correto leva <math><msqrt><msub><mi>c</mi><mi>h</mi></msub></msqrt></math> no numerador de um deles; e o Exemplo 4.1 fornece <math><msubsup><mi>S</mi><mi>h</mi><mn>2</mn></msubsup></math> enquanto as fórmulas com reposição pedem <math><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></math> — a conversão é por <math><mo stretchy="false">(</mo><msub><mi>N</mi><mi>h</mi></msub><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>/</mo><msub><mi>N</mi><mi>h</mi></msub></math>.</p>
 </div>
 
 <nav class="nav-rodape">
   <span><a href="../cap03/03-00-amostragem-aleatoria-simples.html">← Cap. 3 — Amostragem aleatória simples</a></span>
-  <span><a href="../index.html">Menu</a> · <a href="../guia/01-04-guia-de-prova.html">Guia de prova, caps. 1–4</a> · <a href="../guia/01-04-definicoes-e-resultados.html">Definições e resultados</a> · Cap. 5 (em breve)</span>
+  <span><a href="../index.html">Menu</a> · <a href="../guia/01-04-guia-de-prova.html">Guia de prova, caps. 1–4</a> · <a href="../guia/01-04-definicoes-e-resultados.html">Definições e resultados</a></span>
 </nav>
 
-
 </div>
-<script>
-/* Em tela larga a barra lateral fica sempre aberta (o CSS esconde o
-   alternador). Abaixo de 62rem ela vira aba: aí começa fechada e fecha
-   sozinha ao escolher um link. Nada aqui depende de rede ou biblioteca —
-   sem JavaScript a barra apenas fica sempre aberta, que é o estado bom. */
-(function () {
-  var menu = document.querySelector(".menu-lateral");
-  if (!menu) return;
-
-  /* Seções com subtópicos: clicar no título abre a lista e segue o link.
-     Só ABRE — para fechar, clique na setinha. É preciso fazer à mão porque
-     o navegador dá prioridade ao <a> e não alterna o <details> sozinho.
-     Sem JavaScript a setinha continua abrindo e fechando normalmente. */
-  menu.querySelectorAll("details.sub > summary > a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var d = a.closest("details.sub");
-      if (d) d.open = true;
-    });
-  });
-
-  if (!window.matchMedia) return;
-  var estreito = window.matchMedia("(max-width: 62rem)");
-  function ajustar() { menu.open = !estreito.matches; }
-  ajustar();
-  estreito.addEventListener("change", ajustar);
-  menu.querySelectorAll(".painel a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      if (estreito.matches) menu.open = false;
-    });
-  });
-})();
-</script>
 </body>
 </html>

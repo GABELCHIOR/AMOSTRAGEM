@@ -9,51 +9,37 @@
 <title>Cap. 3 — Amostragem aleatória simples</title>
 <link rel="stylesheet" href="../assets/tema.css?v=1">
 <link rel="stylesheet" href="../assets/estilo.css?v=1">
+<link rel="stylesheet" href="../assets/aula.css?v=1">
 </head>
 <body>
 
 <details class="menu-lateral" open>
   <summary>Índice da aula</summary>
   <nav class="painel">
-    <p class="painel-titulo">Cap. 3 — Amostragem aleatória simples</p>
+    <p class="painel-titulo">Cap. 3 — em 12 passos</p>
     <ol>
-      <li><a href="#s1">O plano e os dois sabores</a></li>
-      <li><details class="sub">
-        <summary><a href="#s2">AAS com reposição</a></summary>
-        <ul class="subitens">
-          <li><a href="#s2-1">2.1 <math><msub><mi>f</mi><mi>i</mi></msub></math> é Binomial (Teorema 3.1)</a></li>
-          <li><a href="#s2-2">2.2 Total, média e expansão</a></li>
-          <li><a href="#s2-3">2.3 <math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup></math> (Teorema 3.4)</a></li>
-          <li><a href="#s2-4">2.4 Exemplo 3.1: as nove amostras</a></li>
-        </ul>
-      </details></li>
-      <li><details class="sub">
-        <summary><a href="#s3">Intervalos e tamanho da amostra</a></summary>
-        <ul class="subitens">
-          <li><a href="#s3-1">3.1 Normalidade assintótica e IC</a></li>
-          <li><a href="#s3-2">3.2 O tamanho <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math></a></li>
-          <li><a href="#s3-3">3.3 Proporções</a></li>
-        </ul>
-      </details></li>
-      <li><a href="#s4">Otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math></a></li>
-      <li><details class="sub">
-        <summary><a href="#s5">AAS sem reposição</a></summary>
-        <ul class="subitens">
-          <li><a href="#s5-1">5.1 <math><msub><mi>f</mi><mi>i</mi></msub></math> é Bernoulli (Teorema 3.7)</a></li>
-          <li><a href="#s5-2">5.2 Estimadores e o fator <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math></a></li>
-          <li><a href="#s5-3">5.3 Exemplo 3.4: as seis amostras</a></li>
-          <li><a href="#s5-4">5.4 IC, tamanho da amostra e os operários</a></li>
-          <li><a href="#s5-5">5.5 Proporções sem reposição</a></li>
-          <li><a href="#s5-6">5.6 Otimalidade sem independência</a></li>
-        </ul>
-      </details></li>
-      <li><a href="#s6">AASc × AASs: o efeito do planejamento</a></li>
-      <li><a href="#recall">Cartões de recall ativo</a></li>
-      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+      <li><a href="#p1">Dois sabores do mesmo sorteio</a></li>
+      <li><a href="#p2">Com reposição: <math><msub><mi>f</mi><mi>i</mi></msub></math> é Binomial</a></li>
+      <li><a href="#p3">Média, total e estimador expansão</a></li>
+      <li><a href="#p4"><math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup></math></a></li>
+      <li><a href="#p5">O intervalo de confiança</a></li>
+      <li><a href="#p6">Quantos elementos sortear</a></li>
+      <li><a href="#p7">Proporções</a></li>
+      <li><a href="#p8">Sem reposição: nasce o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math></a></li>
+      <li><a href="#p9">Os estimadores sem reposição</a></li>
+      <li><a href="#p10">Tamanho e proporções sem reposição</a></li>
+      <li><a href="#p11"><math><mover><mi>y</mi><mo>¯</mo></mover></math> é o melhor que existe</a></li>
+      <li><a href="#p12">EPA — o preço de repor</a></li>
     </ol>
+    <p class="painel-titulo">Fim</p>
+    <ul>
+      <li><a href="#fecho">Fecho — escrever tudo</a></li>
+      <li><a href="#exercicios">Exercícios resolvidos</a></li>
+    </ul>
     <p class="extras">
-      <a href="#topo">↑ Topo</a>
-      <a href="../index.html">Menu</a>
+      <a href="../index.html">↑ Menu</a>
+      <a href="../cap02/02-00-definicoes-e-notacoes-basicas.html">← Cap. 2</a>
+      <a href="../cap04/04-00-amostragem-estratificada.html">Cap. 4 →</a>
     </p>
   </nav>
 </details>
@@ -63,433 +49,628 @@
 <header class="topo">
   <p class="migalha"><a href="../index.html">Menu</a> · Bolfarine &amp; Bussab · Capítulo 3 · págs. 61–92</p>
   <h1>Amostragem aleatória simples</h1>
-  <p class="subtitulo">O plano mais simples e mais importante: sorteiam-se <math><mi>n</mi></math> de <math><mi>N</mi></math> com igual probabilidade. Toda a teoria sai de duas linhas do capítulo 2 — <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>τ</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></math> — trocando a distribuição de <math><msub><mi>f</mi><mi>i</mi></msub></math>: Binomial com reposição, Bernoulli sem.</p>
+  <p class="subtitulo">O primeiro plano de verdade. Tudo aqui sai de <em>uma</em> pergunta: quantas vezes cada unidade da população entra na amostra?</p>
 </header>
 
-<div class="caixa objetivo">
-  <span class="rotulo">Ao final desta aula você deve saber</span>
+<div class="objetivo">
+  <span class="rotulo">Ao final você deve saber fazer</span>
   <ul>
-    <li>Provar o Teorema 3.1: na AASc, <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo>(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>, <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></mrow><mi>n</mi></msup></math>, <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><mi>n</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math>.</li>
-    <li>Deduzir <math><mi>E</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mi>μ</mi></math> e <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (AASc) ou <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (AASs) de (2.14)–(2.15).</li>
-    <li>Provar que <math><msup><mi>s</mi><mn>2</mn></msup></math> é não viesado para <math><msup><mi>σ</mi><mn>2</mn></msup></math> (AASc) e para <math><msup><mi>S</mi><mn>2</mn></msup></math> (AASs) usando (2.16) e (2.18).</li>
-    <li>Montar o estimador expansão <math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math> e ler <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mover><mi>y</mi><mo>¯</mo></mover></math> como a estimativa da parte não observada.</li>
-    <li>Construir intervalos de confiança aproximados para <math><mi>μ</mi></math>, <math><mi>τ</mi></math> e <math><mi>P</mi></math>, e interpretá-los à maneira frequentista.</li>
-    <li>Determinar <math><mi>n</mi></math> para um erro máximo <math><mi>B</mi></math>: <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>, <math><mi>n</mi><mo>=</mo><mn>1</mn><mo>/</mo><mo>(</mo><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>, e as versões para proporções e para o total.</li>
-    <li>Saber de onde tirar <math><msup><mi>σ</mi><mn>2</mn></msup></math> antes de ter a amostra (piloto, pesquisas passadas, amplitude/4, <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math>).</li>
-    <li>Provar que <math><mover><mi>y</mi><mo>¯</mo></mover></math> é o estimador linear não viesado de variância mínima, com e sem independência.</li>
-    <li>Calcular o efeito do planejamento <math><mi>EPA</mi><mo>=</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math> e explicar por que sem reposição é sempre melhor.</li>
+    <li>Dizer a variância de <math><mover><mi>y</mi><mo>¯</mo></mover></math> e de <math><mi>T</mi></math> nos dois planos, de cabeça.</li>
+    <li>Montar um intervalo de confiança para média, total e proporção.</li>
+    <li>Calcular <math><mi>n</mi></math> a partir de <math><mi>B</mi></math> e <math><mi>γ</mi></math>, nas cinco variantes.</li>
+    <li>Explicar de onde vem o fator <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math>.</li>
+    <li>Justificar por que <math><mover><mi>y</mi><mo>¯</mo></mover></math> é ótima, e dizer em que classe.</li>
+    <li>Comparar dois planos pelo EPA.</li>
   </ul>
 </div>
 
-<h2 id="s1">1. O plano e os dois sabores</h2>
+<div class="caixa pratica">
+  <span class="rotulo">Como usar esta página</span>
+  <p><strong>Um passo por vez.</strong> Cada um termina com uma pergunta — <strong>responda antes de abrir</strong>.</p>
+  <p>Os passos 2 a 7 são <em>com</em> reposição; 8 a 10 são <em>sem</em>. São a mesma conta duas vezes: se o primeiro bloco entrou, o segundo é rápido.</p>
+</div>
 
-<p>A definição operacional: “de uma lista com <math><mi>N</mi></math> unidades elementares, sorteiam-se com igual probabilidade <math><mi>n</mi></math> unidades”. A condição para usá-la é um sistema de referência <em>completo</em>, <math><mi>U</mi><mo>=</mo><mo>{</mo><mn>1</mn><mo>,</mo><mo>…</mo><mo>,</mo><mi>N</mi><mo>}</mo></math>. O procedimento: (i) por um mecanismo aleatório (tabela, urna, programa) sorteia-se um elemento com igual probabilidade; (ii) repete-se até completar as <math><mi>n</mi></math> unidades pré-fixadas; (iii) se a unidade sorteada pode sair de novo, é <strong>AAS com reposição</strong> (AASc, “irrestrita”); se é removida de <math><mi>U</mi></math> antes do próximo sorteio, é <strong>AAS sem reposição</strong> (AASs, “restrita”). Além de plano próprio, a AAS é o bloco de construção dos planos em estágios. Com o plano fixado, escreve-se <math><mi>E</mi><mo>[</mo><mo>·</mo><mo>]</mo></math> em vez de <math><msub><mi>E</mi><mi>A</mi></msub><mo>[</mo><mo>·</mo><mo>]</mo></math>.</p>
+<!-- ==================================================================== 1 -->
+
+<h2 class="passo" id="p1"><span class="n">1</span> Dois sabores do mesmo sorteio</h2>
+<p class="marco">Passo 1 de 12</p>
+
+<div class="ideia">
+  <p>Todo mundo com a mesma chance. A única escolha é devolver ou não a unidade sorteada.</p>
+  <p>Essa escolha muda a variância pela metade no exemplo do capítulo. Não é detalhe.</p>
+</div>
+
+<figure class="diagrama">
+  <svg viewBox="0 0 430 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="À esquerda, AAS com reposição: a unidade volta para a urna e o espaço amostral tem nove amostras. À direita, sem reposição: a unidade sai e restam três amostras distintas.">
+    <text x="108" y="16" class="tx-rot">com reposição — AASc</text>
+    <rect x="30" y="26" width="156" height="34" class="cx"/>
+    <text x="108" y="43" class="tx">sorteia · anota · devolve</text>
+    <path d="M108 62 L 108 78" class="ramo"/>
+    <rect x="30" y="80" width="156" height="30" class="cx-folha"/>
+    <text x="108" y="95" class="tx">9 amostras, 1/9 cada</text>
+    <text x="108" y="126" class="tx-crit">Var[ȳ] = 28</text>
+    <text x="108" y="142" class="tx-rot">a mesma pessoa pode repetir</text>
+
+    <text x="323" y="16" class="tx-rot">sem reposição — AASs</text>
+    <rect x="245" y="26" width="156" height="34" class="cx"/>
+    <text x="323" y="43" class="tx">sorteia · anota · guarda</text>
+    <path d="M323 62 L 323 78" class="ramo"/>
+    <rect x="245" y="80" width="156" height="30" class="cx-folha"/>
+    <text x="323" y="95" class="tx">3 amostras, 1/3 cada</text>
+    <text x="323" y="126" class="tx-crit">Var[ȳ] = 14</text>
+    <text x="323" y="142" class="tx-rot">ninguém entra duas vezes</text>
+  </svg>
+  <figcaption>Os dois planos na população de três domicílios, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>. Mesmo esforço de campo, metade do erro.</figcaption>
+</figure>
+
+<div class="par">
+  <div class="caso">
+    <h4>No exemplo</h4>
+    <p><strong>AASc.</strong> Sorteio 2 vezes entre 3 domicílios, devolvendo. Cada sequência tem chance <math><mn>1</mn><mo>/</mo><msup><mn>3</mn><mn>2</mn></msup><mo>=</mo><mn>1</mn><mo>/</mo><mn>9</mn></math>.</p>
+    <p><strong>AASs.</strong> O mesmo, sem devolver. Sobram 3 pares: {12,30}, {12,18}, {30,18}, com 1/3 cada.</p>
+  </div>
+  <div class="simb">
+    <h4>Em símbolos</h4>
+    <p><strong>AASc:</strong> <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>/</mo><msup><mi>N</mi><mi>n</mi></msup></math> para toda sequência de tamanho <math><mi>n</mi></math>.</p>
+    <p><strong>AASs:</strong> <math><mi>P</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac></math> entre as <math><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac></math> não ordenadas.</p>
+    <p class="miudo">Os dois são <strong>simétricos</strong> e de <strong>tamanho fixo</strong> — as duas hipóteses de (2.14)–(2.15).</p>
+  </div>
+</div>
 
 <div class="caixa aviso">
   <span class="rotulo">Por que estudar a versão com reposição, se ninguém a usa</span>
-  <p>Na prática a AASs é a interessante: não se ganha informação vendo a mesma unidade duas vezes. Mas a AASc tem a <strong>independência</strong> entre os sorteios, que é a hipótese de quase toda a inferência dos livros — e torna as contas imediatas. Por isso o capítulo deduz tudo primeiro para a AASc e depois para a AASs, e termina comparando as duas. Os parâmetros em jogo são os do capítulo 2: <math><mi>τ</mi></math>, <math><mi>μ</mi></math>, <math><msup><mi>σ</mi><mn>2</mn></msup></math> (divide por <math><mi>N</mi></math>) e <math><msup><mi>S</mi><mn>2</mn></msup></math> (divide por <math><mi>N</mi><mo>−</mo><mn>1</mn></math>). Guarde a regra: <strong>com reposição aparece <math><msup><mi>σ</mi><mn>2</mn></msup></math>; sem reposição, <math><msup><mi>S</mi><mn>2</mn></msup></math></strong>.</p>
+  <p>Porque as contas são mais simples e o resultado sem reposição sai do <em>mesmo</em> raciocínio, trocando uma distribuição. E porque, quando <math><mi>n</mi></math> é minúsculo diante de <math><mi>N</mi></math>, as duas coincidem na prática.</p>
 </div>
 
-<h2 id="s2">2. AAS com reposição</h2>
+<details class="checagem">
+  <summary>Nos dois planos, qual é a chance de um domicílio específico ser escolhido no <em>primeiro</em> sorteio?</summary>
+  <div class="resposta">
+    <p><math><mn>1</mn><mo>/</mo><mi>N</mi></math> nos dois. O primeiro sorteio é idêntico.</p>
+    <p>A diferença aparece do segundo em diante — e é toda a diferença do capítulo.</p>
+  </div>
+</details>
 
-<h3 id="s2-1">2.1 <math><msub><mi>f</mi><mi>i</mi></msub></math> é Binomial — o Teorema 3.1</h3>
+<!-- ==================================================================== 2 -->
 
-<p>Cada sorteio é uma tentativa independente em que a unidade <math><mi>i</mi></math> “sai” com probabilidade <math><mn>1</mn><mo>/</mo><mi>N</mi></math>. Logo o número de vezes que ela aparece em <math><mi>n</mi></math> sorteios é Binomial. Tudo o mais é consequência.</p>
+<h2 class="passo" id="p2"><span class="n">2</span> Com reposição, <math><msub><mi>f</mi><mi>i</mi></msub></math> é Binomial</h2>
+<p class="marco">Passo 2 de 12 · a única coisa nova do bloco AASc</p>
+
+<div class="ideia">
+  <p>Pergunte: quantas vezes o domicílio 2 entrou? São <math><mi>n</mi></math> tentativas independentes, cada uma com chance <math><mn>1</mn><mo>/</mo><mi>N</mi></math>.</p>
+  <p>Isso é Binomial. E com a distribuição de <math><msub><mi>f</mi><mi>i</mi></msub></math> na mão, (2.14)–(2.15) entregam o resto de graça.</p>
+</div>
 
 <div class="caixa teorema">
-  <span class="rotulo">Teorema 3.1 — a AASc em quatro fórmulas</span>
-  <p>No plano AASc, <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo>(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>, de modo que</p>
-  <div class="eq"><math display="block"><mrow><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="2em"/><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mo>,</mo></mrow></math><span class="num">(3.1), (3.2)</span></div>
-  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup><mo>,</mo><mspace width="2em"/><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>−</mo><mn>2</mn><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mi>n</mi></msup><mo>,</mo></mrow></math><span class="num">(3.3), (3.4)</span></div>
-  <p>e, para <math><mi>i</mi><mo>≠</mo><mi>j</mi></math>, <math><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><mi>n</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> (3.7).</p>
-</div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>(3.1) e (3.2) são a média e a variância da Binomial, <math><mi>n</mi><mi>p</mi></math> e <math><mi>n</mi><mi>p</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo>)</mo></math> com <math><mi>p</mi><mo>=</mo><mn>1</mn><mo>/</mo><mi>N</mi></math>. Para a inclusão, <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>≠</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></mrow><mi>n</mi></msup><mo>=</mo><mo>[</mo><msup><mi>N</mi><mi>n</mi></msup><mo>−</mo><msup><mrow><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mi>n</mi></msup><mo>]</mo><mo>/</mo><msup><mi>N</mi><mi>n</mi></msup></math> (3.5) — no numerador, o número de amostras ordenadas que contêm <math><mi>i</mi></math>; no denominador, o total <math><msup><mi>N</mi><mi>n</mi></msup></math>. Para o par, inclusão–exclusão:</p>
-  <math display="block"><mrow><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>∪</mo><msub><mi>f</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mo>[</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>+</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>−</mo><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>∩</mo><msub><mi>f</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>]</mo><mo>,</mo></mrow></math>
-  <p>e <math><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>∩</mo><msub><mi>f</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>=</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mn>2</mn><mo>/</mo><mi>N</mi><mo>)</mo></mrow><mi>n</mi></msup></math>, porque em cada sorteio evitam-se duas unidades. Isso dá (3.4), ou (3.6) na forma de contagem <math><mo>[</mo><msup><mi>N</mi><mi>n</mi></msup><mo>−</mo><mn>2</mn><msup><mrow><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mi>n</mi></msup><mo>+</mo><msup><mrow><mo>(</mo><mi>N</mi><mo>−</mo><mn>2</mn><mo>)</mo></mrow><mi>n</mi></msup><mo>]</mo><mo>/</mo><msup><mi>N</mi><mi>n</mi></msup></math>. Para a covariância: as tentativas são independentes e cada uma cai numa das <math><mi>N</mi></math> unidades com probabilidade <math><mn>1</mn><mo>/</mo><mi>N</mi></math>, logo <math><mo>(</mo><msub><mi>f</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>f</mi><mi>N</mi></msub><mo>)</mo><mo>∼</mo><mi>M</mi><mo>(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>,</mo><mo>…</mo><mo>,</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math> é Multinomial, cuja covariância é <math><mo>−</mo><mi>n</mi><msub><mi>p</mi><mi>i</mi></msub><msub><mi>p</mi><mi>j</mi></msub><mo>=</mo><mo>−</mo><mi>n</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math>. Caminho alternativo: o plano é simétrico e de tamanho fixo, então (2.9) dá <math><mo>−</mo><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac></math>.<span class="qed">∎</span></p>
+  <span class="rotulo">Teorema 3.1</span>
+  <p>Na AASc, <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo stretchy="false">(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math>, logo</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.4em"/><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo stretchy="false">)</mo></mrow></mrow></math><span class="num">(3.1)–(3.2)</span></div>
+  <p>E as probabilidades de inclusão, que agora exigem “pelo menos uma vez”:</p>
+  <div class="eq"><math display="block"><mrow><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></mrow></math><span class="num">(3.3)</span></div>
 </div>
 
-<p>Conferência com o capítulo 2 (<math><mi>N</mi><mo>=</mo><mn>3</mn></math>, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>, plano A): <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><mn>4</mn><mo>/</mo><mn>9</mn><mo>=</mo><mn>5</mn><mo>/</mo><mn>9</mn></math>, <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1</mn><mo>−</mo><mn>8</mn><mo>/</mo><mn>9</mn><mo>+</mo><mn>1</mn><mo>/</mo><mn>9</mn><mo>=</mo><mn>2</mn><mo>/</mo><mn>9</mn></math>, <math><mi>Cov</mi><mo>=</mo><mo>−</mo><mn>2</mn><mo>/</mo><mn>9</mn></math> — os números do Exemplo 2.13 e do Exercício 2.8.</p>
-
-<h3 id="s2-2">2.2 Total, média e o estimador expansão</h3>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teoremas 3.2 e 3.3, Corolário 3.1 — <math><mi>t</mi></math>, <math><mover><mi>y</mi><mo>¯</mo></mover></math> e <math><mi>T</mi></math> na AASc</span>
-  <p>O total amostral <math><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub></math> tem <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><mi>μ</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup></math>. Logo a média amostral</p>
-  <div class="eq"><math display="block"><mrow><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo></mrow><mi>n</mi></mfrac><mo>=</mo><mover><mi>μ</mi><mo>^</mo></mover><mspace width="1.5em"/><mtext>é não viesada para</mtext><mspace width="0.4em"/><mi>μ</mi><mo>,</mo><mspace width="1em"/><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo></mrow></math><span class="num">(3.8), (3.9)</span></div>
-  <p>e o <strong>estimador expansão</strong> do total, <math><mi>T</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mover><mi>τ</mi><mo>^</mo></mover><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mi>N</mi><mo>/</mo><mi>n</mi><mo>)</mo><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo></math> (3.10), é não viesado para <math><mi>τ</mi></math> com <math><mi>Var</mi><mo>[</mo><mi>T</mi><mo>]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>.</p>
+<div class="par">
+  <div class="caso">
+    <h4>Conferindo no exemplo</h4>
+    <p><math><mi>N</mi><mo>=</mo><mn>3</mn></math>, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>:</p>
+    <p><math><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn></math></p>
+    <p><math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>5</mn><mo>/</mo><mn>9</mn></math></p>
+    <p class="miudo">Bate com a contagem do capítulo 2: 5 das 9 amostras contêm a unidade 1. ✓</p>
+  </div>
+  <div class="simb">
+    <h4>Cuidado com a diferença</h4>
+    <p><math><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>≅</mo><mn>0,67</mn></math> — número médio de <em>vezes</em>.</p>
+    <p><math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mn>5</mn><mo>/</mo><mn>9</mn><mo>≅</mo><mn>0,56</mn></math> — chance de entrar <em>ao menos uma vez</em>.</p>
+    <p>São diferentes porque <math><msub><mi>f</mi><mi>i</mi></msub></math> pode valer 2.</p>
+  </div>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>A AASc é simétrica e de tamanho fixo, então valem (2.14) e (2.15) com <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac></math>:</p>
-  <math display="block"><mrow><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mi>τ</mi><mo>=</mo><mi>n</mi><mi>μ</mi><mo>,</mo><mspace width="2em"/><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>.</mo></mrow></math>
-  <p>Dividindo por <math><mi>n</mi></math> e por <math><msup><mi>n</mi><mn>2</mn></msup></math> sai (3.8)–(3.9); multiplicando por <math><mi>N</mi></math> e <math><msup><mi>N</mi><mn>2</mn></msup></math>, o corolário.<span class="qed">∎</span></p>
+
+<details class="checagem">
+  <summary>Por que na AASc <math><msub><mi>π</mi><mi>i</mi></msub><mo>&lt;</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, enquanto na AASs os dois são iguais?</summary>
+  <div class="resposta">
+    <p>Porque <math><mi>n</mi><mo>/</mo><mi>N</mi><mo>=</mo><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo></math> conta <em>repetições</em>. Com reposição, parte dessas “entradas” é a mesma pessoa voltando — e <math><msub><mi>π</mi><mi>i</mi></msub></math> não conta isso duas vezes.</p>
+    <p>Sem reposição <math><msub><mi>f</mi><mi>i</mi></msub></math> só pode ser 0 ou 1, então média e probabilidade coincidem.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 3 -->
+
+<h2 class="passo" id="p3"><span class="n">3</span> Média, total, e o estimador expansão</h2>
+<p class="marco">Passo 3 de 12</p>
+
+<div class="ideia">
+  <p>Ponha <math><mi>Var</mi><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo></math> da Binomial dentro de (2.15) e a variância da média sai em duas linhas.</p>
+  <p>Resultado: <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. Exatamente o que você já viu em inferência — e agora com <math><msup><mi>σ</mi><mn>2</mn></msup></math> significando a variância da <em>lista</em>.</p>
 </div>
 
-<div class="caixa aviso">
+<ol class="receita">
+  <li>De (2.15): <math><mi>Var</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>Var</mi><mo stretchy="false">[</mo><mi>f</mi><mo stretchy="false">]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></math>.</li>
+  <li>Substitua: <math><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo stretchy="false">)</mo></mrow><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>n</mi><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>S</mi><mn>2</mn></msup></mrow><mi>N</mi></mfrac></math>.</li>
+  <li>Mas <math><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>N</mi><msup><mi>σ</mi><mn>2</mn></msup></math>, então <math><mi>Var</mi><mo stretchy="false">[</mo><mi>t</mi><mo stretchy="false">]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup></math>.</li>
+  <li>Divida por <math><msup><mi>n</mi><mn>2</mn></msup></math>: <math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. <span class="chip">Pronto.</span></li>
+</ol>
+
+<div class="fileira">
+  <div><strong>Média</strong><p class="numerao"><math><mrow><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math></p><p>Teorema 3.3</p></div>
+  <div><strong>Total</strong><p class="numerao"><math><mrow><mi>Var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>n</mi></mfrac></mrow></math></p><p>Corolário 3.1</p></div>
+  <div><strong>Ambos</strong><p class="numerao"><math><mrow><mi>E</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mi>μ</mi></mrow></math></p><p>não viesados</p></div>
+</div>
+
+<div class="caixa definicao">
   <span class="rotulo">Por que “expansão”</span>
-  <p><math><mi>τ</mi><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∉</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub></math>, e <math><mover><mi>τ</mi><mo>^</mo></mover><mo>=</mo><mi>n</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mover><mi>y</mi><mo>¯</mo></mover></math>: a parte observada entra como é, e cada uma das <math><mi>N</mi><mo>−</mo><mi>n</mi></math> unidades não observadas é “estimada” pela média da amostra. É essa leitura que os estimadores razão e regressão (caps. 5 e 6) vão melhorar, substituindo <math><mover><mi>y</mi><mo>¯</mo></mover></math> por uma previsão que usa a variável auxiliar.</p>
+  <p><math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math> pode ser reescrito assim:</p>
+  <div class="eq"><math display="block"><mrow><mi>T</mi><mo>=</mo><mi>n</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mover><mi>y</mi><mo>¯</mo></mover></mrow></math></div>
+  <p>A primeira parcela é o que você <em>viu</em>. A segunda é o que você <em>não viu</em> — e a estimativa para ela é a mesma média.</p>
+  <p><span class="chip">Guarde isto.</span> Os capítulos 5 e 6 fazem só uma coisa: trocam esse <math><mover><mi>y</mi><mo>¯</mo></mover></math> da parte não observada por uma previsão melhor, usando uma variável auxiliar.</p>
 </div>
 
-<h3 id="s2-3">2.3 <math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup></math> — o Teorema 3.4</h3>
+<details class="checagem">
+  <summary>Uma população de 10 000 e uma de 100 têm o mesmo <math><msup><mi>σ</mi><mn>2</mn></msup></math>. Com <math><mi>n</mi><mo>=</mo><mn>50</mn></math> e AASc, qual estimativa é mais precisa?</summary>
+  <div class="resposta">
+    <p><strong>Igualmente precisas.</strong> <math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mn>50</mn></math> nas duas: <math><mi>N</mi></math> não aparece.</p>
+    <p>É o resultado que surpreende todo mundo — a precisão depende de <em>quantos</em> você entrevista, não da fração da população. <span class="miudo">(Sem reposição, o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math> faz a população pequena ficar um pouco melhor — passo 8.)</span></p>
+  </div>
+</details>
+
+<!-- ==================================================================== 4 -->
+
+<h2 class="passo" id="p4"><span class="n">4</span> <math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup></math> — e é por isso que o denominador é <math><mi>n</mi><mo>−</mo><mn>1</mn></math></h2>
+<p class="marco">Passo 4 de 12</p>
+
+<div class="ideia">
+  <p>A variância da amostra, com divisor <math><mi>n</mi><mo>−</mo><mn>1</mn></math>, acerta <math><msup><mi>σ</mi><mn>2</mn></msup></math> na média.</p>
+  <p>Isso fecha o circuito: dá para estimar a variância do estimador <em>a partir da própria amostra</em>.</p>
+</div>
 
 <div class="caixa teorema">
   <span class="rotulo">Teorema 3.4 e Corolário 3.2</span>
-  <p>Na AASc, a variância amostral</p>
-  <div class="eq"><math display="block"><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></mrow></math><span class="num">(3.11)</span></div>
-  <p>é não viesada para <math><msup><mi>σ</mi><mn>2</mn></msup></math>. Consequentemente <math><mi>var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (3.12) e <math><mi>var</mi><mo>[</mo><mi>T</mi><mo>]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> (3.13) são estimadores não viesados de <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></math> e <math><mi>Var</mi><mo>[</mo><mi>T</mi><mo>]</mo></math>. (Minúscula <math><mi>var</mi></math> = estimador; maiúscula <math><mi>Var</mi></math> = o parâmetro.)</p>
-</div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração — é aqui que (2.16) e (2.18) pagam a viagem</span>
-  <p>Escreva a soma de quadrados em torno de <math><mover><mi>y</mi><mo>¯</mo></mover></math> com a soma de quadrados <math><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup></math> e o total <math><mi>t</mi></math>:</p>
-  <math display="block"><mrow><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mi>n</mi><msup><mover><mi>y</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>=</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><msup><mi>t</mi><mn>2</mn></msup><mi>n</mi></mfrac><mo>,</mo><mspace width="1.5em"/><mtext>logo</mtext><mspace width="0.5em"/><mi>E</mi><mo>[</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>E</mi><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>.</mo></mrow></math>
-  <p>Por (2.18) com <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>: <math><mi>E</mi><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><mi>N</mi><mo>(</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>)</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup></math>. Por (2.16) com (3.1)–(3.2):</p>
-  <math display="block"><mrow><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mo>+</mo><mfrac><msup><mi>n</mi><mn>2</mn></msup><msup><mi>N</mi><mn>2</mn></msup></mfrac><msup><mi>τ</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>n</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup><mo>.</mo></mrow></math>
-  <p>Juntando: <math><mi>E</mi><mo>[</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>−</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>−</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>=</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>σ</mi><mn>2</mn></msup></math>.<span class="qed">∎</span></p>
+  <div class="eq"><math display="block"><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msup><mrow><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>,</mo><mspace width="1em"/><mi>E</mi><mo stretchy="false">[</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup></mrow></math><span class="num">(3.11)</span></div>
+  <p>Logo <math><mi>var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> e <math><mi>var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> são não viesados&nbsp;(3.12)–(3.13).</p>
 </div>
 
-<h3 id="s2-4">2.4 Exemplo 3.1 — as nove amostras da renda familiar</h3>
+<p>A demonstração é a única trabalhosa do capítulo, e vale ver de onde ela puxa as peças:</p>
 
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.1 — AASc com <math><mi>n</mi><mo>=</mo><mn>2</mn></math> em <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><mn>12</mn><mo>,</mo><mn>30</mn><mo>,</mo><mn>18</mn><mo>)</mo></math></span>
-  <p><math><mi>τ</mi><mo>=</mo><mn>60</mn></math>, <math><mi>μ</mi><mo>=</mo><mn>20</mn></math>, <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>168</mn><mo>/</mo><mn>3</mn><mo>=</mo><mn>56</mn></math>. As nove amostras ordenadas, cada uma com 1/9:</p>
-  <div class="rolagem">
-  <table>
-    <caption>Tabela 3.1 — <math><mover><mi>y</mi><mo>¯</mo></mover></math> e <math><msup><mi>s</mi><mn>2</mn></msup></math> em cada amostra de <math><msub><mi>S</mi><mi>AASc</mi></msub></math>.</caption>
-    <thead><tr><th class="txt"><math><mi>s</mi></math></th><th>11</th><th>12</th><th>13</th><th>21</th><th>22</th><th>23</th><th>31</th><th>32</th><th>33</th></tr></thead>
-    <tbody>
-      <tr><td><math><mover><mi>y</mi><mo>¯</mo></mover></math></td><td>12</td><td>21</td><td>15</td><td>21</td><td>30</td><td>24</td><td>15</td><td>24</td><td>18</td></tr>
-      <tr><td><math><msup><mi>s</mi><mn>2</mn></msup></math></td><td>0</td><td>162</td><td>18</td><td>162</td><td>0</td><td>72</td><td>18</td><td>72</td><td>0</td></tr>
-    </tbody>
-  </table>
+<ol class="receita">
+  <li>Escreva <math><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>−</mo><msup><mi>t</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>, com <math><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>=</mo><mo>∑</mo><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup></math> na amostra.</li>
+  <li><math><mi>E</mi><mo stretchy="false">[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo stretchy="false">]</mo></math> vem de <strong>(2.18)</strong>: dá <math><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup></math>.</li>
+  <li><math><mi>E</mi><mo stretchy="false">[</mo><msup><mi>t</mi><mn>2</mn></msup><mo stretchy="false">]</mo></math> vem de <strong>(2.16)</strong>: dá <math><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>n</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></math>.</li>
+  <li>Subtraia: <math><mi>E</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>σ</mi><mn>2</mn></msup></math>. Os termos em <math><msup><mi>μ</mi><mn>2</mn></msup></math> cancelam.</li>
+</ol>
+
+<p class="miudo">É aqui que as duas expressões “técnicas” do capítulo 2 pagam a viagem. Se você se perguntou para que serviam (2.16) e (2.18), a resposta é: para isto.</p>
+
+<details class="checagem">
+  <summary>Na AASc, <math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup></math>. Ele também estima <math><msup><mi>S</mi><mn>2</mn></msup></math>?</summary>
+  <div class="resposta">
+    <p><strong>Não.</strong> <math><mi>E</mi><mo stretchy="false">[</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup></math>, e <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><msup><mi>σ</mi><mn>2</mn></msup></math> é maior.</p>
+    <p>Mas no plano <em>sem</em> reposição o <strong>mesmo</strong> <math><msup><mi>s</mi><mn>2</mn></msup></math> passa a estimar <math><msup><mi>S</mi><mn>2</mn></msup></math> (Teorema 3.9). Mesma fórmula, alvo diferente — depende do plano, como tudo neste livro.</p>
   </div>
-  <p>(Com <math><mi>n</mi><mo>=</mo><mn>2</mn></math>, <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><msup><mrow><mo>(</mo><msub><mi>Y</mi><msub><mi>k</mi><mn>1</mn></msub></msub><mo>−</mo><msub><mi>Y</mi><msub><mi>k</mi><mn>2</mn></msub></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>/</mo><mn>2</mn></math>: em (12), <math><msup><mn>18</mn><mn>2</mn></msup><mo>/</mo><mn>2</mn><mo>=</mo><mn>162</mn></math>.) Agrupando (Tabelas 3.2 e 3.3): <math><mover><mi>y</mi><mo>¯</mo></mover></math> vale 12, 15, 18, 21, 24, 30 com probabilidades 1/9, 2/9, 1/9, 2/9, 2/9, 1/9; <math><msup><mi>s</mi><mn>2</mn></msup></math> vale 0, 18, 72, 162 com 3/9, 2/9, 2/9, 2/9. Então <math><mi>E</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>20</mn></math>, <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>56</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>28</mn></math> (o mesmo 28 do Exemplo 2.11) e <math><mi>E</mi><mo>[</mo><msup><mi>s</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mo>(</mo><mn>2</mn><mo>·</mo><mn>18</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>72</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>162</mn><mo>)</mo><mo>/</mo><mn>9</mn><mo>=</mo><mn>504</mn><mo>/</mo><mn>9</mn><mo>=</mo><mn>56</mn><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup></math>, como o Teorema 3.4 promete.</p>
-<pre><code>Y &lt;- c(12, 30, 18)
-S &lt;- expand.grid(k1 = 1:3, k2 = 1:3)                <span class="cmt"># S_AASc, n = 2</span>
-ybar &lt;- (Y[S$k1] + Y[S$k2]) / 2
-s2 &lt;- (Y[S$k1] - Y[S$k2])^2 / 2
-c(mean(ybar), mean((ybar - 20)^2), mean(s2))       <span class="cmt"># E[ybar], Var[ybar], E[s2]</span>
-<span class="out">## [1] 20 28 56</span>
-</code></pre>
+</details>
+
+<!-- ==================================================================== 5 -->
+
+<h2 class="passo" id="p5"><span class="n">5</span> O intervalo de confiança</h2>
+<p class="marco">Passo 5 de 12</p>
+
+<div class="ideia">
+  <p>Estimativa, mais ou menos <math><msub><mi>z</mi><mi>α</mi></msub></math> erros padrão. Nada além disso.</p>
+  <p>O trabalho todo foi chegar ao erro padrão — o que os passos 3 e 4 fizeram.</p>
 </div>
 
-<h2 id="s3">3. Intervalos de confiança e tamanho da amostra</h2>
-
-<h3 id="s3-1">3.1 Normalidade assintótica e o intervalo para <math><mi>μ</mi></math></h3>
-
-<p>Quando <math><mi>n</mi></math> cresce, as distribuições de <math><mover><mi>y</mi><mo>¯</mo></mover></math> e de <math><mi>T</mi></math> se aproximam da normal — o Teorema do Limite Central, tanto na AASc quanto na AASs (as condições exatas estão no capítulo 10). Para <math><mi>n</mi></math> grande,</p>
-
-<div class="eq"><math display="block"><mrow><mfrac><mrow><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi></mrow><msqrt><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></msqrt></mfrac><mspace width="0.3em"/><mover><mo>∼</mo><mi>a</mi></mover><mspace width="0.3em"/><mi>N</mi><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo><mo>,</mo><mspace width="2em"/><mfrac><mrow><mi>T</mi><mo>−</mo><mi>τ</mi></mrow><mrow><mi>N</mi><msqrt><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></msqrt></mrow></mfrac><mspace width="0.3em"/><mover><mo>∼</mo><mi>a</mi></mover><mspace width="0.3em"/><mi>N</mi><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo><mo>.</mo></mrow></math><span class="num">(3.14), (3.15)</span></div>
-
-<div class="caixa teorema">
-  <span class="rotulo">O intervalo (3.17)</span>
-  <p>Seja <math><msub><mi>z</mi><mi>α</mi></msub></math> o ponto tal que a área da <math><mi>N</mi><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo></math> em <math><mo>(</mo><mo>−</mo><msub><mi>z</mi><mi>α</mi></msub><mo>,</mo><msub><mi>z</mi><mi>α</mi></msub><mo>)</mo></math> é <math><mn>1</mn><mo>−</mo><mi>α</mi></math>. Como <math><msup><mi>σ</mi><mn>2</mn></msup></math> é desconhecido, troca-se pelo não viesado <math><msup><mi>s</mi><mn>2</mn></msup></math> (próximo de <math><msup><mi>σ</mi><mn>2</mn></msup></math> para <math><mi>n</mi></math> grande), e</p>
-  <div class="eq"><math display="block"><mrow><mrow><mo>(</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac></msqrt><mo>;</mo><mspace width="0.4em"/><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><msup><mi>s</mi><mn>2</mn></msup><mi>n</mi></mfrac></msqrt><mo>)</mo></mrow></mrow></math><span class="num">(3.17)</span></div>
-  <p>é um intervalo de confiança para <math><mi>μ</mi></math> com coeficiente aproximadamente <math><mn>1</mn><mo>−</mo><mi>α</mi></math>. <strong>Interpretação frequentista:</strong> de 100 amostras AAS e 100 intervalos assim construídos, cerca de <math><mn>100</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></math> contêm <math><mi>μ</mi></math>. O intervalo é aleatório; <math><mi>μ</mi></math> é fixo.</p>
-</div>
-
-<h3 id="s3-2">3.2 O tamanho da amostra: <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math></h3>
-
-<p>O problema: achar <math><mi>n</mi></math> tal que o erro de estimação não passe de <math><mi>B</mi></math> com confiança <math><mn>1</mn><mo>−</mo><mi>α</mi></math>, <math><mi>P</mi><mo>(</mo><mo>|</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>|</mo><mo>⩽</mo><mi>B</mi><mo>)</mo><mo>≃</mo><mn>1</mn><mo>−</mo><mi>α</mi></math> (3.18). Por (3.14), <math><mi>P</mi><mo>(</mo><mo>|</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>|</mo><mo>⩽</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></msqrt><mo>)</mo><mo>≃</mo><mn>1</mn><mo>−</mo><mi>α</mi></math> (3.19); comparando, <math><mi>B</mi><mo>=</mo><msub><mi>z</mi><mi>α</mi></msub><mi>σ</mi><mo>/</mo><msqrt><mi>n</mi></msqrt></math>, isto é,</p>
-
-<div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><msup><mrow><mo>(</mo><mi>B</mi><mo>/</mo><msub><mi>z</mi><mi>α</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><msup><mi>σ</mi><mn>2</mn></msup><mi>D</mi></mfrac><mo>,</mo><mspace width="1.5em"/><mi>D</mi><mo>=</mo><mfrac><msup><mi>B</mi><mn>2</mn></msup><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></mfrac><mo>.</mo></mrow></math><span class="num">(3.21)</span></div>
-
-<div class="caixa aviso">
-  <span class="rotulo">De onde tirar <math><msup><mi>σ</mi><mn>2</mn></msup></math> antes de ter a amostra</span>
-  <p><math><mi>B</mi></math> e <math><msub><mi>z</mi><mi>α</mi></msub></math> o pesquisador fixa; <math><msup><mi>σ</mi><mn>2</mn></msup></math> exige trabalho. Fontes: (1) uma <strong>amostra piloto</strong>; (2) <strong>pesquisas anteriores</strong> sobre a mesma população; (3) o palpite “amplitude/4”: se cerca de 95% da população cai num intervalo de comprimento conhecido, iguale esse comprimento a <math><mn>4</mn><mi>σ</mi></math> — vale para populações aproximadamente simétricas (média ± 2 DP cobre ≈ 95%). Para proporções há um teto que dispensa tudo isso: <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math>.</p>
-  <p>E um detalhe de arredondamento que explica várias contas do livro: os autores costumam usar <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math> nos tamanhos de amostra (<math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><mn>4</mn></math>) e 1,96 nos intervalos. Com 1,96 o Exemplo 3.2 daria <math><mi>n</mi><mo>=</mo><mn>93</mn></math> em vez de 96, e o 3.6 daria 3 341 em vez de 3 466.</p>
-</div>
+<ol class="receita">
+  <li>Calcule <math><mover><mi>y</mi><mo>¯</mo></mover></math> e <math><msup><mi>s</mi><mn>2</mn></msup></math> na amostra.</li>
+  <li>Erro padrão: <math><msqrt><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt></math>.</li>
+  <li>Intervalo: <math><mover><mi>y</mi><mo>¯</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></msqrt></math>&nbsp;(3.17).</li>
+  <li>Para o <strong>total</strong>: multiplique tudo — centro <em>e</em> margem — por <math><mi>N</mi></math>.</li>
+</ol>
 
 <div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.2 — uma AASc de <math><mi>n</mi><mo>=</mo><mn>10</mn></math> na população de três domicílios</span>
-  <p>Valores: 12, 18, 12, 18, 18, 30, 12, 12, 18, 30. Então <math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mn>4</mn><mo>·</mo><mn>12</mn><mo>+</mo><mn>4</mn><mo>·</mo><mn>18</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>30</mn><mo>)</mo><mo>/</mo><mn>10</mn><mo>=</mo><mn>18</mn></math> e <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mo>(</mo><mn>4</mn><mo>·</mo><mn>36</mn><mo>+</mo><mn>4</mn><mo>·</mo><mn>0</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>144</mn><mo>)</mo><mo>/</mo><mn>9</mn><mo>=</mo><mn>48</mn></math>. Por (3.17), o IC de 95% é <math><mn>18</mn><mo>±</mo><mn>1,96</mn><msqrt><mn>48</mn><mo>/</mo><mn>10</mn></msqrt><mo>=</mo><mn>18</mn><mo>±</mo><mn>4,29</mn></math>, ou <strong>(13,71; 22,29)</strong> — contém <math><mi>μ</mi><mo>=</mo><mn>20</mn></math>. Para um erro máximo <math><mi>B</mi><mo>=</mo><msqrt><mn>2</mn></msqrt></math> com <math><mi>γ</mi><mo>=</mo><mn>0,95</mn></math>, <math><mi>D</mi><mo>≅</mo><mn>2</mn><mo>/</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>0,5</mn></math> e <math><mi>n</mi><mo>=</mo><mn>48</mn><mo>/</mo><mn>0,5</mn><mo>=</mo><mn>96</mn></math>. Repare: <strong>96 é maior que <math><mi>N</mi><mo>=</mo><mn>3</mn></math></strong>. Com reposição isso não é absurdo — a amostra pode ser maior que a população —, mas mostra que a AASc ignora o tamanho finito; a AASs vai impor <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math> (seção 5.4).</p>
+  <span class="rotulo">Exemplo 3.2 — uma AASc de <math><mi>n</mi><mo>=</mo><mn>10</mn></math> nos três domicílios</span>
+  <p>Valores sorteados: 12, 18, 12, 18, 18, 30, 12, 12, 18, 30.</p>
+  <ol class="receita">
+    <li><math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mo stretchy="false">(</mo><mn>4</mn><mo>·</mo><mn>12</mn><mo>+</mo><mn>4</mn><mo>·</mo><mn>18</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>30</mn><mo stretchy="false">)</mo><mo>/</mo><mn>10</mn><mo>=</mo><mn>18</mn></math></li>
+    <li><math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mo stretchy="false">(</mo><mn>4</mn><mo>·</mo><mn>36</mn><mo>+</mo><mn>4</mn><mo>·</mo><mn>0</mn><mo>+</mo><mn>2</mn><mo>·</mo><mn>144</mn><mo stretchy="false">)</mo><mo>/</mo><mn>9</mn><mo>=</mo><mn>48</mn></math></li>
+    <li>erro padrão <math><mo>=</mo><msqrt><mrow><mn>48</mn><mo>/</mo><mn>10</mn></mrow></msqrt><mo>=</mo><mn>2,19</mn></math></li>
+    <li>IC de 95%: <math><mn>18</mn><mo>±</mo><mn>1,96</mn><mo>×</mo><mn>2,19</mn><mo>=</mo><mn>18</mn><mo>±</mo><mn>4,29</mn></math> → <strong>(13,71; 22,29)</strong></li>
+  </ol>
+  <p>Contém <math><mi>μ</mi><mo>=</mo><mn>20</mn></math>. ✓ <span class="miudo">Repare que <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mn>48</mn></math> ficou abaixo de <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>56</mn></math> — é uma amostra só; o não viés é sobre a média de todas.</span></p>
+</div>
+
 <pre><code>y &lt;- c(12, 18, 12, 18, 18, 30, 12, 12, 18, 30)
 c(mean(y), var(y))
 <span class="out">## [1] 18 48</span>
 mean(y) + c(-1, 1) * 1.96 * sqrt(var(y) / 10)
-<span class="out">## [1] 13.70586 22.29414</span>
-</code></pre>
-</div>
+<span class="out">## [1] 13.70586 22.29414</span></code></pre>
 
-<p><strong>Erro relativo.</strong> Se o que se fixa é o erro máximo <em>relativo</em> <math><mi>r</mi></math>, <math><mi>P</mi><mo>(</mo><mo>|</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>|</mo><mo>/</mo><mi>μ</mi><mo>⩽</mo><mi>r</mi><mo>)</mo><mo>=</mo><mi>γ</mi></math>, basta pôr <math><mi>B</mi><mo>=</mo><mi>r</mi><mi>μ</mi></math> em (3.21) — e agora é preciso um palpite também para <math><mi>μ</mi></math> (Exercício 3.42).</p>
-
-<h3 id="s3-3">3.3 Proporções</h3>
-
-<p>Muitas vezes a variável é 0–1: <math><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math> se o elemento tem a característica (defeituoso, eleitor do partido). Então <math><mi>P</mi><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>=</mo><mi>μ</mi></math> é a proporção populacional, e tudo o que foi feito para a média vale — com uma simplificação: <math><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>Y</mi><mi>i</mi></msub></math>, logo <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mi>P</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mi>P</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>)</mo></math> (3.22). Seja <math><mi>m</mi></math> o número de elementos da amostra com a característica.</p>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 3.5 — proporção na AASc</span>
-  <p><math><mi>p</mi><mo>=</mo><mover><mi>P</mi><mo>^</mo></mover><mo>=</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mi>m</mi><mo>/</mo><mi>n</mi></math> é não viesado para <math><mi>P</mi></math>, com <math><mi>Var</mi><mo>[</mo><mover><mi>P</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mi>P</mi><mi>Q</mi><mo>/</mo><mi>n</mi></math> (3.24), <math><mi>Q</mi><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi></math>. Como <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>n</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>p</mi><mi>q</mi></math> (3.23) é não viesado para <math><msup><mi>σ</mi><mn>2</mn></msup></math>, um estimador não viesado da variância é</p>
-  <div class="eq"><math display="block"><mrow><mi>var</mi><mo>[</mo><mi>p</mi><mo>]</mo><mo>=</mo><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><mtext>e o IC é</mtext><mspace width="1em"/><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac></msqrt><mo>.</mo></mrow></math><span class="num">(3.25)</span></div>
-  <p>Tamanho da amostra para erro <math><mi>B</mi></math>: <math><mi>n</mi><mo>=</mo><mi>P</mi><mi>Q</mi><mo>/</mo><mi>D</mi></math> (3.27); sem palpite para <math><mi>P</mi></math>, o <strong>conservador</strong> <math><mi>n</mi><mo>=</mo><mn>1</mn><mo>/</mo><mo>(</mo><mn>4</mn><mi>D</mi><mo>)</mo></math>, porque <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math>. O mesmo teto dá o IC conservador <math><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mn>1</mn><mo>/</mo><mo>[</mo><mn>4</mn><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>]</mo></msqrt></math>.</p>
-</div>
-
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.3 — proporção com renda maior que 18</span>
-  <p>Na amostra do Exemplo 3.2, dois dos dez valores passam de 18: <math><mi>p</mi><mo>=</mo><mn>0,2</mn></math>. IC de 95% por (3.25): <math><mn>0,2</mn><mo>±</mo><mn>1,96</mn><msqrt><mn>0,2</mn><mo>×</mo><mn>0,8</mn><mo>/</mo><mn>9</mn></msqrt><mo>=</mo><mn>0,2</mn><mo>±</mo><mn>0,26</mn></math>, ou (0,00; 0,46) — truncado em zero, porque o limite inferior deu −0,06. É um intervalo enorme, porque <math><mi>n</mi><mo>=</mo><mn>10</mn></math> é pequeno demais para a aproximação normal de uma proporção; na prática, para <math><mi>p</mi></math> perto de 0 ou 1 com <math><mi>n</mi></math> pequeno usa-se um intervalo exato (binomial).</p>
-</div>
-
-<h2 id="s4">4. Otimalidade de <math><mover><mi>y</mi><mo>¯</mo></mover></math> na AASc</h2>
-
-<p>Entre todos os estimadores lineares não viesados de <math><mi>μ</mi></math>, a média amostral é o de menor variância. Aqui entram as variáveis de posição <math><msub><mi>y</mi><mn>1</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>y</mi><mi>n</mi></msub></math> de (2.1): cada <math><msub><mi>y</mi><mi>i</mi></msub></math> vale <math><msub><mi>Y</mi><mi>j</mi></msub></math> com probabilidade <math><mn>1</mn><mo>/</mo><mi>N</mi></math>, e na AASc elas são <strong>independentes</strong>.</p>
-
-<div class="caixa definicao">
-  <span class="rotulo">Definição 3.1 e Lema 3.1 — estimador linear</span>
-  <p>Um estimador linear de <math><mi>μ</mi></math> é <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>y</mi><mi>i</mi></msub></math>, com constantes <math><msub><mi>ℓ</mi><mi>i</mi></msub></math> conhecidas; <math><mover><mi>y</mi><mo>¯</mo></mover></math> é o caso <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>. Ele é não viesado para <math><mi>μ</mi></math> se e só se <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math> — porque <math><mi>E</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mi>E</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mi>μ</mi><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub></math>, e isso é <math><mi>μ</mi></math> para toda população só se a soma é 1 (Exercício 3.36).</p>
-</div>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 3.6</span>
-  <p>Na AASc, na classe dos estimadores lineares não viesados, <math><mover><mi>y</mi><mo>¯</mo></mover></math> tem a menor variância.</p>
-</div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração — somar e subtrair a média dos pesos</span>
-  <p>Pela independência, <math><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math>. Com <math><mover><mi>ℓ</mi><mo>¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math> (Lema 3.1),</p>
-  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mrow><mo>{</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo>(</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>−</mo><mover><mi>ℓ</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mi>n</mi><msup><mover><mi>ℓ</mi><mo>¯</mo></mover><mn>2</mn></msup><mo>}</mo></mrow><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mrow><mo>{</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo>(</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo>}</mo></mrow><mo>,</mo></mrow></math><span class="num">(3.28)</span></div>
-  <p>que é mínima quando todos os <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math> — o mínimo é <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>, a variância de <math><mover><mi>y</mi><mo>¯</mo></mover></math>. (A identidade é a (2.2) aplicada aos pesos.)<span class="qed">∎</span></p>
-</div>
-
-<h2 id="s5">5. AAS sem reposição</h2>
-
-<p>Muda só o passo (iii): o elemento sorteado é <em>retirado</em> da população antes do próximo sorteio. Cada unidade aparece no máximo uma vez — e por isso <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math>.</p>
-
-<h3 id="s5-1">5.1 <math><msub><mi>f</mi><mi>i</mi></msub></math> é Bernoulli — o Teorema 3.7</h3>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 3.7 — a AASs em quatro fórmulas</span>
-  <p>Na AASs, <math><msub><mi>f</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo>(</mo><mn>1</mn><mo>;</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math>: <math><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, <math><mi>P</mi><mo>(</mo><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, e</p>
-  <math display="block"><mrow><mi>E</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.5em"/><mi>Var</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></mrow><mo>,</mo><mspace width="1.5em"/><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.5em"/><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo></mrow></math>
-  <math display="block"><mrow><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo><mspace width="1em"/><mi>i</mi><mo>≠</mo><mi>j</mi><mo>.</mo></mrow></math>
-</div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração (Exercício 3.30)</span>
-  <p>Há <math><mrow><mo>(</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac><mo>)</mo></mrow></math> amostras não ordenadas, equiprováveis; as que contêm <math><mi>i</mi></math> são <math><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>)</mo></mrow></math>, logo <math><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>)</mo></mrow><mo>/</mo><mrow><mo>(</mo><mfrac linethickness="0"><mi>N</mi><mi>n</mi></mfrac><mo>)</mo></mrow><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>; as que contêm <math><mi>i</mi></math> e <math><mi>j</mi></math> são <math><mrow><mo>(</mo><mfrac linethickness="0"><mrow><mi>N</mi><mo>−</mo><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></mfrac><mo>)</mo></mrow></math>, logo <math><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>n</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac></math>. Como <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub></math> é 0–1 com <math><mi>P</mi><mo>(</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>)</mo><mo>=</mo><msub><mi>π</mi><mi>i</mi></msub></math>, a esperança e a variância são as da Bernoulli. E</p>
-  <math display="block"><mrow><mi>Cov</mi><mo>[</mo><msub><mi>f</mi><mi>i</mi></msub><mo>,</mo><msub><mi>f</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><msub><mi>π</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><msub><mi>π</mi><mi>i</mi></msub><msub><mi>π</mi><mi>j</mi></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mfrac><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></mrow><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>·</mo><mfrac><mrow><mi>n</mi><mo>−</mo><mi>N</mi></mrow><mrow><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></mfrac><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>.</mo></mrow></math>
-  <p>Ou, pela simetria e tamanho fixo, (2.9): <math><mo>−</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mi>N</mi></mfrac><mfrac><mn>1</mn><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></math>, o mesmo número.<span class="qed">∎</span></p>
-</div>
-
-<p>Compare com a AASc: as covariâncias diferem pelo fator <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>, que é ≈ 1 quando <math><mi>N</mi></math> é grande em relação a <math><mi>n</mi></math> — e vale exatamente 1 para <math><mi>n</mi><mo>=</mo><mn>1</mn></math>. Por quê? Com um só sorteio não há como repor ou não repor: os dois planos são o mesmo plano.</p>
-
-<h3 id="s5-2">5.2 Estimadores e o fator <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math></h3>
-
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 3.8, Corolários 3.3–3.5, Teorema 3.9 — a AASs em uma tabela</span>
-  <p>Com a <strong>fração amostral</strong> <math><mi>f</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>:</p>
-  <div class="rolagem">
-  <table>
-    <thead><tr><th class="txt">Estatística</th><th class="txt">Estima</th><th class="txt">Variância</th><th class="txt">Estimador da variância</th></tr></thead>
-    <tbody>
-      <tr><td><math><mi>t</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>s</mi></mrow></munder><msub><mi>Y</mi><mi>i</mi></msub></math></td><td class="txt"><math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><mi>μ</mi></math></td><td class="txt"><math><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math></td><td class="txt">—</td></tr>
-      <tr><td><math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mi>t</mi><mo>/</mo><mi>n</mi></math></td><td class="txt"><math><mi>μ</mi></math>, não viesado</td><td class="txt"><math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td><td class="txt"><math><mi>var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td></tr>
-      <tr><td><math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math></td><td class="txt"><math><mi>τ</mi></math>, não viesado</td><td class="txt"><math><msup><mi>N</mi><mn>2</mn></msup><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td><td class="txt"><math><mi>var</mi><mo>[</mo><mi>T</mi><mo>]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td></tr>
-      <tr><td><math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>Y</mi><mi>i</mi></msub><mo>−</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>)</mo></mrow><mn>2</mn></msup></math></td><td class="txt"><math><msup><mi>S</mi><mn>2</mn></msup></math>, não viesado (Teorema 3.9)</td><td class="txt">—</td><td class="txt">—</td></tr>
-    </tbody>
-  </table>
+<details class="checagem">
+  <summary>O que significa “95% de confiança”? Que <math><mi>μ</mi></math> tem 95% de chance de estar em (13,71; 22,29)?</summary>
+  <div class="resposta">
+    <p><strong>Não.</strong> <math><mi>μ</mi><mo>=</mo><mn>20</mn></math> é constante: ou está no intervalo (está) ou não está.</p>
+    <p>A probabilidade é do <em>procedimento</em>, antes de sortear: em 95% das amostras possíveis, o intervalo construído assim contém <math><mi>μ</mi></math>. Nas outras 5% não — e você não tem como saber em qual caiu.</p>
   </div>
+</details>
+
+<!-- ==================================================================== 6 -->
+
+<h2 class="passo" id="p6"><span class="n">6</span> Quantos elementos sortear</h2>
+<p class="marco">Passo 6 de 12</p>
+
+<div class="ideia">
+  <p>Você escolhe o erro máximo <math><mi>B</mi></math> e a confiança. A fórmula devolve <math><mi>n</mi></math>.</p>
+  <p>O único ingrediente difícil é <math><msup><mi>σ</mi><mn>2</mn></msup></math>, que você ainda não conhece.</p>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>(2.14)–(2.15) com o Teorema 3.7: <math><mi>E</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mi>τ</mi><mo>=</mo><mi>n</mi><mi>μ</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>)</mo></mrow><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math>. Dividir por <math><mi>n</mi></math>, <math><msup><mi>n</mi><mn>2</mn></msup></math>, multiplicar por <math><mi>N</mi></math>, <math><msup><mi>N</mi><mn>2</mn></msup></math>. Para o Teorema 3.9 (Exercício 3.33), repete-se a prova do Teorema 3.4 com <math><mi>E</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> e <math><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mo>=</mo><mi>f</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math>:</p>
-  <math display="block"><mrow><mi>E</mi><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>)</mo><mo>,</mo><mspace width="2em"/><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><msup><mi>n</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup><mo>,</mo></mrow></math>
-  <math display="block"><mrow><mi>E</mi><mo>[</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>−</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>−</mo><mi>n</mi><msup><mi>μ</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>−</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>,</mo></mrow></math>
-  <p>usando <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup></math> e <math><mi>n</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>−</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>N</mi><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></math>.<span class="qed">∎</span></p>
-</div>
+
+<ol class="receita">
+  <li>Exija <math><mi>P</mi><mo stretchy="false">(</mo><mo>|</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>|</mo><mo>⩽</mo><mi>B</mi><mo stretchy="false">)</mo><mo>≃</mo><mi>γ</mi></math>&nbsp;(3.18).</li>
+  <li>Isso equivale a <math><mi>B</mi><mo>=</mo><msub><mi>z</mi><mi>α</mi></msub><mi>σ</mi><mo>/</mo><msqrt><mi>n</mi></msqrt></math>&nbsp;(3.19)–(3.20).</li>
+  <li>Defina <math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math> e resolva: <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>&nbsp;(3.21).</li>
+  <li>Arredonde <strong>para cima</strong>.</li>
+</ol>
 
 <div class="caixa aviso">
-  <span class="rotulo">O fator de correção para populações finitas</span>
-  <p><math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mi>N</mi></math> é o que a AASs ganha por não repetir unidades. Quando <math><mi>n</mi><mo>=</mo><mi>N</mi></math> (censo) a variância é zero, como deve ser; quando <math><mi>n</mi><mo>≪</mo><mi>N</mi></math> o fator é ≈ 1 e as duas AAS coincidem. É comum ignorá-lo quando <math><mi>f</mi><mo>&lt;</mo><mn>0,05</mn></math>. Nos exemplos deste capítulo <math><mi>f</mi><mo>=</mo><mn>2</mn><mo>/</mo><mn>3</mn></math> (três domicílios) ou <math><mn>1</mn><mo>/</mo><mn>36</mn></math> (operários) — no primeiro caso ele muda tudo, no segundo quase nada.</p>
+  <span class="rotulo">De onde tirar <math><msup><mi>σ</mi><mn>2</mn></msup></math> antes de ter a amostra</span>
+  <ul class="compacta">
+    <li><strong>Amostra piloto</strong> — a saída mais honesta.</li>
+    <li><strong>Pesquisa anterior</strong> na mesma população.</li>
+    <li><strong>Amplitude/4</strong> — se ~95% da população cai num intervalo de comprimento <math><mi>L</mi></math>, tome <math><mi>σ</mi><mo>≅</mo><mi>L</mi><mo>/</mo><mn>4</mn></math>. Vale para populações aproximadamente simétricas.</li>
+  </ul>
 </div>
 
-<h3 id="s5-3">5.3 Exemplo 3.4 — as seis amostras</h3>
+<div class="caixa exemplo">
+  <span class="rotulo">Continuando o Exemplo 3.2</span>
+  <p>Quero erro máximo <math><mi>B</mi><mo>=</mo><msqrt><mn>2</mn></msqrt></math> com <math><mi>γ</mi><mo>=</mo><mn>0,95</mn></math>, usando <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mn>48</mn></math> como palpite:</p>
+  <div class="eq"><math display="block"><mrow><mi>D</mi><mo>=</mo><mfrac><mn>2</mn><msup><mn>2</mn><mn>2</mn></msup></mfrac><mo>=</mo><mn>0,5</mn><mo>,</mo><mspace width="1.4em"/><mi>n</mi><mo>=</mo><mfrac><mn>48</mn><mn>0,5</mn></mfrac><mo>=</mo><mn>96</mn></mrow></math></div>
+  <p><strong>96 é maior que <math><mi>N</mi><mo>=</mo><mn>3</mn></math>.</strong> Não é erro de conta: com reposição não existe teto. Você pode sortear 96 vezes numa população de três, e a variância <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mn>96</mn></math> continua positiva.</p>
+  <p class="miudo">O livro usa <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math> nos tamanhos e 1,96 nos intervalos. Com 1,96 aqui daria <math><mi>n</mi><mo>=</mo><mn>93</mn></math>. Declare qual usou.</p>
+</div>
+
+<details class="checagem">
+  <summary>Você quer cortar o erro máximo pela metade. Quanto <math><mi>n</mi></math> precisa crescer?</summary>
+  <div class="resposta">
+    <p><strong>Quatro vezes.</strong> <math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math>, então metade de <math><mi>B</mi></math> é um quarto de <math><mi>D</mi></math>, e <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math> quadruplica.</p>
+    <p>É a mesma <math><msqrt><mi>n</mi></msqrt></math> do exemplo eleitoral do capítulo 1: 100 → 400 → 1600 cortou a margem pela metade a cada passo.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 7 -->
+
+<h2 class="passo" id="p7"><span class="n">7</span> Proporções são o mesmo com <math><msub><mi>Y</mi><mi>i</mi></msub></math> valendo 0 ou 1</h2>
+<p class="marco">Passo 7 de 12</p>
+
+<div class="ideia">
+  <p>Nenhuma teoria nova. Só uma substituição: <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mi>Q</mi></math>.</p>
+  <p>E uma facilidade: <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math> sempre, o que permite planejar sem saber nada.</p>
+</div>
+
+<div class="par">
+  <div class="caso">
+    <h4>A substituição</h4>
+    <p>Se <math><msub><mi>Y</mi><mi>i</mi></msub></math> é 0/1, então <math><msubsup><mi>Y</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><msub><mi>Y</mi><mi>i</mi></msub></math>, e</p>
+    <div class="eq"><math display="block"><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mi>Q</mi></mrow></math><span class="num">(3.22)</span></div>
+    <p>A média amostral vira a proporção amostral <math><mi>p</mi><mo>=</mo><mi>m</mi><mo>/</mo><mi>n</mi></math>.</p>
+  </div>
+  <div class="simb">
+    <h4>Teorema 3.5</h4>
+    <div class="eq"><math display="block"><mrow><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>P</mi><mo>^</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mi>P</mi><mi>Q</mi></mrow><mi>n</mi></mfrac></mrow></math><span class="num">(3.24)</span></div>
+    <div class="eq"><math display="block"><mrow><mi>var</mi><mo stretchy="false">[</mo><mi>p</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math></div>
+    <p class="miudo">Repare no <math><mi>n</mi><mo>−</mo><mn>1</mn></math> do estimador — vem de <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>n</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>p</mi><mi>q</mi></math>&nbsp;(3.23).</p>
+  </div>
+</div>
+
+<div class="fileira">
+  <div><strong>IC</strong><p class="numerao"><math><mrow><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac></msqrt></mrow></math></p><p>(3.25)</p></div>
+  <div><strong>Tamanho</strong><p class="numerao"><math><mrow><mi>n</mi><mo>=</mo><mfrac><mrow><mi>P</mi><mi>Q</mi></mrow><mi>D</mi></mfrac></mrow></math></p><p>(3.27)</p></div>
+  <div><strong>Conservador</strong><p class="numerao"><math><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>4</mn><mi>D</mi></mrow></mfrac></mrow></math></p><p>usa <math><mi>P</mi><mi>Q</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>4</mn></math></p></div>
+</div>
 
 <div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.4 — AASs com <math><mi>n</mi><mo>=</mo><mn>2</mn></math> em <math><mi mathvariant="bold">D</mi><mo>=</mo><mo>(</mo><mn>12</mn><mo>,</mo><mn>30</mn><mo>,</mo><mn>18</mn><mo>)</mo></math></span>
-  <p>Agora o parâmetro que importa é <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mn>168</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>84</mn></math>. As seis amostras ordenadas, 1/6 cada:</p>
+  <span class="rotulo">Exemplo 3.3 — quando <math><mi>n</mi></math> é pequeno demais</span>
+  <p>Na amostra do Exemplo 3.2, dois dos dez valores passam de 18: <math><mi>p</mi><mo>=</mo><mn>0,2</mn></math>.</p>
+  <div class="eq"><math display="block"><mrow><mn>0,2</mn><mo>±</mo><mn>1,96</mn><msqrt><mfrac><mrow><mn>0,2</mn><mo>×</mo><mn>0,8</mn></mrow><mn>9</mn></mfrac></msqrt><mo>=</mo><mn>0,2</mn><mo>±</mo><mn>0,26</mn></mrow></math></div>
+  <p>Dá <strong>(−0,06; 0,46)</strong>, que o livro imprime truncado em <strong>(0,00; 0,46)</strong>. Um intervalo que vai de zero a quase metade não informa nada — e o limite negativo denuncia a causa: com <math><mi>n</mi><mo>=</mo><mn>10</mn></math> a aproximação normal não vale para proporção pequena.</p>
+</div>
+
+<details class="checagem">
+  <summary>Por que o <math><mi>n</mi></math> conservador usa <math><mi>P</mi><mi>Q</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>4</mn></math>, e não algum outro valor?</summary>
+  <div class="resposta">
+    <p>Porque <math><mi>P</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">)</mo></math> é máximo em <math><mi>P</mi><mo>=</mo><mn>0,5</mn></math>, onde vale <math><mn>0,25</mn></math>.</p>
+    <p>Usando o máximo, o <math><mi>n</mi></math> que sai é <em>suficiente qualquer que seja <math><mi>P</mi></math></em>. Você paga em amostra a mais pela ignorância — mas nunca fica aquém da precisão prometida.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 8 -->
+
+<h2 class="passo" id="p8"><span class="n">8</span> Sem reposição: onde nasce o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math></h2>
+<p class="marco">Passo 8 de 12 · o passo que explica o capítulo inteiro</p>
+
+<div class="ideia">
+  <p>Sem reposição, <math><msub><mi>f</mi><mi>i</mi></msub></math> só pode ser 0 ou 1. Deixa de ser Binomial e vira Bernoulli.</p>
+  <p>Troque a variância de uma pela da outra em (2.15) e o fator de correção aparece sozinho.</p>
+</div>
+
+<div class="caixa teorema">
+  <span class="rotulo">Teorema 3.7</span>
+  <p>Na AASs, <math><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>δ</mi><mi>i</mi></msub><mo>∼</mo><mi>b</mi><mo stretchy="false">(</mo><mn>1</mn><mo>;</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math>, e</p>
+  <div class="eq"><math display="block"><mrow><mi>E</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>,</mo><mspace width="1.2em"/><mi>Var</mi><mo stretchy="false">[</mo><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo stretchy="false">)</mo></mrow><mo>,</mo><mspace width="1.2em"/><msub><mi>π</mi><mi>i</mi></msub><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac></mrow></math></div>
+</div>
+
+<p>Agora ponha lado a lado. É a <strong>única</strong> diferença entre os dois planos:</p>
+
+<figure class="diagrama">
+  <svg viewBox="0 0 430 172" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparação: com reposição Var de f é n sobre N vezes um menos um sobre N; sem reposição é n sobre N vezes um menos n sobre N. A razão entre as duas é N menos n sobre N menos 1.">
+    <text x="108" y="16" class="tx-rot">com reposição</text>
+    <rect x="22" y="26" width="172" height="34" class="cx-folha"/>
+    <text x="108" y="43" class="tx">Var[f] = (n/N)(1 − 1/N)</text>
+
+    <text x="323" y="16" class="tx-rot">sem reposição</text>
+    <rect x="237" y="26" width="172" height="34" class="cx"/>
+    <text x="323" y="43" class="tx">Var[f] = (n/N)(1 − n/N)</text>
+
+    <path d="M108 63 L 108 84 L 215 84 L 215 96" class="ramo"/>
+    <path d="M323 63 L 323 84 L 215 84" class="ramo"/>
+    <text x="215" y="78" class="tx-rot">divida uma pela outra</text>
+
+    <rect x="120" y="98" width="190" height="34" class="cx"/>
+    <text x="215" y="115" class="tx-crit">(N − n) / (N − 1)</text>
+    <text x="215" y="148" class="tx-rot">é isto que a AASs ganha</text>
+    <text x="215" y="164" class="tx-rot">vale 1 quando n = 1, e 0 no censo</text>
+  </svg>
+  <figcaption>Nenhuma mágica: o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math> é só o que sobra quando <math><msub><mi>f</mi><mi>i</mi></msub></math> troca de distribuição.</figcaption>
+</figure>
+
+<div class="caixa definicao">
+  <span class="rotulo">Fator de correção para populações finitas</span>
+  <p><math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mo>/</mo><mi>N</mi></math>, com <math><mi>f</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math> a <strong>fração amostral</strong>.</p>
+  <ul class="compacta">
+    <li><math><mi>n</mi><mo>=</mo><mi>N</mi></math> (censo): o fator é 0 e a variância zera — como deve ser.</li>
+    <li><math><mi>n</mi><mo>≪</mo><mi>N</mi></math>: o fator é ≈ 1 e os dois planos coincidem. É comum ignorá-lo quando <math><mi>f</mi><mo>&lt;</mo><mn>0,05</mn></math>.</li>
+  </ul>
+  <p class="miudo">Nos exemplos deste capítulo <math><mi>f</mi></math> vale 2/3 (três domicílios) ou 1/36 (os operários) — em um o fator é decisivo, no outro quase irrelevante.</p>
+</div>
+
+<details class="checagem">
+  <summary>Numa população de 200 000 eleitores, <math><mi>n</mi><mo>=</mo><mn>2000</mn></math>. Vale a pena carregar o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math>?</summary>
+  <div class="resposta">
+    <p><math><mi>f</mi><mo>=</mo><mn>0,01</mn></math>, então <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0,99</mn></math> e o erro padrão cai <math><msqrt><mn>0,99</mn></msqrt><mo>≅</mo><mn>0,995</mn></math> — meio por cento.</p>
+    <p><strong>Não faz diferença prática.</strong> É por isso que pesquisa eleitoral não pergunta o tamanho do eleitorado: com <math><mi>f</mi></math> pequeno, só <math><mi>n</mi></math> importa.</p>
+  </div>
+</details>
+
+<!-- ==================================================================== 9 -->
+
+<h2 class="passo" id="p9"><span class="n">9</span> Os estimadores sem reposição</h2>
+<p class="marco">Passo 9 de 12</p>
+
+<div class="ideia">
+  <p>As mesmas fórmulas dos passos 3 e 4, com duas trocas: entra <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math>, e <math><msup><mi>σ</mi><mn>2</mn></msup></math> vira <math><msup><mi>S</mi><mn>2</mn></msup></math>.</p>
+  <p>O mesmo <math><msup><mi>s</mi><mn>2</mn></msup></math> continua servindo — só muda o que ele estima.</p>
+</div>
+
+<div class="rolagem">
+<table>
+  <caption>Teoremas 3.8 e 3.9, Corolários 3.3 a 3.5 — tudo o que muda está em negrito.</caption>
+  <thead><tr><th></th><th>AASc (passos 3–4)</th><th>AASs (aqui)</th></tr></thead>
+  <tbody>
+    <tr><td><math><mi>E</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo></math></td><td><math><mi>μ</mi></math></td><td><math><mi>μ</mi></math></td></tr>
+    <tr><td><math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo></math></td><td><math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td><td><math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td></tr>
+    <tr><td><math><mi>Var</mi><mo stretchy="false">[</mo><mi>T</mi><mo stretchy="false">]</mo></math></td><td><math><msup><mi>N</mi><mn>2</mn></msup><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td><td><math><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td></tr>
+    <tr><td><math><mi>E</mi><mo stretchy="false">[</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo></math></td><td><math><msup><mi>σ</mi><mn>2</mn></msup></math></td><td><strong><math><msup><mi>S</mi><mn>2</mn></msup></math></strong></td></tr>
+    <tr><td>estimador da variância</td><td><math><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td><td><math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math></td></tr>
+    <tr><td><math><msub><mi>π</mi><mi>i</mi></msub></math></td><td><math><mn>1</mn><mo>−</mo><msup><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><mi>n</mi></msup></math></td><td><math><mi>n</mi><mo>/</mo><mi>N</mi></math></td></tr>
+    <tr><td><math><mi>Cov</mi><mo stretchy="false">[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false">]</mo></math></td><td>0 (independentes)</td><td><strong><math><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math></strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="caixa exemplo">
+  <span class="rotulo">Exemplo 3.4 — as seis amostras ordenadas de <math><mi>D</mi><mo>=</mo><mo stretchy="false">(</mo><mn>12</mn><mo>,</mo><mn>30</mn><mo>,</mo><mn>18</mn><mo stretchy="false">)</mo></math></span>
+  <p>Sem reposição há três pares, cada um aparecendo em duas ordens. Agora quem manda é <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mn>84</mn></math>:</p>
   <div class="rolagem">
   <table>
-    <caption>Tabela 3.4 — <math><mover><mi>y</mi><mo>¯</mo></mover></math> e <math><msup><mi>s</mi><mn>2</mn></msup></math> em <math><msub><mi>S</mi><mi>AASs</mi></msub></math>.</caption>
-    <thead><tr><th class="txt"><math><mi>s</mi></math></th><th>12</th><th>21</th><th>13</th><th>31</th><th>23</th><th>32</th></tr></thead>
+    <thead><tr><th>par</th><th class="c"><math><mover><mi>y</mi><mo>¯</mo></mover></math></th><th class="c"><math><msup><mi>s</mi><mn>2</mn></msup></math></th><th class="c">prob.</th></tr></thead>
     <tbody>
-      <tr><td><math><mover><mi>y</mi><mo>¯</mo></mover></math></td><td>21</td><td>21</td><td>15</td><td>15</td><td>24</td><td>24</td></tr>
-      <tr><td><math><msup><mi>s</mi><mn>2</mn></msup></math></td><td>162</td><td>162</td><td>18</td><td>18</td><td>72</td><td>72</td></tr>
+      <tr><td>{12, 18}</td><td class="c">15</td><td class="c">18</td><td class="c">1/3</td></tr>
+      <tr><td>{12, 30}</td><td class="c">21</td><td class="c">162</td><td class="c">1/3</td></tr>
+      <tr><td>{30, 18}</td><td class="c">24</td><td class="c">72</td><td class="c">1/3</td></tr>
     </tbody>
   </table>
   </div>
-  <p>Tabelas 3.5 e 3.6: <math><mover><mi>y</mi><mo>¯</mo></mover></math> vale 15, 21, 24 com 1/3 cada; <math><msup><mi>s</mi><mn>2</mn></msup></math> vale 18, 72, 162 com 1/3 cada. <math><mi>E</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mn>20</mn></math>; <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>−</mo><mn>2</mn><mo>/</mo><mn>3</mn><mo>)</mo><mn>84</mn><mo>/</mo><mn>2</mn><mo>=</mo><mn>14</mn></math> — metade dos 28 da AASc; e <math><mi>E</mi><mo>[</mo><msup><mi>s</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mo>(</mo><mn>18</mn><mo>+</mo><mn>72</mn><mo>+</mo><mn>162</mn><mo>)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>84</mn><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup></math>, como o Teorema 3.9 promete. Repare que <math><msup><mi>s</mi><mn>2</mn></msup></math> estima <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mn>56</mn></math> na AASc e <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mn>84</mn></math> na AASs — a <em>mesma</em> fórmula, esperanças diferentes, porque a distribuição amostral é outra.</p>
-<pre><code>S &lt;- S[S$k1 != S$k2, ]                              <span class="cmt"># S_AASs: tira 11, 22, 33</span>
-ybar &lt;- (Y[S$k1] + Y[S$k2]) / 2; s2 &lt;- (Y[S$k1] - Y[S$k2])^2 / 2
-c(mean(ybar), mean((ybar - 20)^2), mean(s2))
-<span class="out">## [1] 20 14 84</span>
-</code></pre>
+  <ol class="receita">
+    <li><math><mi>E</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>15</mn><mo>+</mo><mn>21</mn><mo>+</mo><mn>24</mn><mo stretchy="false">)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>20</mn><mo>=</mo><mi>μ</mi></math> ✓</li>
+    <li><math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>25</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>16</mn><mo stretchy="false">)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>14</mn></math></li>
+    <li>Confira: <math><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>2</mn><mn>3</mn></mfrac><mo stretchy="false">)</mo></mrow><mfrac><mn>84</mn><mn>2</mn></mfrac><mo>=</mo><mn>14</mn></math> ✓</li>
+    <li><math><mi>E</mi><mo stretchy="false">[</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><mo stretchy="false">(</mo><mn>18</mn><mo>+</mo><mn>162</mn><mo>+</mo><mn>72</mn><mo stretchy="false">)</mo><mo>/</mo><mn>3</mn><mo>=</mo><mn>84</mn><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup></math> ✓ <span class="miudo">(na AASc esse mesmo <math><msup><mi>s</mi><mn>2</mn></msup></math> dava 56)</span></li>
+  </ol>
 </div>
 
-<h3 id="s5-4">5.4 IC, tamanho da amostra e os operários faltosos</h3>
+<pre><code>Y &lt;- c(12, 30, 18)
+p &lt;- combn(3, 2)                    <span class="cmt"># os 3 pares</span>
+yb &lt;- colMeans(matrix(Y[p], 2)); s2 &lt;- apply(matrix(Y[p], 2), 2, var)
+c(mean(yb), mean((yb - 20)^2), mean(s2))
+<span class="out">## [1] 20 14 84</span></code></pre>
 
-<p>Tudo da seção 3 vale trocando a variância: <math><mo>(</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>−</mo><mi>μ</mi><mo>)</mo><mo>/</mo><msqrt><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></msqrt><mspace width="0.2em"/><mover><mo>∼</mo><mi>a</mi></mover><mspace width="0.2em"/><mi>N</mi><mo>(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>)</mo></math>, e o intervalo para <math><mi>μ</mi></math> é</p>
+<details class="checagem">
+  <summary>Por que na AASs os <math><msub><mi>y</mi><mi>i</mi></msub></math> têm covariância <em>negativa</em>?</summary>
+  <div class="resposta">
+    <p>Porque se a primeira posição trouxe o valor alto, ele já não está disponível para a segunda. Tirar um valor grande do bolo empurra os outros para baixo.</p>
+    <p>Essa dependência é justamente o que reduz a variância da média — e é o motivo de o Teorema 3.6 (que supõe independência) precisar de uma versão própria, o Teorema 3.10.</p>
+  </div>
+</details>
 
-<math display="block"><mrow><mover><mi>y</mi><mo>¯</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup></mrow><mi>n</mi></mfrac></msqrt><mo>,</mo><mspace width="1.5em"/><mtext>e para o total (Exercício 3.34)</mtext><mspace width="1em"/><mi>T</mi><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mfrac><mrow><msup><mi>N</mi><mn>2</mn></msup><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup></mrow><mi>n</mi></mfrac></msqrt><mo>.</mo></mrow></math>
+<!-- =================================================================== 10 -->
+
+<h2 class="passo" id="p10"><span class="n">10</span> Tamanho da amostra e proporções, sem reposição</h2>
+<p class="marco">Passo 10 de 12</p>
+
+<div class="ideia">
+  <p>Aqui o <math><mi>n</mi></math> ganha um teto: o censo.</p>
+  <p>O truque é escrever <math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><msup><mi>n</mi><mo>′</mo></msup></math> e inverter.</p>
+</div>
+
+<ol class="receita">
+  <li>Ponha <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mo>/</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math>: a variância fica com a cara da AASc.</li>
+  <li>A conta da AASc dá <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>.</li>
+  <li>Inverta <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mo>/</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math> para isolar <math><mi>n</mi></math>.</li>
+</ol>
+
+<div class="fileira">
+  <div><strong>Média</strong><p class="numerao"><math><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mfrac><mi>D</mi><msup><mi>S</mi><mn>2</mn></msup></mfrac><mo>+</mo><mfrac><mn>1</mn><mi>N</mi></mfrac></mrow></mfrac></mrow></math></p></div>
+  <div><strong>Total</strong><p class="numerao"><math><mrow><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mfrac><mi>D</mi><mrow><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><mn>1</mn></mrow></mfrac></mrow></math></p><p>(3.29)</p></div>
+  <div><strong>Proporção</strong><p class="numerao"><math><mrow><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mfrac><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi>D</mi></mrow><mrow><mi>P</mi><mi>Q</mi></mrow></mfrac><mo>+</mo><mn>1</mn></mrow></mfrac></mrow></math></p><p>(3.34)</p></div>
+</div>
+
+<p><strong>O termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> é o teto.</strong> Ele garante <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math> sempre — ao contrário do passo 6, onde 96 &gt; 3 era possível. Faz sentido: sem reposição, o máximo que se pode fazer é o censo, e aí o erro é zero.</p>
 
 <div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.5 — faltas não justificadas em 6 meses (AASs de 1 000 em 36 000 operários)</span>
-  <div class="rolagem">
-  <table>
-    <thead><tr><th class="txt">Faltas</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
-    <tbody><tr><td>Trabalhadores</td><td>451</td><td>162</td><td>187</td><td>112</td><td>49</td><td>21</td><td>5</td><td>11</td><td>2</td></tr></tbody>
-  </table>
-  </div>
-  <p><math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mn>1296</mn><mo>/</mo><mn>1000</mn><mo>=</mo><mn>1,296</mn></math> faltas por operário e <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mn>2,397</mn></math>. Com <math><mi>f</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>36</mn></math>, o erro padrão é <math><msqrt><mo>(</mo><mn>35</mn><mo>/</mo><mn>36</mn><mo>)</mo><mn>2,397</mn><mo>/</mo><mn>1000</mn></msqrt><mo>=</mo><mn>0,0483</mn></math> e o IC de 95% é <strong>(1,201; 1,391)</strong>. Para o total de faltas: <math><mi>T</mi><mo>=</mo><mn>36000</mn><mo>×</mo><mn>1,296</mn><mo>=</mo><mn>46656</mn></math>, IC (43 250; 50 062).</p>
-<pre><code>faltas &lt;- rep(0:8, c(451, 162, 187, 112, 49, 21, 5, 11, 2))
-N &lt;- 36000; n &lt;- 1000; f &lt;- n / N
-ybar &lt;- mean(faltas); s2 &lt;- var(faltas); ep &lt;- sqrt((1 - f) * s2 / n)
-round(c(ybar, s2, ep), 4)
-<span class="out">## [1] 1.2960 2.3968 0.0483</span>
-round(ybar + c(-1, 1) * 1.96 * ep, 3)
-<span class="out">## [1] 1.201 1.391</span>
-round(N * (ybar + c(-1, 1) * 1.96 * ep))
-<span class="out">## [1] 43250 50062</span>
-</code></pre>
+  <span class="rotulo">Exemplos 3.5 a 3.7 — 1 000 operários de 36 000</span>
+  <p>Faltas não justificadas em 6 meses. Da amostra: <math><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mn>1,296</mn></math>, <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mn>2,397</mn></math>, <math><mi>f</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>36</mn></math>.</p>
+  <ol class="receita">
+    <li><strong>Erro padrão:</strong> <math><msqrt><mrow><mfrac><mn>35</mn><mn>36</mn></mfrac><mo>×</mo><mfrac><mn>2,397</mn><mn>1000</mn></mfrac></mrow></msqrt><mo>=</mo><mn>0,0483</mn></math></li>
+    <li><strong>IC da média:</strong> <math><mn>1,296</mn><mo>±</mo><mn>1,96</mn><mo>×</mo><mn>0,0483</mn></math> → <strong>(1,201; 1,391)</strong> faltas por operário</li>
+    <li><strong>Total:</strong> <math><mi>T</mi><mo>=</mo><mn>36000</mn><mo>×</mo><mn>1,296</mn><mo>=</mo><mn>46656</mn></math>; IC <strong>(43 250; 50 062)</strong> — é o IC da média vezes <math><mi>N</mi></math></li>
+    <li><strong>Quantos para <math><mi>B</mi><mo>=</mo><mn>0,05</mn></math>?</strong> Com <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math>, <math><mi>D</mi><mo>=</mo><mn>0,000625</mn></math> e <math><mi>n</mi><mo>≅</mo><mn>3466</mn></math></li>
+    <li><strong>Proporção</strong> com mais de 3 faltas: 88 em 1 000, <math><mi>p</mi><mo>=</mo><mn>0,088</mn></math>, IC <strong>(0,071; 0,105)</strong>; para <math><mi>B</mi><mo>=</mo><mn>0,01</mn></math>, <math><mi>n</mi><mo>≅</mo><mn>2948</mn></math></li>
+  </ol>
+  <p class="miudo">Repare no item 4: o termo <math><mn>1</mn><mo>/</mo><mi>N</mi><mo>=</mo><mn>0,0000278</mn></math> é dez por cento do outro termo. Numa população de 36 mil, corrigir ou não por finitude quase não muda <math><mi>n</mi></math>.</p>
 </div>
 
-<div class="caixa teorema">
-  <span class="rotulo">Tamanho da amostra na AASs</span>
-  <p>Escreva <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><msup><mi>n</mi><mo>′</mo></msup></math> com <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mo>/</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math>. A conta da AASc dá <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>, e como <math><msup><mi>n</mi><mo>′</mo></msup><mo>=</mo><mi>n</mi><mo>/</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math> inverte-se para <math><mi>n</mi><mo>=</mo><msup><mi>n</mi><mo>′</mo></msup><mo>/</mo><mo>(</mo><mn>1</mn><mo>+</mo><msup><mi>n</mi><mo>′</mo></msup><mo>/</mo><mi>N</mi><mo>)</mo></math>:</p>
-  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi></mrow></mfrac><mspace width="0.6em"/><mtext>(média),</mtext><mspace width="2em"/><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mi>D</mi><mo>/</mo><mo>(</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>)</mo><mo>+</mo><mn>1</mn></mrow></mfrac><mspace width="0.6em"/><mtext>(total),</mtext></mrow></math><span class="num">(3.29)</span></div>
-  <p>com <math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math>. Agora <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math> sempre: o termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> é o teto do censo. (A versão para o total sai de <math><mi>P</mi><mo>(</mo><mo>|</mo><mi>T</mi><mo>−</mo><mi>τ</mi><mo>|</mo><mo>⩽</mo><mi>B</mi><mo>)</mo></math> com <math><mi>Var</mi><mo>[</mo><mi>T</mi><mo>]</mo><mo>=</mo><msup><mi>N</mi><mn>2</mn></msup><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>: é o mesmo cálculo com <math><mi>D</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> no lugar de <math><mi>D</mi></math> — Exercício 3.35.)</p>
+<details class="checagem">
+  <summary>Você calcula <math><mi>n</mi><mo>=</mo><mn>4500</mn></math> para uma população de <math><mi>N</mi><mo>=</mo><mn>3000</mn></math>. O que deu errado?</summary>
+  <div class="resposta">
+    <p>Você usou a fórmula <strong>com</strong> reposição. Sem reposição isso é impossível: <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math> sempre.</p>
+    <p>Refaça com <math><mi>n</mi><mo>=</mo><mn>1</mn><mo>/</mo><mo stretchy="false">(</mo><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math>. Se ainda der perto de 3 000, a resposta honesta é: <em>faça o censo</em>, porque a precisão pedida exige quase toda a população.</p>
+  </div>
+</details>
+
+<!-- =================================================================== 11 -->
+
+<h2 class="passo" id="p11"><span class="n">11</span> <math><mover><mi>y</mi><mo>¯</mo></mover></math> é o melhor que existe — dentro de uma classe</h2>
+<p class="marco">Passo 11 de 12</p>
+
+<div class="ideia">
+  <p>Entre os estimadores que são médias ponderadas dos valores observados e acertam <math><mi>μ</mi></math> na média, nenhum bate a média simples.</p>
+  <p>Vale nos dois planos. E a ressalva — “dentro de uma classe” — é o que abre os capítulos 5 e 6.</p>
 </div>
 
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.6 — quantos operários para <math><mi>B</mi><mo>=</mo><mn>0,05</mn></math> falta?</span>
-  <p>Com <math><mi>α</mi><mo>=</mo><mn>0,05</mn></math> e <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math>, <math><mi>D</mi><mo>≅</mo><msup><mrow><mo>(</mo><mn>0,05</mn><mo>/</mo><mn>2</mn><mo>)</mo></mrow><mn>2</mn></msup><mo>=</mo><mn>0,000625</mn></math>, e, usando <math><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mn>2,397</mn></math> no lugar de <math><msup><mi>S</mi><mn>2</mn></msup></math>,</p>
-  <math display="block"><mrow><mi>n</mi><mo>≅</mo><mfrac><mn>1</mn><mrow><mfrac><mn>0,000625</mn><mn>2,397</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>36000</mn></mfrac></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mrow><mn>0,000261</mn><mo>+</mo><mn>0,000028</mn></mrow></mfrac><mo>≅</mo><mn>3466</mn><mo>.</mo></mrow></math>
-  <p>Com 1,96 em vez de 2 dá 3 341. Repare como o termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> é pequeno aqui (10% do outro): para uma população de 36 mil, corrigir ou não por finitude quase não muda <math><mi>n</mi></math>.</p>
+<div class="par">
+  <div class="caso">
+    <h4>Definição 3.1 e Lema 3.1</h4>
+    <p><strong>Linear:</strong> <math><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>=</mo><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>y</mi><mi>i</mi></msub></math>, com os <math><msub><mi>ℓ</mi><mi>i</mi></msub></math> escolhidos <em>antes</em> de ver os dados.</p>
+    <p><strong>Não viesado ⟺</strong> <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>.</p>
+    <p class="miudo"><math><mover><mi>y</mi><mo>¯</mo></mover></math> é o caso <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>.</p>
+  </div>
+  <div class="simb">
+    <h4>Teoremas 3.6 e 3.10</h4>
+    <p>Com reposição (<math><msub><mi>y</mi><mi>i</mi></msub></math> independentes):</p>
+    <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mrow><mo stretchy="false">{</mo><munder><mo>∑</mo><mi>i</mi></munder><msup><mrow><mo stretchy="false">(</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo stretchy="false">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo stretchy="false">}</mo></mrow></mrow></math><span class="num">(3.28)</span></div>
+    <p>Sem reposição (com covariância):</p>
+    <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mrow><mo stretchy="false">(</mo><munder><mo>∑</mo><mi>i</mi></munder><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo stretchy="false">)</mo></mrow></mrow></math><span class="num">(3.35)</span></div>
+  </div>
 </div>
 
-<h3 id="s5-5">5.5 Proporções sem reposição</h3>
+<p>Nos dois casos a conta é minimizada quando todos os <math><msub><mi>ℓ</mi><mi>i</mi></msub></math> são <strong>iguais</strong>. Em (3.28) é óbvio: o primeiro termo é uma soma de quadrados, e some quando <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>. Em (3.35) a peça variável é <math><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math>, mínima sob <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math> quando todos coincidem.</p>
 
-<p>Com <math><msub><mi>Y</mi><mi>i</mi></msub></math> 0–1, <math><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mfrac><mi>N</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mi>P</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>)</mo></math> (3.30), e do Corolário 3.4:</p>
-
-<div class="caixa teorema">
-  <span class="rotulo">Proporção na AASs</span>
-  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><mover><mi>P</mi><mo>^</mo></mover><mo>]</mo><mo>=</mo><mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></mrow><mi>n</mi></mfrac><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mfrac><mrow><mi>P</mi><mi>Q</mi></mrow><mi>n</mi></mfrac><mo>,</mo><mspace width="2em"/><mi>var</mi><mo>[</mo><mi>p</mi><mo>]</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><mfrac><mrow><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>,</mo></mrow></math><span class="num">(3.31)–(3.32)</span></div>
-  <p>com IC <math><mover><mi>P</mi><mo>^</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mi>var</mi><mo>[</mo><mi>p</mi><mo>]</mo></msqrt></math> e a versão conservadora com <math><mn>1</mn><mo>/</mo><mn>4</mn></math> no lugar de <math><mover><mi>P</mi><mo>^</mo></mover><mover><mi>Q</mi><mo>^</mo></mover></math>. Tamanho da amostra para erro <math><mi>B</mi></math>:</p>
-  <div class="eq"><math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi>D</mi><mo>/</mo><mo>(</mo><mi>P</mi><mi>Q</mi><mo>)</mo><mo>+</mo><mn>1</mn></mrow></mfrac><mo>,</mo><mspace width="1.5em"/><mtext>e o conservador</mtext><mspace width="0.8em"/><mi>n</mi><mo>=</mo><mfrac><mi>N</mi><mrow><mn>4</mn><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi>D</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mo>.</mo></mrow></math><span class="num">(3.34)</span></div>
+<div class="caixa aviso">
+  <span class="rotulo">Onde o “melhor” acaba</span>
+  <p>A otimalidade é <strong>dentro da classe linear</strong>. Fora dela existem estimadores melhores — quando você tem <em>informação auxiliar</em>.</p>
+  <p>Exemplo concreto: se você conhece o número total de trabalhadores da população, dá para usar isso e bater <math><mover><mi>y</mi><mo>¯</mo></mover></math>. É o <span class="chip">estimador razão</span> do capítulo 5, e o <span class="chip">regressão</span> do 6.</p>
 </div>
 
-<div class="caixa exemplo">
-  <span class="rotulo">Exemplo 3.7 — proporção com mais de 3 faltas</span>
-  <p>Mais de 3 faltas: <math><mn>49</mn><mo>+</mo><mn>21</mn><mo>+</mo><mn>5</mn><mo>+</mo><mn>11</mn><mo>+</mo><mn>2</mn><mo>=</mo><mn>88</mn></math> operários, <math><mi>p</mi><mo>=</mo><mn>0,088</mn></math>. IC de 95%: <math><mn>0,088</mn><mo>±</mo><mn>1,96</mn><msqrt><mo>(</mo><mn>35</mn><mo>/</mo><mn>36</mn><mo>)</mo><mo>·</mo><mn>0,088</mn><mo>×</mo><mn>0,912</mn><mo>/</mo><mn>999</mn></msqrt><mo>=</mo><mn>0,088</mn><mo>±</mo><mn>0,017</mn></math>, ou <strong>(0,071; 0,105)</strong>. Para <math><mi>B</mi><mo>=</mo><mn>0,01</mn></math> com <math><mi>γ</mi><mo>=</mo><mn>0,95</mn></math> (<math><mi>D</mi><mo>≅</mo><msup><mn>0,005</mn><mn>2</mn></msup><mo>=</mo><mn>0,000025</mn></math>):</p>
-  <math display="block"><mrow><mi>n</mi><mo>=</mo><mfrac><mn>36000</mn><mrow><mfrac><mrow><mn>35999</mn><mo>×</mo><mn>0,000025</mn></mrow><mrow><mn>0,088</mn><mo>×</mo><mn>0,912</mn></mrow></mfrac><mo>+</mo><mn>1</mn></mrow></mfrac><mo>=</mo><mfrac><mn>36000</mn><mrow><mn>11,21</mn><mo>+</mo><mn>1</mn></mrow></mfrac><mo>≅</mo><mn>2948</mn><mo>.</mo></mrow></math>
-<pre><code>p &lt;- 88 / 1000; ep &lt;- sqrt((1 - f) * p * (1 - p) / (n - 1))
-round(p + c(-1, 1) * 1.96 * ep, 3)
-<span class="out">## [1] 0.071 0.105</span>
-D &lt;- (0.01 / 2)^2; N / ((N - 1) * D / (p * (1 - p)) + 1)
-<span class="out">## [1] 2947.485</span>
-</code></pre>
+<details class="checagem">
+  <summary>Um colega propõe dar peso 2/n às cinco primeiras observações e 0 às outras <math><mi>n</mi><mo>/</mo><mn>2</mn></math>. É não viesado?</summary>
+  <div class="resposta">
+    <p>Depende dos números, mas o critério é só um: <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>. Se ele usa <math><mi>n</mi><mo>/</mo><mn>2</mn></math> observações com peso <math><mn>2</mn><mo>/</mo><mi>n</mi></math> cada, a soma dá 1 — então <strong>sim, é não viesado</strong>.</p>
+    <p>Mas é pior: pesos desiguais aumentam <math><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math>. Jogar fora metade da amostra dobra a variância — sem ganhar nada.</p>
+  </div>
+</details>
+
+<!-- =================================================================== 12 -->
+
+<h2 class="passo" id="p12"><span class="n">12</span> EPA — quanto custa repor</h2>
+<p class="marco">Passo 12 de 12</p>
+
+<div class="ideia">
+  <p>Para comparar dois planos, divida as variâncias. Esse número tem nome: efeito do planejamento.</p>
+  <p>Entre AASs e AASc ele vale <math><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></math> — e cai em linha reta.</p>
 </div>
 
-<h3 id="s5-6">5.6 Otimalidade sem independência — o Teorema 3.10</h3>
+<div class="eq"><math display="block"><mrow><mi>EPA</mi><mo>=</mo><mfrac><mrow><msub><mi>Var</mi><mrow><mi>plano</mi></mrow></msub><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo></mrow><mrow><msub><mi>Var</mi><mi>AASc</mi></msub><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo></mrow></mfrac><mo>,</mo><mspace width="1.6em"/><mi>EPA</mi><mo stretchy="false">[</mo><mi>AASs</mi><mo stretchy="false">]</mo><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow></math></div>
 
-<p>Na AASs as posições <math><msub><mi>y</mi><mi>i</mi></msub></math> não são independentes: <math><mi>P</mi><mo>(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><msub><mi>Y</mi><mi>k</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>=</mo><msub><mi>Y</mi><mi>l</mi></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mo>[</mo><mi>N</mi><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>]</mo></math> para <math><mi>k</mi><mo>≠</mo><mi>l</mi></math>, e <math><mi>Cov</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>j</mi></msub><mo>]</mo><mo>=</mo><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math> (Exercício 2.10, que aqui volta como 3.37). Mesmo assim <math><mover><mi>y</mi><mo>¯</mo></mover></math> continua ótima.</p>
+<figure class="diagrama">
+  <svg viewBox="0 0 430 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gráfico do EPA da AASs contra o tamanho da amostra, para N igual a 100: uma reta que desce de 1 em n igual a 1 até 0 em n igual a 100.">
+    <text x="215" y="14" class="tx-rot">EPA da AASs — população de 100</text>
+    <line x1="42" y1="26" x2="42" y2="110" class="eixo"/>
+    <line x1="42" y1="110" x2="392" y2="110" class="eixo"/>
+    <line x1="43" y1="30" x2="380" y2="110" class="ramo" stroke-width="2"/>
 
-<div class="caixa teorema">
-  <span class="rotulo">Teorema 3.10 e a variância (3.35)</span>
-  <p>Na AASs, na classe dos lineares não viesados (<math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>), <math><mover><mi>y</mi><mo>¯</mo></mover></math> tem a menor variância. Com <math><mi>Var</mi><mo>[</mo><msub><mi>y</mi><mi>i</mi></msub><mo>]</mo><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup></math> e a covariância acima,</p>
-  <div class="eq"><math display="block"><mrow><mi>Var</mi><mo>[</mo><msub><mover><mi>y</mi><mo>¯</mo></mover><mrow><mi>s</mi><mi>ℓ</mi></mrow></msub><mo>]</mo><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><msup><mi>S</mi><mn>2</mn></msup><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><msup><mi>S</mi><mn>2</mn></msup><mi>N</mi></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>ℓ</mi><mi>j</mi></msub><mo>=</mo><msup><mi>S</mi><mn>2</mn></msup><mrow><mo>(</mo><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></mrow><mo>,</mo></mrow></math><span class="num">(3.35)</span></div>
-  <p>porque <math><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>ℓ</mi><mi>j</mi></msub><mo>=</mo><msup><mrow><mo>(</mo><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>)</mo></mrow><mn>2</mn></msup><mo>−</mo><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><mn>1</mn><mo>−</mo><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math>.</p>
+    <circle cx="57"  cy="33"  r="3.5" class="barra-alvo"/>
+    <circle cx="210" cy="70"  r="3.5" class="barra-alvo"/>
+    <circle cx="380" cy="110" r="3.5" class="barra-alvo"/>
+
+    <text x="86"  y="30" class="tx">n = 5 · 0,96</text>
+    <text x="252" y="64" class="tx">n = 50 · 0,51</text>
+    <text x="352" y="128" class="tx">n = 100</text>
+    <text x="352" y="142" class="tx-rot">censo: zero</text>
+    <text x="28"  y="33"  class="tx">1</text>
+    <text x="28"  y="112" class="tx">0</text>
+  </svg>
+  <figcaption>Linear em <math><mi>n</mi></math>. Sortear 5% da população economiza 5% de variância; sortear metade economiza metade.</figcaption>
+</figure>
+
+<div class="fileira">
+  <div><strong>EPA &lt; 1</strong><p>o plano é <em>melhor</em> que a AASc</p></div>
+  <div><strong>EPA = 1</strong><p>tanto faz</p></div>
+  <div><strong>EPA &gt; 1</strong><p>o plano é <em>pior</em> — acontece, e o capítulo 4 mostra quando</p></div>
 </div>
-<div class="caixa demonstracao">
-  <span class="rotulo">Demonstração</span>
-  <p>Por (3.35), minimizar a variância é minimizar <math><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math> sujeito a <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math> — o mesmo problema da AASc, e a mesma resposta: elimine <math><msub><mi>ℓ</mi><mi>n</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>ℓ</mi><mi>j</mi></msub></math>, derive <math><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></munderover><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>+</mo><msup><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mo>∑</mo><msub><mi>ℓ</mi><mi>j</mi></msub><mo>)</mo></mrow><mn>2</mn></msup></math> em cada <math><msub><mi>ℓ</mi><mi>i</mi></msub></math> e iguale a zero: <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><msub><mi>ℓ</mi><mi>n</mi></msub></math> para todo <math><mi>i</mi></math> (a segunda derivada é positiva, é mínimo). Todos iguais e somando 1: <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>, e o mínimo é <math><msup><mi>S</mi><mn>2</mn></msup><mo>(</mo><mn>1</mn><mo>/</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo><mo>=</mo><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. O mesmo argumento dá <math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math> ótimo para <math><mi>τ</mi></math> (Exercício 3.38).<span class="qed">∎</span></p>
+
+<p class="miudo">Uma condição para o EPA fazer sentido: os dois estimadores têm de ser <strong>não viesados</strong>. Se um for viesado, compare EQM, não variância.</p>
+
+<div class="caixa aviso">
+  <span class="rotulo">Para onde o EPA vai</span>
+  <p>No <strong>capítulo 4</strong> ele mede o ganho da estratificação: <math><mn>1</mn><mo>−</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mo>/</mo><msup><mi>σ</mi><mn>2</mn></msup></math>, e no Exemplo 4.1 vale 0,40.</p>
+  <p>No <strong>capítulo 7</strong> ele mede a <em>perda</em> dos conglomerados — lá o EPA costuma passar de 1, e o que se compra em troca é custo de campo.</p>
 </div>
 
-<h2 id="s6">6. AASc × AASs: o efeito do planejamento</h2>
+<details class="checagem">
+  <summary>Numa população de 6, <math><mi>n</mi><mo>=</mo><mn>2</mn></math>. Qual o EPA da AASs? E confere com os 28 e 14 do exemplo dos três domicílios?</summary>
+  <div class="resposta">
+    <p><math><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mn>6</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0,8</mn></math>.</p>
+    <p>Nos três domicílios era <math><mo stretchy="false">(</mo><mn>3</mn><mo>−</mo><mn>2</mn><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mn>3</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math> — e de fato <math><mn>14</mn><mo>/</mo><mn>28</mn><mo>=</mo><mn>0,5</mn></math>. ✓</p>
+    <p>Com <math><mi>N</mi><mo>=</mo><mn>6</mn></math> o ganho é menor, porque a fração amostral caiu de 2/3 para 1/3.</p>
+  </div>
+</details>
 
-<p>Para comparar dois planos é preciso um critério: em amostragem, o EQM — a variância, quando os estimadores são não viesados. O <strong>efeito do planejamento</strong> (EPA, <em class="en">design effect</em>, deff) é a razão entre a variância do plano em estudo e a de um plano-padrão. Com <math><mover><mi>y</mi><mo>¯</mo></mover></math> não viesada nos dois planos,</p>
+<!-- ================================================================ fecho -->
 
-<div class="caixa teorema">
-  <span class="rotulo">EPA da AASs em relação à AASc</span>
-  <math display="block"><mrow><mi>EPA</mi><mo>=</mo><mfrac><mrow><msub><mi>Var</mi><mi>AASs</mi></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></mrow><mrow><msub><mi>Var</mi><mi>AASc</mi></msub><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow><mrow><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo>⩽</mo><mn>1</mn><mo>.</mo></mrow></math>
-  <p>EPA &gt; 1: o plano do numerador é pior que o padrão; &lt; 1: melhor. Aqui é sempre ⩽ 1 — <strong>a AASs é sempre “melhor” que a AASc</strong>, com igualdade só para <math><mi>n</mi><mo>=</mo><mn>1</mn></math>. Nos três domicílios com <math><mi>n</mi><mo>=</mo><mn>2</mn></math>: <math><mi>EPA</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>2</mn></math> (14 contra 28). A intuição popular estava certa.</p>
+<h2 class="passo" id="fecho"><span class="n">✓</span> Fecho — agora feche a página</h2>
+
+<div class="fecho">
+  <h3>Escreva o capítulo de memória, de uma vez só</h3>
+  <p><strong>Papel, aba fechada, tudo o que lembrar</strong> — não passo por passo. Escrever o texto inteiro de uma vez lembra menos na hora e mais dois dias depois, e sai mais organizado.</p>
+  <p>Depois confira. O que não apareceu, releia <em>só aquele passo</em>.</p>
+  <ol class="conferir">
+    <li>AASc e AASs: mesma chance para todos; muda só devolver ou não.</li>
+    <li>Com reposição, <math><msub><mi>f</mi><mi>i</mi></msub></math> é <strong>Binomial</strong><math><mo stretchy="false">(</mo><mi>n</mi><mo>,</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo stretchy="false">)</mo></math>.</li>
+    <li><math><mi>Var</mi><mo stretchy="false">[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>; <math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover></math> é o <strong>estimador expansão</strong>.</li>
+    <li><math><mi>E</mi><mo stretchy="false">[</mo><msup><mi>s</mi><mn>2</mn></msup><mo stretchy="false">]</mo><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup></math> na AASc — via (2.16) e (2.18).</li>
+    <li>IC: estimativa <math><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub></math> erros padrão; para o total, multiplique tudo por <math><mi>N</mi></math>.</li>
+    <li><math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math> e <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>; sem teto.</li>
+    <li>Proporção: <math><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>P</mi><mi>Q</mi></math>; conservador usa 1/4.</li>
+    <li>Sem reposição, <math><msub><mi>f</mi><mi>i</mi></msub></math> é <strong>Bernoulli</strong> — daí o <math><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo stretchy="false">)</mo></math>.</li>
+    <li>Na AASs entra <math><msup><mi>S</mi><mn>2</mn></msup></math>, e o mesmo <math><msup><mi>s</mi><mn>2</mn></msup></math> passa a estimá-lo.</li>
+    <li>Agora <math><mi>n</mi><mo>&lt;</mo><mi>N</mi></math> sempre: o termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> é o teto.</li>
+    <li><math><mover><mi>y</mi><mo>¯</mo></mover></math> é ótima entre os lineares não viesados, com e sem independência.</li>
+    <li>EPA da AASs <math><mo>=</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></math>.</li>
+  </ol>
 </div>
 
-<p>O EPA volta no capítulo 4 para medir o ganho da estratificação (Exemplo 4.1: EPA = 0,40) e no 7 para medir a perda dos conglomerados.</p>
+<div class="caixa pratica">
+  <span class="rotulo">Se travou em algum item</span>
+  <p>Volte ao passo e refaça <em>só a checagem</em>, sem reler. Acertando, o problema era acesso e não entendimento.</p>
+  <p>Os itens 2 e 8 são o par mais importante: se você souber dizer qual distribuição <math><msub><mi>f</mi><mi>i</mi></msub></math> tem em cada plano, todo o resto se reconstrói.</p>
+</div>
 
-<h2 id="recall">Cartões de recall ativo</h2>
-
-<p>Tente responder antes de abrir. Se hesitar, volte à seção.</p>
-
-<details class="recall">
-  <summary>Qual é a distribuição de <math><msub><mi>f</mi><mi>i</mi></msub></math> na AASc? E na AASs? Dê <math><mi>E</mi></math>, <math><mi>Var</mi></math> e <math><mi>Cov</mi></math> nos dois casos.</summary>
-  <div class="resposta">
-    <p>AASc: <math><mi>b</mi><mo>(</mo><mi>n</mi><mo>;</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math> — <math><mi>E</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, <math><mi>Var</mi><mo>=</mo><mfrac><mi>n</mi><mi>N</mi></mfrac><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><mo>)</mo></math>, <math><mi>Cov</mi><mo>=</mo><mo>−</mo><mi>n</mi><mo>/</mo><msup><mi>N</mi><mn>2</mn></msup></math> (Multinomial). AASs: <math><mi>b</mi><mo>(</mo><mn>1</mn><mo>;</mo><mi>n</mi><mo>/</mo><mi>N</mi><mo>)</mo></math> — <math><mi>E</mi><mo>=</mo><mi>n</mi><mo>/</mo><mi>N</mi></math>, <math><mi>Var</mi><mo>=</mo><mi>f</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math>, <math><mi>Cov</mi><mo>=</mo><mo>−</mo><mfrac><mi>n</mi><msup><mi>N</mi><mn>2</mn></msup></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mi>n</mi></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></mfrac></math>. As esperanças coincidem; as variâncias diferem por <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math> contra <math><mo>(</mo><mn>1</mn><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Deduza <math><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></math> nos dois planos a partir de (2.15).</summary>
-  <div class="resposta">
-    <p><math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>f</mi><mo>]</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup></math>. AASc: <math><mfrac><mi>n</mi><mi>N</mi></mfrac><mfrac><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><mi>N</mi></mfrac><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup></math> → <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. AASs: <math><mi>f</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>=</mo><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math> → <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>. Regra: reposição ↔ <math><msup><mi>σ</mi><mn>2</mn></msup></math>; sem ↔ <math><msup><mi>S</mi><mn>2</mn></msup></math> com o fator <math><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Esboce a prova de que <math><msup><mi>s</mi><mn>2</mn></msup></math> é não viesado para <math><msup><mi>σ</mi><mn>2</mn></msup></math> na AASc. O que muda na AASs?</summary>
-  <div class="resposta">
-    <p><math><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>−</mo><msup><mi>t</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math>; (2.18) dá <math><mi>E</mi><mo>[</mo><msubsup><mi>s</mi><mi>q</mi><mn>2</mn></msubsup><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>+</mo><msup><mi>μ</mi><mn>2</mn></msup><mo>)</mo></math> e (2.16) dá <math><mi>E</mi><mo>[</mo><msup><mi>t</mi><mn>2</mn></msup><mo>]</mo><mo>=</mo><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>+</mo><msup><mi>n</mi><mn>2</mn></msup><msup><mi>μ</mi><mn>2</mn></msup></math>. Na AASc <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><msup><mi>σ</mi><mn>2</mn></msup></math> e sobra <math><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>σ</mi><mn>2</mn></msup></math>; na AASs <math><mi>Var</mi><mo>[</mo><mi>t</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math> e sobra <math><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><msup><mi>S</mi><mn>2</mn></msup></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>O que é o estimador expansão e por que tem esse nome?</summary>
-  <div class="resposta">
-    <p><math><mi>T</mi><mo>=</mo><mi>N</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>=</mo><mo>(</mo><mi>N</mi><mo>/</mo><mi>n</mi><mo>)</mo><mi>t</mi></math>: expande o total da amostra pelo fator <math><mi>N</mi><mo>/</mo><mi>n</mi></math>. Equivale a <math><mi>n</mi><mover><mi>y</mi><mo>¯</mo></mover><mo>+</mo><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mover><mi>y</mi><mo>¯</mo></mover></math> — as unidades não observadas são estimadas pela média das observadas. Variância <math><msup><mi>N</mi><mn>2</mn></msup><mi>Var</mi><mo>[</mo><mover><mi>y</mi><mo>¯</mo></mover><mo>]</mo></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Escreva o IC para <math><mi>μ</mi></math> na AASs e dê a interpretação frequentista.</summary>
-  <div class="resposta">
-    <p><math><mover><mi>y</mi><mo>¯</mo></mover><mo>±</mo><msub><mi>z</mi><mi>α</mi></msub><msqrt><mo>(</mo><mn>1</mn><mo>−</mo><mi>f</mi><mo>)</mo><msup><mi>s</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></msqrt></math>, com o TLC justificando a normal e <math><msup><mi>s</mi><mn>2</mn></msup></math> no lugar de <math><msup><mi>S</mi><mn>2</mn></msup></math>. Em 100 amostras, cerca de <math><mn>100</mn><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></math> dos intervalos contêm <math><mi>μ</mi></math>; o intervalo é que é aleatório.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Fórmulas de tamanho de amostra: média (AASc e AASs), proporção (idem) e total. O que é <math><mi>D</mi></math>?</summary>
-  <div class="resposta">
-    <p><math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><msubsup><mi>z</mi><mi>α</mi><mn>2</mn></msubsup></math> (a variância-alvo). AASc: <math><mi>n</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>D</mi></math>; proporção <math><mi>P</mi><mi>Q</mi><mo>/</mo><mi>D</mi></math>, conservador <math><mn>1</mn><mo>/</mo><mo>(</mo><mn>4</mn><mi>D</mi><mo>)</mo></math>. AASs: <math><mi>n</mi><mo>=</mo><mn>1</mn><mo>/</mo><mo>(</mo><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math>; proporção <math><mi>N</mi><mo>/</mo><mo>[</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi>D</mi><mo>/</mo><mi>P</mi><mi>Q</mi><mo>+</mo><mn>1</mn><mo>]</mo></math>; total <math><mi>N</mi><mo>/</mo><mo>[</mo><mi>D</mi><mo>/</mo><mo>(</mo><mi>N</mi><msup><mi>S</mi><mn>2</mn></msup><mo>)</mo><mo>+</mo><mn>1</mn><mo>]</mo></math>. Truque: calcule o <math><msup><mi>n</mi><mo>′</mo></msup></math> “infinito” e corrija por <math><mi>n</mi><mo>=</mo><msup><mi>n</mi><mo>′</mo></msup><mo>/</mo><mo>(</mo><mn>1</mn><mo>+</mo><msup><mi>n</mi><mo>′</mo></msup><mo>/</mo><mi>N</mi><mo>)</mo></math>.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Três maneiras de obter um palpite para <math><msup><mi>σ</mi><mn>2</mn></msup></math> antes de amostrar.</summary>
-  <div class="resposta">
-    <p>Amostra piloto; pesquisas anteriores; amplitude do intervalo que contém ≈ 95% da população dividida por 4 (populações aproximadamente simétricas). Para proporções, o teto <math><mi>P</mi><mi>Q</mi><mo>⩽</mo><mn>1</mn><mo>/</mo><mn>4</mn></math> dispensa palpite ao custo de superestimar <math><mi>n</mi></math> — muito, se <math><mi>P</mi></math> está longe de 1/2.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Por que <math><mover><mi>y</mi><mo>¯</mo></mover></math> é ótima entre os lineares não viesados? Onde a prova usa a independência, e como se contorna na AASs?</summary>
-  <div class="resposta">
-    <p>Não viesado ⇔ <math><mo>∑</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>. Na AASc a independência dá <math><mi>Var</mi><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>=</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>[</mo><mo>∑</mo><msup><mrow><mo>(</mo><msub><mi>ℓ</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn><mo>/</mo><mi>n</mi><mo>)</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>n</mi><mo>]</mo></math>, mínima em <math><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo>/</mo><mi>n</mi></math>. Na AASs a covariância <math><mo>−</mo><msup><mi>S</mi><mn>2</mn></msup><mo>/</mo><mi>N</mi></math> entra, mas como <math><munder><mo>∑</mo><mrow><mi>i</mi><mo>≠</mo><mi>j</mi></mrow></munder><msub><mi>ℓ</mi><mi>i</mi></msub><msub><mi>ℓ</mi><mi>j</mi></msub><mo>=</mo><mn>1</mn><mo>−</mo><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup></math> a variância vira <math><msup><mi>S</mi><mn>2</mn></msup><mo>(</mo><mo>∑</mo><msubsup><mi>ℓ</mi><mi>i</mi><mn>2</mn></msubsup><mo>−</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo></math> — o mesmo problema de minimização.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>O que é o EPA? Quanto vale para AASs × AASc, e o que significa <math><mi>n</mi><mo>=</mo><mn>1</mn></math>?</summary>
-  <div class="resposta">
-    <p>Razão entre a variância do plano e a de um padrão. <math><mo>(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo>)</mo><mo>/</mo><mo>(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>⩽</mo><mn>1</mn></math>: sem reposição é sempre melhor; para <math><mi>n</mi><mo>=</mo><mn>1</mn></math> os planos são idênticos e o EPA é 1.</p>
-  </div>
-</details>
-
-<details class="recall">
-  <summary>Na AASc o <math><mi>n</mi></math> calculado pode passar de <math><mi>N</mi></math>. Por que isso não acontece na AASs?</summary>
-  <div class="resposta">
-    <p>Porque <math><mi>n</mi><mo>=</mo><mn>1</mn><mo>/</mo><mo>(</mo><mi>D</mi><mo>/</mo><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>/</mo><mi>N</mi><mo>)</mo><mo>&lt;</mo><mi>N</mi></math> sempre: o termo <math><mn>1</mn><mo>/</mo><mi>N</mi></math> impõe o censo como limite, e no censo a variância é zero (fator <math><mn>1</mn><mo>−</mo><mi>f</mi><mo>=</mo><mn>0</mn></math>). Na AASc a variância <math><msup><mi>σ</mi><mn>2</mn></msup><mo>/</mo><mi>n</mi></math> nunca zera — o Exemplo 3.2 pede 96 unidades de uma população de 3.</p>
-  </div>
-</details>
-
-<h2 id="exercicios">Exercícios resolvidos</h2>
+<h2 class="passo" id="exercicios"><span class="n">+</span> Exercícios resolvidos</h2>
+<p class="marco">Depois do fecho · treze exercícios, com a resposta comentada</p>
 
 <p>Escolhi os que exercitam cada ideia uma vez: enumerar <math><msub><mi>S</mi><mi>AASs</mi></msub></math> e <math><msub><mi>S</mi><mi>AASc</mi></msub></math> numa população de seis (3.1 e 3.2), o IC e o tamanho de amostra com fator de finitude (3.4), dois estimadores “ajeitados” que batem <math><mover><mi>y</mi><mo>¯</mo></mover></math> ou não (3.5 com 3.41, e 3.6), a informação extra do segundo dentista (3.7), amostras reais da Tabela 2.8 com e sem reposição (3.9), a proporção numa população de seis (3.11), total de livros (3.16), os tamanhos de amostra para erro padrão, para <math><mi>N</mi></math> finito e para CV (3.17 e 3.18), a sugestão das 12 prateleiras (3.25) e os domicílios com idosos (3.27). Os teóricos 3.30 e 3.33 estão demonstrados no corpo da aula (Teoremas 3.7 e 3.9).</p>
 
@@ -675,11 +856,9 @@ D &lt;- (0.08 / 1.96)^2; c(N / ((N - 1) * D / (p * (1 - p)) + 1), N / (4 * (N - 
 </code></pre>
 </div>
 
+
 <div class="nota">
-  <p><strong>Fonte:</strong> Bolfarine, H.; Bussab, W. O. <em>Elementos de Amostragem</em>. IME-USP, maio de 2004 — capítulo 3, págs. 61–92. Tabelas 3.1 a 3.6 e os dados dos exemplos e exercícios transcritos do original para fins de estudo pessoal.</p>
-  <p><strong>Nota sobre <math><msub><mi>z</mi><mi>α</mi></msub></math>:</strong> nos tamanhos de amostra o livro usa <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math> (Exemplos 3.2, 3.6 e 3.7: <math><mi>D</mi><mo>=</mo><msup><mi>B</mi><mn>2</mn></msup><mo>/</mo><mn>4</mn></math>) e nos intervalos usa 1,96. Segui o livro nos exemplos e usei 1,96 nos exercícios; a diferença nos <math><mi>n</mi></math> é de cerca de 4%.</p>
-  <p><strong>Nota sobre o Exemplo 3.3:</strong> o limite inferior do IC é −0,061; o livro imprime 0,00 (truncado). E sobre o Exercício 3.9(c): o enunciado fala em “residências com mais que 3 residentes”, herança do Exercício 3.4; na Tabela 2.8 não há residentes, e tomei “condomínios com mais de 3 apartamentos alugados”.</p>
-  <p><strong>Nota sobre o Exercício 3.6:</strong> o livro só pede a variância; o estimador é viesado (esperança 4 para <math><mi>μ</mi><mo>=</mo><mn>4,5</mn></math>), o que aponta para o Exercício 4.27.</p>
+  <p><strong>Sobre esta versão.</strong> Mesmo conteúdo do capítulo 3 de Bolfarine &amp; Bussab (págs. 61–92), reorganizado em doze passos curtos, cada um com o caso numérico antes do símbolo e uma pergunta de recuperação no fim. Todos os valores foram recalculados. Duas observações sobre o impresso: o livro usa <math><msub><mi>z</mi><mi>α</mi></msub><mo>≈</mo><mn>2</mn></math> nos tamanhos de amostra e 1,96 nos intervalos (Ex. 3.2 dá 96 com 2 e 93 com 1,96; Ex. 3.6 dá 3 466 e 3 341), e o limite inferior do IC do Exemplo 3.3 é −0,06, impresso truncado em 0,00.</p>
 </div>
 
 <nav class="nav-rodape">
@@ -687,39 +866,6 @@ D &lt;- (0.08 / 1.96)^2; c(N / ((N - 1) * D / (p * (1 - p)) + 1), N / (4 * (N - 
   <span><a href="../cap04/04-00-amostragem-estratificada.html">Cap. 4 — Amostragem estratificada →</a></span>
 </nav>
 
-
 </div>
-<script>
-/* Em tela larga a barra lateral fica sempre aberta (o CSS esconde o
-   alternador). Abaixo de 62rem ela vira aba: aí começa fechada e fecha
-   sozinha ao escolher um link. Nada aqui depende de rede ou biblioteca —
-   sem JavaScript a barra apenas fica sempre aberta, que é o estado bom. */
-(function () {
-  var menu = document.querySelector(".menu-lateral");
-  if (!menu) return;
-
-  /* Seções com subtópicos: clicar no título abre a lista e segue o link.
-     Só ABRE — para fechar, clique na setinha. É preciso fazer à mão porque
-     o navegador dá prioridade ao <a> e não alterna o <details> sozinho.
-     Sem JavaScript a setinha continua abrindo e fechando normalmente. */
-  menu.querySelectorAll("details.sub > summary > a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var d = a.closest("details.sub");
-      if (d) d.open = true;
-    });
-  });
-
-  if (!window.matchMedia) return;
-  var estreito = window.matchMedia("(max-width: 62rem)");
-  function ajustar() { menu.open = !estreito.matches; }
-  ajustar();
-  estreito.addEventListener("change", ajustar);
-  menu.querySelectorAll(".painel a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      if (estreito.matches) menu.open = false;
-    });
-  });
-})();
-</script>
 </body>
 </html>
